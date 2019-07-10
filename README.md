@@ -33,13 +33,10 @@ So I decide to class different points to various groups.
 ## Node.JS
 
 * [Cross Domain](/nodejs/cross_domain.md)
+* [Passport.JS structure](/nodejs/passport.md)
 
 ## Algorithm
 
 * [Flat an Array](/algorithm/flat_array.md)
-
-## Packages
-
-* [Passport.JS structure](/packages/passport.md)
 
 
