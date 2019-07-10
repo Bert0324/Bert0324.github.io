@@ -71,8 +71,7 @@ This code's result is the same as the first one. So every time, when a macrotask
 
 > microtasks including: process.nextTick, Promises, MutationObserver
 
-
-
+There is a nice [article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) about it.
 
 ## Promise all vs race
 
@@ -80,7 +79,6 @@ About all() and race(), I know a really vivid and interesting metaphor: The all(
 
 In other word, the all() will return results of all callback tasks, the race() will return the callback result of the first finished task. 
 
-There is a nice [article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) about it.
 
 ## Promise parallel
 
