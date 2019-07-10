@@ -140,7 +140,7 @@ parallelPromise([task1, task2, task3])
 
 ## Key words: async, await
 
-The async and await can make code look more synchronized. For example, parallel function written by async and await:
+The async and await can make code look more synchronized, it's based on the generator in JS. For example, parallel function written by async and await:
 
 ```javaScript
 function parallelAsync(tasks) {
