@@ -6,6 +6,10 @@ So I decide to class different points to various groups.
 
 ## JS basis
 
+* [0.1 + 0.2 === 0.3](/ja_basis/epsilon.md)
+* [Deep copy and Shallow copy in JS](/ja_basis/object_copy.md)
+* [slice, substr and substring](/ja_basis/string_process.md)
+
 ## Module
 
 ## Asynchronize
@@ -23,8 +27,19 @@ So I decide to class different points to various groups.
 
 ## React
 
+* [Refs](/react/refs.md)
+* [Keys](/react/keys.md)
+
 ## Node.JS
+
+* [Cross Domain](/nodejs/cross_domain.md)
 
 ## Algorithm
 
 * [Flat an Array](/algorithm/flat_array.md)
+
+## Packages
+
+* [Passport.JS structure](/packages/passport.md)
+
+
