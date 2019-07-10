@@ -41,6 +41,6 @@ So I decide to class different points to various groups.
 
 If you have problem or are interested in me, welcome to contact me via email: yuchenhuang0324@gmail.com or WeChat QR code:
 
-![QR_Code](assets/qr_code.jpeg = 100x20)
+<img src="assets/qr_code.jpeg" width="200"/>
 
 
