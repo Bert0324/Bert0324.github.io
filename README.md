@@ -7,8 +7,8 @@ So I decide to class different points to various groups.
 ## JS basis
 
 * [0.1 + 0.2 === 0.3](/js_basis/epsilon.md)
-* [Deep copy and Shallow copy in JS](/ja_basis/object_copy.md)
-* [slice, substr and substring](/ja_basis/string_process.md)
+* [Deep copy and Shallow copy in JS](/js_basis/object_copy.md)
+* [slice, substr and substring](/js_basis/string_process.md)
 
 ## Module
 
