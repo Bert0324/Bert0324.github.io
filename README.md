@@ -39,7 +39,7 @@ So I decide to class different points to various groups.
 
 * [Flat an Array](/algorithm/flat_array.md)
 
-If you have problem or are interested in me, welcome to contact me via email: yuchenhuang0324@gmail.com or WeChat QR code:
+> If you have problem or are interested in me, welcome to contact me via email: yuchenhuang0324@gmail.com or WeChat QR code:
 
 <img src="assets/qr_code.jpeg" width="400"/>
 
