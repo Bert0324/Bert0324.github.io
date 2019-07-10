@@ -14,9 +14,17 @@ So I decide to class different points to various groups.
 
 ## Web API
 
+* [Event Proxy](/web_api/events_proxy.md)
+
 ## NetWork
+
+* [Http2](/network/http2.md)
 
 
 ## React
 
 ## Node.JS
+
+## Algorithm
+
+* [Flat an Array](/algorithm/flat_array.md)
