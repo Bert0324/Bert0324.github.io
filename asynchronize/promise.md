@@ -5,6 +5,7 @@ Compared to other programming language, in JS, it is so convenient to use the as
 There is a code as below:
 
 ```javaScript
+const process = require('process');
 console.log(1);
 setTimeout(()=>{
     console.log(2);
