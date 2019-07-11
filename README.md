@@ -13,6 +13,7 @@ So I decide to class different points to groups.
 ## Modularization
 
 * [webpack how works](/module/webpack_structure.md)
+* [babel](/module/webpack_structure.md)
 
 ## Asynchronize
 
