@@ -45,18 +45,18 @@ In `webpack/lib/Compiler.js`'s `run(callback)` that is the time of compiling rea
 ```JavaScript
 //......
 this.hooks.beforeRun.callAsync(this, err => {
-			if (err) return finalCallback(err);
+    if (err) return finalCallback(err);
 
-			this.hooks.run.callAsync(this, err => {
-				if (err) return finalCallback(err);
+    this.hooks.run.callAsync(this, err => {
+        if (err) return finalCallback(err);
 
-				this.readRecords(err => {
-					if (err) return finalCallback(err);
+        this.readRecords(err => {
+            if (err) return finalCallback(err);
 
-					this.compile(onCompiled);   //start compile, will create new compilation by new Compilation(this)
-				});
-			});
-		});
+            this.compile(onCompiled);   //start compile, will create new compilation by new Compilation(this)
+        });
+    });
+});
 ```
 
 Both compiler and compilation extends from [tapable](https://github.com/webpack/tapable), which defines all hooks' classes, which can be used to create hooks for plugins. From my understanding, The `Compiler`
@@ -93,7 +93,9 @@ compiler.hooks.compilation.tap(plugin, compilation => {
 });
 ```
 
-There is a simple example written by me to print all modules used:
+So basically, it is to use hook functions to get chunks object and process it. 
+
+According it, there is a simple example written by me to print all modules used:
 
 ```JavaScript
 class CustomClass{
