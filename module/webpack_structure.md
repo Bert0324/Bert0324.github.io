@@ -15,10 +15,10 @@ Next, in `webpack/lib/webpack.js`, we can find the main webpack function which c
 
 ```JavaScript
 const webpack = (options, callback) => {
-    options = new WebpackOptionsDefaulter().process(options);    
-    let compiler = new Compiler(options.context);
+    options = new WebpackOptionsDefaulter().process(options);   //initialize options
+    let compiler = new Compiler(options.context);   //options.context is the local path
     compiler.options = options;
-    new NodeEnvironmentPlugin().apply(compiler);
+    new NodeEnvironmentPlugin().apply(compiler);    //compiler gets node environment arguments
     
     if (options.plugins && Array.isArray(options.plugins)) {
         for (const plugin of options.plugins) {
@@ -31,8 +31,19 @@ const webpack = (options, callback) => {
     }
     compiler.hooks.environment.call();
     compiler.hooks.afterEnvironment.call();
-    compiler.options = new WebpackOptionsApply().process(options, compiler);
-    compiler.run(callback);
+    compiler.options = new WebpackOptionsApply().process(options, compiler);    //process plugins
     return compiler;
 }
 ```
+
+`compiler` object gets all contents about webpack functions, including node environment, the client's options and the local path.
+
+## Compiler Hooks and Complication Hooks
+
+Entering into `webpack/lib/Complier.js`, we can see `compiler` extends from [tapable](https://github.com/webpack/tapable), which defines all hooks' classes, which can be used to create hooks for plugins.
+
+In `this.hooks` of `Complier`, we can all hooks can be used in plugins. [Official Hooks Document](https://webpack.js.org/api/compiler-hooks/).
+
+
+
+
