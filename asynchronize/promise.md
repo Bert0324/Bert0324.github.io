@@ -5,6 +5,7 @@ Compared to other programming language, in JS, it is so convenient to use the as
 There is a code as below:
 
 ```javaScript
+const process = require('process');
 console.log(1);
 setTimeout(()=>{
     console.log(2);
@@ -71,8 +72,7 @@ This code's result is the same as the first one. So every time, when a macrotask
 
 > microtasks including: process.nextTick, Promises, MutationObserver
 
-
-
+There is a nice [article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) about it.
 
 ## Promise all vs race
 
@@ -80,7 +80,6 @@ About all() and race(), I know a really vivid and interesting metaphor: The all(
 
 In other word, the all() will return results of all callback tasks, the race() will return the callback result of the first finished task. 
 
-There is a nice [article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) about it.
 
 ## Promise parallel
 
@@ -142,7 +141,7 @@ parallelPromise([task1, task2, task3])
 
 ## Key words: async, await
 
-The async and await can make code look more synchronized. For example, parallel function written by async and await:
+The async and await can make code look more synchronized, it's based on the generator in JS. For example, parallel function written by async and await:
 
 ```javaScript
 function parallelAsync(tasks) {
