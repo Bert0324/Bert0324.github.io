@@ -49,7 +49,7 @@ So I decide to class different points to groups.
 
 
 
-> If you have problem or are interested in me, welcome to contact me via email: yuchenhuang0324@gmail.com or WeChat, my QR code is as below:
+> If you would like to right a wrong or are interested in me, welcome to contact me via email: yuchenhuang0324@gmail.com or WeChat, my QR code is as below:
 
 <img src="assets/qr_code.jpeg" width="400"/>
 
