@@ -1,4 +1,4 @@
-## When input webpack --config webpack.config.js, what happened?
+## When input webpack in command line, what happened?
 
 Once inputting `webpack`, the `bin/webpack.js` will be operated. After checking cli whether installed, the 
 `webpack-cli/bin/cli.js` is operated. Without more options, the code can be simplified to:
