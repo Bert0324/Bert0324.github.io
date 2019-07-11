@@ -114,6 +114,8 @@ class CustomClass{
 };
 ```
 
+This is just a quick and sketchy looking at webpack. If you want to right a wrong or have some suggestions about it, welcome to contact me.
+
 
 
 
