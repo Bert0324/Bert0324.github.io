@@ -40,7 +40,7 @@ const webpack = (options, callback) => {
 
 ## Compiler Hooks and Complication Hooks
 
-In `webpack/lib/Compiler.js`'s `run(callback)` that is the time of compiling really start:
+In `webpack/lib/Compiler.js`'s `run(callback)`, which is the function which compiling really start from:
 
 ```JavaScript
 //......
