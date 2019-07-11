@@ -62,7 +62,7 @@ this.hooks.beforeRun.callAsync(this, err => {
 Both compiler and compilation extends from [tapable](https://github.com/webpack/tapable), which defines all hooks' classes, which can be used to create hooks for plugins. From my understanding, The `Compiler`
 is `webpack` itself, `compilation` represents this time's compiling. So when developing `webpack` plugins, `compilation` is the object that developers really operate.
 
-In their `this.hooks`, we can all hooks can be used in plugins. There is a official hook list: [Compiler Hooks](https://webpack.js.org/api/compiler-hooks/), [Compilation Hooks](https://webpack.js.org/api/compilation-hooks/).
+In their `this.hooks`, we can all hooks can be used in plugins. There is an official hook list: [Compiler Hooks](https://webpack.js.org/api/compiler-hooks/), [Compilation Hooks](https://webpack.js.org/api/compilation-hooks/).
 
 ## How to develop a webpack plugin
 
