@@ -36,14 +36,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="3722" />
+          <entry key="md" value="3865" />
           <entry key="txt" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="21" />
-          <entry key="Markdown" value="3701" />
+          <entry key="Markdown" value="3844" />
           <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
@@ -67,8 +67,8 @@
         <entry file="file://$PROJECT_DIR$/module/webpack_structure.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="95">
-                <caret line="71" selection-start-line="71" selection-end-line="92" selection-end-column="3" />
+              <first_editor relative-caret-position="101">
+                <caret line="99" column="13" lean-forward="true" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="13" />
               </first_editor>
               <second_editor />
             </state>
@@ -181,7 +181,7 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562866379698" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562866566123" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -346,7 +346,7 @@
       <updated>1562778592962</updated>
       <workItem from="1562778594198" duration="2424000" />
       <workItem from="1562781074367" duration="2488000" />
-      <workItem from="1562784928474" duration="13793000" />
+      <workItem from="1562784928474" duration="14048000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -359,11 +359,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18705000" />
+    <option name="totallyTimeSpent" value="18960000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="0" width="1388" height="900" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2473997" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -532,8 +531,8 @@
     <entry file="file://$PROJECT_DIR$/module/webpack_structure.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="95">
-            <caret line="71" selection-start-line="71" selection-end-line="92" selection-end-column="3" />
+          <first_editor relative-caret-position="101">
+            <caret line="99" column="13" lean-forward="true" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="13" />
           </first_editor>
           <second_editor />
         </state>
