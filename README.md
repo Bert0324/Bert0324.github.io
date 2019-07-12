@@ -13,7 +13,7 @@ So I decide to class different points to groups.
 ## Modularization
 
 * [webpack how works](/module/webpack_structure.md)
-* [babel](/module/webpack_structure.md)
+* [babel]()
 
 ## Asynchronize
 
@@ -26,7 +26,6 @@ So I decide to class different points to groups.
 ## NetWork
 
 * [Http2](/network/http2.md)
-
 
 ## React
 
@@ -44,6 +43,8 @@ So I decide to class different points to groups.
 * [Flat an Array](/algorithm/flat_array.md)
 
 ## Other
+
+* [issue a npm package]()
 
 <br />
 <br />
