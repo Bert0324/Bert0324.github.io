@@ -95,7 +95,7 @@ compiler.hooks.compilation.tap(plugin, compilation => {
 
 So basically, it is to use hook functions to get chunks object and process it. 
 
-According it, there is a simple example written by me to print all modules used:
+According to it, there is a simple example to print all modules used:
 
 ```JavaScript
 class CustomClass{
@@ -113,6 +113,9 @@ class CustomClass{
     }
 };
 ```
+
+Base on it, I developed a tiny tool for checking, updating and combining NPM packgaes, [webpack-package-manager](https://github.com/Bert0324/webpack-package-manager). If you have time, it wwould be amazing to give me a star!
+
 
 There is a nice image that can show webpack whole life cycle from [source](http://taobaofed.org/blog/2016/09/09/webpack-flow/):
 
