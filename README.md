@@ -44,7 +44,7 @@ So I decide to class different points to groups.
 
 ## Other
 
-* [issue a npm package]()
+* [issue a npm package](/other/npm_issue.md)
 
 <br />
 <br />
