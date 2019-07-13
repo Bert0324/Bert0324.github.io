@@ -1,10 +1,10 @@
-When a web client want to request resources from a cross-domain server, there are 3 ways.
+When a web client want to request resources from a cross-domain server, normally, I will use 3 ways as below in different situation:
 
-1. HTML tags
+## HTML tags
 
 such as `<img src=''><link href=''><script src=''> `, these tags will not restricted by browsers' cross-domain policy. From my experience, it is very useful when you need an external server's API to record hit in our own website, and some of parameters can be saved in the attribute's URL.
 
-2. JSONP
+## JSONP
 
 If we want to get data from other site, and the server has designed JSONP API for us, we can use it. The principle is that `<script>` is not limited by cross-domain policy, so the server can write data in the script and send it to client. For example:
 
@@ -31,7 +31,7 @@ res.writeHead(200, {"Content-Type":"application/javascript"};
 res.end(`window.callback(${JSON.stringify(data)})`);
 ```
 
-3. the server enables cross-domain request (Node.js):
+## the server enables cross-domain request (Node.js):
 
 ```JavaScript
 res.setHeader("Access-Control-Allow-Origin", "*");
