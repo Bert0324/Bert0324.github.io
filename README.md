@@ -1,8 +1,10 @@
-# To record some of JS knowledge points
+# Record some of JS knowledge points
 
 In my daily work, I found sometimes it is quite difficult to know some of knowledge points comprehensively.
 
-So I decide to class different points to groups.
+So I decide to class different points to groups. (under construction) 🏠 🏡 🏫 🏢 🏣 
+
+If you read articles and feel is useful, it is soooo kind to give me a star :star::star2:
 
 ## JS basis
 
