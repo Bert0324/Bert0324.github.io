@@ -1,3 +1,5 @@
+## Value object and Reference Object
+
 JS basic data type including number, string, null, undefined, boolean, its value is invariable. When I first know it, I feel quite confused. Because when I process string, I feel I was changing its value. But my intuition is wrong, actually, every time I just deassign a new variable.
 
 For example:
@@ -32,7 +34,7 @@ console.log(c);
 console.log(d);
 ```
 
-1. shallow copy
+## Shallow copy
 
 Like:
 
@@ -77,7 +79,7 @@ console.log(copy);
 
 The change of child object in copy still influence obj. This is shallow copy.
 
-2. deep copy
+## Deep copy
 
 To create a total independent object, deep copy is imperative. The[ jQuery.extend](https://github.com/jquery/jquery/blob/master/src/core.js) as the example:
 
