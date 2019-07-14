@@ -1,7 +1,9 @@
 ## When input webpack in command line, what happened?
 
-Once inputting `webpack`, the `bin/webpack.js` will be operated. After checking cli whether installed, the 
-`webpack-cli/bin/cli.js` is operated. Without more options, the code can be simplified to:
+First of all, we need to check webpack command entry in package.json, "bind" is "./bin/webpack.js".
+This file will check which cli commander is installed,
+if we are using `webpack-cli`, the "webpack-cli/lib/cli.js" will be operated. Its code can be simplified to:
+
 
 ```JavaScript
 const webpack = require("webpack"); //v4.30.0
