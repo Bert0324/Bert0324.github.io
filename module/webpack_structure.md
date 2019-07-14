@@ -1,6 +1,6 @@
 ## When input webpack in command line, what happened?
 
-First of all, we need to check webpack command entry in package.json, "bind" is "./bin/webpack.js".
+First of all, we need to check webpack command entry in package.json, the field of "bin" is "./bin/webpack.js".
 This file will check which cli commander is installed,
 if we are using `webpack-cli`, the "webpack-cli/lib/cli.js" will be operated. Its code can be simplified to:
 
