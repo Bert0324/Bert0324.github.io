@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/react/lazy_load.md" beforeDir="false" afterPath="$PROJECT_DIR$/react/lazy_load.md" afterDir="false" />
-    </list>
+    <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,13 +13,13 @@
     <session id="868285813">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="3198" />
+          <entry key="md" value="3458" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="20" />
-          <entry key="Markdown" value="3178" />
+          <entry key="Markdown" value="3438" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -61,8 +59,8 @@
         <entry file="file://$PROJECT_DIR$/react/lazy_load.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="342">
-                <caret line="52" selection-start-line="52" selection-end-line="52" />
+              <first_editor relative-caret-position="267">
+                <caret line="49" column="15" lean-forward="true" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
                 <folding>
                   <element signature="e#0#26#0" expanded="true" />
                 </folding>
@@ -154,7 +152,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563317292899" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563317453078" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -182,7 +180,7 @@
       <workItem from="1562781074367" duration="2488000" />
       <workItem from="1562784928474" duration="16883000" />
       <workItem from="1562882128281" duration="12964000" />
-      <workItem from="1563310285904" duration="3011000" />
+      <workItem from="1563310285904" duration="3262000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -194,7 +192,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12074000" />
+    <option name="totallyTimeSpent" value="12325000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="0" width="1376" height="900" extended-state="6" />
@@ -285,8 +283,8 @@
     <entry file="file://$PROJECT_DIR$/react/lazy_load.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="342">
-            <caret line="52" selection-start-line="52" selection-end-line="52" />
+          <first_editor relative-caret-position="267">
+            <caret line="49" column="15" lean-forward="true" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
             <folding>
               <element signature="e#0#26#0" expanded="true" />
             </folding>
