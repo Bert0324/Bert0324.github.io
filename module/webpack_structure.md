@@ -118,6 +118,36 @@ class CustomClass{
 
 Base on it, I developed a tiny tool for checking, updating and combining NPM packgaes, [webpack-package-manager](https://github.com/Bert0324/webpack-package-manager). If you have time, it wwould be amazing to give me a star!
 
+## Loader
+
+Actually, as I think, in plugin people can do more things than in loader, which targets to transform loaded files. Loader can get files' content as string, a simple loader plugin example is like below:
+
+```JavaScript
+//webpack.config.js
+    module: {
+        rules: [{
+            test:/\.js?$/,
+            exclude: /(node_modules)/,
+            use: [{
+                loader: 'babel-loader', //loaders will be operated in inverted order, first is loader.js, next is babel-loader
+            },{
+                loader: require('path').resolve('loader.js'),
+                options:{
+                    value:1
+                }
+            }]
+        }]
+    }
+//loader.js          //transform js code to es5
+module.exports = function (source) {    //source is string
+    let options = require('loader-utils').getOptions(this); //get options
+    let result = babel.transformSync(source, {
+        plugins:[],
+        presets:["@babel/preset-env"]
+    });
+    return result.code;
+};
+```
 
 There is a nice image that can show webpack whole life cycle from [source](http://taobaofed.org/blog/2016/09/09/webpack-flow/):
 

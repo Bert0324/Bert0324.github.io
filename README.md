@@ -15,7 +15,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 ## Modularization
 
 * [webpack how works](/module/webpack_structure.md)
-* [babel]()
+* [babel](/module/babel.md)
 
 ## Asynchronize
 
@@ -34,6 +34,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Refs](/react/refs.md)
 * [Keys](/react/keys.md)
 * [Life cycle]()
+* [Route lazy load]()
 
 ## Node.JS
 
