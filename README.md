@@ -34,7 +34,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Refs](/react/refs.md)
 * [Keys](/react/keys.md)
 * [Life cycle]()
-* [Route lazy load]()
+* [Route lazy load](/react/lazy_load.md)
 
 ## Node.JS
 
