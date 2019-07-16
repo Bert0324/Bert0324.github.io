@@ -1,4 +1,4 @@
-At the beginning, I try to use `react-loadable` to realize router lazy load, but it made me a mess..., a error like below
+At the beginning, I try to use `react-loadable` to realize router lazy load, but it made me a mess..., an error like below
 
 `Invariant Violation: Element type is invalid: expected a string`
 
@@ -16,7 +16,7 @@ function LoadingPage() {
 }
 
 const Page = (path, componentPath, notLazy)=>{
-    const Component = React.lazy(() => import("../pages/"+componentPath)
+    const Component = React.lazy(() => import(componentPath)
         .then(module=>({
             default:module.default
         })));
@@ -46,3 +46,12 @@ const Page = (path, componentPath, notLazy)=>{
 ```
 
 Dont't need to import other things, simply use React to resolve whole things.
+
+## How it works
+
+React.lazy is to split code, instead of bundling whole code to one file, via it, when using webpack, the JS files can be split. After that, 
+when rendering to `<Suspense>`, it will throw an error which is a Promise. In the parent component's `ComponentDidCatch` period, in `pending` status, it will 
+render `fallback` component. When status becomes `resolve`, the real component that has been loaded will be rendered. 
+
+
+
