@@ -141,7 +141,7 @@ Actually, as I think, in plugin people can do more things than in loader, which 
 //loader.js          //transform js code to es5
 module.exports = function (source) {    //source is string
     let options = require('loader-utils').getOptions(this); //get options
-    let result = babel.transformSync(source, {
+    let result = require('@babel/core').transformSync(source, {
         plugins:[],
         presets:["@babel/preset-env"]
     });
