@@ -11,11 +11,16 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [0.1 + 0.2 === 0.3](/js_basis/epsilon.md)
 * [Deep copy and Shallow copy in JS](/js_basis/object_copy.md)
 * [slice, substr and substring](/js_basis/string_process.md)
+* [Object.defineProperty](/js_basis/object_defineproperty.md)
 
 ## Modularization
 
-* [webpack how works](/module/webpack_structure.md)
-* [babel](/module/babel.md)
+* [Webpack how works](/module/webpack_structure.md)
+* [Babel](/module/babel.md)
+* [Webpack incremental updating]()
+* [Webpack hot module replacement]()
+* [Webpack options: optimization]()
+
 
 ## Asynchronize
 
@@ -24,30 +29,36 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 ## Web API
 
 * [Event Proxy](/web_api/events_proxy.md)
+* [LocalStorage data timeliness]()
 
 ## NetWork
 
 * [Http2](/network/http2.md)
+* [Webscoket reconnection]()
 
 ## React
 
 * [Refs](/react/refs.md)
 * [Keys](/react/keys.md)
-* [Life cycle]()
+* [Life cycle](/react/life_cycle.md)
 * [Route lazy load](/react/lazy_load.md)
+* [Optimization]()
 
-## Node.JS
+## Authentication
 
-* [Cross Domain](/nodejs/cross_domain.md)
-* [Passport.JS structure](/nodejs/passport.md)
+* [Cross Domain](/authentication/cross_domain.md)
+* [Passport.JS structure](/authentication/passport.md)
 
 ## Algorithm
 
+* [Time complexity]()
 * [Flat an Array](/algorithm/flat_array.md)
 
 ## Other
 
-* [issue a npm package](/other/npm_issue.md)
+* [Issue a npm package](/other/npm_issue.md)
+
+
 
 <br />
 <br />
