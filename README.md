@@ -43,6 +43,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Life cycle](/react/life_cycle.md)
 * [Route lazy load](/react/lazy_load.md)
 * [Optimization]()
+* [Diff basis]()
 
 ## Authentication
 

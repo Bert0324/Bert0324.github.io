@@ -34,7 +34,7 @@ The value of the property.
 * writable
 
 Whether the value is writable or not, if it's false, when changing value, 
-<span style="color:red">it won't throw error. The default is false!</span>
+it won't throw error. The default is false!
 
 * enumerable
 
@@ -66,8 +66,27 @@ property. Such as it won't show in Object.keys, its value isn't changeable.
 
 ## Data two way binding
 
-In MVVM, Object.defineProperty is common. 
+### Basic binding
 
+In MVVM, Object.defineProperty is common. There is a basic and simple example about it:
+
+```js
+const obj = {};
+Object.defineProperty(obj, 'text', {
+  set: function(newVal) {
+    document.getElementById('input').value = newVal;
+    document.getElementById('span').innerHTML = newVal;
+  }
+});
+
+const input = document.getElementById('input');
+input.addEventListener('keyup', function(e){
+  obj.text = e.target.value;
+})
+```
+When changing the value in `<input>`, the text in `<text>` will change too. The `obj` is their view module.
+
+This code is coupled, Vue use Watcher and Observer to decouple it.
 
 ## extra information such as warning
 
