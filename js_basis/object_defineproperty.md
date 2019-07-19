@@ -88,7 +88,7 @@ When changing the value in `<input>`, the text in `<text>` will change too. The 
 
 This code is coupled, Vue use Watcher and Observer to decouple it.
 
-## extra information such as warning
+## throw some information, such as warning
 
 In [express](https://github.com/expressjs/express/blob/master/lib/express.js), it use Object.defineProperty to throw information to users as below:
 

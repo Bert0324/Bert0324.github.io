@@ -12,6 +12,8 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Deep copy and Shallow copy in JS](/js_basis/object_copy.md)
 * [slice, substr and substring](/js_basis/string_process.md)
 * [Object.defineProperty](/js_basis/object_defineproperty.md)
+* [for-in and Object.keys](/js_basis/forin_objectkeys.md)
+* [Closure](/js_basis/closure.md)
 
 ## Modularization
 
@@ -20,7 +22,6 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Webpack incremental updating]()
 * [Webpack hot module replacement]()
 * [Webpack options: optimization]()
-
 
 ## Asynchronize
 
@@ -42,13 +43,18 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Keys](/react/keys.md)
 * [Life cycle](/react/life_cycle.md)
 * [Route lazy load](/react/lazy_load.md)
+* [Single page SSR](/react/ssr.md)
+* [Event bus]()
 * [Optimization]()
 * [Diff basis]()
+* [Redux how works]()
 
 ## Authentication
 
 * [Cross Domain](/authentication/cross_domain.md)
 * [Passport.JS structure](/authentication/passport.md)
+* [OAuth]()
+* [JWT]()
 
 ## Algorithm
 
