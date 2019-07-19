@@ -100,22 +100,22 @@ In React Fiber, the code will be separated to many fragments. The operation has 
 lower priority operation. So, some of life cycle in previous version, which would only operate one time, in new version, may 
 operate more than once.
 
-> componentWillMount
-> componentWillReceiveProps
-> shouldComponentUpdate
-> componentWillUpdate
+> componentWillMount <br />
+> componentWillReceiveProps <br />
+> shouldComponentUpdate <br />
+> componentWillUpdate <br />
 
 These 4 life cycles may be broken because of other higher priority operation. So AJAX operation is not safe 
 in these life cycles anymore, multiple the same AJAX operations are a totally waste.
 
-> componentDidMount
-> componentDidUpdate
-> componentWillUnmount
+> componentDidMount <br />
+> componentDidUpdate <br />
+> componentWillUnmount <br />
 
 Once starting, these 3 life cycles won't be broken. 
 
-> componentWillReceiveProps
-> shouldComponentUpdate
+> componentWillReceiveProps <br />
+> shouldComponentUpdate <br />
 
 These 2 life cycles won't be impacted in React Fiber, because in old version, they will be operated more than one time too.
 
@@ -207,6 +207,10 @@ There are more other hooks in [hook API](https://reactjs.org/docs/hooks-referenc
 There is a nice page to show it, from [react-lifecycle-methods-diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).
 
 <img src='../assets/react_life_cycle.png' width="800">
+
+Also, for the old version, there is a pretty good image from [link](https://ithelp.ithome.com.tw/articles/10187845).
+
+<img src='../assets/react_old_life_cycle.png' width="800">
 
 If you want to make a right or have some questions, welcome to leave a message.
 
