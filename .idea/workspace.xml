@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js_basis/closure.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js_basis/forin_objectkeys.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/react/ssr.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/react_life_cycle.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js_basis/object_defineproperty.md" beforeDir="false" afterPath="$PROJECT_DIR$/js_basis/object_defineproperty.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react/life_cycle.md" beforeDir="false" afterPath="$PROJECT_DIR$/react/life_cycle.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/ssr.md" beforeDir="false" afterPath="$PROJECT_DIR$/react/ssr.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,23 +19,25 @@
     <session id="868285813">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="11402" />
+          <entry key="md" value="14118" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="59" />
-          <entry key="Markdown" value="11343" />
+          <entry key="JavaScript" value="60" />
+          <entry key="Markdown" value="14058" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="md" value="15" />
+          <entry key="md" value="17" />
+          <entry key="png" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Markdown" value="15" />
+          <entry key="Image" value="1" />
+          <entry key="Markdown" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -56,8 +56,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="88">
-                <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+              <first_editor relative-caret-position="342">
+                <caret line="76" selection-start-line="76" selection-end-line="76" selection-end-column="44" />
               </first_editor>
               <second_editor />
             </state>
@@ -65,14 +65,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/react/ssr.md">
+        <entry file="file://$PROJECT_DIR$/react/life_cycle.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="260">
-                <caret line="92" column="17" lean-forward="true" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
-                <folding>
-                  <element signature="e#0#26#0" expanded="true" />
-                </folding>
+              <first_editor relative-caret-position="245">
+                <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
               </first_editor>
               <second_editor />
             </state>
@@ -80,15 +77,8 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react/life_cycle.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="30">
-                <caret line="2" selection-start-line="2" selection-end-line="2" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/assets/react_life_cycle.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -105,10 +95,10 @@
         <option value="$PROJECT_DIR$/react/lazy_load.md" />
         <option value="$PROJECT_DIR$/js_basis/object_defineproperty.md" />
         <option value="$PROJECT_DIR$/js_basis/forin_objectkeys.md" />
-        <option value="$PROJECT_DIR$/react/life_cycle.md" />
         <option value="$PROJECT_DIR$/js_basis/closure.md" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/react/ssr.md" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/react/life_cycle.md" />
       </list>
     </option>
   </component>
@@ -151,7 +141,7 @@
             <path>
               <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
               <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
-              <item name="algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
@@ -183,7 +173,12 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563567188951" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563576524159" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -212,7 +207,7 @@
       <workItem from="1562784928474" duration="16883000" />
       <workItem from="1562882128281" duration="12964000" />
       <workItem from="1563310285904" duration="16965000" />
-      <workItem from="1563499285235" duration="6709000" />
+      <workItem from="1563499285235" duration="10718000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -224,12 +219,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32737000" />
+    <option name="totallyTimeSpent" value="36746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="0" width="1376" height="900" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24737631" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24737631" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -246,7 +242,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32961586" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32961586" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -276,16 +272,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="327">
             <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/webpack_structure.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="246">
-            <caret line="149" column="3" lean-forward="true" selection-start-line="149" selection-start-column="3" selection-end-line="149" selection-end-column="3" />
           </first_editor>
           <second_editor />
         </state>
@@ -323,16 +309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react/life_cycle.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="30">
-            <caret line="2" selection-start-line="2" selection-end-line="2" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js_basis/forin_objectkeys.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -353,24 +329,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/react/ssr.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="88">
-            <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+          <first_editor relative-caret-position="290">
+            <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
+            <folding>
+              <element signature="e#0#26#0" expanded="true" />
+            </folding>
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react/ssr.md">
+    <entry file="file://$PROJECT_DIR$/assets/react_life_cycle.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/webpack_structure.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="260">
-            <caret line="92" column="17" lean-forward="true" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
-            <folding>
-              <element signature="e#0#26#0" expanded="true" />
-            </folding>
+          <first_editor relative-caret-position="282">
+            <caret line="153" selection-start-line="153" selection-end-line="153" selection-end-column="57" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="342">
+            <caret line="76" selection-start-line="76" selection-end-line="76" selection-end-column="44" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react/life_cycle.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="245">
+            <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
           </first_editor>
           <second_editor />
         </state>

@@ -156,7 +156,7 @@ module.exports = {
 After compile server side code and frontend code, when we start the static files server, we can see `/` and `/index` has been render in server 
 side. 
 
-This example does not consider about import images, svg. If you use some of CSS framework such as material-ui, you can find their SSR solution in the official website.
+This example does not consider about import images, svg and CSS framework. If you use some of CSS framework such as material-ui, you can find their SSR solution in the official website.
 
 If you have more questions or have better way to do SSR, welcome to leave a message.
 

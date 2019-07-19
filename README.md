@@ -47,13 +47,13 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Event bus]()
 * [Optimization]()
 * [Diff basis]()
-* [Redux how works]()
+* [Redux state tree]()
 
 ## Authentication
 
 * [Cross Domain](/authentication/cross_domain.md)
 * [Passport.JS structure](/authentication/passport.md)
-* [OAuth]()
+* [OAuth2]()
 * [JWT]()
 
 ## Algorithm
