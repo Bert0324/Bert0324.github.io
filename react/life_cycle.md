@@ -33,14 +33,18 @@ let b = new B();
 
 Also, in constructor, `this.state` can be declared.
 
-## componentWillMount
+## componentWillMount()
 
 Before rendering, so the code in it will run in server side when using SSR. Normally, I will use it 
 to do AJAX or data calculation. After React v16.3, this function is not safe for AJAX operation.
 
-## componentDidMount
+## componentDidMount()
 
 After rendering finished, in it, real DOM is accessible, such as this.setState or get DOM by refs.
+
+## componentWillUnmount()
+
+The first time render finished will be operated.
 
 ## componentWillReceiveProps(nextProps)
 
@@ -62,13 +66,33 @@ static getDerivedStateFromProps(nextProps, prevState){
 
 ## shouldComponentUpdate(nextProps, nextState)
 
+return `false` to deny UI update. To check whether UI render is really imperative, it is an important way to 
+avoid to redo unnecessary render, default is `true`.
+
 ## componentWillUpdate(nextProps, nextState)
+
+After shouldComponentUpdate return `true` or call `forceUpdate`, it will be operated. If in it call `setState` will lead to repetitive cycle.
+In React 16.3, `getSnapshotBeforeUpdate` is its replacement.
 
 ## getSnapshotBeforeUpdate(prevProps, prevState)
 
-## componentDidUpdate()
+When updating, the render is finished, before rendering DOM, this function will be called. The return value will 
+be `componentDidUpdate`'s `snapShot`.
 
-## componentWillUnmount()
+## componentDidUpdate(prevProps, prevState, snapShot)
+
+Except first render, every time render finished, this function will be called. Without conditions to use `this.setState` will lead to 
+repetitive cycle in this function. Like:
+
+```js
+componentDidUpdate(prevProps, prevState, snapShot) {
+    if(condition) {
+        this.setState({...}) 
+    } else {
+        
+    }
+}
+```
 
 ## React Fiber
 
@@ -97,11 +121,86 @@ These 2 life cycles won't be impacted in React Fiber, because in old version, th
 
 ## Hooks
 
-### concept
+New concept in React v16.8, in my understanding, it is for Stateless Components to access life cycles in React. 
+For some of simple components, hooks are more convenient and easy to reuse. For example:
+
+```js
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <p>You clicked {this.state.count} times</p>
+        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+          Click me
+        </button>
+      </div>
+    );
+  }
+}
+```
+
+is equal to:
+
+```js
+import { useState } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
 
 ### useState
 
+`useState` receives the original value of the state and return an array, whose first element is 
+current state value and second one is the function to change this state.
+
 ### useEffect
+
+For example:
+
+```js
+import { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // === both operated in componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // update title
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+useEffect === `componentDidMount` + `componentDidUpdate` + `componentWillUnmount`, we don't have to write the same code in these 
+3 functions.
+
+There are more other hooks in [hook API](https://reactjs.org/docs/hooks-reference.html).
 
 ## End
 
