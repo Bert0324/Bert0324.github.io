@@ -31,7 +31,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 * [Event Proxy](/web_api/events_proxy.md)
 * [Web Worker](/web_api/web_worker.md)
-* [Service Worker](/web_api/web_worker.md)
+* [Service Worker](/web_api/service_worker.md)
 
 ## NetWork
 
