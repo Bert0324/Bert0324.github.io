@@ -30,12 +30,13 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 ## Web API
 
 * [Event Proxy](/web_api/events_proxy.md)
-* [LocalStorage data timeliness]()
+* [Web Worker](/web_api/web_worker.md)
+* [Service Worker](/web_api/web_worker.md)
 
 ## NetWork
 
 * [Http2](/network/http2.md)
-* [Webscoket reconnection]()
+* [Common Http status code]()
 
 ## React
 
@@ -44,10 +45,9 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Life cycle](/react/life_cycle.md)
 * [Route lazy load](/react/lazy_load.md)
 * [Single page SSR](/react/ssr.md)
-* [Event bus]()
+* [Event bus](/react/event_bus.md)
+* [Diff]()
 * [Optimization]()
-* [Diff basis]()
-* [Redux state tree]()
 
 ## Authentication
 
@@ -72,13 +72,10 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 * [Issue a npm package](/other/npm_issue.md)
 
-
-
 <br />
 <br />
 <br />
 <br />
-
 
 > If you would like to right a wrong or are interested in me, welcome to contact me via email: yuchenhuang0324@gmail.com or WeChat, my QR code is as below:
 

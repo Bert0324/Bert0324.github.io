@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/react/event_bus.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_api/service_worker.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_api/web_worker.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/flat_array.md" beforeDir="false" afterPath="$PROJECT_DIR$/interview/flat_array.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,25 +19,27 @@
     <session id="868285813">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="15753" />
+          <entry key="md" value="19627" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="60" />
-          <entry key="Markdown" value="15693" />
+          <entry key="JavaScript" value="88" />
+          <entry key="Markdown" value="19539" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="md" value="18" />
+          <entry key="html" value="1" />
+          <entry key="md" value="23" />
           <entry key="png" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="HTML" value="1" />
           <entry key="Image" value="1" />
-          <entry key="Markdown" value="18" />
+          <entry key="Markdown" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -50,12 +54,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="233">
-                <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+              <first_editor relative-caret-position="269">
+                <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web_api/service_worker.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="371">
+                <caret line="189" column="95" selection-start-line="189" selection-start-column="95" selection-end-line="189" selection-end-column="95" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web_api/web_worker.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-172">
+                <caret line="10" column="39" lean-forward="true" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react/event_bus.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor>
+                <caret column="3" selection-start-column="3" selection-end-column="3" />
               </first_editor>
               <second_editor />
             </state>
@@ -63,6 +103,13 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -85,7 +132,13 @@
         <option value="$PROJECT_DIR$/js_basis/closure.md" />
         <option value="$PROJECT_DIR$/react/ssr.md" />
         <option value="$PROJECT_DIR$/react/life_cycle.md" />
+        <option value="$PROJECT_DIR$/web_api/localstorage_timeliness.md" />
+        <option value="$PROJECT_DIR$/react/event_bus.md" />
+        <option value="$PROJECT_DIR$/web_api/offline_cache.md" />
+        <option value="$PROJECT_DIR$/react/a.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/web_api/web_worker.md" />
+        <option value="$PROJECT_DIR$/web_api/service_worker.md" />
       </list>
     </option>
   </component>
@@ -128,27 +181,12 @@
             <path>
               <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
               <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
-              <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
-              <item name="asynchronize" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
-              <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
-              <item name="js_basis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
-              <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
-              <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
               <item name="react" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
+              <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
+              <item name="web_api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -158,9 +196,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563581501142" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563666410958" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -197,7 +236,7 @@
       <workItem from="1562784928474" duration="16883000" />
       <workItem from="1562882128281" duration="12964000" />
       <workItem from="1563310285904" duration="16965000" />
-      <workItem from="1563499285235" duration="15014000" />
+      <workItem from="1563499285235" duration="26720000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -209,7 +248,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41042000" />
+    <option name="totallyTimeSpent" value="52748000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="0" width="1376" height="900" extended-state="6" />
@@ -363,11 +402,68 @@
     <entry file="file://$PROJECT_DIR$/assets/react_life_cycle.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/web_api/localstorage_timeliness.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="30">
+            <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_api/offline_cache.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="13" selection-start-column="13" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react/event_bus.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="3" selection-start-column="3" selection-end-column="3" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react/a.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="8" selection-end-line="40" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_api/web_worker.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-172">
+            <caret line="10" column="39" lean-forward="true" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="233">
-            <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+          <first_editor relative-caret-position="269">
+            <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_api/service_worker.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="371">
+            <caret line="189" column="95" selection-start-line="189" selection-start-column="95" selection-end-line="189" selection-end-column="95" />
           </first_editor>
           <second_editor />
         </state>
