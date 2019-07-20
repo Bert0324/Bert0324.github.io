@@ -59,7 +59,14 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 ## Algorithm
 
 * [Time complexity]()
-* [Flat an Array](/algorithm/flat_array.md)
+* [Bubble sort]()
+* [Binary tree]()
+* [Minimum spanning tree]()
+* [Hash map]()
+
+## Interview questions
+
+* [Flat an Array](/interview/flat_array.md)
 
 ## Other
 
@@ -69,7 +76,8 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 <br />
 <br />
-
+<br />
+<br />
 
 
 > If you would like to right a wrong or are interested in me, welcome to contact me via email: yuchenhuang0324@gmail.com or WeChat, my QR code is as below:
