@@ -182,12 +182,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
 ]);
 ```
 
-The url is files' path, and the revision is the files' content hash value, which will be changed if files is changed.
+The `url` is files' path, and the `revision` is the files' content hash value, which will be changed if files is changed.
 In this way, workbox can know whether the file is updated.
 
 ## End
 
 With the development of PWA, I believe Web App is able to be closed to Native App in many respects.
+
+If there is some wrongs, welcome to leave a message.
 
 
 
