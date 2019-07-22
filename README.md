@@ -17,10 +17,10 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 ## Modularization
 
-* [Node Module](/modularization/node_mo.md)
+* [Node.js Modules](/modularization/node_mo.md)
 * [Webpack how works](/modularization/webpack_structure.md)
 * [Babel](/modularization/babel.md)
-* [Webpack hot module replacement](/modularization/webpack_hot_replacement.md)
+* [Hot reload](/modularization/hot_reload.md)
 * [Webpack incremental updating]()
 * [Webpack options: optimization]()
 
@@ -41,7 +41,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Life cycle](/react/life_cycle.md)
 * [Route lazy load](/react/lazy_load.md)
 * [Single page SSR](/react/ssr.md)
-* [Redux how works](/react/redux.md)
+* [react-redux connect function]()
 * [Diff]()
 * [Optimization]()
 
@@ -59,6 +59,8 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 ## Other
 
 * [Issue a npm package](/other/npm_issue.md)
+* [GraphQL]()
+* [Redux]()
 
 <br />
 <br />

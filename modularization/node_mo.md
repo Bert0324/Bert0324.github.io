@@ -1,7 +1,8 @@
-When I was in an interview, the interviewer ask me one question: In the Node.js, is the `require` a global variable?
-variable? 
+When I was in an interview, the interviewer asked me one question: In the Node.js, is the `require` a global variable?
 
-I said yes because in every module I can use it without require it (How can I require the require???). But actually I misunderstood it.
+I said yes because in every module I can use it without require it (How can I require the require???). 
+
+But actually I misunderstood it....
 
 So I checked the official [document](https://nodejs.org/api/modules.html) and found why.
 

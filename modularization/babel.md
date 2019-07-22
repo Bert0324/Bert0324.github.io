@@ -32,11 +32,6 @@ let ast = require('@babel/parser').parse(`let a = 1;`);
 
 In this stage, plugin and presets can be processed in inverted order.
 
-### plugin and presets
-
-There are so many plugins for babel, even babel's core function is taken part to many plugins, such as "plugin-transform-arrow-functions".
-So it can be very tedious to set plugins one by one. Presets is a gather of plugins.
-
 3. generate
 
 using AST to generate codes.
@@ -44,6 +39,11 @@ using AST to generate codes.
 ```JavaScript
 let code = require('@babel/generator')(ast, { /* options */ }, source);
 ```
+
+## plugin and presets
+
+There are so many plugins for babel, even babel's core function is taken part to many plugins, such as "plugin-transform-arrow-functions".
+So it can be very tedious to set plugins one by one. Presets is a gather of plugins.
 
 
 
