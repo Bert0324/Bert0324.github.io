@@ -1,13 +1,13 @@
-When I was in an interview, the interviewer ask me one question: is `require` in the Node.JS is global 
+When I was in an interview, the interviewer ask me one question: In the Node.js, is the `require` a global variable?
 variable? 
 
-I said yes because in every module I can use it without like require it (How can I require require???). But actually it was wrong.
+I said yes because in every module I can use it without require it (How can I require the require???). But actually I misunderstood it.
 
-So I check the official [document](https://nodejs.org/api/modules.html) and found why.
+So I checked the official [document](https://nodejs.org/api/modules.html) and found why.
 
 ## Global Variables
 
-In Node.JS, the global objects includes:
+In Node.JS, the global objects only include:
 
 ### Class: Buffer
 
@@ -100,13 +100,13 @@ There are some rules:
 
 1. if the path does't start with '/', './', '../'
 
-Firstly Node.js will find in core module. If not found, it find in current module's `node_modules`.
-If still not found, it will keep finding in parent paths until throw error not found.
+Firstly Node.js will find in core module. If not found, it finds in current module's `node_modules`.
+If still not found, it will keep finding in parent paths until throwing an error not found.
 
 2. if the starts with '/', './', '../'
 
-Node.js will find by the path. If not found, it will automatically search `index.js` and `index.node`. If still not 
-found, it will throw error not found.
+Node.js will find by the path. If not found, it will automatically search `index.js` and `index.node` in the path. If still not 
+found, it will throwing an error not found.
 
 ## require.cache
 
