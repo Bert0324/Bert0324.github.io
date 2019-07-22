@@ -17,10 +17,11 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 ## Modularization
 
-* [Webpack how works](/module/webpack_structure.md)
-* [Babel](/module/babel.md)
+* [Node Module](/modularization/node_mo.md)
+* [Webpack how works](/modularization/webpack_structure.md)
+* [Babel](/modularization/babel.md)
+* [Webpack hot module replacement](/modularization/webpack_hot_replacement.md)
 * [Webpack incremental updating]()
-* [Webpack hot module replacement]()
 * [Webpack options: optimization]()
 
 ## Asynchronize
@@ -33,11 +34,6 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Web Worker](/web_api/web_worker.md)
 * [Service Worker](/web_api/service_worker.md)
 
-## NetWork
-
-* [Http2](/network/http2.md)
-* [Common Http status code]()
-
 ## React
 
 * [Refs](/react/refs.md)
@@ -45,7 +41,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Life cycle](/react/life_cycle.md)
 * [Route lazy load](/react/lazy_load.md)
 * [Single page SSR](/react/ssr.md)
-* [Event bus](/react/event_bus.md)
+* [Redux how works](/react/redux.md)
 * [Diff]()
 * [Optimization]()
 
@@ -55,14 +51,6 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Passport.JS structure](/authentication/passport.md)
 * [OAuth2]()
 * [JWT]()
-
-## Algorithm
-
-* [Time complexity]()
-* [Bubble sort]()
-* [Binary tree]()
-* [Minimum spanning tree]()
-* [Hash map]()
 
 ## Interview questions
 

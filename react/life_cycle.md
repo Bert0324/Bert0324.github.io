@@ -53,12 +53,13 @@ props and nextProps is new props. In 16.3, `getDerivedStateFromProps` is its rep
 
 ## static getDerivedStateFromProps(nextProps, prevState)
 
-It is a static class function. return an object to trigger rerender and return null to deny, like below:
+It is a static class function, when the updating of props will impact state
+, return an object as new state to trigger rerender and return null to deny, like below:
 
 ```js
 static getDerivedStateFromProps(nextProps, prevState){
     if (!equal(nextProps, prevState)){
-        return nextProps;
+        return {...prevState, ...nextProps};
     }
     return null;
 }
