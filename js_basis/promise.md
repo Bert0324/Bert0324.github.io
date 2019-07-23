@@ -154,10 +154,10 @@ class MyPromise{
             resolved:Symbol('resolved'),
             rejected:Symbol('rejected')
         };
-        this.status = this.statusList.pending;
-        this.value = void 0;
-        this.thenList = [];
-        this.onCatch = void 0;
+        this.status = this.statusList.pending;  //status
+        this.value = void 0;                    //the container for transferring return value
+        this.thenList = [];                     //the container saving the callback in then functions
+        this.onCatch = void 0;                  //the container saving the catch function
         this.then = function(callback){
             this.thenList.push(callback);
             return this;
@@ -166,7 +166,7 @@ class MyPromise{
             this.onCatch = callback;
             return this;
         };
-        action(this.resolve.bind(this), this.reject.bind(this));
+        action(this.resolve.bind(this), this.reject.bind(this));    //start filling thenList and onCatch
     }
 
     resolve(value){
@@ -217,6 +217,34 @@ new MyPromise((resolve, reject) => {
     .catch(err=>{
     console.log(err);
 });
+```
+
+But, if in `then` return a new `Promise` object, it can't be resolved in the next `then`, so the 
+code needs update:
+
+```js
+    resolve(value){
+        this.status = this.statusList.resolved;
+        this.value = value;
+        for (let i=0;i<this.thenList.length;i++){
+            this.status = this.statusList.pending;
+            try{
+                this.value = this.thenList[i](this.value);
+                this.status = this.statusList.resolved;
+                if (this.value instanceof MyPromise){               //if it's new Promise, change the target Promise
+                    this.value.thenList = this.thenList.splice(i+1);
+                    break;
+                }
+            } catch (e) {
+                if (this.onCatch){
+                    this.onCatch(e);
+                    this.status = this.statusList.rejected;
+                } else {
+                    throw new Error(e.toString());
+                }
+            }
+        }
+    }
 ```
 
 

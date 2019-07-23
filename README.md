@@ -15,6 +15,8 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [for loop](/js_basis/forin_objectkeys.md)
 * [Closure](/js_basis/closure.md)
 * [Prototype]()
+* [Promise](/js_basis/promise.md)
+* [Generator]()
 
 ## Modularization
 
@@ -24,11 +26,6 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Hot reload](/modularization/hot_reload.md)
 * [Webpack options](/modularization/webpack_options.md)
 * [DevOps]()
-
-## Asynchronize
-
-* [Promise](/asynchronize/promise.md)
-* [Generator]()
 
 ## Web API
 
