@@ -8,15 +8,13 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 ## JS basis
 
-* [0.1 + 0.2 === 0.3](/js_basis/epsilon.md)
 * [Deep copy and Shallow copy in JS](/js_basis/object_copy.md)
-* [slice, substr and substring](/js_basis/string_process.md)
 * [Object.defineProperty](/js_basis/object_defineproperty.md)
-* [for loop](/js_basis/forin_objectkeys.md)
+* [for loop](/js_basis/for_loop.md)
 * [Closure](/js_basis/closure.md)
 * [Prototype]()
 * [Promise](/js_basis/promise.md)
-* [Generator]()
+* [Generator](/js_basis/generator.md)
 
 ## Modularization
 
@@ -59,6 +57,8 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 ## Interview questions
 
+* [0.1 + 0.2 === 0.3](/interview/epsilon.md)
+* [slice, substr and substring](/interview/string_process.md)
 * [Flat an Array](/interview/flat_array.md)
 
 ## Other
