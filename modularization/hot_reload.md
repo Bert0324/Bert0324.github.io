@@ -65,4 +65,6 @@ module.exports = {
 }
 ```
 
+The webpack option `--watch` is also incremental and auto compile.
+
 If you use `create-react-app` to start the project, these configurations are already installed.

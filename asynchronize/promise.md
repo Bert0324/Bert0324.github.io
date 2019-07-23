@@ -158,5 +158,12 @@ function parallelAsync(tasks) {
 parallelAsync([task1, task2, task3]);
 ```
 
+## build Promise from scratch
+
+
+
+
+
+
 
 
