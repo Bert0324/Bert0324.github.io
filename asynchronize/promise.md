@@ -101,21 +101,21 @@ let get = function (url) {
 };
 
 let task1 = {
-    req: get('https://www.npmjs.com'),
+    req: ()=>get('https://www.npmjs.com'),
     callback: (data)=>{
         console.log(1);
     }
 };
 
 let task2 = {
-    req: get('https://www.github.com'),
+    req: ()=>get('https://www.github.com'),
     callback: (data)=>{
         console.log(2);
     }
 };
 
 let task3 = {
-    req: get('https://www.google.com'),
+    req: ()=>get('https://www.google.com'),
     callback: (data)=>{
         console.log(3);
     }
@@ -125,7 +125,7 @@ function parallelPromise(tasks){
     const iter = ()=>{
         if (tasks.length > 0){
             let task = tasks.shift();
-            task.req.then(data=>{
+            task.req().then(data=>{
                 task.callback(data);
                 iter();
             }).catch(err=>{
@@ -139,26 +139,87 @@ function parallelPromise(tasks){
 parallelPromise([task1, task2, task3])
 ```
 
-## Key words: async, await
+## build Promise from scratch
 
-The async and await can make code look more synchronized, it's based on the generator in JS. For example, parallel function written by async and await:
+For me, the key point to understand Promise's then and catch is the event-loop. Because the main thread 
+task will be operated to the end first. So the `thenList` and `onCatch` must be ready when the first callback starts.
 
-```javaScript
-function parallelAsync(tasks) {
-    let task = async function parallel() {
-        for (let i in tasks){
-            let result = await tasks[i].req;
-            tasks[i].callback(result);
+There is a simple example I wrote:
+
+```js
+class MyPromise{
+    constructor(action){
+        this.statusList = {
+            pending:Symbol('pending'),
+            resolved:Symbol('resolved'),
+            rejected:Symbol('rejected')
+        };
+        this.status = this.statusList.pending;
+        this.value = void 0;
+        this.thenList = [];
+        this.onCatch = void 0;
+        this.then = function(callback){
+            this.thenList.push(callback);
+            return this;
+        };
+        this.catch = function(callback){
+            this.onCatch = callback;
+            return this;
+        };
+        action(this.resolve.bind(this), this.reject.bind(this));
+    }
+
+    resolve(value){
+        this.status = this.statusList.resolved;
+        this.value = value;
+        this.thenList.forEach(callback=>{
+            this.status = this.statusList.pending;
+            try{
+                this.value = callback(this.value);
+                this.status = this.statusList.resolved;
+            } catch (e) {
+                if (this.onCatch){
+                    this.onCatch(e);
+                    this.status = this.statusList.rejected;
+                } else {
+                    throw new Error(e.toString());
+                }
+            }
+        }, this);
+    }
+
+    reject(value){
+        this.status = this.statusList.rejected;
+        this.value = value;
+        if (this.onCatch){
+            this.onCatch(this.value);
+        } else {
+            throw new Error(this.value.toString());
         }
-    };
-    task().catch(err=>{
-        console.log(err);
+    }
+};
+
+new MyPromise((resolve, reject) => {
+    require('request')("http://www.npmjs.com", (err, res, body)=>{
+        if (!err && res.statusCode === 200){
+            resolve(res.statusCode);
+        } else {
+            reject(err);
+        }
     })
-}
-parallelAsync([task1, task2, task3]);
+}).then(data=>{
+    console.log(data);
+    return 1;
+})
+    .then(data=>{
+        console.log(data);
+    })
+    .catch(err=>{
+    console.log(err);
+});
 ```
 
-## build Promise from scratch
+
 
 
 

@@ -35,8 +35,7 @@ for (let item of arr){
 ```
 
 In fact, if it don't need to change the element of the array, `forEach` is better a choice. If it needs to change the 
-element, `map` is better.
-
+element, `map` is better. `forEach` and `map`'s second parameter `thisArg` can change `this` point in the `callback`.
 
 ## let in for loop
 
@@ -54,6 +53,8 @@ for (let i=0;i<5;i++){
     })
 }
 ```
+
+
 
 
 

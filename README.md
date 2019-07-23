@@ -12,7 +12,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Deep copy and Shallow copy in JS](/js_basis/object_copy.md)
 * [slice, substr and substring](/js_basis/string_process.md)
 * [Object.defineProperty](/js_basis/object_defineproperty.md)
-* [for-in, for-of and Object.keys](/js_basis/forin_objectkeys.md)
+* [for loop](/js_basis/forin_objectkeys.md)
 * [Closure](/js_basis/closure.md)
 * [Prototype]()
 
