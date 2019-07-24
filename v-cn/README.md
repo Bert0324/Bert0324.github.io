@@ -79,6 +79,6 @@ See English version: [English entry](../README.md)
 
 > 如果您愿意指正我的错误，或者对我兴趣，欢迎用邮箱联系我: yuchenhuang0324@gmail.com。或者微信，我的二维码如下:
 
-<img src="assets/qr_code.jpeg" width="400"/>
+<img src="../assets/qr_code.jpeg" width="400"/>
 
 
