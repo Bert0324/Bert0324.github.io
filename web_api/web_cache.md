@@ -64,7 +64,7 @@ Entity Tag's abbreviation. Actually, in Http/1.1 does not regulate how to create
 But, Etag must relative to files' content, such as content hash, or relative to its modified time.
 
 
-## SW caching
+# SW caching
 
 SW can proxy whole requests to check whether needs to update, which is more flexible and powerful, 
 see more in my blog [Service Worker](https://github.com/Bert0324/js-playground/blob/master/web_api/service_worker.md).
