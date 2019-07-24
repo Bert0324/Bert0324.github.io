@@ -11,27 +11,27 @@ See English version: [English entry](../README.md)
 ## JS 基础
 
 * [JS的深拷贝和浅拷贝](/v-cn/js_basis/object_copy.md)
-* [Object.defineProperty](/js_basis/object_defineproperty.md)
-* [for loop](/js_basis/for_loop.md)
-* [闭包](/js_basis/closure.md)
+* [Object.defineProperty](/v-cn/js_basis/object_defineproperty.md)
+* [for loop](/v-cn/js_basis/for_loop.md)
+* [闭包](/v-cn/js_basis/closure.md)
 * [原型]()
-* [Promise](/js_basis/promise.md)
-* [生成器](/js_basis/generator.md)
+* [Promise](/v-cn/js_basis/promise.md)
+* [生成器](/v-cn/js_basis/generator.md)
 
 ## 工程化
 
-* [Node.js Modules](/modularization/node_mo.md)
-* [Webpack插件开发](/modularization/webpack_structure.md)
-* [Babel](/modularization/babel.md)
-* [热更新](/modularization/hot_reload.md)
-* [create-react-app中webpack的配置](/modularization/webpack_options.md)
+* [Node.js Modules](/v-cn/modularization/node_mo.md)
+* [Webpack插件开发](/v-cn/modularization/webpack_structure.md)
+* [Babel](/v-cn/modularization/babel.md)
+* [热更新](/v-cn/modularization/hot_reload.md)
+* [create-react-app中webpack的配置](/v-cn/modularization/webpack_options.md)
 * [DevOps]()
 
 ## Web API
 
-* [事件代理](/web_api/events_proxy.md)
-* [Web Worker](/web_api/web_worker.md)
-* [Service Worker](/web_api/service_worker.md)
+* [事件代理](/v-cn/web_api/events_proxy.md)
+* [Web Worker](/v-cn/web_api/web_worker.md)
+* [Service Worker](/v-cn/web_api/service_worker.md)
 
 ## CSS
 
@@ -40,32 +40,32 @@ See English version: [English entry](../README.md)
 
 ## React
 
-* [Refs](/react/refs.md)
-* [Keys](/react/keys.md)
-* [生命周期](/react/life_cycle.md)
-* [Route懒加载](/react/lazy_load.md)
-* [单页面SSR](/react/ssr.md)
-* [react-redux中的connect方法](/react/react_redux.md)
+* [Refs](/v-cn/react/refs.md)
+* [Keys](/v-cn/react/keys.md)
+* [生命周期](/v-cn/react/life_cycle.md)
+* [Route懒加载](/v-cn/react/lazy_load.md)
+* [单页面SSR](/v-cn/react/ssr.md)
+* [react-redux中的connect方法](/v-cn/react/react_redux.md)
 * [Differ]()
 * [优化]()
 
 ## Authentication
 
-* [跨域](/authentication/cross_domain.md)
-* [Passport.JS的结构](/authentication/passport.md)
+* [跨域](/v-cn/authentication/cross_domain.md)
+* [Passport.JS的结构](/v-cn/authentication/passport.md)
 * [OAuth2]()
 * [JWT]()
 
 ## 面试问题
 
-* [0.1 + 0.2 === 0.3](/interview/epsilon.md)
-* [slice, substr and substring](/interview/string_process.md)
-* [数组扁平化](/interview/flat_array.md)
+* [0.1 + 0.2 === 0.3](/v-cn/interview/epsilon.md)
+* [slice, substr and substring](/v-cn/interview/string_process.md)
+* [数组扁平化](/v-cn/interview/flat_array.md)
 
 ## 其他
 
-* [发布一个npm包](/other/npm_issue.md)
-* [Redux](/other/redux.md)
+* [发布一个npm包](/v-cn/other/npm_issue.md)
+* [Redux](/v-cn/other/redux.md)
 * [H5]()
 * [GraphQL]()
 * [RxJS]()
