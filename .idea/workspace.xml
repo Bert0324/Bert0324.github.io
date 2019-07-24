@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/http_cache_chrome1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web_api/web_cache.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/redux.md" beforeDir="false" afterPath="$PROJECT_DIR$/other/redux.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/http_cache_chrome1.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/http_cache_chrome.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_api/web_cache.md" beforeDir="false" afterPath="$PROJECT_DIR$/web_api/web_cache.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,26 +17,26 @@
     <session id="868285813">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="32743" />
+          <entry key="md" value="33499" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="192" />
-          <entry key="Markdown" value="32551" />
+          <entry key="Markdown" value="33307" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="1" />
           <entry key="md" value="62" />
-          <entry key="png" value="2" />
+          <entry key="png" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="1" />
-          <entry key="Image" value="2" />
+          <entry key="Image" value="3" />
           <entry key="Markdown" value="62" />
         </counts>
       </usages-collector>
@@ -71,8 +69,8 @@
         <entry file="file://$PROJECT_DIR$/web_api/web_cache.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="372">
-                <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+              <first_editor relative-caret-position="312">
+                <caret line="68" column="62" lean-forward="true" selection-start-line="68" selection-start-column="62" selection-end-line="68" selection-end-column="62" />
               </first_editor>
               <second_editor />
             </state>
@@ -219,7 +217,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564004589553" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564006140755" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -261,7 +259,7 @@
       <workItem from="1563310285904" duration="16965000" />
       <workItem from="1563499285235" duration="47562000" />
       <workItem from="1563857638119" duration="21260000" />
-      <workItem from="1563933728004" duration="11441000" />
+      <workItem from="1563933728004" duration="12866000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -273,7 +271,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106291000" />
+    <option name="totallyTimeSpent" value="107716000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="0" width="1385" height="900" extended-state="6" />
@@ -531,9 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/http_cache.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/v-cn/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -554,11 +549,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/http_cache.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/web_api/web_cache.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="372">
-            <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+          <first_editor relative-caret-position="312">
+            <caret line="68" column="62" lean-forward="true" selection-start-line="68" selection-start-column="62" selection-end-line="68" selection-end-column="62" />
           </first_editor>
           <second_editor />
         </state>

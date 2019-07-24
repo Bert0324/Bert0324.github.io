@@ -17,7 +17,7 @@ the file, if not, browser send a request to the server.
 
 For example, Chrome will get the cache from the memory or disk like below:
 
-<img src="../assets/http_cache_chrome1.png" width="400"/>
+<img src="../assets/http_cache_chrome.png" width="400"/>
 
 There are some headers can be cache mark:
 
@@ -51,8 +51,23 @@ If the browser cannot find the resource's name, of course it will send request t
 But, if the browser can find the file, but its cache mark shows it has already expired, the browser will send a request with the cache information of the resource.
 The server will make the decision whether to use cached resource. 
 
-There is a vivid picture to describe it:
+In this way, server should make the logical judgement to whether the cache is expired.
 
+If this cache is expired, the server will response 200 and with new resource. If it is not modified, the server will response 304.
+
+There is a Http header to help us to conditionally use cache:
+
+### ETag
+
+Entity Tag's abbreviation. Actually, in Http/1.1 does not regulate how to create ETag's value. 
+
+But, Etag must relative to files' content, such as content hash, or relative to its modified time.
+
+
+## SW caching
+
+SW can proxy whole requests to check whether needs to update, which is more flexible and powerful, 
+see more in my blog [Service Worker](https://github.com/Bert0324/js-playground/blob/master/web_api/service_worker.md).
 
 
 
