@@ -10,7 +10,7 @@ See English version: [English entry](../README.md)
 
 ## JS 基础
 
-* [JS的深拷贝和浅拷贝](/js_basis/object_copy.md)
+* [JS的深拷贝和浅拷贝](/v-cn/js_basis/object_copy.md)
 * [Object.defineProperty](/js_basis/object_defineproperty.md)
 * [for loop](/js_basis/for_loop.md)
 * [闭包](/js_basis/closure.md)
