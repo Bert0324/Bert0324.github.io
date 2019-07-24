@@ -22,7 +22,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Webpack plugins development](/modularization/webpack_structure.md)
 * [Babel](/modularization/babel.md)
 * [Hot reload](/modularization/hot_reload.md)
-* [Webpack options](/modularization/webpack_options.md)
+* [Webpack options used in create-react-app](/modularization/webpack_options.md)
 * [DevOps]()
 
 ## Web API
