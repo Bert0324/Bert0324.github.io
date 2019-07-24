@@ -6,6 +6,8 @@ So I decide to class different points to groups. (under construction) 🏠 🏡 
 
 If you read articles and feel is useful, it is soooo kind to give me a star :star::star2:
 
+See Chinese version: [中文版本](/v-cn/README.md)
+
 ## JS basis
 
 * [Deep copy and Shallow copy in JS](/js_basis/object_copy.md)
@@ -43,8 +45,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 * [Life cycle](/react/life_cycle.md)
 * [Route lazy load](/react/lazy_load.md)
 * [Single page SSR](/react/ssr.md)
-* [Controlled Components and uncontrolled Components]()
-* [react-redux connect function]()
+* [react-redux connect function](/react/react_redux.md)
 * [Differ]()
 * [Optimization]()
 
