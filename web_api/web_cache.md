@@ -39,10 +39,10 @@ The Cache-Control general-header field is used to specify directives for caching
 
 There are some common value:
 
-* public: Indicates that the response may be cached by any cache. (both the client and the server proxy)<br>
-* private: only the single user can use it.<br>
-* no-cache: Forces caches to submit the request to the origin server for validation before releasing a cached copy.<br>
-* max-age=<seconds>: Specifies the maximum amount of time a resource will be considered fresh. Contrary to Expires, this directive is relative to the time of the request.<br>
+* public: Indicates that the response may be cached by any cache. (both the client and the server proxy)
+* private: only the single user can use it.
+* no-cache: Forces caches to submit the request to the origin server for validation before releasing a cached copy.
+* max-age=<seconds>: Specifies the maximum amount of time a resource will be considered fresh. Contrary to Expires, this directive is relative to the time of the request.
 
 2. check cache with server
 
