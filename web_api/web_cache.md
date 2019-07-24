@@ -3,7 +3,7 @@ Traditionally, Http caching is the one way to do it. Besides, SW is newer and mo
 
 Their order is as below:
 
-<img src="assets/http_cache.png" width="400"/>
+<img src="../assets/http_cache.png" width="400"/>
 
 ## Http caching
 
@@ -17,7 +17,7 @@ the file, if not, browser send a request to the server.
 
 For example, Chrome will get the cache from the memory or disk like below:
 
-<img src="assets/http_cache_chrome1.png" width="400"/>
+<img src="../assets/http_cache_chrome1.png" width="400"/>
 
 There are some headers can be cache mark:
 
