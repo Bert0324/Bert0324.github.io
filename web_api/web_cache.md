@@ -5,12 +5,12 @@ Their order is as below:
 
 <img src="../assets/cache_order.png" width="400"/>
 
-## Http caching
+# Http caching
 
 There is no way to directly control Browser Cache from JavaScript. In my understanding, Http caching is to 
 use Http headers to control it. There are some steps how browsers to do it:
 
-1. search in Browser cache
+## search in Browser cache
 
 First, the browser will find in its cache by the file's name and cache mark. If found, browser will directly return
 the file, if not, browser send a request to the server.
@@ -44,7 +44,7 @@ There are some common value:
 * no-cache: Forces caches to submit the request to the origin server for validation before releasing a cached copy.
 * max-age=<seconds>: Specifies the maximum amount of time a resource will be considered fresh. Contrary to Expires, this directive is relative to the time of the request.
 
-2. check cache with server
+## check cache with server
 
 If the browser cannot find the resource's name, of course it will send request to the server. 
 
