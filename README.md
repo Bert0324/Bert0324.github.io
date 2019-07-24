@@ -32,6 +32,7 @@ See Chinese version: [中文版本](/v-cn/README.md)
 * [Event Proxy](/web_api/events_proxy.md)
 * [Web Worker](/web_api/web_worker.md)
 * [Service Worker](/web_api/service_worker.md)
+* [Web cache](/web_api/web_cache.md)
 
 ## CSS
 
