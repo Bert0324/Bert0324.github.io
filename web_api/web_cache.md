@@ -3,7 +3,7 @@ Traditionally, Http caching is the one way to do it. Besides, SW is newer and mo
 
 Their order is as below:
 
-<img src="../assets/http_cache.png" width="400"/>
+<img src="../assets/cache_order.png" width="400"/>
 
 ## Http caching
 
