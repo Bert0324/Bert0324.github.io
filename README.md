@@ -46,7 +46,6 @@ See Chinese version: [中文版本](/v-cn/README.md)
 * [Life cycle](/react/life_cycle.md)
 * [Route lazy load](/react/lazy_load.md)
 * [Single page SSR](/react/ssr.md)
-* [react-redux connect function](/react/react_redux.md)
 * [Differ]()
 * [Optimization]()
 

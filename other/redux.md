@@ -176,6 +176,10 @@ It will receive 4 parameters:
 4. options
 
 
+<br />
+<br />
+
+
 There is a vivid image describing how react-redux works:
 
 <img src="../assets/react_redux.png" width="600"/>
