@@ -64,7 +64,7 @@ Redux is an implementation of Flux, many of the concepts that apply to Redux app
 
 ### build simple Redux
 
-Firstly, there is a simple Redux:
+Firstly, there is a simple Redux base on [redux createStore](https://github.com/reduxjs/redux/blob/master/src/createStore.js):
 
 ```js
 export function createStore(reducer) {
@@ -126,6 +126,108 @@ const store = ()=>createStore({
 ```
 
 ## Redux middleware
+
+In Redux, everything data is from one state to another state. When the data is changing, we can add our own 
+functions.
+
+In this way, the flow of data becomes like: 
+
+> view -> action -> middleware -> reducer -> store
+
+Redux's middleware is based on two functions: `compose` and `applyMiddleware`. Actually, they are very short.
+
+### compose
+
+The `compose` is as below:
+
+```js
+//compose.js
+export default function compose(...funcs) {
+  if (funcs.length === 0) {
+    return arg => arg
+  }
+
+  if (funcs.length === 1) {
+    return funcs[0]
+  }
+
+  return funcs.reduce((a, b) => (...args) => a(b(...args)))
+}
+```
+For example, if there are 3 functions are input, the result is like:
+```js
+((...args)=>{
+    return ((...args)=>{
+        return fn1(fn2(...args))
+    })(fn3(...args))
+})(...args)
+```
+
+If will combine whole functions to one function, the execution order is from right to hand according to its input order, last function's 
+return value is next function's arguments.
+
+### applyMiddleware
+
+the source code is as blow:
+
+```js
+import compose from './compose'
+export default function applyMiddleware(...middlewares) {
+  return createStore => (...args) => {
+    const store = createStore(...args)
+    let dispatch = () => {
+      throw new Error(
+        'Dispatching while constructing your middleware is not allowed. ' +
+          'Other middleware would not be applied to this dispatch.'
+      )
+    }
+
+    const middlewareAPI = {
+      getState: store.getState,
+      dispatch: (...args) => dispatch(...args)
+    }
+    //whole redux middle can get middlewareAPI
+    const chain = middlewares.map(middleware => middleware(middlewareAPI))
+    dispatch = compose(...chain)(store.dispatch)
+
+    return {
+      ...store,
+      dispatch
+    }
+  }
+}
+```
+
+Before execute `disptch` function, it will execute the curried middleware function. The `next` actually is `dispatch`. 
+
+### redux-thunk
+
+There is 2 famous redux asynchronize plugins, redux-thunk and redux-saga. redux-thunk is more simple, so 
+I research it as my example.
+
+The source code of redux-thunk is so short... In my imagination, it may be longer. The **whole** source code is as below:
+
+```js
+function createThunkMiddleware(extraArgument) {
+  return ({ dispatch, getState }) => next => action => {
+    if (typeof action === 'function') {
+      return action(dispatch, getState, extraArgument);
+    }
+
+    return next(action);
+  };
+}
+
+const thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+
+export default thunk;
+```
+
+If the `action` is a function instead of an object that is the only type redux can receive, redux-thunk will
+intercept `dispatch(action)`, and return the object that is `action(dispatch)`.
+
+
 
 
 
