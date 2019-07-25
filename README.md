@@ -84,6 +84,6 @@ See Chinese version: [中文版本](/v-cn/README.md)
 
 ## react-redux
 
-<img src="../assets/react_redux.png" width="600"/>
+<img src="./assets/react_redux.png" width="600"/>
 
 
