@@ -80,10 +80,3 @@ See Chinese version: [中文版本](/v-cn/README.md)
 > If you would like to right a wrong or are interested in me, welcome to contact me via email: yuchenhuang0324@gmail.com or WeChat, my QR code is as below:
 
 <img src="assets/qr_code.jpeg" width="400"/>
-
-
-## react-redux
-
-<img src="./assets/react_redux.png" width="600"/>
-
-
