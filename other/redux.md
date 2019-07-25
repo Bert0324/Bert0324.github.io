@@ -125,6 +125,61 @@ const store = ()=>createStore({
 })
 ```
 
+
+## react-redux
+
+The official UI binding library for Redux. [See why use React Redux](https://react-redux.js.org/introduction/why-use-react-redux).
+
+The key functions in it is `Provider` and `connect`.
+
+### Provider
+
+`Provider` is a React component, it will automatically subscribe:
+
+```js
+ componentDidMount() {
+    this.state.subscription.trySubscribe()
+
+    if (this.previousState !== this.props.store.getState()) {
+      this.state.subscription.notifyNestedSubs()
+    }
+  }
+    componentDidUpdate(prevProps) {
+      if (this.props.store !== prevProps.store) {
+        this.state.subscription.tryUnsubscribe()
+        const subscription = new Subscription(this.props.store)
+        subscription.onStateChange = this.notifySubscribers
+        this.setState({ store: this.props.store, subscription })
+      }
+    }
+```
+
+The `Provider` will be the root component of whole Application.
+
+### connect
+
+The function of `connect` is to wrap `getState` and `dispatch` to components' `props`.
+
+It will receive 4 parameters: 
+
+1.  mapStateToProps
+
+    connect state in store to props
+    
+     
+2. mapDispatchToProps
+
+    connect actions to props
+    
+3. mergeProps
+ 
+4. options
+
+
+There is a vivid image describing how react-redux works:
+
+<img src="../assets/react_redux.png" width="600"/>
+
 ## Redux middleware
 
 In Redux, everything data is from one state to another state. When the data is changing, we can add our own 
@@ -202,8 +257,8 @@ Before execute `disptch` function, it will execute the curried middleware functi
 
 ### redux-thunk
 
-There is 2 famous redux asynchronize plugins, redux-thunk and redux-saga. redux-thunk is more simple, so 
-I research it as my example.
+Without using react-redux, I won't use redux asynchronize plugins such as redux-thunk or redux-saga, because in the callback function, I can 
+directly use `subsribe` function. But anyway, react-redux is helpful in React, so these plugins's use is imperative in react.
 
 The source code of redux-thunk is so short... In my imagination, it may be longer. The **whole** source code is as below:
 
@@ -226,10 +281,4 @@ export default thunk;
 
 If the `action` is a function instead of an object that is the only type redux can receive, redux-thunk will
 intercept `dispatch(action)`, and return the object that is `action(dispatch)`.
-
-
-
-
-
-
 

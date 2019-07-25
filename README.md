@@ -83,3 +83,8 @@ See Chinese version: [中文版本](/v-cn/README.md)
 <img src="assets/qr_code.jpeg" width="400"/>
 
 
+## react-redux
+
+<img src="../assets/react_redux.png" width="600"/>
+
+

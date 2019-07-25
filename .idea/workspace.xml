@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/other/redux.md" beforeDir="false" afterPath="$PROJECT_DIR$/other/redux.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react/react_redux.md" beforeDir="false" afterPath="$PROJECT_DIR$/react/react_redux.md" afterDir="false" />
     </list>
@@ -17,19 +18,19 @@
     <session id="868285813">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="37580" />
+          <entry key="md" value="39001" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="200" />
-          <entry key="Markdown" value="37380" />
+          <entry key="JavaScript" value="201" />
+          <entry key="Markdown" value="38800" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="1" />
-          <entry key="md" value="62" />
+          <entry key="md" value="64" />
           <entry key="png" value="6" />
         </counts>
       </usages-collector>
@@ -37,7 +38,7 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="Image" value="6" />
-          <entry key="Markdown" value="62" />
+          <entry key="Markdown" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -57,8 +58,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="327">
-                <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="82" selection-end-column="44" />
+              <first_editor relative-caret-position="417">
+                <caret line="87" column="50" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
               </first_editor>
               <second_editor />
             </state>
@@ -69,8 +70,8 @@
         <entry file="file://$PROJECT_DIR$/other/redux.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="376">
-                <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
+              <first_editor relative-caret-position="447">
+                <caret line="175" column="4" selection-start-line="175" selection-start-column="4" selection-end-line="175" selection-end-column="4" />
               </first_editor>
               <second_editor />
             </state>
@@ -81,9 +82,7 @@
         <entry file="file://$PROJECT_DIR$/react/react_redux.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor>
-                <caret column="50" lean-forward="true" selection-start-column="50" selection-end-column="50" />
-              </first_editor>
+              <first_editor />
               <second_editor />
             </state>
           </provider>
@@ -139,8 +138,8 @@
         <option value="$PROJECT_DIR$/js_basis/generator.md" />
         <option value="$PROJECT_DIR$/modularization/webpack_options.md" />
         <option value="$PROJECT_DIR$/v-cn/README.md" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/web_api/web_cache.md" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/react/react_redux.md" />
         <option value="$PROJECT_DIR$/other/redux.md" />
       </list>
@@ -190,6 +189,16 @@
             <path>
               <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
               <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
+              <item name="other" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
+              <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
+              <item name="react" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
+              <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
               <item name="v-cn" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -208,7 +217,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564096085531" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564098220086" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -250,7 +259,7 @@
       <workItem from="1563310285904" duration="16965000" />
       <workItem from="1563499285235" duration="47562000" />
       <workItem from="1563857638119" duration="21260000" />
-      <workItem from="1563933728004" duration="25173000" />
+      <workItem from="1563933728004" duration="26909000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -262,7 +271,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120023000" />
+    <option name="totallyTimeSpent" value="121759000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="0" width="1385" height="900" extended-state="6" />
@@ -525,11 +534,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/react_redux.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="327">
-            <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="82" selection-end-column="44" />
+          <first_editor relative-caret-position="417">
+            <caret line="87" column="50" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
           </first_editor>
           <second_editor />
         </state>
@@ -538,21 +550,16 @@
     <entry file="file://$PROJECT_DIR$/react/react_redux.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor>
-            <caret column="50" lean-forward="true" selection-start-column="50" selection-end-column="50" />
-          </first_editor>
+          <first_editor />
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/react_redux.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/other/redux.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="376">
-            <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
+          <first_editor relative-caret-position="447">
+            <caret line="175" column="4" selection-start-line="175" selection-start-column="4" selection-end-line="175" selection-end-column="4" />
           </first_editor>
           <second_editor />
         </state>

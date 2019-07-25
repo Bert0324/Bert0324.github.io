@@ -1,1 +1,0 @@
-<img src="../assets/react_redux.png" width="600"/>
