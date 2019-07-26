@@ -14,9 +14,9 @@ See Chinese version: [中文版本](/v-cn/README.md)
 * [Object.defineProperty](/js_basis/object_defineproperty.md)
 * [for loop](/js_basis/for_loop.md)
 * [Closure](/js_basis/closure.md)
-* [Prototype]()
 * [Promise](/js_basis/promise.md)
 * [Generator](/js_basis/generator.md)
+* [Prototype]()
 
 ## Modularization
 
