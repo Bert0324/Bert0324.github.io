@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/other/rxjs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/other/rxjs.md" beforeDir="false" afterPath="$PROJECT_DIR$/other/rxjs.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,15 +15,15 @@
     <session id="868285813">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="40720" />
+          <entry key="md" value="41772" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="3" />
           <entry key="HTML" value="3" />
-          <entry key="JavaScript" value="202" />
-          <entry key="Markdown" value="40512" />
+          <entry key="JavaScript" value="204" />
+          <entry key="Markdown" value="41562" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -34,7 +32,7 @@
           <entry key="md" value="66" />
           <entry key="png" value="8" />
           <entry key="react_redux_connect" value="1" />
-          <entry key="svg" value="1" />
+          <entry key="svg" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -43,7 +41,7 @@
           <entry key="Image" value="8" />
           <entry key="Markdown" value="66" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="SVG" value="1" />
+          <entry key="SVG" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -64,8 +62,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="203">
-                <caret line="34" column="36" lean-forward="true" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+              <first_editor relative-caret-position="372">
+                <caret line="84" selection-start-line="84" selection-end-line="84" selection-end-column="44" />
               </first_editor>
               <second_editor />
             </state>
@@ -76,8 +74,16 @@
         <entry file="file://$PROJECT_DIR$/other/rxjs.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="242">
-                <caret line="66" column="19" lean-forward="true" selection-start-line="12" selection-end-line="66" selection-end-column="19" />
+              <first_editor relative-caret-position="419">
+                <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+                <folding>
+                  <element signature="e#0#43#0" expanded="true" />
+                  <element signature="e#0#26#0" expanded="true" />
+                  <element signature="e#0#26#0" expanded="true" />
+                  <element signature="e#0#28#0" expanded="true" />
+                  <element signature="e#0#33#0" expanded="true" />
+                  <element signature="e#0#43#0" expanded="true" />
+                </folding>
               </first_editor>
               <second_editor />
             </state>
@@ -171,7 +177,7 @@
             <path>
               <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
               <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
-              <item name="other" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -195,7 +201,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564431644247" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564434885808" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -238,7 +244,7 @@
       <workItem from="1563499285235" duration="47562000" />
       <workItem from="1563857638119" duration="21260000" />
       <workItem from="1563933728004" duration="35809000" />
-      <workItem from="1564259309652" duration="6125000" />
+      <workItem from="1564259309652" duration="9022000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -250,13 +256,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136784000" />
+    <option name="totallyTimeSpent" value="139681000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="0" width="1376" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21139431" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21139431" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -273,7 +279,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32961586" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32961586" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -573,18 +579,29 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="203">
-            <caret line="34" column="36" lean-forward="true" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+          <first_editor relative-caret-position="372">
+            <caret line="84" selection-start-line="84" selection-end-line="84" selection-end-column="44" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/rxjs_operators.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/other/rxjs.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="242">
-            <caret line="66" column="19" lean-forward="true" selection-start-line="12" selection-end-line="66" selection-end-column="19" />
+          <first_editor relative-caret-position="419">
+            <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+            <folding>
+              <element signature="e#0#43#0" expanded="true" />
+              <element signature="e#0#26#0" expanded="true" />
+              <element signature="e#0#26#0" expanded="true" />
+              <element signature="e#0#28#0" expanded="true" />
+              <element signature="e#0#33#0" expanded="true" />
+              <element signature="e#0#43#0" expanded="true" />
+            </folding>
           </first_editor>
           <second_editor />
         </state>
