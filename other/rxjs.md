@@ -16,13 +16,13 @@ event stream.
 
 There is an image to show it:
 
-<img src="assets/rxjs_stream.png" width="400"/>
+<img src="../assets/rxjs_stream.png" width="400"/>
 
 ## Operator
 
 Operators are methods on the Observable type, such as .map(...), .filter(...), .merge(...), etc. When called, they do not change the existing Observable instance. Instead, they return a new Observable, whose subscription logic is based on the first Observable.
 
-<img src="assets/rxjs_operators.svg" width="400"/>
+<img src="../assets/rxjs_operators.svg" width="400"/>
 
 ### pipe
 
