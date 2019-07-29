@@ -1,4 +1,4 @@
-## RxJS resolve which kind of problems?
+## Basic use
 
 The impetus drives me to learn RxJS is that lots of people recommend it and said: `React + Redux + RxJS = Amazing!`.
 
@@ -188,5 +188,34 @@ zip(timerOne$, timerTwo$, timerThree$).subscribe(
 
 ## Hot vs Cold Observables
 
+Normally, Observables is cold, which means the code is executed when it is subscribed. Each subscribe will create a new event.
 
+Hot Observables means the event is single, each subscribe will access the only event instance.
 
+We can use `share` to transfer cold Observables to hot Observables.
+
+There is code to show it:
+
+```js
+let obs = new Observable(subscriber => {
+    setInterval(()=>{
+        subscriber.next(Date.now());
+    },500)
+}).pipe(share());
+
+let task = obs.subscribe(v=>{
+    console.log(v);
+});
+setTimeout(()=>{
+    task.unsubscribe();
+}, 1000);
+
+setTimeout(()=>{
+    let task = obs.subscribe(v=>{
+        console.log(v);
+    });
+    setTimeout(()=>{
+        task.unsubscribe();
+    }, 1000);
+}, 1000);
+```

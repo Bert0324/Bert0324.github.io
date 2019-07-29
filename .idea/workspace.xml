@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/other/rxjs.md" beforeDir="false" afterPath="$PROJECT_DIR$/other/rxjs.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -15,7 +16,7 @@
     <session id="868285813">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="41798" />
+          <entry key="md" value="42270" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -23,7 +24,7 @@
           <entry key="CSS" value="3" />
           <entry key="HTML" value="3" />
           <entry key="JavaScript" value="204" />
-          <entry key="Markdown" value="41588" />
+          <entry key="Markdown" value="42060" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -74,8 +75,8 @@
         <entry file="file://$PROJECT_DIR$/other/rxjs.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="231">
-                <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+              <first_editor relative-caret-position="327">
+                <caret line="194" column="67" selection-start-line="194" selection-start-column="67" selection-end-line="194" selection-end-column="67" />
                 <folding>
                   <element signature="e#0#43#0" expanded="true" />
                   <element signature="e#0#26#0" expanded="true" />
@@ -201,7 +202,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564434952186" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564439166338" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -244,7 +245,7 @@
       <workItem from="1563499285235" duration="47562000" />
       <workItem from="1563857638119" duration="21260000" />
       <workItem from="1563933728004" duration="35809000" />
-      <workItem from="1564259309652" duration="9120000" />
+      <workItem from="1564259309652" duration="11455000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -256,7 +257,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139779000" />
+    <option name="totallyTimeSpent" value="142114000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="0" width="1376" height="900" extended-state="6" />
@@ -592,8 +593,8 @@
     <entry file="file://$PROJECT_DIR$/other/rxjs.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="231">
-            <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+          <first_editor relative-caret-position="327">
+            <caret line="194" column="67" selection-start-line="194" selection-start-column="67" selection-end-line="194" selection-end-column="67" />
             <folding>
               <element signature="e#0#43#0" expanded="true" />
               <element signature="e#0#26#0" expanded="true" />
