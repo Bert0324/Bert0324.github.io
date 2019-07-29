@@ -37,7 +37,10 @@ See Chinese version: [中文版本](/v-cn/README.md)
 ## CSS
 
 * [Box model](/css/box_model.md)
+* [Block, inline and inline-block element]()
 * [Pre-processors]()
+* [Flex]()
+* [Vertical center]()
 
 ## React
 
@@ -65,13 +68,12 @@ See Chinese version: [中文版本](/v-cn/README.md)
 * [Image lazy load]()
 * [Carousel]()
 
-
 ## Other
 
 * [Issue a npm package](/other/npm_issue.md)
 * [Redux](/other/redux.md)
-* [GraphQL]()
-* [RxJS]()
+* [RxJS](/other/rxjs.md)
+* [Jest]()
 
 <br />
 <br />
