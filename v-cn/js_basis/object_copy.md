@@ -1,42 +1,45 @@
-## Value object and Reference Object
+## 值对象和引用对象
 
-JS basic data type including number, string, null, undefined, boolean, its value is invariable. When I first know it, I feel quite confused. Because when I process string, I feel I was changing its value. But my intuition is wrong, actually, every time I just deassign a new variable.
+在讨论对象的拷贝之前，不得不说JS值对象和引用对象之间的区别。
 
-For example:
+JS的基础对象包括Number, String, Null, Undefined, Boolean, Object和Symbol，他们的值是不可改变的。
+当我第一次知道这个的时候，我觉得有点疑惑。因为当我处理字符串时，我觉得我改变了他们的值。
+
+但是我的直觉是错误的，其实每次我是为他们重新赋值。
+
+这有个例子:
 
 ```JavaScript
 var str = '123';
-console.log(str[0] = '0');
-console.log(str);
+str[0] = '0';
+console.log(str);   //'123'
 ```
 
-And when we use ===, it will directly compare their value. But Object is not, its value is variable and the variable itself is a memory pointer. In this way, when we use === to compare objects, it will compare their pointers. For example:
+当我们使用`===`来比较两个值对象时，我们的确在比较他们的值。
 
-```JavaScript
-var a = {a:1};
-var b = {a:1};
-console.log(a === b);
-```
+但是对引用对象来说，事实不是这样。引用对象的变量名指向了一个内存指针，他储存着真实内容的地址。
+因此，当我们在比较引用对象时，我们在比较他们的指针。
 
-There is a typical example to show that one is value, one is pointer:
+这有个例子展示他们的区别：
 
 ```JavaScript
 var a = {value:1};
 var b = a;
-b.value = 2
-console.log(a)
-console.log(b)
+b.value = 2;
+console.log(a); //a.value becomes 2 too.
 
 var c = 1;
 var d = c;
 d++;
-console.log(c);
-console.log(d);
+console.log(c); //1
+console.log(d); //2
 ```
 
-## Shallow copy
+## 浅拷贝
 
-Like:
+根据上文，拷贝的要点在于拷贝值对象，而不是引用对象，这可以避免拷贝指针。
+
+如下：
 
 ```JavaScript
 let obj = {
@@ -61,27 +64,11 @@ console.log(obj);
 console.log(copy);
 ```
 
-The copy result is well, but if:
+## 深拷贝
 
-```JavaScript
-let obj = {
-    a:{
-        value:0
-    },
-    b:1,
-    c:2
-}
-let copy = shallowCopy(obj);
-copy.a.value = 1;
-console.log(obj);
-console.log(copy);
-```
+对于那些对象中包含引用对象的，浅拷贝是不够的。我们必须把所有的对象拆成值对象拷贝。
 
-The change of child object in copy still influence obj. This is shallow copy.
-
-## Deep copy
-
-To create a total independent object, deep copy is imperative. The[ jQuery.extend](https://github.com/jquery/jquery/blob/master/src/core.js) as the example:
+这有个[jQuery.extend](https://github.com/jquery/jquery/blob/master/src/core.js)的例子：
 
 ```JavaScript
 jQuery.extend = jQuery.fn.extend = function() {
@@ -155,16 +142,24 @@ jQuery.extend = jQuery.fn.extend = function() {
 	// Return the modified object
 	return target;
 };
-
 ```
 
-In jQuery, it use  recursion to get whole child object. There is a more simple version:
+他使用了递归来获取所有的子对象。这有个更简单的版本：
 
 ```JavaScript
 function deepCopy(source){
     if (typeof source !== 'object'){
         return source;
     }
+    
+    if (Object.prototype.toString.call(source) === '[object Array]'){
+        let copy = [];
+        source.forEach(item=>{
+            copy.push(deepCopy(item))
+        });
+        return copy;
+    }
+    
     let copy = {};
     for (let key in source){
         if (source.hasOwnProperty(key)){
@@ -183,16 +178,8 @@ let obj = {
 }
 let copy = deepCopy(obj)
 copy.a.value = 0;
-console.log(obj)
-console.log(copy)
+console.log(obj);
+console.log(copy);
 ```
 
-If I make something wrong, welcome to contact me to let me modify it!
-
-
-
-
-
-
-
-
+这就是全部啦。如果您发现了错误，欢迎联系我来指正！

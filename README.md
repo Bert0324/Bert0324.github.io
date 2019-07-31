@@ -73,7 +73,6 @@ See Chinese version: [中文版本](/v-cn/README.md)
 * [Issue a npm package](/other/npm_issue.md)
 * [Redux](/other/redux.md)
 * [RxJS](/other/rxjs.md)
-* [Jest]()
 
 <br />
 <br />

@@ -1,42 +1,45 @@
 ## Value object and Reference Object
 
-JS basic data type including number, string, null, undefined, boolean, its value is invariable. When I first know it, I feel quite confused. Because when I process string, I feel I was changing its value. But my intuition is wrong, actually, every time I just deassign a new variable.
+Before talking about Object's copy, there is a key point that the differences between Value object and Reference Object in JS.
+
+JS basic data type including Number, String, Null, Undefined, Boolean, Object and Symbol, whose value is invariable. When I first know it, I feel quite confused. Because when I process string, I feel I was changing its value. 
+
+But my intuition is wrong, actually, every time I just deassign a new variable.
 
 For example:
 
 ```JavaScript
 var str = '123';
-console.log(str[0] = '0');
-console.log(str);
+str[0] = '0';
+console.log(str);   //'123'
 ```
 
-And when we use ===, it will directly compare their value. But Object is not, its value is variable and the variable itself is a memory pointer. In this way, when we use === to compare objects, it will compare their pointers. For example:
+When we are using `===` to compare 2 value objects, we are do comparing their values.
 
-```JavaScript
-var a = {a:1};
-var b = {a:1};
-console.log(a === b);
-```
+But for Reference Object, the fact is not. Reference Object's variable name points to a memory address where save the real content's memory address.
+Therefore, when we are comparing Reference Object, we are comparing their pointers.
 
 There is a typical example to show that one is value, one is pointer:
 
 ```JavaScript
 var a = {value:1};
 var b = a;
-b.value = 2
-console.log(a)
-console.log(b)
+b.value = 2;
+console.log(a); //a.value becomes 2 too.
 
 var c = 1;
 var d = c;
 d++;
-console.log(c);
-console.log(d);
+console.log(c); //1
+console.log(d); //2
 ```
 
 ## Shallow copy
 
-Like:
+According to the above, the key point to copy an object is to copy its value object instead of Reference Object, which can avoid to only copy a 
+pointer.
+
+Like as below:
 
 ```JavaScript
 let obj = {
@@ -61,27 +64,12 @@ console.log(obj);
 console.log(copy);
 ```
 
-The copy result is well, but if:
-
-```JavaScript
-let obj = {
-    a:{
-        value:0
-    },
-    b:1,
-    c:2
-}
-let copy = shallowCopy(obj);
-copy.a.value = 1;
-console.log(obj);
-console.log(copy);
-```
-
-The change of child object in copy still influence obj. This is shallow copy.
-
 ## Deep copy
 
-To create a total independent object, deep copy is imperative. The[ jQuery.extend](https://github.com/jquery/jquery/blob/master/src/core.js) as the example:
+For those objects including Reference Object, shallow copy is not enough. 
+We need to split whole objects to Value Objects.
+
+The [jQuery.extend](https://github.com/jquery/jquery/blob/master/src/core.js) as the example:
 
 ```JavaScript
 jQuery.extend = jQuery.fn.extend = function() {
@@ -155,16 +143,24 @@ jQuery.extend = jQuery.fn.extend = function() {
 	// Return the modified object
 	return target;
 };
-
 ```
 
-In jQuery, it use  recursion to get whole child object. There is a more simple version:
+It uses recursion to get whole child object. There is a more simple version:
 
 ```JavaScript
 function deepCopy(source){
     if (typeof source !== 'object'){
         return source;
     }
+    
+    if (Object.prototype.toString.call(source) === '[object Array]'){
+        let copy = [];
+        source.forEach(item=>{
+            copy.push(deepCopy(item))
+        });
+        return copy;
+    }
+    
     let copy = {};
     for (let key in source){
         if (source.hasOwnProperty(key)){
@@ -183,11 +179,11 @@ let obj = {
 }
 let copy = deepCopy(obj)
 copy.a.value = 0;
-console.log(obj)
-console.log(copy)
+console.log(obj);
+console.log(copy);
 ```
 
-If I make something wrong, welcome to contact me to let me modify it!
+That's all. If I make something wrong, welcome to contact me to let me modify it!
 
 
 
