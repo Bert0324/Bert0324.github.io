@@ -25,7 +25,6 @@ See English version: [English entry](../README.md)
 * [Babel](/v-cn/modularization/babel.md)
 * [热更新](/v-cn/modularization/hot_reload.md)
 * [create-react-app中webpack的配置](/v-cn/modularization/webpack_options.md)
-* [DevOps]()
 
 ## Web API
 
@@ -33,7 +32,6 @@ See English version: [English entry](../README.md)
 * [Web Worker](/v-cn/web_api/web_worker.md)
 * [Service Worker](/v-cn/web_api/service_worker.md)
 * [Web缓存机制](/v-cn/web_api/web_cache.md)
-
 
 ## CSS
 
@@ -46,15 +44,11 @@ See English version: [English entry](../README.md)
 * [生命周期](/v-cn/react/life_cycle.md)
 * [Route懒加载](/v-cn/react/lazy_load.md)
 * [单页面SSR](/v-cn/react/ssr.md)
-* [Differ]()
-* [优化]()
 
 ## Authentication
 
 * [跨域](/v-cn/authentication/cross_domain.md)
 * [Passport.JS的结构](/v-cn/authentication/passport.md)
-* [OAuth2]()
-* [JWT]()
 
 ## 面试问题
 

@@ -33,6 +33,7 @@ See Chinese version: [中文版本](/v-cn/README.md)
 * [Web Worker](/web_api/web_worker.md)
 * [Service Worker](/web_api/service_worker.md)
 * [Web cache](/web_api/web_cache.md)
+* [Web security](/web_api/web_security.md)
 
 ## CSS
 
