@@ -42,7 +42,6 @@ See Chinese version: [中文版本](/v-cn/README.md)
 * [Block, inline and inline-block element]()
 * [Pre-processors]()
 * [Flex]()
-* [Vertical center]()
 
 ## React
 
