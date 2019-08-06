@@ -4,17 +4,9 @@ I found I don't have a systemic knowledge network of it.
 
 So, there are some points I collected for memory.
 
-## CSRF
-
-
-
-## cookie
-
-
-
 ## XSS
 
-It is Cross Site Script. But its abbreviation is CSS, which is the same as Cascading 
+Its full name is Cross Site Script. But its abbreviation is CSS, which is the same as Cascading 
 Style Sheets. SO....it becomes XSS. 
 
 XSS is a code injection attack that allows an attacker to execute malicious 
@@ -111,7 +103,53 @@ So, the feasible way is to filter url's parameters and UGC, such as some of spec
 There are some alternative chars to replace sensitive chars in JS, such as `\u003c` and `\x3c` to replace `<`, and `\u003e` and `\x3e` to 
 replace `>`.
 
+## CSRF
+
+Its full name is Cross Site Request Forgery, abbreviation is CSRF. 
+
+Like XSS, it may steal users' cookie.
+
+But their difference is that XSS is to make use of the trust for users, CSRF is to pretend as the user.
+
+For example, there is a request `http://www.money.com?account=sender&amount=10000&for=receiver` to transfer money while 
+the user was already logined and cookie was saved. If the user go to a malicious website which add a tag like 
+`<img src='http://www.money.com?account=sender&amount=10000&for=hacker'>`, the cookie will be with this request because of
+same domain.
+
+In this way, the hacker does not need to get the user's cookie when attacking.
+
+There are some ways to protect:
+
+### Check HTTP Referer
+
+The most simple way is to check HTTP Referer, which can identify the original website of 
+the request. 
+
+In Node.JS, for example:
+
+```js
+app.use(req => {
+    if (req.headers.referer === 'http://legal-site.com'){
+        //do something
+    } else {
+        //reject request
+    }
+});
+```
+
+But, in some of old version chrome, such as IE6 or FF2, there are ways to artificially modify 
+HTTP Referer. Besides, users may forbid browser to offer HTTP Referer.
+
+### Token
+
+CSRF is to forge normal real user request. So, if we can use create a token that the attacker cannot 
+get, we can avoid CSRF.
+
+For example, we can calculate post message's hash value in front side, and set it in the url or http header,
+when server is processing the request, it can check the token, if the token is not right, refuse to response.
+
 ## SQL Injection
+
 
 
 
