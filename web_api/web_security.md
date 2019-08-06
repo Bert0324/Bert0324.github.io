@@ -189,7 +189,7 @@ the statement may be `db.users.find({username:user, password=password})`.
 
 If someone's JSON input object likes:
 
-```json
+```
 {
   "username": "user",
   "password": {$gt: ""}
