@@ -163,29 +163,44 @@ user information.
 
 #### Number Injection
 
-For example, if there is a API to GET user's information: `www.example.com?id=1`, the SQL statement is `SELECT * FROM users WHERE id=$id`.
-if we input `www.example.com?id=1 OR 1=1`, the statement will become `SELECT * FROM Users WHERE id=1 OR 1=1`. As a result, 
-attacker can get whole table information. 
+For example, if there is a API to GET user's information: `www.example.com?id=1`, the SQL statement is 
+
+`SELECT * FROM users WHERE id=$id`.
+
+if we input `www.example.com?id=1 OR 1=1`, the statement will become 
+
+`SELECT * FROM Users WHERE id=1 OR 1=1`. 
+
+As a result, attacker can get whole table information. 
 
 #### String Injection
 
 Or, if there is a API for POST to login, the parameters include username and password. The SQL statement may like 
+
 `SELECT * FROM users WHERE username='user' AND password='password'`.
 
 Attacker may try to make the part of statement after username become comments to directly get users' information without password.
 
-For example, if the user input is `user' # `, the final statement will become `SELECT * FROM users WHERE username='user' # ' AND password='password'`, which is
-the same as `SELECT * FROM users WHERE username='user'`.
+For example, if the user input is `user' # `, the final statement will become 
 
-Similarly, input user as `user' -- ` also work as `SELECT * FROM users WHERE username='user' -- ' AND password='password'`, which is
-the same as `SELECT * FROM users WHERE username='user'`.
+`SELECT * FROM users WHERE username='user' # ' AND password='password'`, 
+
+which is the same as `SELECT * FROM users WHERE username='user'`.
+
+Similarly, input user as `user' -- ` also work as
+ 
+`SELECT * FROM users WHERE username='user' -- ' AND password='password'`
+
+, which is the same as `SELECT * FROM users WHERE username='user'`.
 
 ### NoSQL Injection
 
 Like SQL, NoSQL database like MongoDB can also be injected.
 
 Like the same example in SQL Injection, if the application uses NoSQL database such as Mongodb, 
-the statement may be `db.users.find({username:user, password=password})`.
+the statement may be 
+
+`db.users.find({username:user, password=password})`.
 
 If someone's JSON input object likes:
 
