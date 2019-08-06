@@ -1,6 +1,6 @@
-When I was in an interview of Tencent, the interviewer asked me how much Web security questions you know?
+When I was in an interview of Tencent, the interviewer asked me how much Web security points you know?
 
-I found I don't have a systemic knowledge network of it.
+I found I don't have a systemic knowledge network about it.
 
 So, there are some points I collected for memory.
 
@@ -148,17 +148,103 @@ get, we can avoid CSRF.
 For example, we can calculate post message's hash value in front side, and set it in the url or http header,
 when server is processing the request, it can check the token, if the token is not right, refuse to response.
 
-## SQL Injection
+## Injection Attack
 
+Injection attacks refer to a broad class of attack vectors. In an injection attack, an attacker supplies untrusted 
+input to a program. This input gets processed by an interpreter as part of a command or query. In turn, this alters 
+the execution of that program.
 
+It includes some of typical types as below:
 
+### SQL Injection
 
-## Command Injection
+SQL Injection may execute malicious SQL statements in the database, such as getting whole data of the table or specific 
+user information. 
 
+#### Number Injection
 
+For example, if there is a API to GET user's information: `www.example.com?id=1`, the SQL statement is `SELECT * FROM users WHERE id=$id`.
+if we input `www.example.com?id=1 OR 1=1`, the statement will become `SELECT * FROM Users WHERE id=1 OR 1=1`. As a result, 
+attacker can get whole table information. 
 
-## DDoS attack
+#### String Injection
 
+Or, if there is a API for POST to login, the parameters include username and password. The SQL statement may like 
+`SELECT * FROM users WHERE username='user' AND password='password'`.
 
+Attacker may try to make the part of statement after username become comments to directly get users' information without password.
 
-## Traffic hijacking
+For example, if the user input is `user' # `, the final statement will become `SELECT * FROM users WHERE username='user' # ' AND password='password'`, which is
+the same as `SELECT * FROM users WHERE username='user'`.
+
+Similarly, input user as `user' -- ` also work as `SELECT * FROM users WHERE username='user' -- ' AND password='password'`, which is
+the same as `SELECT * FROM users WHERE username='user'`.
+
+### NoSQL Injection
+
+Like SQL, NoSQL database like MongoDB can also be injected.
+
+Like the same example in SQL Injection, if the application uses NoSQL database such as Mongodb, 
+the statement may be `db.users.find({username:user, password=password})`.
+
+If someone's JSON input object likes:
+
+```json
+{
+  "username": "user",
+  "password": {$gt: ""}
+}
+```
+
+In MongoDB, $gtselects those documents where the value of the field is greater than (i.e. >) the specified value. 
+Thus above statement compares password in database with empty string for greatness, which returns true.
+
+The same results can be achieved using other comparison operator such as $ne.
+
+### Command Injection
+
+Like SQL Injection and NoSQL Injection, Command Injection will also run malicious code because of a user's input. 
+
+For example, if there is an API allows users to compress specific file in the server:
+
+```js
+app.use.get('/gzip', (req, res)=>{
+    child_process.exec(`exec ${req.query.file_path}`, (err, data)=>{
+        if (err){
+            res.send(err.toString());
+        } else {
+            res.send(data.toString());
+        }
+    })
+});
+```
+
+If some one input an URL like: `www.example.com/gzip?file_path=file.txt\rm -r ./*`, it may be a disaster.
+
+### How to prevent 
+
+There are some tips:
+
+1. use prepared statements instead of building dynamic queries using string concatenation.
+
+2. Validate inputs to detect malicious values.
+
+3. To minimize the potential damage of a successful injection attack, do not assign DBA or admin type access rights 
+to your application accounts. Similarly minimize the privileges of the operating system account that the database process runs under.
+
+## DoS Attack
+
+In computing, a denial-of-service attack (DoS attack) is a cyber-attack in which the perpetrator seeks to make a machine 
+or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected to the Internet.
+
+includes:
+
+1. SYN Flood
+
+2. ICMP Flood
+
+3. UDP Flood
+
+Compared to DoS attack, A distributed denial-of-service (DDoS) attack occurs when multiple systems flood the bandwidth 
+or resources of a targeted system, usually one or more web servers. Such an attack is often the result of multiple 
+compromised systems (for example, a botnet) flooding the targeted system with traffic.
