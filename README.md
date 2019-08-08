@@ -17,24 +17,27 @@ See Chinese version: [中文版本](/v-cn/README.md)
 * [Promise](/js_basis/promise.md)
 * [Generator](/js_basis/generator.md)
 * [Prototype]()
+* [Node.js Modules](/js_basis/node_mo.md)
+* [Node.js Stream]()
 
 ## Modularization
 
-* [Node.js Modules](/modularization/node_mo.md)
 * [Webpack plugins development](/modularization/webpack_structure.md)
 * [Babel](/modularization/babel.md)
 * [Hot reload](/modularization/hot_reload.md)
 * [Webpack options used in create-react-app](/modularization/webpack_options.md)
 * [DevOps]()
 
-## Web API
+## Web
 
-* [Event Proxy](/web_api/events_proxy.md)
-* [Web Worker](/web_api/web_worker.md)
-* [Service Worker](/web_api/service_worker.md)
-* [Web cache](/web_api/web_cache.md)
-* [Web security](/web_api/web_security.md)
+* [XMLHttpRequest]()
+* [Event Proxy](/web/events_proxy.md)
+* [Web Worker](/web/web_worker.md)
+* [Service Worker](/web/service_worker.md)
+* [Web cache](/web/web_cache.md)
+* [Web security](/web/web_security.md)
 * [Animation]()
+* [Mobile Page Adoption]()
 
 ## CSS
 

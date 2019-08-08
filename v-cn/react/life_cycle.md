@@ -125,7 +125,7 @@ These 2 life cycles won't be impacted in React Fiber, because in old version, th
 New concept in React v16.8, in my understanding, it is for Stateless Components to access life cycles in React. 
 For some of simple components, hooks are more convenient and easy to reuse. For example:
 
-```js
+```jsx harmony
 class Example extends React.Component {
   constructor(props) {
     super(props);
@@ -149,7 +149,7 @@ class Example extends React.Component {
 
 is equal to:
 
-```js
+```jsx harmony
 import { useState } from 'react';
 
 function Example() {
@@ -175,7 +175,7 @@ current state value and second one is the function to change this state.
 
 For example:
 
-```js
+```jsx harmony
 import { useState, useEffect } from 'react';
 
 function Example() {

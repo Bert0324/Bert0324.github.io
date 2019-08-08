@@ -26,12 +26,12 @@ See English version: [English entry](../README.md)
 * [热更新](/v-cn/modularization/hot_reload.md)
 * [create-react-app中webpack的配置](/v-cn/modularization/webpack_options.md)
 
-## Web API
+## Web
 
-* [事件代理](/v-cn/web_api/events_proxy.md)
-* [Web Worker](/v-cn/web_api/web_worker.md)
-* [Service Worker](/v-cn/web_api/service_worker.md)
-* [Web缓存机制](/v-cn/web_api/web_cache.md)
+* [事件代理](/v-cn/web/events_proxy.md)
+* [Web Worker](/v-cn/web/web_worker.md)
+* [Service Worker](/v-cn/web/service_worker.md)
+* [Web缓存机制](/v-cn/web/web_cache.md)
 
 ## CSS
 

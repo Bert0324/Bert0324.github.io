@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/page_adoption.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication/cross_domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/cross_domain.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modularization/node_mo.md" beforeDir="false" afterPath="$PROJECT_DIR$/js_basis/node_mo.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/react/life_cycle.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/react/life_cycle.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/web_api/events_proxy.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/web/events_proxy.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/web_api/service_worker.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/web/service_worker.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/web_api/web_cache.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/web/web_cache.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/web_api/web_worker.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/web/web_worker.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_api/events_proxy.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/events_proxy.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_api/service_worker.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/service_worker.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_api/web_cache.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/web_cache.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_api/web_security.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/web_security.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_api/web_worker.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/web_worker.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,7 +30,7 @@
     <session id="868285813">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="53350" />
+          <entry key="md" value="54060" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -24,13 +39,14 @@
           <entry key="HTML" value="7" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="231" />
-          <entry key="Markdown" value="53106" />
+          <entry key="Markdown" value="53816" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="1" />
-          <entry key="md" value="74" />
+          <entry key="js" value="7" />
+          <entry key="md" value="81" />
           <entry key="png" value="8" />
           <entry key="react_redux_connect" value="1" />
           <entry key="svg" value="3" />
@@ -40,7 +56,8 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="Image" value="8" />
-          <entry key="Markdown" value="74" />
+          <entry key="JavaScript" value="7" />
+          <entry key="Markdown" value="81" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="3" />
         </counts>
@@ -63,8 +80,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="582">
-                <caret line="53" column="18" lean-forward="true" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+              <first_editor relative-caret-position="185">
+                <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
               </first_editor>
               <second_editor />
             </state>
@@ -72,11 +89,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/v-cn/README.md">
+        <entry file="file://$PROJECT_DIR$/web/web_cache.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="210">
-                <caret line="14" column="40" lean-forward="true" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+              <first_editor relative-caret-position="232">
+                <caret line="81" column="75" selection-start-line="81" selection-start-column="57" selection-end-line="81" selection-end-column="75" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/page_adoption.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="120">
+                <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               </first_editor>
               <second_editor />
             </state>
@@ -120,7 +149,6 @@
         <option value="$PROJECT_DIR$/react/a.html" />
         <option value="$PROJECT_DIR$/web_api/web_worker.md" />
         <option value="$PROJECT_DIR$/web_api/service_worker.md" />
-        <option value="$PROJECT_DIR$/react/life_cycle.md" />
         <option value="$PROJECT_DIR$/react/redux.md" />
         <option value="$PROJECT_DIR$/modularization/node_mo.md" />
         <option value="$PROJECT_DIR$/modularization/webpack_hot_replacement.md" />
@@ -138,10 +166,15 @@
         <option value="$PROJECT_DIR$/other/rxjs.md" />
         <option value="$PROJECT_DIR$/js_basis/object_copy.md" />
         <option value="$PROJECT_DIR$/v-cn/js_basis/object_copy.md" />
-        <option value="$PROJECT_DIR$/v-cn/README.md" />
         <option value="$PROJECT_DIR$/modularization/babel.md" />
         <option value="$PROJECT_DIR$/web_api/web_security.md" />
+        <option value="$PROJECT_DIR$/react/life_cycle.md" />
+        <option value="$PROJECT_DIR$/v-cn/react/life_cycle.md" />
+        <option value="$PROJECT_DIR$/v-cn/README.md" />
+        <option value="$PROJECT_DIR$/web/page_adoption.md" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/authentication/cross_domain.md" />
+        <option value="$PROJECT_DIR$/web/web_cache.md" />
       </list>
     </option>
   </component>
@@ -170,11 +203,6 @@
               <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
               <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
-              <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
-              <item name="web_api" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -195,9 +223,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565121860378" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565301693227" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -205,9 +238,9 @@
       <recent name="$PROJECT_DIR$/assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js_basis" />
       <recent name="$PROJECT_DIR$/assets" />
       <recent name="$PROJECT_DIR$/interview" />
-      <recent name="$PROJECT_DIR$/js_basis" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -240,7 +273,7 @@
       <workItem from="1563499285235" duration="47562000" />
       <workItem from="1563857638119" duration="21260000" />
       <workItem from="1563933728004" duration="35809000" />
-      <workItem from="1564259309652" duration="40561000" />
+      <workItem from="1564259309652" duration="46579000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -252,13 +285,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171220000" />
+    <option name="totallyTimeSpent" value="177238000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="0" width="1376" height="900" extended-state="6" />
+    <frame x="52" y="0" width="1388" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21139431" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20950966" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -275,8 +308,9 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32961586" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32961586" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Remote Host" weight="0.3298351" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -372,20 +406,10 @@
     <entry file="file://$PROJECT_DIR$/web_api/localstorage_timeliness.md" />
     <entry file="file://$PROJECT_DIR$/web_api/offline_cache.md" />
     <entry file="file://$PROJECT_DIR$/react/a.html" />
-    <entry file="file://$PROJECT_DIR$/react/life_cycle.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="435">
-            <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react/event_bus.md" />
     <entry file="file://$PROJECT_DIR$/network/status_code.md" />
     <entry file="file://$PROJECT_DIR$/react/redux.md" />
-    <entry file="file://$PROJECT_DIR$/modularization/node_mo.md">
+    <entry file="file://$PROJECT_DIR$/js_basis/node_mo.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="105">
@@ -463,7 +487,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web_api/web_worker.md">
+    <entry file="file://$PROJECT_DIR$/web/web_worker.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="15">
@@ -483,7 +507,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web_api/service_worker.md">
+    <entry file="file://$PROJECT_DIR$/web/service_worker.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="-3">
@@ -494,16 +518,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/http_cache.png" />
-    <entry file="file://$PROJECT_DIR$/web_api/web_cache.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="30">
-            <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/react_redux.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -598,21 +612,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web_api/web_security.md">
+    <entry file="file://$PROJECT_DIR$/react/life_cycle.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="195">
-            <caret line="62" column="45" selection-start-line="62" selection-start-column="45" selection-end-line="62" selection-end-column="45" />
+          <first_editor relative-caret-position="102">
+            <caret line="190" column="9" lean-forward="true" selection-start-line="190" selection-start-column="9" selection-end-line="190" selection-end-column="9" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/v-cn/react/life_cycle.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="582">
-            <caret line="53" column="18" lean-forward="true" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+          <first_editor relative-caret-position="42">
+            <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
           </first_editor>
           <second_editor />
         </state>
@@ -621,8 +635,58 @@
     <entry file="file://$PROJECT_DIR$/v-cn/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="210">
-            <caret line="14" column="40" lean-forward="true" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+          <first_editor relative-caret-position="87">
+            <caret line="25" column="43" lean-forward="true" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/authentication/cross_domain.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="780">
+            <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/page_adoption.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="120">
+            <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/web_security.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="3508">
+            <caret line="294" lean-forward="true" selection-start-line="294" selection-end-line="294" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="185">
+            <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/web_cache.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="232">
+            <caret line="81" column="75" selection-start-line="81" selection-start-column="57" selection-end-line="81" selection-end-column="75" />
           </first_editor>
           <second_editor />
         </state>
