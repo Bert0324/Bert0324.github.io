@@ -66,7 +66,7 @@ But, Etag must relative to files' content, such as content hash, or relative to 
 ## SW caching
 
 SW can proxy whole requests to check whether needs to update, which is more flexible and powerful, 
-see more in my blog [Service Worker](https://github.com/Bert0324/js-playground/blob/master/web_api/service_worker.md).
+see more in my blog [Service Worker](https://github.com/Bert0324/js-playground/blob/master/web/service_worker.md).
 
 ## CDN
 

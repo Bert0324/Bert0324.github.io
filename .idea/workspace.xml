@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/page_adoption.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/cross_domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/cross_domain.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modularization/node_mo.md" beforeDir="false" afterPath="$PROJECT_DIR$/js_basis/node_mo.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v-cn/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v-cn/react/life_cycle.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/react/life_cycle.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v-cn/web_api/events_proxy.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/web/events_proxy.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v-cn/web_api/service_worker.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/web/service_worker.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v-cn/web_api/web_cache.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/web/web_cache.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v-cn/web_api/web_worker.md" beforeDir="false" afterPath="$PROJECT_DIR$/v-cn/web/web_worker.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_api/events_proxy.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/events_proxy.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_api/service_worker.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/service_worker.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_api/web_cache.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/web_cache.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_api/web_security.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/web_security.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_api/web_worker.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/web_worker.md" afterDir="false" />
-    </list>
+    <list default="true" id="49072c1e-3680-439f-87f1-e52ca126f6e2" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +13,7 @@
     <session id="868285813">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="54060" />
+          <entry key="md" value="54143" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -39,7 +22,7 @@
           <entry key="HTML" value="7" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="231" />
-          <entry key="Markdown" value="53816" />
+          <entry key="Markdown" value="53899" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -80,8 +63,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="185">
-                <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+              <first_editor relative-caret-position="372">
+                <caret line="87" selection-start-line="87" selection-end-line="87" selection-end-column="44" />
               </first_editor>
               <second_editor />
             </state>
@@ -92,8 +75,8 @@
         <entry file="file://$PROJECT_DIR$/web/web_cache.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="232">
-                <caret line="81" column="75" selection-start-line="81" selection-start-column="57" selection-end-line="81" selection-end-column="75" />
+              <first_editor relative-caret-position="271">
+                <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
               </first_editor>
               <second_editor />
             </state>
@@ -203,6 +186,11 @@
               <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
               <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="javascript-interview" type="b2602c69:ProjectViewProjectNode" />
+              <item name="javascript-interview" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -230,7 +218,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565301708937" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565301786826" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -273,7 +261,7 @@
       <workItem from="1563499285235" duration="47562000" />
       <workItem from="1563857638119" duration="21260000" />
       <workItem from="1563933728004" duration="35809000" />
-      <workItem from="1564259309652" duration="46579000" />
+      <workItem from="1564259309652" duration="46823000" />
     </task>
     <task id="LOCAL-00001" summary="webpack">
       <created>1562825743286</created>
@@ -285,13 +273,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177238000" />
+    <option name="totallyTimeSpent" value="177482000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="0" width="1388" height="900" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20950966" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20950966" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -308,7 +295,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32961586" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32961586" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Remote Host" weight="0.3298351" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -675,8 +662,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="185">
-            <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+          <first_editor relative-caret-position="372">
+            <caret line="87" selection-start-line="87" selection-end-line="87" selection-end-column="44" />
           </first_editor>
           <second_editor />
         </state>
@@ -685,8 +672,8 @@
     <entry file="file://$PROJECT_DIR$/web/web_cache.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="232">
-            <caret line="81" column="75" selection-start-line="81" selection-start-column="57" selection-end-line="81" selection-end-column="75" />
+          <first_editor relative-caret-position="271">
+            <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
           </first_editor>
           <second_editor />
         </state>
