@@ -86,7 +86,7 @@ to the provided domain name address of the CDN server.
 
 5. If the cache is okay through testing, we then switch part of the traffic to CDN server.
 
-<img src="../assets/cdn_steps.jpg" width="800"/>
+<img src="../assets/cdn_steps.jpg" width="600"/>
 
 
 
