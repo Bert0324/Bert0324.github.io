@@ -1,7 +1,7 @@
 ## Basic use
 
 As we know, JS only has one thread to process CPU tasks. In order to improve its calculation performance,
-like other languages' multiple threads, Web Worker can create a new thread that can be in charge of CPU-bound 
+like other languages' multiple threads function, Web Worker can create a new thread that can be in charge of CPU-bound
 tasks.
 
 For example:

@@ -68,7 +68,7 @@ See Chinese version: [中文版本](/v-cn/README.md)
 * [0.1 + 0.2 === 0.3](/interview/epsilon.md)
 * [slice, substr and substring](/interview/string_process.md)
 * [Flat an Array](/interview/flat_array.md)
-* [Anti-shake and throttling](/interview/debounce_throttle.md)
+* [Throttle and debounce](/interview/debounce_throttle.md)
 * [Image lazy load]()
 * [Carousel]()
 
