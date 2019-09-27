@@ -9,8 +9,7 @@ In this way, when we have to compare floats, the approriate way is to:
 ```JavaScript
 Number.prototype.compare = function(f) {
     return Math.abs(f - this) < Number.EPSILON  
-}; 
+};
 
 console.log(0.3.compare(0.1 + 0.2));   //true
 ```
-

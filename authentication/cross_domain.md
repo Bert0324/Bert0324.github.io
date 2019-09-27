@@ -50,6 +50,3 @@ res.setHeader("Access-Control-Allow-Methods","POST,GET,OPTIONS");
 When a page is sending an AJAX request to a cross domain URL, it will send an OPTIONS request to the 
 server to check whether support cross domain request, if allowed, it will return `204 No Content`, if not, it will return 
 `405 Not Allowed`.
-
-
-
