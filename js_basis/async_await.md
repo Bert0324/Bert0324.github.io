@@ -44,6 +44,8 @@ console.log(task())     // Promise { 1 }
 
 The `await` operator is used to wait for a `Promise`. It can only be used inside an `async function`. But it can only receive `Promise.resolve`. For example:
 
+If the `Promise` is rejected, the await expression throws the rejected value.
+
 ```JavaScript
 (async function () {
     const result = await Promise.resolve('success');
@@ -55,3 +57,8 @@ The `await` operator is used to wait for a `Promise`. It can only be used inside
     console.log(result);
 })()    // UnhandledPromiseRejectionWarning: success
 ```
+
+## Conclusion
+
+In this way, for me, when I don't care about the error, I perfer to use `throw Error`, when I want to process
+error, `Promise.reject` maybe more useful.
