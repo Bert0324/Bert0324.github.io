@@ -104,7 +104,7 @@ There are 3 principle in Redux:
 2. State is read-only
 
     The only way to change the state is to emit an action, an object describing what happened.
-    
+
 3. Changes are made with pure functions
 
     To specify how the state tree is transformed by actions, you write pure reducers.

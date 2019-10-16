@@ -84,6 +84,7 @@ input.addEventListener('keyup', function(e){
   obj.text = e.target.value;
 })
 ```
+
 When changing the value in `<input>`, the text in `<text>` will change too. The `obj` is their view module.
 
 This code is coupled, Vue use Watcher and Observer to decouple it.
@@ -127,7 +128,3 @@ removedMiddlewares.forEach(function (name) {
 
 It's a new feature in ES6, compared to Object.defineProperty, which can just access getter and setter of an object, Proxy can
 access more operation, such as `in`, `delete`, and function calling.
-
-
-
-
