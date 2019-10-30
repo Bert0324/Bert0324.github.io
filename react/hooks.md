@@ -33,7 +33,7 @@ Before using Hooks, the first thing I want to figure out is that which kind of p
 If there are a range of reusable behavior to a component, I may use HOC with render props. Such as below:
 
 ```js
-export default class HOC extends React.Component{
+class HOC extends React.Component{
  constructor(props) {
     super(props);
     this.state = {
@@ -70,12 +70,12 @@ const sharingValue = () => {
   return sharingValue;
 };
 
-export default function Com1() {
+function Com1() {
   const sharingValue = sharingValue();
   return <div>{sharingValue}</div>;
 }
 
-export default function Com2() {
+function Com2() {
   const sharingValue = sharingValue();
   return <div>{sharingValue}</div>;
 }
@@ -83,43 +83,15 @@ export default function Com2() {
 
 Via Hooks, it is more easy to share common functions without impacting components structure.
 
-## useState
+## Hooks Examples
 
-- Returns a stateful value, and a function to update it.
+### useState
 
-Base on `class` to update a component when `this.state` changing:
+- Returns a stateful value, and a function to update it. `const [state, setState] = useState(initialState);`
 
-```js
-class Example extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0
-    };
-  }
-
-  handleOnClick() {
-    this.setState({ count: this.state.count + 1 });
-  }
-
-  render() {
-    return (
-      <div>
-        <p>You clicked {this.state.count} times</p>
-        <button onClick={this.handleOnClick}>Click me</button>
-      </div>
-    );
-  }
-}
-```
-
-We have use a
-
-is equal to:
+Base on `useState` to update a component:
 
 ```js
-import { useState } from "react";
-
 function Example() {
   const [count, setCount] = useState(0);
 
@@ -130,48 +102,134 @@ function Example() {
     </div>
   );
 }
+```
+
+Except specific value, `useState` can accept a function which will be executed only on the initial render if the initial state
+is the result of an expensive computation:
+
+```js
+const [state, setState] = useState(() => {
+  const initialState = someExpensiveComputation(props);
+  return initialState;
+});
 ```
 
 ## useEffect
 
-`useState` receives the original value of the state and return an array, whose first element is
-current state value and second one is the function to change this state.
+- Accepts a function that contains imperative, possibly effectful code. `useEffect(didUpdate);`
 
-For example:
+Mutations, subscriptions, timers, logging, and other side effects are not allowed inside the main body of a function component (referred to as React’s render phase). Doing so will lead to confusing bugs and inconsistencies in the UI.
+
+Instead, use useEffect. The function passed to useEffect will run after the render is committed to the screen. Think of effects as an escape hatch from React’s purely functional world into the imperative world.
 
 ```js
-import { useState, useEffect } from "react";
-
-function Example() {
-  const [count, setCount] = useState(0);
-
-  // === both operated in componentDidMount and componentDidUpdate:
-  useEffect(() => {
-    // update title
-    document.title = `You clicked ${count} times`;
-  });
-
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
-    </div>
-  );
-}
+const changeDocumentTitle = useEffect(() => {
+  document.title = "Changed in useEffect";
+});
 ```
 
-useEffect === `componentDidMount` + `componentDidUpdate` + `componentWillUnmount`, we don't have to write the same code in these
-3 functions.
+By default, effects run after every completed render like `componentDidMount`, `componentDidUpdate` and `componentWillUnmount`, but you can choose to fire them only when certain values have changed by second parameter.
+
+```js
+const changeDocumentTitle = useEffect(() => {
+  document.title = "Changed in useEffect";
+}, [someValue]);
+```
+
+In addition, the function returned in useEffect callback will be trigger after rendering, as clean-up function.
+
+```js
+const changeDocumentTitle = useEffect(() => {
+  document.title = "Changed in useEffect";
+  return () => {
+    console.log("useEffect rerendered");
+  };
+}, [someValue]);
+```
 
 ### useLayoutEffect
 
-## useReducer
+The signature is identical to useEffect, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside useLayoutEffect will be flushed synchronously, before the browser has a chance to paint.
+
+The point is that useLayoutEffect's time point is before useEffect during DOM render life cycle.
+
+## useRef
+
+- useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component. `const refContainer = useRef(initialValue);`
+
+Essentially, useRef is like a “box” that can hold a mutable value in its .current property, like bolow:
+
+```js
+const handleFoucsOnClick = () => {
+  const ele = useRef(null);
+  return {
+    ele,
+    handleClick: () => {
+      ele.current.focus();
+    }
+  };
+};
+
+function Example() {
+  const { ele, handleClick } = handleFoucsOnClick();
+  return <div ref={ele} onClick={handleClick}></div>;
+}
+```
 
 ## useMemo
 
+- Returns a memoized value. `const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);`
+
+Pass a “create” function and an array of dependencies. useMemo will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.\
+
 ## useCallback
 
-## useRef
+- Returns a memoized callback. `const memoizedCallback = useCallback(() => {doSomething(a, b);},[a, b],);`
+
+Like useMemo, when the dependencies has changed, the callback will be triggered.
+
+This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. shouldComponentUpdate).
+
+If useMemo and useCallback's second argument is an empty array, the value or function will be memoized once and always returned.
+
+If the second argument is omitted, the value will never be memoized, and the useCallback and the useMemo doesn't do anything.
+
+## useReducer
+
+- An alternative to useState. `const [state, dispatch] = useReducer(reducer, initialArg, init);`
+
+Like redux, useReducer can rreturn a state and function to dispatch event, as below:
+
+```js
+const handleReducer = () => {
+  const initialState = { count: 0 };
+  const [state, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case "increment":
+        return { ...initialState, count: state.count++ };
+      case "decrement":
+        return { ...initialState, count: state.count-- };
+      default:
+        throw new Eroor();
+    }
+  });
+  return [
+    state,
+    action => {
+      dispatch(action);
+    }
+  ];
+};
+function Example() {
+  const [state, dispatch] = handleReducer();
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={dispatch({ type: "decrement" })} />
+    </>
+  );
+}
+```
 
 ## Reference
 
