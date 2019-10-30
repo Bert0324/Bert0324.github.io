@@ -114,6 +114,43 @@ const [state, setState] = useState(() => {
 });
 ```
 
+### useReducer
+
+- An alternative to useState. `const [state, dispatch] = useReducer(reducer, initialArg, init);`
+
+Like redux, useReducer can rreturn a state and function to dispatch event, as below:
+
+```js
+const handleReducer = () => {
+  const initialState = { count: 0 };
+  const [state, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case "increment":
+        return { ...initialState, count: state.count++ };
+      case "decrement":
+        return { ...initialState, count: state.count-- };
+      default:
+        throw new Eroor();
+    }
+  });
+  return [
+    state,
+    action => {
+      dispatch(action);
+    }
+  ];
+};
+function Example() {
+  const [state, dispatch] = handleReducer();
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={dispatch({ type: "decrement" })} />
+    </>
+  );
+}
+```
+
 ## useEffect
 
 - Accepts a function that contains imperative, possibly effectful code. `useEffect(didUpdate);`
@@ -153,6 +190,43 @@ The signature is identical to useEffect, but it fires synchronously after all DO
 
 The point is that useLayoutEffect's time point is before useEffect during DOM render life cycle.
 
+## UseContext
+
+- Accepts a context object (the value returned from React.createContext) and returns the current context value for that context. `const value = useContext(MyContext);`
+
+The current context value is determined by the value prop of the nearest <MyContext.Provider> above the calling component in the tree.
+
+When the nearest <MyContext.Provider> above the component updates, this Hook will trigger a rerender with the latest context value passed to that MyContext provider.
+
+There is a example for passing values cross components:
+
+```js
+// parent.js
+import { Child } from './child';
+
+export const MyContext = React.createContext();
+
+export function Parent(){
+  return (
+    <MyContext.Provider value={count:0}>
+      <Child/>
+    </MyContext.Provider>
+  )
+}
+
+// child.js
+import { MyContext } from './parent';
+
+export function Child(){
+  const context = useContext(MyContext);
+  return (
+    <>
+      Count: {context.count}
+    </>
+  )
+}
+```
+
 ## useRef
 
 - useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component. `const refContainer = useRef(initialValue);`
@@ -182,7 +256,7 @@ function Example() {
 
 Pass a “create” function and an array of dependencies. useMemo will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.\
 
-## useCallback
+### useCallback
 
 - Returns a memoized callback. `const memoizedCallback = useCallback(() => {doSomething(a, b);},[a, b],);`
 
@@ -190,46 +264,9 @@ Like useMemo, when the dependencies has changed, the callback will be triggered.
 
 This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. shouldComponentUpdate).
 
-If useMemo and useCallback's second argument is an empty array, the value or function will be memoized once and always returned.
+If useMemo and useCallback's second argument is an empty array, the value or function will be <u>memoized once and always returned</u>.
 
 If the second argument is omitted, the value will never be memoized, and the useCallback and the useMemo doesn't do anything.
-
-## useReducer
-
-- An alternative to useState. `const [state, dispatch] = useReducer(reducer, initialArg, init);`
-
-Like redux, useReducer can rreturn a state and function to dispatch event, as below:
-
-```js
-const handleReducer = () => {
-  const initialState = { count: 0 };
-  const [state, dispatch] = useReducer((state, action) => {
-    switch (action.type) {
-      case "increment":
-        return { ...initialState, count: state.count++ };
-      case "decrement":
-        return { ...initialState, count: state.count-- };
-      default:
-        throw new Eroor();
-    }
-  });
-  return [
-    state,
-    action => {
-      dispatch(action);
-    }
-  ];
-};
-function Example() {
-  const [state, dispatch] = handleReducer();
-  return (
-    <>
-      Count: {state.count}
-      <button onClick={dispatch({ type: "decrement" })} />
-    </>
-  );
-}
-```
 
 ## Reference
 
