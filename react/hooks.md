@@ -264,7 +264,7 @@ Like useMemo, when the dependencies has changed, the callback will be triggered.
 
 This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. shouldComponentUpdate).
 
-If useMemo and useCallback's second argument is an empty array, the value or function will be <u>memoized once and always returned</u>.
+If useMemo and useCallback's second argument is an empty array, the value or function will be **memoized once and always returned**.
 
 If the second argument is omitted, the value will never be memoized, and the useCallback and the useMemo doesn't do anything.
 
