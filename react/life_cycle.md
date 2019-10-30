@@ -101,10 +101,10 @@ In React Fiber, the code will be separated to many fragments. The operation has 
 lower priority operation. So, some of life cycle in previous version, which would only operate one time, in new version, may
 operate more than once.
 
-> componentWillMount
-> componentWillReceiveProps
-> shouldComponentUpdate
-> componentWillUpdate
+> componentWillMount <br />
+> componentWillReceiveProps <br />
+> shouldComponentUpdate <br />
+> componentWillUpdate <br />
 
 These 4 life cycles may be broken because of other higher priority operation. So AJAX operation is not safe
 in these life cycles anymore, multiple the same AJAX operations are a totally waste.

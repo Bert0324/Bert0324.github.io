@@ -53,7 +53,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 - [Route lazy load](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
 - [Differ]()
-- [Optimization]()
+- [Optimization](/react/optimization.md)
 
 ## React Native
 
@@ -61,7 +61,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 ## Vue
 
-- TODO:Proxy[Vue3 Data two way binding]()
+- [Vue3 Data two way binding](/vue/two_way_binding.md)
 
 ## Authentication
 

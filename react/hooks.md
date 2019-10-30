@@ -1,4 +1,62 @@
-For some of simple components, hooks are more convenient and easy to reuse. For example:
+# Hooks
+
+## Definition
+
+- Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.
+
+And now it has 10 official Hooks, including:
+
+> Basic Hooks
+>
+> > useState<br/>
+> > useEffect<br/>
+> > useContext<br/>
+
+> Additional Hooks
+>
+> > useReducer<br/>
+> > useCallback<br/>
+> > useMemo<br/>
+> > useRef<br/>
+> > useImperativeHandle<br/>
+> > useLayoutEffect<br/>
+> > useDebugValue
+
+Basic hooks is more important and frequently-used.
+
+## Motivation
+
+Before using Hooks, the first thing I want to figure out is that which kind of pain spots Hooks can solve?
+
+### Reuse stateful logic
+
+If there are a range of reusable behavior to a component, I may use HOC with render props. Such as below:
+
+```js
+export default class HOC extends React.Component{
+  componentDidMount(){
+    // some sharing behavior
+  }
+  render(){
+    return (
+      <Com1/>
+      <Com2/>
+    )
+  }
+}
+```
+
+Obviously, HOC will change the components structure, and lead to "wrapper hell", which components surrounded by layers of providers, consumers, higher-order components, render props, and other abstractions.
+
+<img src="https://i.redd.it/pdvkpgjq6vo11.jpg" width="400">
+
+It can reduce the practicability of DevTools.
+
+## useState
+
+- Returns a stateful value, and a function to update it.
+
+Base on `class` to update a component when `this.state` changing:
 
 ```js
 class Example extends React.Component {
@@ -9,18 +67,22 @@ class Example extends React.Component {
     };
   }
 
+  handleOnClick() {
+    this.setState({ count: this.state.count + 1 });
+  }
+
   render() {
     return (
       <div>
         <p>You clicked {this.state.count} times</p>
-        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          Click me
-        </button>
+        <button onClick={this.handleOnClick}>Click me</button>
       </div>
     );
   }
 }
 ```
+
+We have use a
 
 is equal to:
 
@@ -39,12 +101,10 @@ function Example() {
 }
 ```
 
-### useState
+## useEffect
 
 `useState` receives the original value of the state and return an array, whose first element is
 current state value and second one is the function to change this state.
-
-### useEffect
 
 For example:
 
@@ -71,3 +131,17 @@ function Example() {
 
 useEffect === `componentDidMount` + `componentDidUpdate` + `componentWillUnmount`, we don't have to write the same code in these
 3 functions.
+
+### useLayoutEffect
+
+## useReducer
+
+## useMemo
+
+## useCallback
+
+## useRef
+
+## Reference
+
+There is a [source code](https://github.com/facebook/react/blob/5f06576f51ece88d846d01abd2ddd575827c6127/packages/react-reconciler/src/ReactFiberHooks.js) of React Hooks for reference.
