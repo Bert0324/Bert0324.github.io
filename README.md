@@ -6,8 +6,6 @@ So I decide to class different points to groups. (under construction) 🏠 🏡 
 
 If you read articles and feel is useful, it is soooo kind to give me a star :star::star2:
 
-See Chinese version: [中文版本](/v-cn/README.md)
-
 ## JS basis
 
 - [Deep copy and Shallow copy in JS](/js_basis/object_copy.md)
@@ -33,11 +31,12 @@ See Chinese version: [中文版本](/v-cn/README.md)
 - [XMLHttpRequest]()
 - [Event Proxy](/web/events_proxy.md)
 - [Web Worker](/web/web_worker.md)
-- [Service Worker](/web/service_worker.md)
+- Implement[Service Worker](/web/service_worker.md)
 - [Web cache](/web/web_cache.md)
 - [Web security](/web/web_security.md)
 - [requestAnimationFrame](/web/requestAnimationFrame.md)
 - [Mobile Page Adoption]()
+- [Progressive Web Application]()
 
 ## CSS
 
@@ -50,6 +49,7 @@ See Chinese version: [中文版本](/v-cn/README.md)
 - [Refs](/react/refs.md)
 - [Keys](/react/keys.md)
 - [Life cycle](/react/life_cycle.md)
+- [Hooks](/react/hooks.md)
 - [Route lazy load](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
 - [Differ]()
@@ -61,7 +61,7 @@ See Chinese version: [中文版本](/v-cn/README.md)
 
 ## Vue
 
-- [Data two way binding]()
+- TODO:Proxy[Vue3 Data two way binding]()
 
 ## Authentication
 
@@ -83,6 +83,7 @@ See Chinese version: [中文版本](/v-cn/README.md)
 - [Issue a npm package](/other/npm_issue.md)
 - [Redux](/other/redux.md)
 - [RxJS](/other/rxjs.md)
+- TODO[GraphQL]()
 
 <br />
 <br />

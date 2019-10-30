@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="510b2063-bcee-427a-a1a2-774669464fab" name="Default Changelist" comment="" />
+    <list default="true" id="510b2063-bcee-427a-a1a2-774669464fab" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/authentication/cross_domain.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/authentication/passport.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/css/box_model.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/interview/epsilon.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/interview/flat_array.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/interview/string_process.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/js_basis/closure.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/js_basis/for_loop.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/js_basis/generator.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/js_basis/object_copy.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/js_basis/object_defineproperty.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/js_basis/promise.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/modularization/babel.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/modularization/hot_reload.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/modularization/node_mo.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/modularization/webpack_options.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/modularization/webpack_structure.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/other/npm_issue.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/other/redux.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/other/rxjs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/react/keys.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/react/lazy_load.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/react/life_cycle.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/react/refs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/react/ssr.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/web/events_proxy.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/web/service_worker.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/web/web_cache.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v-cn/web/web_worker.md" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1571021400217</updated>
       <workItem from="1571021404838" duration="35000" />
+      <workItem from="1572344311720" duration="29000" />
     </task>
     <servers />
   </component>
@@ -50,7 +83,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
