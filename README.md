@@ -31,7 +31,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 - [XMLHttpRequest]()
 - [Event Proxy](/web/events_proxy.md)
 - [Web Worker](/web/web_worker.md)
-- Implement[Service Worker](/web/service_worker.md)
+- [Service Worker](/web/service_worker.md)
 - [Web cache](/web/web_cache.md)
 - [Web security](/web/web_security.md)
 - [requestAnimationFrame](/web/requestAnimationFrame.md)
@@ -83,7 +83,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 - [Issue a npm package](/other/npm_issue.md)
 - [Redux](/other/redux.md)
 - [RxJS](/other/rxjs.md)
-- TODO[GraphQL]()
+- [GraphQL]()
 
 <br />
 <br />
