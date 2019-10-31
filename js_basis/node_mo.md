@@ -1,22 +1,24 @@
+# Node Module
+
 When I was in an interview, the interviewer asked me one question: In the Node.js, is the `require` a global variable?
 
-I said yes because in every module I can use it without require it (How can I require the require???). 
+I said **yes** because in every module I can use it without require it (How can I require the require???).
 
-But actually I misunderstood it....
+But actually I misunderstood it...., acutually, it is **not**.
 
 So I checked the official [document](https://nodejs.org/api/modules.html) and found why.
 
-## Global Variables
+First of all, let's see how many global variables in Node.js:
 
-In Node.JS, the global objects only include:
+## Global Variables
 
 ### Class: Buffer
 
-Used to handle binary data.
+Used to handle binary data. see more in [here](./stream_buffer.md).
 
 ### Timer
 
-including `clearImmediate`, `clearInterval`, `clearTimeout`, `setImmediate`, `setInterval` and 
+including `clearImmediate`, `clearInterval`, `clearTimeout`, `setImmediate`, `setInterval` and
 `setTimeout`.
 
 ### console
@@ -25,7 +27,7 @@ Used to print to stdout and stderr.
 
 ### global
 
-The top-level scope in Node.JS. But it isn't recommended to use, the better choice is to 
+The top-level scope in Node.JS. But it isn't recommended to use, the better choice is to
 create a new module to save data and other module can require it.
 
 ### process
@@ -36,29 +38,26 @@ The process object.
 
 For processing url, including `URL` and `URLSearchParams`.
 
-
 ## Module wrapper
 
-Each Module, including main module, Before being executed, Node.js will wrap it with a function wrapper that looks like the following:
+Each Module, including main module, Before being executed, Node.js will wrap it with a function wrapper that looks like the following, [code](https://github.com/nodejs/node/blob/master/lib/internal/modules/cjs/loader.js#L1063):
 
 ```js
 (function(exports, require, module, __filename, __dirname) {
-// Module code actually lives in here
+  // Module code actually lives in here
 });
 ```
 
-In this way, we can see, although `exports, require, module, __filename, __dirname` appear to be global but is not, it is from 
-the module wrapper. Actually it is vey like AMD, the only difference in Node.js is that we don't need to write the wrapper by ourselves. 
+In this way, we can see, although `exports, require, module, __filename, __dirname` appear to be global but is not, it is from
+the module wrapper. Actually it is vey like AMD, the only difference in Node.js is that we don't need to write the wrapper by ourselves.
 
-Its source code is in [here](https://github.com/nodejs/node/blob/master/lib/internal/modules/cjs/loader.js). In it, we can see the 
-definition of `require`:
+Its source code is in [here](https://github.com/nodejs/node/blob/master/lib/internal/modules/cjs/loader.js#L948). In it, we can see the definition of `require`:
 
 ```js
 Module.prototype.require = function(id) {
-  validateString(id, 'id');
-  if (id === '') {
-    throw new ERR_INVALID_ARG_VALUE('id', id,
-                                    'must be a non-empty string');
+  validateString(id, "id");
+  if (id === "") {
+    throw new ERR_INVALID_ARG_VALUE("id", id, "must be a non-empty string");
   }
   requireDepth++;
   try {
@@ -75,7 +74,6 @@ In source code's `Module._resolveFilename`, we can see `require`'s load rule. Th
 
 ```js
 Module._resolveFilename = function(request, parent) {
-
   // step1: if it is core module, directly return
   if (NativeModule.exists(request)) {
     return request;
@@ -90,7 +88,7 @@ Module._resolveFilename = function(request, parent) {
   var filename = Module._findPath(request, paths);
   if (!filename) {
     var err = new Error("Cannot find module '" + request + "'");
-    err.code = 'MODULE_NOT_FOUND';
+    err.code = "MODULE_NOT_FOUND";
     throw err;
   }
   return filename;
@@ -106,20 +104,12 @@ If still not found, it will keep finding in parent paths until throwing an error
 
 2. if the starts with '/', './', '../'
 
-Node.js will find by the path. If not found, it will automatically search `index.js` and `index.node` in the path. If still not 
+Node.js will find by the path. If not found, it will automatically search `index.js` and `index.node` in the path. If still not
 found, it will throwing an error not found.
 
 ## require.cache
 
-Modules are cached in this object when they are required. By deleting a key value from this object, 
+Modules are cached in this object when they are required. By deleting a key value from this object,
 the next require will reload the module. Note that this does not apply to native addons, for which reloading will result in an error.
 
-It can be used for hot reload.
-
-
-
-
-
-
-
-
+It can be used for hot reload, see more in [here](../modularization/hot_reload.md).

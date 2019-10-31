@@ -1,3 +1,5 @@
+# Hot reload
+
 In Node.js and Browsers, hot reload is different.
 
 ## Node.js hot reload
@@ -7,40 +9,39 @@ The example is as below:
 
 ```js
 //main.js
-const fs = require('fs');
-const path = require('path');
-const filePath = './value.js';
+const fs = require("fs");
+const path = require("path");
+const filePath = "./value.js";
 let value = require(filePath);
 
-setInterval(()=>{
-    console.log(value());
+setInterval(() => {
+  console.log(value());
 }, 2000);
 
-fs.watch(path.resolve(filePath), ((event, filename) => {
-    if (filename && event === 'change'){
-        Object.keys(require.cache).forEach(cachePath=>{
-            if (cachePath === path.resolve(filePath)){
-                delete require.cache[cachePath];
-                value = require(filePath);
-            }
-        });
-    }
-}));
-
+fs.watch(path.resolve(filePath), (event, filename) => {
+  if (filename && event === "change") {
+    Object.keys(require.cache).forEach(cachePath => {
+      if (cachePath === path.resolve(filePath)) {
+        delete require.cache[cachePath];
+        value = require(filePath);
+      }
+    });
+  }
+});
 
 //value.js
-module.exports = ()=>3;
+module.exports = () => 3;
 ```
 
-For file watcher, there is a neat wrapper named [chokidar](https://github.com/paulmillr/chokidar). Besides, 
+For file watcher, there is a neat wrapper named [chokidar](https://github.com/paulmillr/chokidar). Besides,
 anti-shake can be added.
 
 [nodemon](https://github.com/remy/nodemon) is already a mature package for Node.js hot reload.
 
 ## Browser hot replacement
 
-Unlike Node.js in server side, Browser can never know our files are changed in the server (of course). 
-So server need to initiatively notice the browser: Hey! I changed the file and please update it! 
+Unlike Node.js in server side, Browser can never know our files are changed in the server (of course).
+So server need to initiatively notice the browser: Hey! I changed the file and please update it!
 
 Fortunately, now there is Websocket and its package socket.io instead of polling in browsers.
 
@@ -48,7 +49,7 @@ There is a simple [Demo](https://github.com/Bert0324/web-hot-replacement-demo) I
 
 ## Webpack hot module replacement
 
-There is already an official webpack plugin named `HotModuleReplacementPlugin` for it. And with `webpack-dev-server`, the development 
+There is already an official webpack plugin named `HotModuleReplacementPlugin` for it. And with `webpack-dev-server`, the development
 process can be very smooth with automatic compiling and frontend files reload.
 
 The configuration is like as below:
@@ -56,13 +57,11 @@ The configuration is like as below:
 ```js
 module.exports = {
   // ...
-  plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
-      hot: true,
-    }
-}
+    hot: true
+  }
+};
 ```
 
 The webpack option `--watch` is also incremental and auto compile.
