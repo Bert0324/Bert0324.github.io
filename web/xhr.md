@@ -20,7 +20,7 @@ The different is their format, the Form Data is like:
 a=1&b=2
 ```
 
-the Payload is Json:
+the Payload is JSON:
 
 ```json
 { "a": 1, "b": 2 }
