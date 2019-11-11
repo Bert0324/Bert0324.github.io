@@ -28,5 +28,8 @@ the Payload is Json:
 
 Moreover, seeting Http header `Content-Type` to let server know POST data format:
 
-> Form Data: application/x-www-form-urlencoded <br>
-> Payload: application/json
+```js
+const xhr = new XMLHttpRequest();
+xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // Form Data
+xhr.setRequestHeader("Content-type", "application/json"); // Payload
+```
