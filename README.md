@@ -1,22 +1,18 @@
-# Record some of JS knowledge points
+# Record My Learning of Web
 
-In my daily work, I found sometimes it is quite difficult to know some of knowledge points comprehensively.
+The place I can organize my thoughts and review knowledge.
 
-So I decide to class different points to groups. (under construction) 🏠 🏡 🏫 🏢 🏣
+## JS
 
-If you read articles and feel is useful, it is soooo kind to give me a star :star::star2:
-
-## JS basis
-
-- [Deep copy and Shallow copy in JS](/js_basis/object_copy.md)
-- [Object.defineProperty](/js_basis/object_defineproperty.md)
-- [for loop](/js_basis/for_loop.md)
-- [Closure](/js_basis/closure.md)
-- [Promise](/js_basis/promise.md)
-- [async/await](/js_basis/async_await.md)
-- [Generator](/js_basis/generator.md)
-- [Node.js Modules](/js_basis/node_mo.md)
-- [Node.js Stream and Buffer](/js_basis/stream_buffer.md)
+- [Deep copy and Shallow copy in JS](/js/object_copy.md)
+- [Object.defineProperty](/js/object_defineproperty.md)
+- [for loop](/js/for_loop.md)
+- [Closure](/js/closure.md)
+- [Promise](/js/promise.md)
+- [async/await](/js/async_await.md)
+- [Generator](/js/generator.md)
+- [Node.js Modules](/js/node_mo.md)
+- [Node.js Stream and Buffer](/js/stream_buffer.md)
 - [Node.js NAPI development]()
 
 ## Modularization
@@ -28,7 +24,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 ## Web
 
-- [XMLHttpRequest]()
+- [XMLHttpRequest](/web/xhr.md)
 - [Event Proxy](/web/events_proxy.md)
 - [Web Worker](/web/web_worker.md)
 - [Service Worker](/web/service_worker.md)
@@ -58,7 +54,7 @@ If you read articles and feel is useful, it is soooo kind to give me a star :sta
 
 ## React Native
 
-- [Init]()
+- [Hrbrid development with Native Modules](/rn/hybrid_native.md)
 
 ## Vue
 
