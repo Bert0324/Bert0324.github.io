@@ -5,41 +5,42 @@ The place I can organize my thoughts and review knowledge.
 ## JS
 
 - [Deep copy and Shallow copy in JS](/js/object_copy.md)
-- [Object.defineProperty](/js/object_defineproperty.md)
+- [Object Proxy](/js/object_proxy.md)
 - [for loop](/js/for_loop.md)
 - [Closure](/js/closure.md)
 - [Promise](/js/promise.md)
-- [async/await](/js/async_await.md)
 - [Generator](/js/generator.md)
 - [Node.js Modules](/js/node_mo.md)
 - [Node.js Stream and Buffer](/js/stream_buffer.md)
-- [Node.js NAPI development]()
-
+  
 ## Modularization
 
 - [Webpack plugins development](/modularization/webpack_structure.md)
 - [Babel](/modularization/babel.md)
 - [Hot reload](/modularization/hot_reload.md)
 - [Webpack options used in create-react-app](/modularization/webpack_options.md)
+- [AMP Optimization]()
 
 ## Web
 
 - [XMLHttpRequest](/web/xhr.md)
-- [Event Proxy](/web/events_proxy.md)
+- [requestAnimationFrame](/web/requestAnimationFrame.md)
+- [Web Component]()
+- [HTMLPortalElement]()
 - [Web Worker](/web/web_worker.md)
 - [Service Worker](/web/service_worker.md)
 - [Web cache](/web/web_cache.md)
 - [Web security](/web/web_security.md)
-- [requestAnimationFrame](/web/requestAnimationFrame.md)
 - [Mobile Page Adoption]()
-- [Progressive Web Application]()
-- [WebAssembly]()
+- [WebAssembly](/web/wasm.md)
+- [WebRTC]()
 
 ## CSS
 
 - [Box model](/css/box_model.md)
-- [Block, inline and inline-block element]()
+- [block, inline and inline-block element]()
 - [Flexbox]()
+- [GPU Acceleration]()
 
 ## React
 
@@ -52,36 +53,26 @@ The place I can organize my thoughts and review knowledge.
 - [Differ]()
 - [Optimization](/react/optimization.md)
 
-## React Native
+## Practical
 
-- [Hrbrid development with Native Modules](/rn/hybrid_native.md)
-
-## Vue
-
-- [Vue3 Data two way binding](/vue/two_way_binding.md)
-
-## Authentication
-
-- [Cross Domain](/authentication/cross_domain.md)
-- [Passport.JS structure](/authentication/passport.md)
-- [OAuth2]()
-
-## Interview questions
-
-- [0.1 + 0.2 === 0.3](/interview/epsilon.md)
-- [slice, substr and substring](/interview/string_process.md)
-- [Flat an Array](/interview/flat_array.md)
-- [Throttle and debounce](/interview/debounce_throttle.md)
+- [0.1 + 0.2 === 0.3](/practical/epsilon.md)
+- [slice, substr and substring](/practical/string_process.md)
+- [Flat an Array](/practical/flat_array.md)
+- [Throttle and debounce](/practical/debounce_throttle.md)
 - [Image lazy load]()
 - [Carousel]()
+- [Event Proxy](/practical/events_proxy.md)
+- [Cross Domain](/practical/cross_domain.md)
 
 ## Other
 
 - [Issue a npm package](/other/npm_issue.md)
 - [Redux](/other/redux.md)
+- [Mobx]()
 - [RxJS](/other/rxjs.md)
 - [GraphQL]()
 - [NestJS](/other/nestjs.md)
+- [OAuth2]()
 
 <br />
 <br />

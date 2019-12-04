@@ -1,6 +1,10 @@
+# Asynchronize Operation in JS
+
+## Promise
+
 Compared to other programming language, in JS, it is so convenient to use the asynchronize callback function, but the problem is the callback hell, making code ugly and difficult to read. So Promise, it is a beautiful solution for callback hell. Especially in Node.JS, it is better to use promise to deal with database operations.
 
-## macrotask and microtask
+### macrotask and microtask
 
 There is a code as below:
 
@@ -74,14 +78,13 @@ This code's result is the same as the first one. So every time, when a macrotask
 
 There is a nice [article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) about it.
 
-## Promise all vs race
+### Promise all vs race
 
 About all() and race(), I know a really vivid and interesting metaphor: The all() is a horse race that ends when all horses reach the terminal point, the race() is a horse race that ends when the first horse reaches the terminal point. 
 
-In other word, the all() will return results of all callback tasks, the race() will return the callback result of the first finished task. 
+In other word, the all() will return results of all callback tasks, the race() will return the callback result of the first finished task.
 
-
-## Promise parallel
+### Promise parallel
 
 Promise does't provide a parallel function. There is my thinking:
 
@@ -139,7 +142,7 @@ function parallelPromise(tasks){
 parallelPromise([task1, task2, task3])
 ```
 
-## build Promise from scratch
+### build Promise from scratch
 
 For me, the key point to understand Promise's then and catch is the event-loop. Because the main thread 
 task will be operated to the end first. So the `thenList` and `onCatch` must be ready when the first callback starts.
@@ -246,3 +249,70 @@ code needs update:
         }
     }
 ```
+
+## async & await
+
+A question: when using `async` and `await`, which kind of differences between `throw err` and `Promise.reject`?
+
+For example:
+
+```JavaScript
+const axios = require('axios');
+
+const instance = axios.create({
+    baseURL: `http://www.google.com`,
+    timeout: 3000
+});
+instance.interceptors.response.use(res=>{
+}, err => {
+    // throw err;
+    return Promise.reject({
+        msg: err,
+        from: 'response'
+    })
+})
+```
+
+Before recognizing their differences, the first thing I need to understand is how `async` and `await` works.
+
+### What is async function
+
+Actually, `async function` will return an `AsyncFunction` object, which can be created as below (notice: it is not a global variable):
+
+```JavaScript
+Object.getPrototypeOf(async function(){}).constructor
+```
+
+### always return Promise
+
+It will always return a Promise object, even if we return other things:
+
+```JavaScript
+async function task() {
+    return 1;
+}
+console.log(task())     // Promise { 1 }
+```
+
+### await can only get Promise.resolve
+
+The `await` operator is used to wait for a `Promise`. It can only be used inside an `async function`. But it can only receive `Promise.resolve`. For example:
+
+If the `Promise` is rejected, the await expression throws the rejected value.
+
+```JavaScript
+(async function () {
+    const result = await Promise.resolve('success');
+    console.log(result);
+})();   // success
+
+(async function () {
+    const result = await Promise.reject('success');
+    console.log(result);
+})()    // UnhandledPromiseRejectionWarning: success
+```
+
+### Conclusion
+
+In this way, for me, when I don't care about the error, I perfer to use `throw Error`, when I want to process
+error, `Promise.reject` maybe more useful.

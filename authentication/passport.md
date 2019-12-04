@@ -74,8 +74,3 @@ index.js ---->  authenticator.js  ----> init() ----->
 3. set SessionManager  -------> will be used in req.Login that will be used in strategy.success in authenticate(), to get user by serializeUser.
 
 This is a basic and sketchy analysis to passport. I learn a lot from its design and framework. If there is any misunderstanding, welcome to contact me.
-
-
-
-
-

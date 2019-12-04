@@ -1,6 +1,8 @@
-# Object.defineProperty
+# Object Proxy
 
-## Getter and Setter in Object
+## Object.defineProperty
+
+### Getter and Setter in Object
 
 As we know, in JS's object, there is a default setter and getter like as below:
 
@@ -16,7 +18,7 @@ let obj = {
 };
 ```
 
-## Descriptor
+### Descriptor
 
 In Object.defineProperty, we can access more configuration. The definition is as below:
 
@@ -61,14 +63,14 @@ dom.translateX = 10;
 
 In this way, we can bind the object's `translateX` property with its style.transform. It will be more convenient when we change one property to modify multiple other property and emit some events.
 
-### summary
+#### summary
 
 To sum up, the property defined in Object.defineProperty in default configuration is kind of different normal the object
 property. Such as it won't show in Object.keys, its value isn't changeable.
 
-## Data two way binding
+### Data two way binding
 
-### Basic binding
+#### Basic binding
 
 In MVVM, Object.defineProperty is common. There is a basic and simple example about it:
 
@@ -91,7 +93,7 @@ When changing the value in `<input>`, the text in `<text>` will change too. The 
 
 This code is coupled, Vue use Watcher and Observer to decouple it.
 
-## throw some information, such as warning
+### throw some information, such as warning
 
 In [express](https://github.com/expressjs/express/blob/master/lib/express.js), it use Object.defineProperty to throw information to users as below:
 
@@ -130,7 +132,6 @@ removedMiddlewares.forEach(function(name) {
 });
 ```
 
-## VS Proxy
+## Proxy
 
-It's a new feature in ES6, compared to Object.defineProperty, which can just access getter and setter of an object, Proxy can
-access more operation, such as `in`, `delete`, and function calling. See more in [here](../vue/two_way_binding.md).
+TODO
