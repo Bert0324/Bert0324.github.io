@@ -165,7 +165,11 @@ const changeDocumentTitle = useEffect(() => {
 });
 ```
 
-By default, effects run after every completed render like `componentDidMount`, `componentDidUpdate` and `componentWillUnmount`, but you can choose to fire them only when certain values have changed by second parameter.
+By default, effects run after every completed render like `componentDidMount`, `componentDidUpdate` and `componentWillUnmount`. But we can choose to fire them only when certain values have changed by second parameter: 
+
+- Now the subscription will only be recreated when props.source changes.
+
+which can be used to fired a callback only when first rendering to slove infinite render in MobX.
 
 ```js
 const changeDocumentTitle = useEffect(() => {

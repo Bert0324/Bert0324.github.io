@@ -19,11 +19,11 @@ The place I can organize my thoughts and review knowledge.
 - [Babel](/modularization/babel.md)
 - [Hot reload](/modularization/hot_reload.md)
 - [Webpack options used in create-react-app](/modularization/webpack_options.md)
-- [AMP Optimization]()
 
 ## Web
 
 - [XMLHttpRequest](/web/xhr.md)
+- [Browser Rendering](/web/browser_render.md)
 - [requestAnimationFrame](/web/requestAnimationFrame.md)
 - [Web Component]()
 - [HTMLPortalElement]()
@@ -31,7 +31,6 @@ The place I can organize my thoughts and review knowledge.
 - [Service Worker](/web/service_worker.md)
 - [Web cache](/web/web_cache.md)
 - [Web security](/web/web_security.md)
-- [Mobile Page Adoption]()
 - [WebAssembly](/web/wasm.md)
 - [WebRTC]()
 
@@ -59,10 +58,10 @@ The place I can organize my thoughts and review knowledge.
 - [slice, substr and substring](/practical/string_process.md)
 - [Flat an Array](/practical/flat_array.md)
 - [Throttle and debounce](/practical/debounce_throttle.md)
-- [Image lazy load]()
-- [Carousel]()
 - [Event Proxy](/practical/events_proxy.md)
 - [Cross Domain](/practical/cross_domain.md)
+- [AMP Optimization]()
+- [Mobile Page Adoption]()
 
 ## Other
 

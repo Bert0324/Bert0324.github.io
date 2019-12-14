@@ -1,6 +1,6 @@
 # Web Cache
 
-## Remote Reource Cache
+## Remote Resource Cache
 
 Caching is one of the most important way to improve the response speed of Web Applications. 
 Traditionally, Http caching is the one way to do it. Besides, SW is newer and more powerful.
@@ -50,10 +50,10 @@ There are some common value:
 
 #### check cache with server
 
-If the browser cannot find the resource's name, of course it will send request to the server. 
+If the browser cannot find the resource's name, of course it will send request to the server.
 
 But, if the browser can find the file, but its cache mark shows it has already expired, the browser will send a request with the cache information of the resource.
-The server will make the decision whether to use cached resource. 
+The server will make the decision whether to use cached resource.
 
 In this way, server should make the logical judgement to whether the cache is expired.
 
@@ -63,33 +63,48 @@ There is a Http header to help us to conditionally use cache:
 
 ##### ETag
 
-Entity Tag's abbreviation. Actually, in Http/1.1 does not regulate how to create ETag's value. 
+Entity Tag's abbreviation. Actually, in Http/1.1 does not regulate how to create ETag's value.
 
-But, Etag must relative to files' content, such as content hash, or relative to its modified time.
+But, Etag must be relative to files' content, such as content hash, or relative to its modified time.
 
 ### SW caching
 
-SW can proxy whole requests to check whether needs to update, which is more flexible and powerful, 
-see more in my blog [Service Worker](https://github.com/Bert0324/js-playground/blob/master/web/service_worker.md).
+SW can proxy whole requests to check whether needs to update by [caches](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/caches) which is more flexible and powerful, see more in my blog [Service Worker](https://github.com/Bert0324/js-playground/blob/master/web/service_worker.md).
 
 ### CDN
 
 The full name is Content Delivery Network. It can disperse traffic from the source server and optimize network load.
 
-There are its steps: 
+There are its steps:
 
-1. First, keep statistics of the access logs of the original domain name to get the addresses of frequently-accessed 
-images , and hand over the addresses to the CDN service provider. 
+1. First, keep statistics of the access logs of the original domain name to get the addresses of frequently-accessed
+images , and hand over the addresses to the CDN service provider.
 
-2. Let the CDN service provider capture the resources of the 200,000 addresses as a warm-up. 
+2. Let the CDN service provider capture the resources of the 200,000 addresses as a warm-up.
 
-3. After the warm-up, we replace original ip address to CDN server address, and conduct CNAME resolution 
-to the provided domain name address of the CDN server. 
+3. After the warm-up, we replace original ip address to CDN server address, and conduct CNAME resolution
+to the provided domain name address of the CDN server.
 
-4. Test whether the images under CDN server which can be cached by the CDN using the wgettool. 
+4. Test whether the images under CDN server which can be cached by the CDN using the wgettool.
 
 5. If the cache is okay through testing, we then switch part of the traffic to CDN server.
 
 <img src="../assets/cdn_steps.jpg" width="600"/>
 
 ## Local Cache
+
+### key-value
+
+If we want to save some of key-value data, localStorage and sessionStorage can be our choices. They both have `get` and `set` function for saving and getting data.
+
+#### localStorage
+
+The localStorage will svae data permanently.
+
+#### sessionStorage
+
+The sessionStorage will save data until the tab is closed.
+
+### cookie
+
+cookie also can save some key-value data, although it is not a good way.

@@ -1,3 +1,5 @@
+# Service Worker
+
 ## Permission
 
 Compared to Web Worker, Service Worker has higher permission.
@@ -46,9 +48,11 @@ Compared to Web Worker, Service Worker has higher permission.
 
 ## basic use
 
-First of all, regist this Service Worker in main thread. Next, in Service Worker script, 
-in `install` event, define the files that needs to be save in caches. Then, in `fetch` event, 
-get caches to load instead requesting to server. 
+First of all, regist this Service Worker in main thread.
+
+Next, in Service Worker script, in `install` event, define the files that needs to be save in caches, which is a read-only property returns the CacheStorage object associated with the service worker.
+
+Then, in `fetch` event, get caches to load instead requesting to server.
 
 ```js
 //main thread regist
@@ -190,6 +194,3 @@ In this way, workbox can know whether the file is updated.
 With the development of PWA, I believe Web App is able to be closed to Native App in many respects.
 
 If there is some wrongs, welcome to leave a message.
-
-
-

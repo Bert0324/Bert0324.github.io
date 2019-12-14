@@ -40,5 +40,5 @@ Firefox:
 TypeError: Response has unsupported MIME type
 ```
 
-As we can see, except Firefox haven't support it, in Chrome and Safari, wasm function is able to obviously imporve CPU-bound
+As we can see, in Chrome and Safari, wasm function is able to obviously imporve CPU-bound
 tasks.

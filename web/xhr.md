@@ -4,6 +4,8 @@
 
 ## Interceptor
 
+## Configuration
+
 ## Cancel fetch
 
 ## Set POST data in XHR
@@ -33,3 +35,5 @@ const xhr = new XMLHttpRequest();
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // Form Data
 xhr.setRequestHeader("Content-type", "application/json"); // Payload
 ```
+
+## WindowOrWorkerGlobalScope.fetch
