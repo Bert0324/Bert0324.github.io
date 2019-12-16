@@ -30,7 +30,7 @@ As we can see, there are 5 main steps:
 4. calculate layout and style, such as position, size, color.
 5. render each Render Tree node in the screen.
 
-## `<script>` and `<link>`
+## Block
 
 When browser meets a `<script>` tag ( or JS ), it will block parsing DOM, and next JS execution until the script finished. Besides, browser will render parsed DOM before this `<script>` ( No one want to look an empty page for a long time).
 
@@ -46,7 +46,7 @@ In some cases, such as changing elements' style at batch, browser will accumulat
 
 ## Practice
 
-### `<script>` block DOM parsing
+### `<script>`
 
 The Demo is in [here](https://github.com/Bert0324/browser_render_demo). We can notice whether page's DOM parsing, Rendering, JS execution is blocked via observing page's changing.
 
@@ -55,7 +55,7 @@ In `/static/1.html` and `/static/2.html`, we can see `<script>` can block DOM pa
 Except it, we can see the `div` is rendered when the script blocks
 the render, it means `<script>` trigger rendering.
 
-### `<link>` block DOM parsing
+### `<link>`
 
 In `/static/3.html`'s console, we can see the `div` can be logged in the console while it have not be rendered. It means CSS won't block DOM parsing.
 
