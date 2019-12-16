@@ -52,7 +52,7 @@ The place I can organize my thoughts and review knowledge.
 - [Single page SSR](/react/ssr.md)
 - [Optimization](/react/optimization.md)
 
-## Practical
+## Practice
 
 - [0.1 + 0.2 === 0.3](/practical/epsilon.md)
 - [slice, substr and substring](/practical/string_process.md)
