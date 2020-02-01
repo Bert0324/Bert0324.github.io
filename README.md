@@ -4,6 +4,7 @@ The place I can organize my thoughts and review knowledge.
 
 ## JS
 
+- [Number](/js/number.md)
 - [Deep copy and Shallow copy in JS](/js/object_copy.md)
 - [Object Proxy](/js/object_proxy.md)
 - [for loop](/js/for_loop.md)
@@ -51,7 +52,6 @@ The place I can organize my thoughts and review knowledge.
 
 ## Practice
 
-- [JS Number](/practical/epsilon.md)
 - [slice, substr and substring](/practical/string_process.md)
 - [Flat an Array](/practical/flat_array.md)
 - [Throttle and debounce](/practical/debounce_throttle.md)
@@ -60,7 +60,6 @@ The place I can organize my thoughts and review knowledge.
 - [AMP Optimization]()
 - [Mobile Page Adoption]()
 - [Breakpoint resume]()
-- 
 
 ## Other
 
