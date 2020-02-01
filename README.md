@@ -25,8 +25,6 @@ The place I can organize my thoughts and review knowledge.
 - [XMLHttpRequest](/web/xhr.md)
 - [Browser Rendering](/web/browser_render.md)
 - [requestAnimationFrame](/web/requestAnimationFrame.md)
-- [Web Component]()
-- [HTMLPortalElement]()
 - [Web Worker](/web/web_worker.md)
 - [Service Worker](/web/service_worker.md)
 - [Web cache](/web/web_cache.md)
@@ -38,7 +36,6 @@ The place I can organize my thoughts and review knowledge.
 
 - [Box model](/css/box_model.md)
 - [block, inline and inline-block element]()
-- [Flexbox]()
 - [GPU Acceleration]()
 
 ## React
@@ -54,7 +51,7 @@ The place I can organize my thoughts and review knowledge.
 
 ## Practice
 
-- [0.1 + 0.2 === 0.3](/practical/epsilon.md)
+- [JS Number](/practical/epsilon.md)
 - [slice, substr and substring](/practical/string_process.md)
 - [Flat an Array](/practical/flat_array.md)
 - [Throttle and debounce](/practical/debounce_throttle.md)
@@ -62,16 +59,15 @@ The place I can organize my thoughts and review knowledge.
 - [Cross Domain](/practical/cross_domain.md)
 - [AMP Optimization]()
 - [Mobile Page Adoption]()
+- [Breakpoint resume]()
+- 
 
 ## Other
 
 - [Issue a npm package](/other/npm_issue.md)
 - [Redux](/other/redux.md)
-- [Mobx]()
 - [RxJS](/other/rxjs.md)
-- [GraphQL]()
-- [NestJS](/other/nestjs.md)
-- [OAuth2]()
+- [React Native Bridges](/other/rn_bridges.md)
 
 <br />
 <br />

@@ -53,8 +53,6 @@ for (let i=0;i<5;i++){
 }
 ```
 
+## use `reduce`
 
-
-
-
-
+`reduce` is an awesome function to replace a code block using iteration to change a value.
