@@ -50,7 +50,7 @@ a=a^b; 　　//a=00000110
 
 ```js
 const encryptAndDecrypt = (str, key) => {
-    const keyCode = Array.from(key).map(char => char.charCodeAt(0)).join('');
+    const keyCode = Array.from(key).map(char => char.charCodeAt(0)).join('').substr(0, 2);  // < 128
     return Array.from(str).map(char => String.fromCharCode(char.charCodeAt(0) ^ keyCode)).join('');
 };
 ```

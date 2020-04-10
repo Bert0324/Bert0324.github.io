@@ -41,7 +41,6 @@ The place I can organize my thoughts and review knowledge.
 
 ## React
 
-- [Deep Dive Source Code](/react/deep_dive/README.md)
 - [Refs](/react/refs.md)
 - [Keys](/react/keys.md)
 - [Life cycle](/react/life_cycle.md)
@@ -67,6 +66,7 @@ The place I can organize my thoughts and review knowledge.
 - [Redux](/other/redux.md)
 - [RxJS](/other/rxjs.md)
 - [React Native Bridges](/other/rn_bridges.md)
+- [TS Utility Types](/other/utility_types.md)
 
 <br />
 <br />
