@@ -1,6 +1,6 @@
 # Utility Types
 
-See Official Documents in here <https://www.typescriptlang.org/docs/handbook/utility-types.html#parameterst>.
+See Official Documents in here <https://www.typescriptlang.org/docs/handbook/utility-types.html>.
 
 The concept of Utility Types in TS, for me, it is kink of similar to  `Option<T>` and `Result<T, E>` in Rust.
 
