@@ -12,7 +12,7 @@ The place I can organize my thoughts and review knowledge.
 - [Generator](/js/generator.md)
 - [Node.js Modules](/js/node_mo.md)
 - [Node.js Stream and Buffer](/js/stream_buffer.md)
-  
+
 ## Modularization
 
 - [Webpack plugins development](/modularization/webpack_structure.md)
@@ -43,13 +43,13 @@ The place I can organize my thoughts and review knowledge.
 
 ## React
 
-- [Deep Dive Source Code](/react/deep_dive/README.md)
 - [Refs](/react/refs.md)
 - [Keys](/react/keys.md)
 - [Life cycle](/react/life_cycle.md)
 - [Hooks](/react/hooks.md)
 - [Route lazy load](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
+- [Diff Strategy]()
 - [Optimization](/react/optimization.md)
 
 ## Practical
