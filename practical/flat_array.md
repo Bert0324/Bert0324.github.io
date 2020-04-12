@@ -15,17 +15,17 @@ function flatten(source){
     }
     let target = [];
     for (let i in source){
-        target = target.concat(flatten(source[i]))
+        target = target.concat(flatten(source[i]));
     }
     return target;
 }
-let result = Array.from(new Set(flatten(arr))).sort((a,b)=>a-b)
-console.log(result)
+let result = Array.from(new Set(flatten(arr))).sort((a,b)=>a-b);
+console.log(result);
 ```
 
 There is a more clear way I found:
 ```JavaScript
-Array.from(new Set(arr.flat(Infinity))).sort((a,b)=>{ return a-b})
+Array.from(new Set(arr.flat(Number.POSITIVE_INFINITY))).sort((a,b)=>a-b);
 ```
 
 If you have some better way to solve this question, welcome to write it!
