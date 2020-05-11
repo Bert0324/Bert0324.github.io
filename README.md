@@ -23,7 +23,7 @@ The place I can organize my thoughts and review knowledge.
 
 ## Web
 
-- [XMLHttpRequest](/web/xhr.md)
+- [Web request](/web/request.md)
 - [Browser Rendering](/web/browser_render.md)
 - [requestAnimationFrame](/web/requestAnimationFrame.md)
 - [Web Worker](/web/web_worker.md)
