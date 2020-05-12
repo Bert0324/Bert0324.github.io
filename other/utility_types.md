@@ -25,3 +25,14 @@ const r: R = f(...p);
 ## `Readonly<T>`
 
 ## `Record<K,T>`
+
+## Get Key of Enum
+
+```ts
+enum NUM {
+    A,
+    B,
+    C
+}
+type T = keyof typeof NUM;
+```

@@ -4,6 +4,22 @@
 
 ## Interceptor
 
+## Abort Request
+
+Aborting request by `AbortController` with `signal`.
+
+```ts
+const { signal, abort } = new AbortController();
+
+const request = async (url: string, callback: Function) => {
+    const res = await fetch(url, { signal });
+    callback(res);
+}
+
+request();
+abort();    // request is aborted
+```
+
 ## 4 POST data encoded ways
 
 We can set post data format method by `Content-Type` in http request headers. There are 4 ways to encode data contents:
