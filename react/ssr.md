@@ -1,4 +1,6 @@
-## SSR's advantages
+# SSR
+
+## Advantages of SSR
 
 1. For me, the biggest reason is SEO. Although now Google started supporting JS in searching, 
 but pure HTML is always better for SEO. 
@@ -22,7 +24,7 @@ We use Node.js in server side to generate a HTML instead of a Browser JS engine,
 
 3. Transfer Browser's JS to Node.js
 
-## React's SSR
+## SSR in React
 
 ### static file server
 
@@ -65,7 +67,6 @@ app.listen(port, ()=>{
     console.log(`listen on http://localhost:${port}`);
 });
 ```
-
 
 ### FrontEnd
 
@@ -153,15 +154,8 @@ module.exports = {
 
 ## End
 
-After compile server side code and frontend code, when we start the static files server, we can see `/` and `/index` has been render in server 
-side. 
+After compile server side code and frontend code, when we start the static files server, we can see `/` and `/index` has been render in server side.
 
 This example does not consider about import images, svg and CSS framework. If you use some of CSS framework such as material-ui, you can find their SSR solution in the official website.
 
 If you have more questions or have better way to do SSR, welcome to leave a message.
-
-
-
-
-
-

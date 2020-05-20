@@ -7,20 +7,20 @@
 And now it has 10 official Hooks, including:
 
 > Basic Hooks
->
-> > useState<br/>
-> > useEffect<br/>
-> > useContext<br/>
+
+- useState
+- useEffect
+- useContext
 
 > Additional Hooks
->
-> > useReducer<br/>
-> > useCallback<br/>
-> > useMemo<br/>
-> > useRef<br/>
-> > useImperativeHandle<br/>
-> > useLayoutEffect<br/>
-> > useDebugValue
+
+- useReducer
+- useCallback
+- useMemo
+- useRef
+- useImperativeHandle
+- useLayoutEffect
+- useDebugValue
 
 Basic hooks is more important and frequently-used.
 
@@ -28,7 +28,7 @@ Basic hooks is more important and frequently-used.
 
 Before using Hooks, the first thing I want to figure out is that which kind of pain spots Hooks can solve?
 
-### Reuse stateful logic
+### Reuse code with state
 
 If there are a range of reusable behavior to a component, I may use HOC with render props. Such as below:
 
@@ -87,7 +87,7 @@ Via Hooks, it is more easy to share common functions without impacting component
 
 ### useState
 
-- Returns a stateful value, and a function to update it. `const [state, setState] = useState(initialState);`
+- Returns a state value, and a function to update it. `const [state, setState] = useState(initialState);`
 
 Base on `useState` to update a component:
 

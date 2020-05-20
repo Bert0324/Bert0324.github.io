@@ -86,7 +86,7 @@ In other word, the all() will return results of all callback tasks, the race() w
 
 ### Promise parallel
 
-Promise does't provide a parallel function. There is my thinking:
+Promise doesn't provide a parallel function. There is my thinking:
 
 ```javaScript
 const request = require('request');

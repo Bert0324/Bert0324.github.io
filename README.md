@@ -13,6 +13,7 @@ The place I can organize my thoughts and review knowledge.
 - [Generator](/js/generator.md)
 - [Node.js Modules](/js/node_mo.md)
 - [Node.js Stream and Buffer](/js/stream_buffer.md)
+- [Node.js Event Loop](/js/event_loop.md)
 
 ## Modularization
 
@@ -42,13 +43,12 @@ The place I can organize my thoughts and review knowledge.
 ## React
 
 - [Refs](/react/refs.md)
-- [Keys](/react/keys.md)
+- [Diff](/react/diff.md)
+- [Fiber](/react/fiber.md)
 - [Life cycle](/react/life_cycle.md)
 - [Hooks](/react/hooks.md)
-- [Route lazy load](/react/lazy_load.md)
+- [Suspense with lazy](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
-- [Diff Strategy]()
-- [Optimization](/react/optimization.md)
 
 ## Practice
 

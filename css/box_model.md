@@ -1,8 +1,8 @@
-## Box Model
+# Box Model
 
 All HTML elements can be considered as boxes. In CSS, the term "box model" is used when talking about design and layout.
 
-The CSS box model is essentially a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content. 
+The CSS box model is essentially a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content.
 
 There is a screenshot from Chrome:
 
@@ -31,8 +31,7 @@ But if we set `float: left;`, the horizontal margin won't collapse. As only one 
 
 ## height and width in Box Model
 
-If we set `width:100%`, the element will exceed the whole page, its width actually is larger than 100%. Because the default 
-`box-sizing` is `content-box`, which won't involve margin and padding's value into calculation. 
+If we set `width:100%`, the element will exceed the whole page, its width actually is larger than 100%. Because the default `box-sizing` is `content-box`, which won't involve margin and padding's value into calculation.
 
 Another choice is `border-box`, which will involve both content and padding size into calculation, still without margin.
 
@@ -46,3 +45,25 @@ It is an HTML box that satisfies at least one of the following conditions:
 2. The value of position is neither static nor relative
 3. The value of display is table-cell, table-caption, inline-block, flex, or inline-flex
 4. The value of overflow is not visible.
+
+## Position
+
+1. fix
+
+- the element is positioned related to the browser window, not BFC. The element will scroll with page scrolling.
+
+2. absolute
+
+- the element is positioned absolutely to its first positioned parent, not BFC. The element won't scroll with page scrolling.
+
+3. relative
+
+- the element is positioned relative to its normal position.
+
+4. static
+
+- this is the default value, all elements are in order as they appear in the document.
+
+5. sticky
+
+- the element is positioned based on the user's scroll position.

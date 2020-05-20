@@ -1,6 +1,6 @@
 # Ref
 
-When I want to get the DOM instance of a class in React, refs can be used. 
+When I want to get the DOM instance of a class in React, refs can be used.
 
 But to be honest, I don't think use real DOM in React is a good idea, in most of situations, I think we'd better to avoid to use refs.
 

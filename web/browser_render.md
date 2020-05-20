@@ -58,4 +58,3 @@ the render, it means `<script>` trigger rendering.
 ### `<link>`
 
 In `/static/3.html`'s console, we can see the `div` can be logged in the console while it have not be rendered. It means CSS won't block DOM parsing.
-
