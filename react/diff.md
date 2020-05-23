@@ -1,4 +1,4 @@
-# React Diff Strategy
+# React Reconciliation
 
 In React, the most significant feature is Virtual DOM which is based on Diff Algorithm.
 

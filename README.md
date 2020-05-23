@@ -1,4 +1,4 @@
-# Record My Learning of Web
+# My Coding Playground
 
 The place I can organize my thoughts and review knowledge.
 
@@ -11,12 +11,12 @@ The place I can organize my thoughts and review knowledge.
 - [Closure](/js/closure.md)
 - [Promise](/js/promise.md)
 - [Generator](/js/generator.md)
+
+## Node.js
+
 - [Node.js Modules](/js/node_mo.md)
 - [Node.js Stream and Buffer](/js/stream_buffer.md)
 - [Node.js Event Loop](/js/event_loop.md)
-
-## Modularization
-
 - [Webpack plugins development](/modularization/webpack_structure.md)
 - [Babel](/modularization/babel.md)
 - [Hot reload](/modularization/hot_reload.md)
@@ -43,12 +43,29 @@ The place I can organize my thoughts and review knowledge.
 ## React
 
 - [Refs](/react/refs.md)
-- [Diff](/react/diff.md)
+- [Reconciliation](/react/diff.md)
 - [Fiber](/react/fiber.md)
 - [Life cycle](/react/life_cycle.md)
 - [Hooks](/react/hooks.md)
 - [Suspense with lazy](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
+
+## Algorithm
+
+- [Basic Concepts](/algorithm/concepts.md)
+- [Sorting](/algorithm/common_sort.md)
+- [Hash](/algorithm/common_hash.md)
+
+## Network
+
+- [Http]()
+- [Http2 features](/network/http2.md)
+- [Https]()
+
+## OS
+
+- [Process VS thread]()
+- [Socket]()
 
 ## Practice
 
@@ -60,7 +77,7 @@ The place I can organize my thoughts and review knowledge.
 - [AMP Optimization]()
 - [Mobile Page Adoption]()
 - [Breakpoint resume]()
-
+  
 ## Other
 
 - [Issue a npm package](/other/npm_issue.md)
