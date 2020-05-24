@@ -2,7 +2,9 @@
 
 The place I can organize my thoughts and review knowledge.
 
-## JS
+## Web
+
+### JS
 
 - [Number](/js/number.md)
 - [Deep copy and Shallow copy in JS](/js/object_copy.md)
@@ -12,7 +14,7 @@ The place I can organize my thoughts and review knowledge.
 - [Promise](/js/promise.md)
 - [Generator](/js/generator.md)
 
-## Node.js
+### Node.js
 
 - [Node.js Modules](/js/node_mo.md)
 - [Node.js Stream and Buffer](/js/stream_buffer.md)
@@ -22,8 +24,7 @@ The place I can organize my thoughts and review knowledge.
 - [Hot reload](/modularization/hot_reload.md)
 - [Webpack options used in create-react-app](/modularization/webpack_options.md)
 
-## Web
-
+### Browser
 - [Web request](/web/request.md)
 - [Browser Rendering](/web/browser_render.md)
 - [requestAnimationFrame](/web/requestAnimationFrame.md)
@@ -34,13 +35,13 @@ The place I can organize my thoughts and review knowledge.
 - [WebAssembly](/web/wasm.md)
 - [WebRTC]()
 
-## CSS
+### CSS
 
 - [Box model](/css/box_model.md)
 - [block, inline and inline-block element]()
 - [GPU Acceleration]()
 
-## React
+### React
 
 - [Refs](/react/refs.md)
 - [Reconciliation](/react/diff.md)
@@ -50,24 +51,7 @@ The place I can organize my thoughts and review knowledge.
 - [Suspense with lazy](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
 
-## Algorithm
-
-- [Basic Concepts](/algorithm/concepts.md)
-- [Sorting](/algorithm/common_sort.md)
-- [Hash](/algorithm/common_hash.md)
-
-## Network
-
-- [Http]()
-- [Http2 features](/network/http2.md)
-- [Https]()
-
-## OS
-
-- [Process VS thread]()
-- [Socket]()
-
-## Practice
+### Practice
 
 - [slice, substr and substring](/practical/string_process.md)
 - [Flat an Array](/practical/flat_array.md)
@@ -78,13 +62,32 @@ The place I can organize my thoughts and review knowledge.
 - [Mobile Page Adoption]()
 - [Breakpoint resume]()
   
-## Other
+### Other
 
 - [Issue a npm package](/other/npm_issue.md)
 - [Redux](/other/redux.md)
 - [RxJS](/other/rxjs.md)
 - [React Native Bridges](/other/rn_bridges.md)
 - [TS Utility Types](/other/utility_types.md)
+
+## Common
+
+### Algorithm
+
+- [Basic Concepts](/algorithm/concepts.md)
+- [Sorting](/algorithm/common_sort.md)
+- [Hash](/algorithm/common_hash.md)
+
+### Network
+
+- [Http]()
+- [Http2 features](/network/http2.md)
+- [Https]()
+
+### OS
+
+- [Process VS thread]()
+- [Socket]()
 
 <br />
 <br />
