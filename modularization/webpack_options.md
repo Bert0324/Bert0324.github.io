@@ -137,8 +137,7 @@ splitChunks: {
 
 ### runtimeChunk
 
-This option is to coordinate `splitChunks`, when the vendor code is split from the common, the runtime code whose responsibility is to manage 
-the relationship of files, will change frequently as the common code's change will change it.
+This option is to coordinate `splitChunks`, when the vendor code is split from the common, the runtime code whose responsibility is to manage the relationship of files, will change frequently as the common code's change will change it.
 
 In this way, it is imperative to split runtime code for the long-term caching.
 

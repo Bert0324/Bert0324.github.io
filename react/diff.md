@@ -6,7 +6,7 @@ By understanding diff in React, we are able to write a React Application with hi
 
 ## Diff Strategy
 
-The most easiest diff is to ergodic an tree by recursion as below:
+There is an easiest diff function to traverse an tree by recursion as below:
 
 ```ts
 const result = [];
@@ -46,7 +46,7 @@ const diffLeafs = function (beforeLeaf, afterLeaf) {
 }
 ```
 
-Its time complexity is O(n^3), which means it is too expensive to be used in practice.
+It needs to traverse two trees and their children, therefore its time complexity is O(n^3), which means it is too expensive to be used in practice.
 
 React use its advanced diff strategy to reduce the time complexity to O(n), which is based on 3 strategy as below:
 
@@ -93,7 +93,7 @@ tips:
 
 ### More Optimization
 
-#### Don't use anonymous function in JSX
+#### Anonymous function in JSX
 
 if writing anonymous function in JSX, every time React rerender, it will re-execute the anonymous function.
 
@@ -104,6 +104,8 @@ Because React uses `===` to compare `props`:
 ```
 
 `Function` object in JS is reference type, in this way, even the same anonymous function will be treated as different object to trigger re-execute.
+
+For those components rendered frequently, we'd better to use `useCallback` or `useMemo` to reduce its render times.
 
 ## Reference
 
