@@ -32,7 +32,7 @@ So in fact, Https use this symmetric key to encrypt and decrypt data both in the
 
 ## Certificate Validation
 
-As we can see, a Https connection is based on Http connection, the key point it can guarantee security is Certificate. So, how the client to verify a certificate is valid.
+As we can see, a Https connection is based on Http connection, the key point it can guarantee security is Certificate. So, how the client to verify a certificate is valid?
 
 1. Browser downloads the web server's certificate. This certificate is signed with the private key of a trusted certificate (GlobalSign Org) authority.
 
