@@ -4,7 +4,7 @@
 
 server:
 
-```rs
+```rust
 use std::net::UdpSocket;
 fn main() {
     let socket = UdpSocket::bind("0.0.0.0:8888").unwrap();
@@ -19,7 +19,7 @@ fn main() {
 
 client:
 
-```rs
+```rust
 use std::net::UdpSocket;
 use std::{thread, time};
 fn main() {
