@@ -88,7 +88,8 @@ The place I can organize my thoughts and review knowledge.
 ### OS
 
 - [Process VS thread]()
-- [Socket]()
+- [Socket](/os/socket.md)
+
 
 <br />
 <br />
