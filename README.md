@@ -13,12 +13,14 @@ The place I can organize my thoughts and review knowledge.
 - [Closure](/js/closure.md)
 - [Promise](/js/promise.md)
 - [Generator](/js/generator.md)
+- [Event Loop](/js/event_loop.md)
+- [this]()
+- [Prototype Chain]()
 
 ### Node.js
 
 - [Node.js Modules](/js/node_mo.md)
 - [Node.js Stream and Buffer](/js/stream_buffer.md)
-- [Node.js Event Loop](/js/event_loop.md)
 - [Webpack plugins development](/modularization/webpack_structure.md)
 - [Babel](/modularization/babel.md)
 - [Hot reload](/modularization/hot_reload.md)

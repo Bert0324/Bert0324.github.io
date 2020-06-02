@@ -1,97 +1,77 @@
-# Asynchronize Operation in JS
+# Promise
 
-## Promise
+`Promise` is a powerful alternative way to replace callback in JS. Compared to callback, `Promise` provides a better way to write coherent codes.
 
-Compared to other programming language, in JS, it is so convenient to use the asynchronize callback function, but the problem is the callback hell, making code ugly and difficult to read. So Promise, it is a beautiful solution for callback hell. Especially in Node.JS, it is better to use promise to deal with database operations.
+## How to use
 
-### macrotask and microtask
+First of all, let's see its definition:
 
-There is a code as below:
+```ts
+/**
+ * Represents the completion of an asynchronous operation
+ */
+interface Promise<T> {
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
 
-```javaScript
-const process = require('process');
-console.log(1);
-setTimeout(()=>{
-    console.log(2);
-});
-Promise.resolve(3).then(data=>{
-    console.log(data);
-}).then(()=>{
-    console.log(4);
-});
-process.nextTick(()=>{
-    console.log(5);
-});
-console.log(6);  
-```
-The result is 1, 6, 5, 3, 4, 2. `process.nextTick` will be operated in the first of event loop. The reason is that in JS, at each time processing event loop, there will only one task (macrotask) to be processed, but microtasks will be kept processed, and its its priority is higher than tasks. To prove it, there is a code:
-
-```javaScript
-console.log(1);
-setTimeout(()=>{
-    console.log(2);
-});
-Promise.resolve(3).then(data=>{
-    console.log(data);
-}).then(()=>{
-    console.log(4);
-});
-process.nextTick(()=>{
-    console.log(5)
-});
-(function iter_process(){
-    process.nextTick(()=>{
-        iter_process();
-    })
-})();
-console.log(6);
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+}
 ```
 
-We can see the result is 1, 6, 5. So microtasks will be kept push in event loop until they are finished. In addition, it will block I/O.
+The first function in then is resolve function, the second function is reject function.
 
-```javaScript
-console.log(1);
-setTimeout(()=>{
-    console.log(2);
-});
-Promise.resolve(3).then(data=>{
-    console.log(data);
-}).then(()=>{
-    console.log(4);
-});
-process.nextTick(()=>{
-    console.log(5)
-});
-(function iter_setTime(){
-    setTimeout(()=>{
-        iter_setTime();
-    })
-})();
-console.log(6);
+There is a demo:
+
+```ts
+const resolveTask = () => new Promise((resolve, reject) => resolve(1))
+.then(res => {
+    console.log('resolve', res);
+    throw Error('throw error')
+}, err => {
+    console.log('reject', err);
+})
+.catch(err => console.log('catch', err));
+
+const rejectTask = () => new Promise((resolve, reject) => reject(1))
+.then(res => {
+    console.log('resolve', res);
+    throw Error('throw error')
+}, err => {
+    console.log('reject', err);
+})
+.catch(err => console.log('catch', err));
+
+// resolve 1
+// catch Error: throw error
+resolveTask();
+// reject 1
+rejectTask();
 ```
 
-This code's result is the same as the first one. So every time, when a macrotask and all microtasks are finished, next macrotask can be operated.
-
-> macrotasks including: setTimeout, setInterval, setImmediate, I/O, UI rendering
-
-> microtasks including: process.nextTick, Promises, MutationObserver
-
-There is a nice [article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) about it.
-
-### Promise all vs race
+## Promise.all and Promise.race
 
 About all() and race(), I know a really vivid and interesting metaphor: The all() is a horse race that ends when all horses reach the terminal point, the race() is a horse race that ends when the first horse reaches the terminal point. 
 
 In other word, the all() will return results of all callback tasks, the race() will return the callback result of the first finished task.
 
-### Promise parallel
+## Promise parallel
 
-Promise doesn't provide a parallel function. There is my thinking:
+Promise doesn't provide a parallel function. There is an inofficial implementation:
 
-```javaScript
+```ts
 const request = require('request');
 
-let get = function (url) {
+const get = function (url) {
     return new Promise((resolve, reject) => {
         request(url, (err, res, body)=>{
             if (!err && res.statusCode === 200){
@@ -103,14 +83,14 @@ let get = function (url) {
     })
 };
 
-let task1 = {
+const task1 = {
     req: ()=>get('https://www.npmjs.com'),
     callback: (data)=>{
         console.log(1);
     }
 };
 
-let task2 = {
+const task2 = {
     req: ()=>get('https://www.github.com'),
     callback: (data)=>{
         console.log(2);
@@ -139,17 +119,17 @@ function parallelPromise(tasks){
     iter(tasks);
 }
 
-parallelPromise([task1, task2, task3])
+parallelPromise([task1, task2, task3]);
 ```
 
-### build Promise from scratch
+## Promise implementation
 
 For me, the key point to understand Promise's then and catch is the event-loop. Because the main thread 
 task will be operated to the end first. So the `thenList` and `onCatch` must be ready when the first callback starts.
 
 There is a simple example I wrote:
 
-```js
+```ts
 class MyPromise{
     constructor(action){
         this.statusList = {
@@ -222,64 +202,42 @@ new MyPromise((resolve, reject) => {
 });
 ```
 
-But, if in `then` return a new `Promise` object, it can't be resolved in the next `then`, so the 
-code needs update:
+But, if in `then` return a new `Promise` object, it can't be resolved in the next `then`, so the code needs update:
 
-```js
-    resolve(value){
-        this.status = this.statusList.resolved;
-        this.value = value;
-        for (let i=0;i<this.thenList.length;i++){
-            this.status = this.statusList.pending;
-            try{
-                this.value = this.thenList[i](this.value);
-                this.status = this.statusList.resolved;
-                if (this.value instanceof MyPromise){               //if it's new Promise, change the target Promise
-                    this.value.thenList = this.thenList.splice(i+1);
-                    break;
-                }
-            } catch (e) {
-                if (this.onCatch){
-                    this.onCatch(e);
-                    this.status = this.statusList.rejected;
-                } else {
-                    throw new Error(e.toString());
-                }
+```ts
+resolve(value){
+    this.status = this.statusList.resolved;
+    this.value = value;
+    for (let i=0;i<this.thenList.length;i++){
+        this.status = this.statusList.pending;
+        try{
+            this.value = this.thenList[i](this.value);
+            this.status = this.statusList.resolved;
+            if (this.value instanceof MyPromise){               //if it's new Promise, change the target Promise
+                this.value.thenList = this.thenList.splice(i+1);
+                break;
+            }
+        } catch (e) {
+            if (this.onCatch){
+                this.onCatch(e);
+                this.status = this.statusList.rejected;
+            } else {
+                throw new Error(e.toString());
             }
         }
     }
+}
 ```
 
 ## async & await
 
-A question: when using `async` and `await`, which kind of differences between `throw err` and `Promise.reject`?
-
-For example:
-
-```JavaScript
-const axios = require('axios');
-
-const instance = axios.create({
-    baseURL: `http://www.google.com`,
-    timeout: 3000
-});
-instance.interceptors.response.use(res=>{
-}, err => {
-    // throw err;
-    return Promise.reject({
-        msg: err,
-        from: 'response'
-    })
-})
-```
-
-Before recognizing their differences, the first thing I need to understand is how `async` and `await` works.
+`async` and `await` it a better solution to replace `then`. Writing asynchronize codes with synchronize sequence.
 
 ### What is async function
 
 Actually, `async function` will return an `AsyncFunction` object, which can be created as below (notice: it is not a global variable):
 
-```JavaScript
+```ts
 Object.getPrototypeOf(async function(){}).constructor
 ```
 
@@ -287,7 +245,7 @@ Object.getPrototypeOf(async function(){}).constructor
 
 It will always return a Promise object, even if we return other things:
 
-```JavaScript
+```ts
 async function task() {
     return 1;
 }
@@ -300,7 +258,7 @@ The `await` operator is used to wait for a `Promise`. It can only be used inside
 
 If the `Promise` is rejected, the await expression throws the rejected value.
 
-```JavaScript
+```ts
 (async function () {
     const result = await Promise.resolve('success');
     console.log(result);
@@ -312,7 +270,7 @@ If the `Promise` is rejected, the await expression throws the rejected value.
 })()    // UnhandledPromiseRejectionWarning: success
 ```
 
-### Conclusion
+## Conclusion
 
 In this way, for me, when I don't care about the error, I perfer to use `throw Error`, when I want to process
 error, `Promise.reject` maybe more useful.

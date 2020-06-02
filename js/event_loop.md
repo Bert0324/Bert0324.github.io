@@ -1,7 +1,13 @@
-# Node.js Event Loop
+# Event Loop
+
+JavaScripts' biggest feature is its event loop, because of it, we can ignore details in threads and focus on those codes which can create real worth.
 
 ## Stages
 
-## Poll
+### MicroTask and MarcoTask
 
-## process.nextTick
+## In Browser
+
+## In Node.js
+
+### Poll
