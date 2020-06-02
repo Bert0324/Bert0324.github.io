@@ -6,6 +6,7 @@ The place I can organize my thoughts and review knowledge.
 
 ### JS
 
+- [Prototype Chain And `this`](/js/prototype.md)
 - [Number](/js/number.md)
 - [Deep copy and Shallow copy in JS](/js/object_copy.md)
 - [Object Proxy](/js/object_proxy.md)
@@ -14,8 +15,6 @@ The place I can organize my thoughts and review knowledge.
 - [Promise](/js/promise.md)
 - [Generator](/js/generator.md)
 - [Event Loop](/js/event_loop.md)
-- [this]()
-- [Prototype Chain]()
 
 ### Node.js
 
