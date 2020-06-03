@@ -4,7 +4,7 @@ When I was in an interview, the interviewer asked me one question: In the Node.j
 
 I said **yes** because in every module I can use it without require it (How can I require the require???).
 
-But actually I misunderstood it...., acutually, it is **not**.
+But actually I misunderstood it...., actually, it is **not**.
 
 So I checked the official [document](https://nodejs.org/api/modules.html) and found why.
 
@@ -97,7 +97,7 @@ Module._resolveFilename = function(request, parent) {
 
 There are some rules:
 
-1. if the path does't start with '/', './', '../'
+1. if the path doesn't start with '/', './', '../'
 
 Firstly Node.js will find in core module. If not found, it finds in current module's `node_modules`.
 If still not found, it will keep finding in parent paths until throwing an error not found.

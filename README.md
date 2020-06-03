@@ -10,7 +10,7 @@ The place I can organize my thoughts and review knowledge.
 - [Number](/js/number.md)
 - [Deep copy and Shallow copy in JS](/js/object_copy.md)
 - [Object Proxy](/js/object_proxy.md)
-- [for loop](/js/for_loop.md)
+- [For Loop](/js/for_loop.md)
 - [Closure](/js/closure.md)
 - [Promise](/js/promise.md)
 - [Generator](/js/generator.md)
