@@ -107,7 +107,7 @@ let task3 = {
 function parallelPromise(tasks){
     const iter = ()=>{
         if (tasks.length > 0){
-            let task = tasks.shift();
+            const task = tasks.shift();
             task.req().then(data=>{
                 task.callback(data);
                 iter();

@@ -91,3 +91,4 @@ Once the poll queue is empty the event loop will check for timers whose time thr
 - <https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth>
 - <https://javascript.info/microtask-queue>
 - <https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/>
+- <https://stackoverflow.com/questions/47724811/why-setimmediate-execute-before-fs-readfile-in-nodejs-event-loops-works>
