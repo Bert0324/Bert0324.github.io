@@ -79,6 +79,7 @@ The place I can organize my thoughts and review knowledge.
 - [Basic Concepts](/algorithm/concepts.md)
 - [Sorting](/algorithm/common_sort.md)
 - [Hash](/algorithm/common_hash.md)
+- [Dynamic Programming](/algorithm/dp.md)
 
 ### Network
 
