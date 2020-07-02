@@ -6,7 +6,8 @@ The place I can organize my thoughts and review knowledge.
 
 ### JS
 
-- [Prototype Chain And `this`](/js/prototype.md)
+- [`this`](/js/this.md)
+- [prototype](/js/prototype.md)
 - [Number](/js/number.md)
 - [Deep copy and Shallow copy in JS](/js/object_copy.md)
 - [Object Proxy](/js/object_proxy.md)

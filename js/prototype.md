@@ -1,3 +1,3 @@
-# Prototype Chain and `this`
+# Prototype
 
-## Prototype
+## Reference

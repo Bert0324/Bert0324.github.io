@@ -26,4 +26,4 @@ Before accessing the controller, the request will be processed by various middle
 
 ## Reference
 
-- <https://docs.nestjs.com/interceptors>
+- <https://docs.nestjs.com/faq/request-lifecycle>
