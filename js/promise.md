@@ -28,7 +28,9 @@ interface Promise<T> {
 }
 ```
 
-The first function in then is resolve function, the second function is reject function.
+The first function in then is resolve function, the second function is reject function which can on catch the error from `reject`, not from `throw`.
+
+The functions `resolve` and `reject` is to change the status of `Promise`.
 
 There is a demo:
 
@@ -60,72 +62,79 @@ rejectTask();
 
 ## Promise.all and Promise.race
 
-About all() and race(), I know a really vivid and interesting metaphor: The all() is a horse race that ends when all horses reach the terminal point, the race() is a horse race that ends when the first horse reaches the terminal point. 
+About `all` and `race`, I know a really vivid and interesting metaphor: The `all` is a horse race that ends when all horses reach the terminal point, the `race` is a horse race that ends when the first horse reaches the terminal point.
 
-In other word, the all() will return results of all callback tasks, the race() will return the callback result of the first finished task.
+In other word, the `all` will return results of all callback tasks, the `race` will return the callback result of the first finished task.
+
+Notice, `race` and `all` both will run the whole asynchronize task, the only different is the final returned value.
+
+Their implements are as below:
+
+```ts
+const race = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
+    tasks.forEach(async task => {
+        try {
+            const res = await task;
+            // a Promise can be resolved once
+            resolve(res);
+        } catch (e) {
+            reject(e);
+        }
+    });
+});
+
+
+const all = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
+    const res = [];
+    tasks.forEach(async task => {
+        try {
+            const data = await task;
+            res.push(data);
+            if (res.length === tasks.length) resolve(res);
+        } catch (e) {
+            reject(e);
+        }
+    });
+});
+```
 
 ## Promise parallel
 
 Promise doesn't provide a parallel function. There is an inofficial implementation:
 
 ```ts
-const request = require('request');
-
-const get = function (url) {
-    return new Promise((resolve, reject) => {
-        request(url, (err, res, body)=>{
-            if (!err && res.statusCode === 200){
-                resolve(body);
-            } else {
-                reject(err);
-            }
-        })
-    })
-};
-
-const task1 = {
-    req: ()=>get('https://www.npmjs.com'),
-    callback: (data)=>{
-        console.log(1);
+const parallelByFor = tasks => new Promise((resolve, reject) => {
+    const res = [];
+    for (const task of tasks) {
+        task.then(data => {
+            res.push(data);
+        }).catch(reject);
     }
-};
+    resolve(res);
+});
 
-const task2 = {
-    req: ()=>get('https://www.github.com'),
-    callback: (data)=>{
-        console.log(2);
-    }
-};
-
-let task3 = {
-    req: ()=>get('https://www.google.com'),
-    callback: (data)=>{
-        console.log(3);
-    }
-};
-
-function parallelPromise(tasks){
-    const iter = ()=>{
-        if (tasks.length > 0){
+const parallelByRecursion = tasks => new Promise((resolve, reject) => {
+    const res = [];
+    const iter = async () => {
+        if (tasks.length > 0) {
             const task = tasks.shift();
-            task.req().then(data=>{
-                task.callback(data);
-                iter();
-            }).catch(err=>{
-                console.log(err);
-            })
+            const data = await task;
+            res.push(data);
+            iter();
         }
     };
-    iter(tasks);
-}
-
-parallelPromise([task1, task2, task3]);
+    try {
+        await iter();
+        resolve(res);
+    } catch (e) {
+        reject(e);
+    }
+});
 ```
 
 ## Promise implementation
 
-For me, the key point to understand Promise's then and catch is the event-loop. Because the main thread 
-task will be operated to the end first. So the `thenList` and `onCatch` must be ready when the first callback starts.
+For me, the key point to understand Promise's then and catch is the event-loop. Because the main thread task will be operated to the end first. So the `thenList` and `onCatch` must be ready when the first callback starts.
 
 There is a simple example I wrote:
 

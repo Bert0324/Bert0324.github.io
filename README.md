@@ -25,6 +25,7 @@ The place I can organize my thoughts and review knowledge.
 - [Babel](/modularization/babel.md)
 - [Hot reload](/modularization/hot_reload.md)
 - [Webpack options used in create-react-app](/modularization/webpack_options.md)
+- [Webpack Tree Shaking](/modularization/tree_shaking.md)
 
 ### Browser
 
@@ -36,6 +37,7 @@ The place I can organize my thoughts and review knowledge.
 - [Web cache](/web/web_cache.md)
 - [Web security](/web/web_security.md)
 - [WebAssembly](/web/wasm.md)
+- [`performance`](/web/performance.md)
 - [WebRTC]()
 
 ### CSS
