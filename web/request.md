@@ -2,6 +2,12 @@
 
 ## XMLHttpRequest and Fetch
 
+If the response is `ReadableStream`:
+
+```ts
+const data = await (await fetch('https://www.baidu.com')).text();
+```
+
 ## Interceptor
 
 ## Abort Request

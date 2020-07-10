@@ -2,6 +2,10 @@
 
 ## `__proto__` and `prototype`
 
+## `constructor`
+
 ## `instanceof`
+
+## Combination Inheritance
 
 ## Reference

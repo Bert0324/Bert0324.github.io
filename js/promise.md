@@ -96,6 +96,14 @@ const all = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
         }
     });
 });
+
+Promise.prototype.myFinally = function(cb) {
+    return this.then(
+        v => this.constructor.resolve(cb()).then(() => v),
+        e => this.constructor.resolve(cb()).then(() => { throw e })
+    )
+};
+
 ```
 
 ## Promise parallel
