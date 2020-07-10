@@ -41,6 +41,7 @@ The place I can organize my thoughts and review knowledge.
 ### CSS
 
 - [Box model](/css/box_model.md)
+- [Pseudo Classes](/css/pseudo_classes.md)
 - [block, inline and inline-block element]()
 - [GPU Acceleration]()
 
@@ -61,9 +62,7 @@ The place I can organize my thoughts and review knowledge.
 - [Throttle and debounce](/practical/debounce_throttle.md)
 - [Event Proxy](/practical/events_proxy.md)
 - [Cross Domain](/practical/cross_domain.md)
-- [AMP Optimization]()
-- [Mobile Page Adoption]()
-- [Breakpoint resume]()
+- [Draw a Triangle By CSS](/practical/triangle.md)
 
 ### Other
 

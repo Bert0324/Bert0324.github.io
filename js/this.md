@@ -24,7 +24,7 @@ obj2.bike();      // "Gixxer"
 
 These three functions are able to change `this` value in a function when it calls them.
 
-1. `bind` will change `this` but not run the function.
+1. `bind` will change `this` but not run the function. A function can only be bind once.
 2. `call` will change `this` and run it.
 3. `apply` will change `this`, and params will be passed as an array.
 
