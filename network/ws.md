@@ -80,6 +80,8 @@ ping、pong 的操作，对应的是 WebSocket 的两个控制帧，opcode分别
 
 在事件的处理上，用[Gateways](https://docs.nestjs.com/websockets/gateways)去分派不同的事件。
 
+<img src="../assest/../assets/nestjs_gateway.png" width="500" />
+
 ## 部署
 
 因为在生产环境中，ws服务会被部署在多台设备或者进程中，和Http不同，ws是有状态的，而且一个进程中的广播事件需要被所有进程同时也广播，这带来了一些问题。
