@@ -45,6 +45,8 @@ ws数据帧的[统一格式](https://tools.ietf.org/html/rfc6455#section-5.2)如
 
 opcode来区分操作的类型。比如0x8表示断开连接，0x0-0x2表示数据交互。
 
+个人的一个问题：关于帧和流的区别，为什么ws使用帧而不是流？[stackoverflow](https://stackoverflow.com/questions/48842357/frame-based-and-stream-based-protocols)有一个回答，但我觉得不是很清晰也没看懂。
+
 ## 心跳
 
 WebSocket 为了保持客户端、服务端的实时双向通信，需要确保客户端、服务端之间的 TCP 通道保持连接没有断开。然而，对于长时间没有数据往来的连接，如果依旧长时间保持着，可能会浪费包括的连接资源。
@@ -54,6 +56,8 @@ WebSocket 为了保持客户端、服务端的实时双向通信，需要确保�
 发送方 -> 接收方：ping
 接收方 -> 发送方：pong
 ping、pong 的操作，对应的是 WebSocket 的两个控制帧，opcode分别是0x9、0xA。
+
+有一点，心跳的间隔如果超过了60s，需要额外设置Nginx的两个[`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout), [`proxy_send_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout)，默认都是60s自动断开连接，需要大于心跳的间隔。
 
 ## 请求头
 
@@ -69,6 +73,12 @@ ping、pong 的操作，对应的是 WebSocket 的两个控制帧，opcode分别
 生产的请求头如下：
 
 <img src="../assets/ws_headers.png" width="800" />
+
+## NestJs对ws的接入
+
+类似于[Http Adapter](https://docs.nestjs.com/faq/http-adapter#http-adapter), NestJs也可以用[Adapter](https://docs.nestjs.com/websockets/adapter)来使用不同的基础ws服务端框架，比如`ws`和`socket.io`。
+
+在事件的处理上，用[Gateways](https://docs.nestjs.com/websockets/gateways)去分派不同的事件。
 
 ## 部署
 
@@ -93,7 +103,7 @@ ping、pong 的操作，对应的是 WebSocket 的两个控制帧，opcode分别
     <img src="../assets/redis_pub.png" width="400" />
 </div>
 
-基于`node-redis`的demo：
+基于`node-redis`的发布订阅demo：
 
 ```ts
 const redis = require("redis");
