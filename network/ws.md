@@ -80,7 +80,7 @@ ping、pong 的操作，对应的是 WebSocket 的两个控制帧，opcode分别
 
 在事件的处理上，用[Gateways](https://docs.nestjs.com/websockets/gateways)去分派不同的事件。
 
-<img src="../assest/../assets/nestjs_gateway.png" width="500" />
+<img src="../assest/../assets/nestjs_gateway.png" width="800" />
 
 ## 部署
 
