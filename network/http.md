@@ -1,8 +1,4 @@
-# Http
-
-Http is an application layer protocol and based on TCP/IP protocol which is a transport layer protocol.
-
-## TCP/IP
+# TCP/IP
 
 TCP/IP protocol can provide a reliable link between two computers, if packet get lost, it is re-transmitted. TCP itself rides on top of IP, which provides unified addressing to communicate between computers. TCP/IP is a basis for internet and 99% of other networks.
 

@@ -85,9 +85,10 @@ The place I can organize my thoughts and review knowledge.
 
 ### Network
 
-- [Http](/network/http.md)
+- [TCP](/network/http.md)
 - [Http2 features](/network/http2.md)
 - [Https](/network/https.md)
+- [WebSocket](/network/ws.md)
 
 ### OS
 
