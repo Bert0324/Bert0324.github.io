@@ -14,9 +14,9 @@ WebSocket和Http协议一样，都是在tcp协议上的应用层协议。而和H
 
 ## 帧
 
-在握手成功后，传输的就是数据帧(frame)了，由1个或多个帧组成一条完整的消息(message)。
+*在握手成功后，传输的就是数据帧(frame)了，由1个或多个帧组成一条完整的消息(message)。*
 
-发送端将消息切割成多个帧，并发送给服务端，接收端接收消息帧，并将关联的帧重新组装成完整的消息。
+*发送端将消息切割成多个帧，并发送给服务端，接收端接收消息帧，并将关联的帧重新组装成完整的消息。*
 
 ws数据帧的[统一格式](https://tools.ietf.org/html/rfc6455#section-5.2)如下：
 
@@ -41,15 +41,15 @@ ws数据帧的[统一格式](https://tools.ietf.org/html/rfc6455#section-5.2)如
  +---------------------------------------------------------------+
 ```
 
-如果FIN是1，这是message的最后一个分片，如果是0，则不是。
+*如果FIN是1，这是message的最后一个分片，如果是0，则不是。*
 
-opcode来区分操作的类型。比如0x8表示断开连接，0x0-0x2表示数据交互。
+*opcode来区分操作的类型。比如0x8表示断开连接，0x0-0x2表示数据交互。*
 
 个人的一个问题：关于帧和流的区别，为什么ws使用帧而不是流？[stackoverflow](https://stackoverflow.com/questions/48842357/frame-based-and-stream-based-protocols)有一个回答，但我觉得不是很清晰也没看懂。
 
 ## 心跳
 
-WebSocket 为了保持客户端、服务端的实时双向通信，需要确保客户端、服务端之间的 TCP 通道保持连接没有断开。然而，对于长时间没有数据往来的连接，如果依旧长时间保持着，可能会浪费包括的连接资源。
+*WebSocket 为了保持客户端、服务端的实时双向通信，需要确保客户端、服务端之间的 TCP 通道保持连接没有断开。然而，对于长时间没有数据往来的连接，如果依旧长时间保持着，可能会浪费包括的连接资源。*
 
 但不排除有些场景，客户端、服务端虽然长时间没有数据往来，但仍需要保持连接。这个时候，可以采用心跳来实现。
 
@@ -66,7 +66,11 @@ ping、pong 的操作，对应的是 WebSocket 的两个控制帧，opcode分别
 - Sec-WebSocket-Version: 13：表示 websocket 的版本。如果服务端不支持该版本，需要返回一个Sec-WebSocket-Versionheader，里面包含服务端支持的版本号。
 - Sec-WebSocket-Key：与后面服务端响应首部的Sec-WebSocket-Accept是配套的，提供基本的防护，比如恶意的连接，或者无意的连接
 
-这里要注意一下, 两个和升级有关的请求头`Connection`和`Upgrade`, 都是hop-by-hop headers, 所以在nginx转发的时候都要额外再次`proxy_set_header`。
+两个和升级有关的请求头`Connection`和`Upgrade`, 都是hop-by-hop headers, 所以在nginx转发的时候都要额外再次`proxy_set_header`。
+
+*关于两个`Sec`开头的请求头，也是WebSocket设计者为了安全的特意设计，以`Sec-`开头的 Header 可以避免被浏览器脚本读取到，这样攻击者就不能利用 XMLHttpRequest 伪造 WebSocket 请求来执行跨协议攻击，因为 XMLHttpRequest 接口不允许设置`Sec-`开头的Header。*
+
+同时，和Http协议不同，WebSocket是允许跨域的, 而且会携带cookie，成为Cross Site WebSocket Hijacking（CSWSH）。为什么是劫持而不是伪造，因为ws没有跨域限制，攻击者可以控制整个读取/修改双向沟通通道。如果要避免被劫持，要验证`Origin`的请求头。
 
 其他的大部分请求头Websocket和Http是一样的。
 
@@ -141,3 +145,4 @@ subscriber.subscribe("a channel");
 - <https://redis.io/topics/pubsub>
 - <https://socket.io/docs/using-multiple-nodes/>
 - <https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers>
+- <https://developer.ibm.com/zh/articles/j-lo-websocket-cross-site/>
