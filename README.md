@@ -10,7 +10,6 @@ The place I can organize my thoughts and review knowledge.
 - [prototype](/js/prototype.md)
 - [Number](/js/number.md)
 - [Deep copy and Shallow copy in JS](/js/object_copy.md)
-- [Object Proxy](/js/object_proxy.md)
 - [For Loop](/js/for_loop.md)
 - [Closure](/js/closure.md)
 - [Promise](/js/promise.md)
@@ -25,7 +24,7 @@ The place I can organize my thoughts and review knowledge.
 - [Babel](/modularization/babel.md)
 - [Hot reload](/modularization/hot_reload.md)
 - [Webpack options used in create-react-app](/modularization/webpack_options.md)
-- [Webpack Tree Shaking](/modularization/tree_shaking.md)
+- [Webpack Performance Optimization](/modularization/performance_optimization.md)
 
 ### Browser
 
@@ -56,6 +55,12 @@ The place I can organize my thoughts and review knowledge.
 - [Hooks](/react/hooks.md)
 - [Suspense with lazy](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
+- [Isomorphic](/react/isomorphic.md)
+
+### Vue
+
+- [Template Syntax](/vue/template_syntax.md)
+- [Object Proxy](/js/object_proxy.md)
 
 ### Practice
 

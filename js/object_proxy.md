@@ -1,137 +1,100 @@
 # Object Proxy
 
-## Object.defineProperty
+In Vue 2, it uses `Object.defineProperty` to proxy data, and in Vue 3, it will use `Proxy` to do it.
 
-### Getter and Setter in Object
+## `Object.defineProperty`
 
-As we know, in JS's object, there is a default setter and getter like as below:
+Its definition is as below:
 
-```js
-let obj = {
-  a: 1,
-  get a() {
-    return 1;
-  },
-  set a(num) {
-    console.log(this.a);
-  }
-};
+```ts
+/**
+ * Adds a property to an object, or modifies attributes of an existing property.
+ * @param o Object on which to add or modify the property. This can be a native JavaScript object
+ * (that is, a user-defined object or a built in object) or a DOM object.
+ * @param p The property name.
+ * @param attributes Descriptor for the property. It can be for a data property or an accessor property.
+ */
+defineProperty(o: any, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): any;
 ```
 
-### Descriptor
+The `PropertyDescriptor`'s properties see in the [MDN document](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
 
-In Object.defineProperty, we can access more configuration. The definition is as below:
+### Deep Observe and Observe An Array
 
-`Object.defineProperty(object, propertyname, descriptor)`
+```ts
+class Watcher {
 
-descriptor is an object that define configurations. It includes lots of properties:
+    private arrayProto: any[] = [];
 
-- configurable
+    constructor() {
+        this.arrayProto = Object.create(Array.prototype);
+        ['push', 'pop', 'shift', 'unshift', 'splice'].forEach(fn => {
+            const updateView = this.updateView;
+            this.arrayProto[fn] = function() {
+                Array.prototype[fn].call(this, ...arguments);
+                updateView();
+            }
+        });
+    }
 
-Whether the configuration of this property is changeable, default is false. If trying to edit a unchangeable property, it will
-throw an error.
+    updateView() {
+        console.log('render');
+    }
 
-- value
+    observer(target: any) {
+        const targetType: string = Object.prototype.toString.call(target);
+        // if it is not Object
+        if (!target || !targetType.startsWith('[object ')) {
+            return target;
+        }
 
-The value of the property.
+        // if it is an array, replace its prototype
+        if (targetType === '[object Array]') {
+            target.__proto__ = this.arrayProto;
+        }
 
-- writable
+        for (let item in target) {
+            let value = target[item];    // avoid circular reference
+            this.observer(value);
+            Object.defineProperty(target, item, {
+                get: () => value,
+                set: newValue => {
+                    if (newValue !== value) {
+                        value = newValue;
+                        this.updateView();
+                    }
+                }
+            });
+        }
+    }
+}
 
-Whether the value is writable or not, if it's false, when changing value,
-it won't throw error. The default is false!
-
-- enumerable
-
-Whether show the property in the for-in or Object.keys, default is false
-
-- get and set
-
-Compared to getter and setter in definition of object, Object.defineProperty is more flexible. For example, a
-dom setter and getter to make change attributes more easy:
-
-```js
-let dom = document.getElementById("test");
-Object.defineProperty(dom, "translateX", {
-  set: function(num) {
-    this.style.transform = `translateX(${num}px)`;
-  }
-});
-
-dom.translateX = 0;
-dom.translateX = 10;
-```
-
-In this way, we can bind the object's `translateX` property with its style.transform. It will be more convenient when we change one property to modify multiple other property and emit some events.
-
-#### summary
-
-To sum up, the property defined in Object.defineProperty in default configuration is kind of different normal the object
-property. Such as it won't show in Object.keys, its value isn't changeable.
-
-### Data two way binding
-
-#### Basic binding
-
-In MVVM, Object.defineProperty is common. There is a basic and simple example about it:
-
-```js
-const obj = {};
-Object.defineProperty(obj, "text", {
-  set: function(newVal) {
-    document.getElementById("input").value = newVal;
-    document.getElementById("span").innerHTML = newVal;
-  }
-});
-
-const input = document.getElementById("input");
-input.addEventListener("keyup", function(e) {
-  obj.text = e.target.value;
-});
-```
-
-When changing the value in `<input>`, the text in `<text>` will change too. The `obj` is their view module.
-
-This code is coupled, Vue use Watcher and Observer to decouple it.
-
-### throw some information, such as warning
-
-In [express](https://github.com/expressjs/express/blob/master/lib/express.js), it use Object.defineProperty to throw information to users as below:
-
-```js
-var removedMiddlewares = [
-  "bodyParser",
-  "compress",
-  "cookieSession",
-  "session",
-  "logger",
-  "cookieParser",
-  "favicon",
-  "responseTime",
-  "errorHandler",
-  "timeout",
-  "methodOverride",
-  "vhost",
-  "csrf",
-  "directory",
-  "limit",
-  "multipart",
-  "staticCache"
-];
-
-removedMiddlewares.forEach(function(name) {
-  Object.defineProperty(exports, name, {
-    get: function() {
-      throw new Error(
-        "Most middleware (like " +
-          name +
-          ") is no longer bundled with Express and must be installed separately. Please see https://github.com/senchalabs/connect#middleware."
-      );
+const watcher = new Watcher();
+const obj = {
+    a: 1,
+    b: {
+        c: 1
     },
-    configurable: true
-  });
-});
+    d: [{}]
+};
+watcher.observer(obj);
+obj.a = 2;
+obj.b.c = 3;
+obj.d.push(1);
 ```
+
+### Problems
+
+From the implementation as above, we can say there are some limitations.
+
+- it cannot observer object add new property and delete property. (use `Vue.set` and `Vue.delete` instead)
+- it has to observer whole object at once
+- it cannot observe 
 
 ## Proxy
 
 TODO
+
+## Reference
+
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty>
