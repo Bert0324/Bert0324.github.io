@@ -89,7 +89,7 @@ From the implementation as above, we can say there are some limitations.
 
 - it cannot observer object add new property and delete property. (use `Vue.set` and `Vue.delete` instead)
 - it has to observer whole object at once
-- it cannot observe 
+- it cannot observe an array's change
 
 ## Proxy
 

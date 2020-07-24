@@ -98,13 +98,14 @@ The place I can organize my thoughts and review knowledge.
 ### OS
 
 - [Process VS thread]()
-- [Socket](/os/socket.md)
+- [Socket](/os/socket.md)   
 
 ### Design Patterns
 
 - [FP and OOP](/design/fp_oop.md)
 - [AOP and The Onion Model](/design/aop.md)
 - [DI and Factory Pattern](/design/di_factory.md)
+- [SOLID Design Principles](/design/solid.md)
 
 <br />
 <br />
