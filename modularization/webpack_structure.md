@@ -4,14 +4,13 @@ First of all, we need to check webpack command entry in package.json, the field 
 This file will check which cli commander is installed,
 if we are using `webpack-cli`, the "webpack-cli/lib/cli.js" will be operated. Its code can be simplified to:
 
-
 ```JavaScript
 const webpack = require("webpack"); //v4.30.0
 let compiler = webpack(options);    //options is what we exports in webpack.config.js
 compiler.run((err, stats) => {
     compilerCallback(err, stats);   //just as its name implies， compilerCallback will run after compile finished.
 });
-``` 
+```
 
 Next, in `webpack/lib/webpack.js`, we can find the main webpack function which can be simplified as below:
 

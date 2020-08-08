@@ -51,7 +51,7 @@ The place I can organize my thoughts and review knowledge.
 - [Refs](/react/refs.md)
 - [Reconciliation](/react/diff.md)
 - [Fiber](/react/fiber.md)
-- [Life cycle](/react/life_cycle.md)
+- [Life Cycle](/react/life_cycle.md)
 - [Hooks](/react/hooks.md)
 - [Suspense with lazy](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
@@ -61,6 +61,7 @@ The place I can organize my thoughts and review knowledge.
 
 - [Template Syntax](/vue/template_syntax.md)
 - [Object Proxy](/js/object_proxy.md)
+- [Life Cycle](/vue/life_cycle.md)
 
 ### Practice
 
@@ -98,7 +99,7 @@ The place I can organize my thoughts and review knowledge.
 ### OS
 
 - [Process VS thread]()
-- [Socket](/os/socket.md)   
+- [Socket](/os/socket.md)
 
 ### Design Patterns
 
