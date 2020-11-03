@@ -1,6 +1,6 @@
 # JS模块化实战
 
-不说一些需的概念，我们只看最后的执行代码。为了更好的体验场景，推荐clone一下demo，实际跑一下看下结果～～～：
+不说一些需的概念，我们只看最后的执行代码。为了更好的体验场景，推荐clone这下[demo](https://github.com/Bert0324/webpack-module-demo)，实际跑一下看下结果～～～
 
 `git clone https://github.com/Bert0324/webpack-module-demo.git`
 
