@@ -98,7 +98,7 @@ es6 module和CommonJS最大的区别包括：
 
 在[webpack-module-demo](https://github.com/Bert0324/webpack-module-demo)中`yarn build`。 然后分别`MODULE=es6 yarn dev`和`MODULE=commonJS yarn dev`, 在控制台上看结果。可以看到es6中`sideEffectValue`中的值被改变了，但是commonJS中没有。
 
- 我们可以看到用es6模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/es6/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/es6.min.js#L96)， 和用CommonJS模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/commonJs/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/commonJS.min.js#L98)。
+es6模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/es6/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/es6.min.js#L96)， 和用CommonJS模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/commonJs/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/commonJS.min.js#L98)。
 
  我们可以看到，es6编译后的代码是在同一个函数作用域下面的，对于`sideEffectValue`这个export，引用的地方是直接使用的:
 
