@@ -18,7 +18,7 @@
 
 ## CommonJS
 
-
+CommonJS一开始主要用于Node端的模块化方案, 特点是同步/阻塞式加载，使用时加载。关于CommonJS可以参考下这篇[文章](https://github.com/Bert0324/code-playground/blob/master/js/node_mo.md)。
 
 CommonJS很受欢迎，那我们能不能在浏览器端也使用类似的加载方法？于是有了AMD和CMD。
 
@@ -108,7 +108,7 @@ es6 module和CommonJS最大的区别包括：
 
  <img src="../assets/webpack_commonjs_sideeffect.png" width="500px">
 
-这样就很明显了，说人话，他们之间的区别，就是在直接引用值对象上的区别，就是JS中引用对象和值对象被引用时的区别一样。+
+这样就很明显了，说人话，他们之间的区别，就是在直接引用值对象上的区别，就像JS中引用对象和值对象被引用时的区别一样。
 
 ### CommonJS 模块是运行时加载，ES6 模块是编译时输出接口
 
