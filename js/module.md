@@ -96,11 +96,11 @@ es6 module和CommonJS最大的区别包括：
 
 在[webpack-module-demo](https://github.com/Bert0324/webpack-module-demo)中`yarn build`，会有es6模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/es6/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/es6.min.js#L96)， 用CommonJS模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/commonJs/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/commonJS.min.js#L98)。然后分别`yarn serve`和`MODULE=es6 yarn dev`，`MODULE=commonJS yarn dev`。
 
-先看在浏览器控制台上的结果。可以看到es6中`sideEffectValue`中的值被改变了，但是commonJS中没有。
+在浏览器端和用node执行的结果一致，可以看到es6中`sideEffectValue`中的值被改变了，但是commonJS中没有。
 
 ```txt
 // CommonJS
-static import
+static import  // CommonJS执行了未使用的引入模块的上下文
 {}
 1 1
 1 1
