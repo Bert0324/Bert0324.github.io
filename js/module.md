@@ -1,4 +1,4 @@
-# JS模块化实战
+# JS的模块化和不同模块规范在webpack中的实现
 
 不说一些虚的概念，我们只看最后的执行代码。为了更好的体验场景，推荐clone一下[webpack-module-demo](https://github.com/Bert0324/webpack-module-demo)，实际跑一下看下结果～～～
 
@@ -18,13 +18,13 @@
 
 ## CommonJS
 
-CommonJS一开始主要用于Node端的模块化方案, 特点是同步/阻塞式加载，使用时加载。关于CommonJS可以参考下这篇[文章](https://github.com/Bert0324/code-playground/blob/master/js/node_mo.md)。
+CommonJS一开始主要用于Node端的模块化方案, 特点是同步/阻塞式加载，使用时加载，`module`和`require`等对象通过模块加载wrapper传入。关于CommonJS可以参考下这篇[文章](https://github.com/Bert0324/code-playground/blob/master/js/node_mo.md)。
 
-CommonJS很受欢迎，那我们能不能在浏览器端也使用类似的加载方法？于是有了AMD和CMD。
+CommonJS很受欢迎，那我们能不能在浏览器端也使用类似的加载方法？于是有了AMD，CMD和UMD。
 
 ## Async Module Definition and RequireJS
 
-RequireJS是AMD规范的一个实现（最开始接触js的时候我还以为RequireJS是CommonJS的实现）。和CommonJS不同，AMD是专门为浏览器环境设计的。
+RequireJS是AMD规范的一个实现，最开始接触js的时候我还以为RequireJS是CommonJS的实现, 因为都有个`require`, 但其实AMD是CommonJS的浏览器变种。和CommonJS不同，AMD是专门为浏览器环境设计的。
 
 一个典型的使用如下：
 
@@ -48,11 +48,11 @@ define(['require', 'dependency1', 'dependency2'], (require) => {
 
 ## Common Module Definition and SeaJS
 
-SeaJS是CMD规范的一个实现，算是对AMD规范的一个加强，起源于国内用的比较多的也是国内，作者是[玉伯](https://lifesinger.wordpress.com/), 语雀就是他团队的作品之一，他有一篇关于[模块化的文章](https://github.com/seajs/seajs/issues/588)，深扒了以下模块化的历史。
+SeaJS是CMD规范的一个实现，算是对AMD规范的一个加强，起源于国内，用的比较多的也是国内。作者是[玉伯](https://lifesinger.wordpress.com/), 语雀就是他团队的作品之一，他有一篇关于[模块化的文章](https://github.com/seajs/seajs/issues/588)，深扒了以下模块化的历史，有兴趣的可以了解下。
 
-显而易见，AMD所有模块都要预先加载执行，对于那些暂时不用的模块，造成了浪费，对于执行时机也很容易造成一些confuse的地方。
+显而易见，AMD所有模块都要预先加载执行，对于那些暂时不用的模块，造成了浪费，对于执行时机也很容易造成一些confuse的地方。CMD就是针对此进行了改进。
 
-一个典型的使用如下：
+CMD一个典型的使用如下：
 
 ```ts
 define((require, exports, module) => {
@@ -94,33 +94,44 @@ es6 module和CommonJS最大的区别包括：
 
 说起来其实有点抽象，我们来实际对比一下webpack输入的代码，看一下他们实现上的差异到底是什么。
 
-### CommonJS模块输出的是一个值的拷贝，ES6 模块输出的是值的引用
+在[webpack-module-demo](https://github.com/Bert0324/webpack-module-demo)中`yarn build`，会有es6模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/es6/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/es6.min.js#L96)， 用CommonJS模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/commonJs/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/commonJS.min.js#L98)。然后分别`yarn serve`和`MODULE=es6 yarn dev`，`MODULE=commonJS yarn dev`。
 
-在[webpack-module-demo](https://github.com/Bert0324/webpack-module-demo)中`yarn build`。 然后分别`MODULE=es6 yarn dev`和`MODULE=commonJS yarn dev`, 在控制台上看结果。可以看到es6中`sideEffectValue`中的值被改变了，但是commonJS中没有。
+先看在浏览器控制台上的结果。可以看到es6中`sideEffectValue`中的值被改变了，但是commonJS中没有。
 
-es6模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/es6/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/es6.min.js#L96)， 和用CommonJS模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/commonJs/index.ts)和[输出代码](https://github.com/Bert0324/webpack-module-demo/blob/main/dist/commonJS.min.js#L98)。
+```txt
+// CommonJS
+static import
+{}
+1 1
+1 1
+2 2
+1 2     // sideEffectValue值仍然是1
 
- 我们可以看到，es6编译后的代码是在同一个函数作用域下面的，对于`sideEffectValue`这个export，引用的地方是直接使用的:
+// es6
+{}
+1 1
+1 1
+2 2
+2 2     // sideEffectValue是被改变的结果
+```
+
+看一下webpack编译后的结果，es6编译后的代码是在同一个函数作用域下面的，对于`sideEffectValue`这个export，引用的地方是直接使用的:
 
  <img src="../assets/module_es6_sideeffect.png" width="500px">
 
-但是CommonJS编译后的代码，必须首先挂在一个`Object`上，然后才能引用:
+但是CommonJS编译后的代码，必须首先挂在一个`{}`上，然后才能引用:
 
  <img src="../assets/webpack_commonjs_sideeffect.png" width="500px">
 
-这样就很明显了，说人话，他们之间的区别，就是在直接引用值对象上的区别，就像JS中引用对象和值对象被引用时的区别一样。
+好了，这样就很明显了，webpack打包后他们之间在引用值上的区别，就是因为CommonJS多了一个`module.exports = {}`作为挂载对象而产生的直接引用值对象上的区别。
 
-### CommonJS 模块是运行时加载，ES6 模块是编译时输出接口
+CommonJS其实加载的是一个对象，这个对象只有在脚本运行时才会生成，而且只会生成一次，所以是运行时加载。
 
-从上一段我们可以看到CommonJS其实加载的是一个对象，这个对象只有在脚本运行时才会生成，而且只会生成一次，所以是运行时加载。
+从结果中也可以看到，对于引入了但是没有使用的模块，CommonJS执行了模块全文，但是es6模块没有。
 
-CommonJS是肯定会执行模块全文，但是es6就不一定。
+现在我们把`package.json`里的`sideEffects`设为`true`，执行结果是es6也和CommonJS一样，es6模块也执行了全文。
 
-在[webpack-module-demo](https://github.com/Bert0324/webpack-module-demo)中`yarn serve`， 在node端运行es6模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/es6/index.ts)和CommonJS模块的[源代码](https://github.com/Bert0324/webpack-module-demo/blob/main/src/commonJs/index.ts)，可以看到对于没有使用的引入模块，es6没有执行但CommonJS执行了。
-
-但是，在浏览器端，情况就会比较不同。在[webpack-module-demo](https://github.com/Bert0324/webpack-module-demo)中分别`MODULE=es6 yarn dev`和`MODULE=commonJS yarn dev`, 在控制台上看结果, 可以看到现在的结果和node上的结果是一样的。
-
-现在我们把`package.json`里的`sideEffects`设为`true`，结果就是es6和CommonJS的执行结果是一样的。这就是webpack的[tree shaking](https://webpack.js.org/guides/tree-shaking/), 其实[scope hosting](https://webpack.js.org/plugins/module-concatenation-plugin/)也是基于es6的静态分析。
+这就是webpack的[tree shaking](https://webpack.js.org/guides/tree-shaking/), 其实[scope hosting](https://webpack.js.org/plugins/module-concatenation-plugin/)也是基于es6的静态分析。
 
 ## webpack异步加载
 
