@@ -119,7 +119,7 @@ static import  // CommonJS执行了未使用的引入模块的上下文
 
  <img src="../assets/module_es6_sideeffect.png" width="500px">
 
-但是CommonJS编译后的代码，必须首先挂在一个`{}`上，然后才能引用:
+但是CommonJS编译后的代码，必须首先挂在一个`{}`上，然后才能引用。这里的`dependency`和`module.exports`是同一个引用地址。
 
  <img src="../assets/webpack_commonjs_sideeffect.png" width="500px">
 
