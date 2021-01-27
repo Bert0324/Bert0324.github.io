@@ -56,6 +56,7 @@ The place I can organize my thoughts and review knowledge.
 - [Suspense with lazy](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
 - [Isomorphic](/react/isomorphic.md)
+- [Route](/react/route.md)
 
 ### Vue
 
