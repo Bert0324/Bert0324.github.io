@@ -35,7 +35,7 @@ The place I can organize my thoughts and review knowledge.
 - [Web cache](/web/web_cache.md)
 - [Web security](/web/web_security.md)
 - [WebAssembly](/web/wasm.md)
-- [`performance`](/web/performance.md)
+- [Web Performance](/web/performance.md)
 - [WebRTC]()
 
 ### CSS
@@ -55,6 +55,7 @@ The place I can organize my thoughts and review knowledge.
 - [Suspense with lazy](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
 - [Isomorphic](/react/isomorphic.md)
+- [Route](/react/route.md)
 
 ### Vue
 
