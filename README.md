@@ -36,7 +36,7 @@ The place I can organize my thoughts and review knowledge.
 - [Web cache](/web/web_cache.md)
 - [Web security](/web/web_security.md)
 - [WebAssembly](/web/wasm.md)
-- [`performance`](/web/performance.md)
+- [Web Performance](/web/performance.md)
 - [WebRTC]()
 
 ### CSS
