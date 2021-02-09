@@ -65,13 +65,13 @@ The place I can organize my thoughts and review knowledge.
 
 ### Practice
 
-- [Deep copy and Shallow copy in JS](/js/object_copy.md)
+- [Deep copy and Shallow copy](/js/object_copy.md)
 - [slice, substr and substring](/practical/string_process.md)
 - [Flat an Array](/practical/flat_array.md)
 - [Throttle and debounce](/practical/debounce_throttle.md)
 - [Event Proxy](/practical/events_proxy.md)
 - [Cross Domain](/practical/cross_domain.md)
-- [Draw a Triangle By CSS](/practical/triangle.md)
+- [Memory Leak](/practical/memory_leak.md)
 
 ### Other
 

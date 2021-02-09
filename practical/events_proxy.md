@@ -1,3 +1,5 @@
+# DOM Event Proxy
+
 If there is a list including lots of lines, and every line has different events. In this situation, if we bind an event to every lines, it will cost a large number of memory. So, normally, using event proxy to do it. 
 
 For the HTML like below:

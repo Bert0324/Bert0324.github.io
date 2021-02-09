@@ -1,3 +1,5 @@
+# Throttle and Debounce
+
 ## Throttle
 
 Thinking about a scenario, there is a button which will send a http request when clicked by a user.

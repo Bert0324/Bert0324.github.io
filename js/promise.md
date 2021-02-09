@@ -194,14 +194,16 @@ Promise.prototype.myFinally = function(cb) {
     )
 };
 
-Promise.parallelByFor = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
-    const res = [];
-    for (const task of tasks) {
-        task.then(data => {
-            res.push(data);
-        }).catch(reject);
+Promise.parallelByReduce = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
+    try {
+        resolve(await tasks.reduce(async (acc, crr) => {
+            acc = await acc;
+            acc.push(await crr);
+            return acc;
+        }, []));
+    } catch (e) {
+        reject(e);
     }
-    resolve(res);
 });
 
 Promise.parallelByRecursion = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
