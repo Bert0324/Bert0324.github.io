@@ -112,11 +112,11 @@ to the provided domain name address of the CDN server.
 
 If we want to save some of key-value data, localStorage and sessionStorage can be our choices. They both have `get` and `set` function for saving and getting data.
 
-### `localStorage`
+- `localStorage`
 
 The localStorage will save data permanently.
 
-### `sessionStorage`
+- `sessionStorage`
 
 The sessionStorage will save data until the tab is closed.
 
