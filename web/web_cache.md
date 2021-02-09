@@ -108,19 +108,27 @@ to the provided domain name address of the CDN server.
 
 ## Local Cache
 
-1. key-value
+1. key-value storage
 
 If we want to save some of key-value data, localStorage and sessionStorage can be our choices. They both have `get` and `set` function for saving and getting data.
 
-### localStorage
+### `localStorage`
 
-The localStorage will svae data permanently.
+The localStorage will save data permanently.
 
-### sessionStorage
+### `sessionStorage`
 
 The sessionStorage will save data until the tab is closed.
 
-2. IndexDB
+2. IndexedDB
+
+IndexedDB is a large-scale, NoSQL storage system. It lets you store just about anything in the user's browser.
+
+Compared to `localStorage`, IndexedDB:
+
+    1. mostly asynchronous
+    2. supported to access the data from same domain
+    3. can save an object instead of only string
 
 3. cookie
 
