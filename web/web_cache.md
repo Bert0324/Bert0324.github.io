@@ -106,6 +106,8 @@ to the provided domain name address of the CDN server.
 
 <img src="../assets/cdn_steps.jpg" width="600"/>
 
+See a reference: <https://blog.csdn.net/xiangzhihong8/article/details/83147542>
+
 ## Local Cache
 
 1. key-value storage
