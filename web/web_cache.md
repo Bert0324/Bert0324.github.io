@@ -2,22 +2,31 @@
 
 ## Remote Resource Cache
 
-Caching is one of the most important way to improve the response speed of Web Applications. 
-Traditionally, Http caching is the one way to do it. Besides, SW is newer and more powerful.
+Caching is one of the most important way to improve the FP response time of Web Applications.
 
-Their order is as below:
+Nowadays, We have multiple ways to control it.
+
+Traditionally, we can control web caching by Http caching. 
+
+The order of a request passing web cache methods is as below:
 
 <img src="../assets/cache_order.png" width="400"/>
 
+### SW caching
+
+Along with emergence of ES6, SW is a newer and more powerful way to do it, if ignoring its compatibility.
+
+It can proxy whole requests to check whether needs to update by [caches](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/caches), see more in my blog [Service Worker](https://github.com/Bert0324/js-playground/blob/master/web/service_worker.md).
+
 ### Http caching
 
-There is no way to directly control Browser Cache from JavaScript. In my understanding, Http caching is to 
-use Http headers to control it. There are some steps how browsers to do it:
+Http caching is to use Http headers to control browser resource's cache. There are some steps how browsers to do it:
 
-#### search in Browser cache
+1. search in Browser cache
 
-First, the browser will find in its cache by the file's name and cache mark. If found, browser will directly return
-the file, if not, browser send a request to the server.
+First, the browser will find in its cache by the file's name and cache mark.
+
+If found, browser will directly return the file, if not, browser send a request to the server.
 
 For example, Chrome will get the cache from the memory or disk like below:
 
@@ -25,7 +34,7 @@ For example, Chrome will get the cache from the memory or disk like below:
 
 There are some headers can be cache mark:
 
-##### Expires
+- `Expires`
 
 From Http/1.0.
 
@@ -35,41 +44,47 @@ Invalid dates, like the value 0, represent a date in the past and mean that the 
 
 If there is a Cache-Control header with the "max-age" or "s-max-age" directive in the response, the Expires header is ignored.
 
-##### Cache-Control
+- `Cache-Control`
 
 From Http/1.1.
 
-The Cache-Control general-header field is used to specify directives for caching mechanisms in both requests and responses. Caching directives are unidirectional, meaning that a given directive in a request is not implying that the same directive is to be given in the response.
+The Cache-Control general-header field is used to specify directives for caching mechanisms in both requests and responses.
 
-There are some common value:
+Caching directives are unidirectional, meaning that a given directive in a request is not implying that the same directive is to be given in the response.
 
-* public: Indicates that the response may be cached by any cache. (both the client and the server proxy)
-* private: only the single user can use it.
-* no-cache: Forces caches to submit the request to the origin server for validation before releasing a cached copy.
-* max-age=<seconds>: Specifies the maximum amount of time a resource will be considered fresh. Contrary to Expires, this directive is relative to the time of the request.
+See document in [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control).
 
-#### check cache with server
+2. check cache with server
 
-If the browser cannot find the resource's name, of course it will send request to the server.
+If the browser can find the file, but its cache mark shows it has already expired, the browser will send a request with the cache information of the resource.
 
-But, if the browser can find the file, but its cache mark shows it has already expired, the browser will send a request with the cache information of the resource.
 The server will make the decision whether to use cached resource.
 
-In this way, server should make the logical judgement to whether the cache is expired.
+If the cache has already expired, the server will response 200 with new resource. In contrast, if it is not modified, the server will response 304.
 
-If this cache is expired, the server will response 200 and with new resource. If it is not modified, the server will response 304.
+And how do the server make the logical judgement to whether the cache is expired, the http headers it used is as below:
 
-There is a Http header to help us to conditionally use cache:
+- `Last-Modified` and `If-Modified-Since`
 
-##### ETag
+`Last-Modified` indicates the last modified time of the resource, the server will send the header with the response.
 
-Entity Tag's abbreviation. Actually, in Http/1.1 does not regulate how to create ETag's value.
+And When the next time the client decide to request the resource again, `If-Modified-Since` will be sent with the request. The value is the same as `Last-Modified`.
 
-But, Etag must be relative to files' content, such as content hash, or relative to its modified time.
+An example from facebook static resource site:
 
-### SW caching
+<img src="../assets/cache_modified.png" width="600px"/>
 
-SW can proxy whole requests to check whether needs to update by [caches](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/caches) which is more flexible and powerful, see more in my blog [Service Worker](https://github.com/Bert0324/js-playground/blob/master/web/service_worker.md).
+- `ETag` and `If-None-Match`
+
+Although `Last-Modified` and `If-Modified-Since` is able to cover most of cache situations, they have limits as below:
+
+    1. When the resource content has been modified, but we don't want the client to GET it again.
+    2. The modified time accuracy is under second, as `Last-Modified` can only accurate to second.
+    3. When the server cannot get the modified time of the resource
+
+In this way, we can use `ETag` and `If-None-Match`.
+
+`ETag` is relative to files' content, such as content hash, or relative to its modified time. And in next request, its value will be sent in `If-None-Match`.
 
 ### CDN
 
@@ -93,18 +108,20 @@ to the provided domain name address of the CDN server.
 
 ## Local Cache
 
-### key-value
+1. key-value
 
 If we want to save some of key-value data, localStorage and sessionStorage can be our choices. They both have `get` and `set` function for saving and getting data.
 
-#### localStorage
+### localStorage
 
 The localStorage will svae data permanently.
 
-#### sessionStorage
+### sessionStorage
 
 The sessionStorage will save data until the tab is closed.
 
-### cookie
+2. IndexDB
+
+3. cookie
 
 cookie also can save some key-value data, although it is not a good way.
