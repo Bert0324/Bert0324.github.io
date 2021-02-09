@@ -114,11 +114,11 @@ If we want to save some of key-value data, localStorage and sessionStorage can b
 
 - `localStorage`
 
-The localStorage will save data permanently.
+The localStorage can save string data permanently, its capacity is about 5MB.
 
 - `sessionStorage`
 
-The sessionStorage will save data until the tab is closed.
+The sessionStorage can save data until the tab is closed, its capacity is about 5MB.
 
 2. IndexedDB
 
@@ -129,6 +129,7 @@ Compared to `localStorage`, IndexedDB:
     1. mostly asynchronous
     2. supported to access the data from same domain
     3. can save an object instead of only string
+    4. its capacity is about 250MB, or without limitation
 
 3. cookie
 
