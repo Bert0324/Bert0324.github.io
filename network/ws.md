@@ -47,7 +47,7 @@ opcode来区分操作的类型。比如0x8表示断开连接，0x0-0x2表示数�
 
 mask表示负载数据是否被掩码，如果设置为 1，那么负载数据应该按照后面的 Masking-key 解码。
 
-点击B站的某个视频之后的ws连接，他们应该是把对象stringify后转换成了Uint8Array之后，直接emit，所以opcode是2:
+点击B站的某个视频之后的ws连接，他们应该是把对象stringify后转换成了`ArrayBuffer`之后，直接emit，所以opcode是2:
 
 <img src="../assets/bilibili_ws.png" width="800" />
 

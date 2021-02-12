@@ -150,7 +150,7 @@ module.exports = function (source) {    //source is string
 
 There is a nice image that can show webpack whole life cycle from [source](http://taobaofed.org/blog/2016/09/09/webpack-flow/):
 
-<img src='../assets/webpack_lifecycle.jpeg' width="1000">
+<img src='../assets/webpack_lifecycle.jpeg' width="1200">
 
 This is just a quick and sketchy looking at webpack. If you want to right a wrong or have some suggestions about it, welcome to contact me.
 

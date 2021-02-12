@@ -20,11 +20,6 @@ The place I can organize my thoughts and review knowledge.
 
 - [Node.js Modules](/js/node_mo.md)
 - [Node.js Stream and Buffer](/js/stream_buffer.md)
-- [Webpack plugins development](/modularization/webpack_structure.md)
-- [Babel](/modularization/babel.md)
-- [Hot reload](/modularization/hot_reload.md)
-- [Webpack options used in create-react-app](/modularization/webpack_options.md)
-- [Webpack Performance Optimization](/modularization/performance_optimization.md)
 
 ### Browser
 
@@ -65,12 +60,13 @@ The place I can organize my thoughts and review knowledge.
 
 ### Practice
 
-- [slice, substr and substring](/practical/string_process.md)
+- [`slice`, `substr` and `substring`](/practical/string_process.md)
 - [Flat an Array](/practical/flat_array.md)
 - [Throttle and debounce](/practical/debounce_throttle.md)
 - [Event Proxy](/practical/events_proxy.md)
 - [Cross Domain](/practical/cross_domain.md)
 - [Draw a Triangle By CSS](/practical/triangle.md)
+- [Function Expression](/practical/function_expression.md)
 
 ### Other
 
@@ -91,8 +87,9 @@ The place I can organize my thoughts and review knowledge.
 
 ### Network
 
+- [Hierarchical Network Modal]()
 - [TCP](/network/http.md)
-- [Http2 features](/network/http2.md)
+- [Http2](/network/http2.md)
 - [Https](/network/https.md)
 - [WebSocket](/network/ws.md)
 

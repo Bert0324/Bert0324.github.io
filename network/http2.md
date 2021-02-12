@@ -13,10 +13,10 @@ In Http1.1, the transmission is parallel, therefore next file has to wait to be 
 Traditionally, when the client request index.html, server can only send index.html. But in Http2, the server knows if the client load index.html, some resources, such as css or JS file will be requested, server can initiatively send these. For example, in Nginx:
 
 ```nginx
-    location / {
-      root   /usr/share/nginx/html;
-      index  index.html index.htm;
-      http2_push /style.css;
-      http2_push /app.js;
-    }
+location / {
+    root   /usr/share/nginx/html;
+    index  index.html index.htm;
+    http2_push /style.css;
+    http2_push /app.js;
+}
 ```
