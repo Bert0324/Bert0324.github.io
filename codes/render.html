@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>web render block</title>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+		var t1 = Date.now();
+	</script>
+	<link 
+		href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" 
+		rel="stylesheet"
+		media="none"
+		onload="this.media='all'"
+	/>
+  </head>
+  <body>
+	  <div>
+		  <h1 class="text-primary">test</h1>
+	  </div>
+  </body>
+  <script>
+	console.log(Date.now() - t1);
+  </script>
+</html>

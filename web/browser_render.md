@@ -2,15 +2,13 @@
 
 ## Browser Structure
 
-Before talking about the steps of browser rendering, it's important to know modern
-browser's structure.
+Before talking about the steps of browser rendering, it's important to know modern browser's structure.
 
-There is an image showing FF's structure:
+There is an image showing Firefox's structure:
 
 <img src="../assets/browser_structure.png" width="400"/>
 
-Safari and Chrome use Webkit as their rendering engine instead of
-Gecko.
+Safari and Chrome use Webkit as their rendering engine instead of Gecko.
 
 Safari uses JavaScriptCore as their JS engine, while Chrome use V8.
 
@@ -25,36 +23,99 @@ When a modern browser is rendering a html page, the main steps are as below:
 As we can see, there are 5 main steps:
 
 1. parse HTML to DOM Tree.
-2. Simultaneous with step 1, parse style to CSSOM Tree.
-3. Combine DOM Tree and CSSOM Tree to Render Tree.
+2. simultaneously, parse style files to style rules.
+3. combine DOM Tree and style rules to Render Tree.
 4. calculate layout and style, such as position, size, color.
 5. render each Render Tree node in the screen.
 
-## Block
+## Block DOM parsing or rendering
 
-When browser meets a `<script>` tag ( or JS ), it will block parsing DOM, and next JS execution until the script finished. Besides, browser will render parsed DOM before this `<script>` ( No one want to look an empty page for a long time).
+When browser meets a `<script>` tag, it will block parsing DOM and next JS execution until the script is loaded. 
 
-If browser meets a `<link>` ( or other CSS ) tag, it will keep parsing DOM, block Render, block next execution of JS script.
+During this time, browser will render parsed DOM before this `<script>` in order to avoid wasting waiting time.
+
+As a contrast, if browser meets a `<link>` tag, it will keep parsing DOM, block Render, block next execution of JS script, like as below:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>web render block</title>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+		var t1 = Date.now();
+	</script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">
+  </head>
+  <body>
+	  <div>
+		  <h1 class="text-primary">test</h1>
+	  </div>
+  </body>
+  <script>
+	// there will be a long time
+	console.log(Date.now() - t1);
+  </script>
+</html>
+```
+
+If inspecting facebook's index html file, we can see most of `<link>` are put ahead of `<body>`, and most of `<script>` are on the bottom.
+
+The reason is tha `<script>` block DOM parsing, `<link>` is not.
+
+## CSS import without blocking rendering
+
+Firstly, setting `link`'s `media` as `none`, this property can guarantee this CSS can be loaded without blocking rendering.
+
+Next, when it is loaded, setting the `media` to `all`. Like as below:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>web render block</title>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+		var t1 = Date.now();
+	</script>
+	<link 
+		href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" 
+		rel="stylesheet"
+		media="none"
+		onload="this.media='all'"
+	/>
+  </head>
+  <body>
+	  <div>
+		  <h1 class="text-primary">test</h1>
+	  </div>
+  </body>
+  <script>
+	console.log(Date.now() - t1);
+  </script>
+</html>
+```
+
+- Notice: It may lead screen's style rules to change multiple times in a short time. 
+
+## JS import without blocking DOM parsing
+
+We can two properties `async` and `defer` to control it. Their differences are as below:
+
+<img src="../assets/script_defer_async.png" width="600px"/>
 
 ## Reflow and Repaint
 
-Reflow, or Relayout, means the size of node has changed, in this way, render engine has to recalculate a large part of or total Render Tree.
+Reflow, or Relayout, means the size of node has been changed, therefore the render engine needs to recalculate a large part of or total Render Tree.
 
 Repaint, such as set `visibility: hidden` or change font color, doesn't include the change of size, which means it will only impacts a part of Render Tree, not involve others.
 
-In some cases, such as changing elements' style at batch, browser will accumulate the operations changing element's style, and execute them at once, which is called increment reflow or asynchronize reflow.  
+In some cases, such as changing elements' style at batch, browser will accumulate the operations changing element's style, and execute them at once, which is called increment reflow or asynchronize reflow.
 
-## Practice
+## Reference
 
-### `<script>`
-
-The Demo is in [here](https://github.com/Bert0324/browser_render_demo). We can notice whether page's DOM parsing, Rendering, JS execution is blocked via observing page's changing.
-
-In `/static/1.html` and `/static/2.html`, we can see `<script>` can block DOM parsing by checking whether DOM is `null`.
-
-Except it, we can see the `div` is rendered when the script blocks
-the render, it means `<script>` trigger rendering.
-
-### `<link>`
-
-In `/static/3.html`'s console, we can see the `div` can be logged in the console while it have not be rendered. It means CSS won't block DOM parsing.
+- <https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work>
+- <https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css>
+- <https://cloud.tencent.com/developer/article/1370715>
