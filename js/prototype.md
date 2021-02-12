@@ -18,7 +18,7 @@ That prototype object has a prototype of its own, and so on until an object is r
 
 The link looks like as below:
 
-<img src="../assets/protype_chain.png" width="400"/>
+<img src="../assets/prototype_chain.png" />
 
 There is an example to use prototype to inherit properties:
 

@@ -71,7 +71,7 @@ We need to split whole objects to Value Objects.
 
 The [jQuery.extend](https://github.com/jquery/jquery/blob/master/src/core.js) as the example:
 
-```JavaScript
+```js
 jQuery.extend = jQuery.fn.extend = function() {
 	var options, name, src, copy, copyIsArray, clone,
 		target = arguments[ 0 ] || {},

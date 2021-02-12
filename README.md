@@ -9,16 +9,15 @@ The place I can organize my thoughts and review knowledge.
 - [`this`](/js/this.md)
 - [prototype](/js/prototype.md)
 - [Number](/js/number.md)
-- [Deep copy and Shallow copy in JS](/js/object_copy.md)
 - [For Loop](/js/for_loop.md)
 - [Closure](/js/closure.md)
 - [Promise](/js/promise.md)
 - [Generator](/js/generator.md)
 - [Event Loop](/js/event_loop.md)
+- [Module](/js/module.md)
 
 ### Node.js
 
-- [Node.js Modules](/js/node_mo.md)
 - [Node.js Stream and Buffer](/js/stream_buffer.md)
 
 ### Browser
@@ -31,7 +30,7 @@ The place I can organize my thoughts and review knowledge.
 - [Web cache](/web/web_cache.md)
 - [Web security](/web/web_security.md)
 - [WebAssembly](/web/wasm.md)
-- [`performance`](/web/performance.md)
+- [Web Performance](/web/performance.md)
 - [WebRTC]()
 
 ### CSS
@@ -51,6 +50,7 @@ The place I can organize my thoughts and review knowledge.
 - [Suspense with lazy](/react/lazy_load.md)
 - [Single page SSR](/react/ssr.md)
 - [Isomorphic](/react/isomorphic.md)
+- [Route](/react/route.md)
 
 ### Vue
 
@@ -60,13 +60,13 @@ The place I can organize my thoughts and review knowledge.
 
 ### Practice
 
-- [`slice`, `substr` and `substring`](/practical/string_process.md)
+- [Deep copy and Shallow copy](/js/object_copy.md)
+- [slice, substr and substring](/practical/string_process.md)
 - [Flat an Array](/practical/flat_array.md)
 - [Throttle and debounce](/practical/debounce_throttle.md)
 - [Event Proxy](/practical/events_proxy.md)
 - [Cross Domain](/practical/cross_domain.md)
-- [Draw a Triangle By CSS](/practical/triangle.md)
-- [Function Expression](/practical/function_expression.md)
+- [Memory Leak](/practical/memory_leak.md)
 
 ### Other
 
