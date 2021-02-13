@@ -15,10 +15,7 @@ The place I can organize my thoughts and review knowledge.
 - [Generator](/js/generator.md)
 - [Event Loop](/js/event_loop.md)
 - [Module](/js/module.md)
-
-### Node.js
-
-- [Node.js Stream and Buffer](/js/stream_buffer.md)
+- [Stream and Buffer](/js/stream_buffer.md)
 
 ### Browser
 
@@ -38,7 +35,6 @@ The place I can organize my thoughts and review knowledge.
 
 - [Box model](/css/box_model.md)
 - [Pseudo Classes](/css/pseudo_classes.md)
-- [block, inline and inline-block element]()
 - [GPU Acceleration]()
 
 ### React

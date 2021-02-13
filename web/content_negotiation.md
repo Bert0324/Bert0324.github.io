@@ -6,7 +6,11 @@
 
 ## `Vary`
 
+- url + specific http headers = cached resource
+
 ## Not Match
+
+`406 Not acceptable`
 
 ## Reference
 

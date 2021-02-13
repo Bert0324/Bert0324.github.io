@@ -114,8 +114,15 @@ Repaint, such as set `visibility: hidden` or change font color, doesn't include 
 
 In some cases, such as changing elements' style at batch, browser will accumulate the operations changing element's style, and execute them at once, which is called increment reflow or asynchronize reflow.
 
+## `DOMContentLoaded` and `load`
+
+- The `DOMContentLoaded` event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
+
+- The `load` event is fired when the whole page has loaded, including all dependent resources such as stylesheets and images. 
+
 ## Reference
 
 - <https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work>
 - <https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css>
 - <https://cloud.tencent.com/developer/article/1370715>
+- <https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event>
