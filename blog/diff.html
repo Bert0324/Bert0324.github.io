@@ -71,7 +71,7 @@ const diffLeafs = function (beforeLeaf, afterLeaf) {
 <h3 id="tree-diff">Tree Diff</h3>
 <p>In practice, it&#39;s rare to operate DOM crossing its tree level.</p>
 <p>In this way, when moving an element to another element in different level, React won&#39;t move the element, instead, React will remove it and recreate it. The process is as below:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/tree_diff.png' width="400"/>
+<img src="../assets/tree_diff.png" width="400"/>
 
 <p>tips:</p>
 <ul>
@@ -81,7 +81,7 @@ const diffLeafs = function (beforeLeaf, afterLeaf) {
 <h3 id="component-diff">Component Diff</h3>
 <p>React assumes that the same components will generate the same DOM structure, in contrast, different components will generate a different DOM structure.</p>
 <p>The component like as below is that we need to avoid when we using React:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/com_diff.png' width="400"/>
+<img src="../assets/com_diff.png" width="400"/>
 
 <p>tips:</p>
 <ul>
@@ -91,7 +91,7 @@ const diffLeafs = function (beforeLeaf, afterLeaf) {
 <h3 id="element-diff">Element Diff</h3>
 <p>For elements they are in the one level and same list, they can be recognized by an unique key.</p>
 <p>For those elements they changed their position, React use a principle <code>previousIndex &gt; currentIndex =&gt; Not Move</code> to judge which elements need to be moved.</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/element_diff.png' width="400"/>
+<img src="../assets/element_diff.png" width="400"/>
 
 <p>In this situation, all elements except D will be moved. Obviously, it&#39;s a huge cost of performance.</p>
 <p>tips:</p>

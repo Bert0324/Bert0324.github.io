@@ -123,7 +123,7 @@ These 2 life cycles won't be impacted in React Fiber, because in old version, th
 ## Hooks
 
 New concept in React v16.8, in my understanding, it is for Stateless Components to access life cycles in React.
-See more in [Hooks](./hooks.md) and [hook API](https://reactjs.org/docs/hooks-reference.html).
+See more in [Hooks](https://github.com/Bert0324/code-playground/blob/master/react/hooks.md) and [hook API](https://reactjs.org/docs/hooks-reference.html).
 
 ## End
 

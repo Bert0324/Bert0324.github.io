@@ -32,11 +32,11 @@
 <p>Each object has a private property which holds a link to another object called its prototype.</p>
 <p>The constructor function has <code>__proto__</code> and its instance has <code>prototype</code> property, they point to the same prototype object.</p>
 <p>The basic structure is as below:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/base_prototype.png' width="400"/>
+<img src="../assets/base_prototype.png" width="400"/>
 
 <p>That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. By definition, null has no prototype, and acts as the final link in this prototype chain.</p>
 <p>The link looks like as below:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/prototype_chain.png' />
+<img src="../assets/prototype_chain.png" />
 
 <p>There is an example to use prototype to inherit properties:</p>
 <pre><code class="language-ts">function Person() {
@@ -105,7 +105,7 @@ const man = new Man();
 <h2 id="class"><code>class</code></h2>
 <p>JavaScript classes, introduced in ECMAScript 2015, are primarily syntactical sugar over JavaScript&#39;s existing prototype-based inheritance.</p>
 <p>The class syntax does not introduce a new object-oriented inheritance model to JavaScript.</p>
-<p>It&#39;s always used with <code>new</code>, see more in <a href="/js/this.md">here</a></p>
+<p>It&#39;s always used with <code>new</code>, see more in </p>
 <h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain</a></li>

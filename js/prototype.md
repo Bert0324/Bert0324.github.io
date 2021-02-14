@@ -110,7 +110,7 @@ JavaScript classes, introduced in ECMAScript 2015, are primarily syntactical sug
 
 The class syntax does not introduce a new object-oriented inheritance model to JavaScript.
 
-It's always used with `new`, see more in [here](/js/this.md)
+It's always used with `new`, see more in [here](https://github.com/Bert0324/code-playground/blob/master/js/this.md)
 
 ## Reference
 

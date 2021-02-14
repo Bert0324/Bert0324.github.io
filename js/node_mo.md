@@ -14,7 +14,7 @@ First of all, let's see how many global variables in Node.js:
 
 ### Class: Buffer
 
-Used to handle binary data. see more in [here](./stream_buffer.md).
+Used to handle binary data. see more in [here](https://github.com/Bert0324/code-playground/blob/master/js/stream_buffer.md).
 
 ### Timer
 
@@ -112,4 +112,4 @@ found, it will throwing an error not found.
 Modules are cached in this object when they are required. By deleting a key value from this object,
 the next require will reload the module. Note that this does not apply to native addons, for which reloading will result in an error.
 
-It can be used for hot reload, see more in [here](../modularization/hot_reload.md).
+It can be used for hot reload, see more in [here](https://github.com/Bert0324/code-playground/blob/master/modularization/hot_reload.md).

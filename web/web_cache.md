@@ -16,7 +16,7 @@ The order of a request passing web cache methods is as below:
 
 Along with emergence of ES6, SW is a newer and more powerful way to do it, if ignoring its compatibility.
 
-It can proxy whole requests to check whether needs to update by [caches](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/caches), see more in my blog [Service Worker](https://github.com/Bert0324/js-playground/blob/master/web/service_worker.md).
+It can proxy whole requests to check whether needs to update by [caches](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/caches), see more in my blog [Service Worker](https://github.com/Bert0324/code-playground/blob/master/web/service_worker.md).
 
 ### Http caching
 
