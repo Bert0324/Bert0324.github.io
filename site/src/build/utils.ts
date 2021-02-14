@@ -1,14 +1,9 @@
-import { minify } from 'html-minifier';
 import marked from 'marked';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { projectRootPath, remoteResourceUrl } from './config';
 import { IFileContent } from './fetchFile';
 
-export const minifyHTML = (html: string) => minify(html, {
-	collapseInlineTagWhitespace: true,
-	collapseWhitespace: true,
-	removeAttributeQuotes: true
-});
+export const minifyHTML = (html: string) => html;
 
 export const processMarkdown = (markdown: string) => {	
 	return `<article class="markdown-body">${
@@ -36,11 +31,12 @@ export const generateHTMLFiles = (index: string, about: string) => {
 	}));
 	ret.forEach((item => {
 		if (item.content) return item;
-		try {
-			item.content = readFileSync(`${projectRootPath}${map[item.key]}`, 'utf-8');
-		} catch (e) {
-			console.log(e);
-			item.content = '';
+		if (existsSync(`${projectRootPath}${map[item.key]}`)) {
+			try {
+				item.content = readFileSync(`${projectRootPath}${map[item.key]}`, 'utf-8');
+			} catch (e) {
+				console.log(e);
+			}
 		}
 		return item;
 	}))
