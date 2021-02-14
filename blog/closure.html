@@ -25,50 +25,36 @@
 </head>
 
 <body>
-	<div><div># Closure
-
-## JS action scope
-
-Compared to other language, in JS, lower action scope can directly visit higher action scope's variables.
-For example:
-
-```js
-let a = 1;
+	<div><div><article class="markdown-body"><h1 id="closure">Closure</h1>
+<h2 id="js-action-scope">JS action scope</h2>
+<p>Compared to other language, in JS, lower action scope can directly visit higher action scope&#39;s variables.
+For example:</p>
+<pre><code class="language-js">let a = 1;
 (function (){
   console.log(a);   //1
 })();
 
 (function (){
     let a = 2;
-    //define the same name variables won't impact higher action scope
+    //define the same name variables won&#39;t impact higher action scope
   console.log(a);   //2
 })();
 
 console.log(a);     //1
-```
-
-### Temporal dead zone
-
-In addition, in ES6, for `let`, there is a new feature named temporal dead zone, which means we can't use variables before we have declared it. In last example, we can change to:
-
-```js
-let a = 1;
+</code></pre>
+<h3 id="temporal-dead-zone">Temporal dead zone</h3>
+<p>In addition, in ES6, for <code>let</code>, there is a new feature named temporal dead zone, which means we can&#39;t use variables before we have declared it. In last example, we can change to:</p>
+<pre><code class="language-js">let a = 1;
 (function (){
   console.log(a);   //throw Error: a is not defined
   let a = 2;
 })();
-```
-
-## Access Data in Closure
-
-As we can see, in last example, lower action scope is able to visit higher action scope's variables, but how can higher action scope visit lower action scope?
-
-In JS, once function finished and GC found its variables were not refer in other places， reference count equaled 0, the variable's memory address would be recycled, so user cannot get this variables' value any more.
-
-Therefore, closure offers a way to keep temporary variables, an example as below:
-
-```js
-let closure = (function (){
+</code></pre>
+<h2 id="access-data-in-closure">Access Data in Closure</h2>
+<p>As we can see, in last example, lower action scope is able to visit higher action scope&#39;s variables, but how can higher action scope visit lower action scope?</p>
+<p>In JS, once function finished and GC found its variables were not refer in other places， reference count equaled 0, the variable&#39;s memory address would be recycled, so user cannot get this variables&#39; value any more.</p>
+<p>Therefore, closure offers a way to keep temporary variables, an example as below:</p>
+<pre><code class="language-js">let closure = (function (){
     let a = 1;  
     let keep = function(){
         console.log(a);
@@ -77,10 +63,9 @@ let closure = (function (){
     return keep;
 })();
 closure();  //2
-```
-
-Now we can visit the variable's memory address in the higher action scope.
-</div></div>
+</code></pre>
+<p>Now we can visit the variable&#39;s memory address in the higher action scope.</p>
+</article></div></div>
 </body>
 
 </html>

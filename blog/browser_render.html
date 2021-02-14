@@ -25,135 +25,110 @@
 </head>
 
 <body>
-	<div><div># Browser Rendering
+	<div><div><article class="markdown-body"><h1 id="browser-rendering">Browser Rendering</h1>
+<h2 id="browser-structure">Browser Structure</h2>
+<p>Before talking about the steps of browser rendering, it&#39;s important to know modern browser&#39;s structure.</p>
+<p>There is an image showing Firefox&#39;s structure:</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
 
-## Browser Structure
+<p>Safari and Chrome use Webkit as their rendering engine instead of Gecko.</p>
+<p>Safari uses JavaScriptCore as their JS engine, while Chrome use V8.</p>
+<p><a href="https://github.com/WebKit/webkit">Webkit</a> is an open source rendering engine originally designed for Linux, and Apple transplanted it to Mac and Windows.</p>
+<h2 id="process">Process</h2>
+<p>When a modern browser is rendering a html page, the main steps are as below:</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
 
-Before talking about the steps of browser rendering, it's important to know modern browser's structure.
+<p>As we can see, there are 5 main steps:</p>
+<ol>
+<li>parse HTML to DOM Tree.</li>
+<li>simultaneously, parse style files to style rules.</li>
+<li>combine DOM Tree and style rules to Render Tree.</li>
+<li>calculate layout and style, such as position, size, color.</li>
+<li>render each Render Tree node in the screen.</li>
+</ol>
+<h2 id="block-dom-parsing-or-rendering">Block DOM parsing or rendering</h2>
+<p>When browser meets a <code>&lt;script&gt;</code> tag, it will block parsing DOM and next JS execution until the script is loaded. </p>
+<p>During this time, browser will render parsed DOM before this <code>&lt;script&gt;</code> in order to avoid wasting waiting time.</p>
+<p>As a contrast, if browser meets a <code>&lt;link&gt;</code> tag, it will keep parsing DOM, block Render, block next execution of JS script, like as below:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;title&gt;web render block&lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;script&gt;
+        var t1 = Date.now();
+    &lt;/script&gt;
+    &lt;link href=&quot;https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div&gt;
+          &lt;h1 class=&quot;text-primary&quot;&gt;test&lt;/h1&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+  &lt;script&gt;
+    // there will be a long time
+    console.log(Date.now() - t1);
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p>If inspecting facebook&#39;s index html file, we can see most of <code>&lt;link&gt;</code> are put ahead of <code>&lt;body&gt;</code>, and most of <code>&lt;script&gt;</code> are on the bottom.</p>
+<p>The reason is tha <code>&lt;script&gt;</code> block DOM parsing, <code>&lt;link&gt;</code> is not.</p>
+<h2 id="css-import-without-blocking-rendering">CSS import without blocking rendering</h2>
+<p>Firstly, setting <code>link</code>&#39;s <code>media</code> as <code>none</code>, this property can guarantee this CSS can be loaded without blocking rendering.</p>
+<p>Next, when it is loaded, setting the <code>media</code> to <code>all</code>. Like as below:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;title&gt;web render block&lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;script&gt;
+        var t1 = Date.now();
+    &lt;/script&gt;
+    &lt;link 
+        href=&quot;https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css&quot; 
+        rel=&quot;stylesheet&quot;
+        media=&quot;none&quot;
+        onload=&quot;this.media=&#39;all&#39;&quot;
+    /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div&gt;
+          &lt;h1 class=&quot;text-primary&quot;&gt;test&lt;/h1&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+  &lt;script&gt;
+    console.log(Date.now() - t1);
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>Notice: It may lead screen&#39;s style rules to change multiple times in a short time. </li>
+</ul>
+<h2 id="js-import-without-blocking-dom-parsing">JS import without blocking DOM parsing</h2>
+<p>We can two properties <code>async</code> and <code>defer</code> to control it. Their differences are as below:</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="600px"/>
 
-There is an image showing Firefox's structure:
-
-<img src="../assets/browser_structure.png" width="400"/>
-
-Safari and Chrome use Webkit as their rendering engine instead of Gecko.
-
-Safari uses JavaScriptCore as their JS engine, while Chrome use V8.
-
-[Webkit](https://github.com/WebKit/webkit) is an open source rendering engine originally designed for Linux, and Apple transplanted it to Mac and Windows.
-
-## Process
-
-When a modern browser is rendering a html page, the main steps are as below:
-
-<img src="../assets/browser_rendering.png" width="400"/>
-
-As we can see, there are 5 main steps:
-
-1. parse HTML to DOM Tree.
-2. simultaneously, parse style files to style rules.
-3. combine DOM Tree and style rules to Render Tree.
-4. calculate layout and style, such as position, size, color.
-5. render each Render Tree node in the screen.
-
-## Block DOM parsing or rendering
-
-When browser meets a `<script>` tag, it will block parsing DOM and next JS execution until the script is loaded. 
-
-During this time, browser will render parsed DOM before this `<script>` in order to avoid wasting waiting time.
-
-As a contrast, if browser meets a `<link>` tag, it will keep parsing DOM, block Render, block next execution of JS script, like as below:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>web render block</title>
-    <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script>
-		var t1 = Date.now();
-	</script>
-    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">
-  </head>
-  <body>
-	  <div>
-		  <h1 class="text-primary">test</h1>
-	  </div>
-  </body>
-  <script>
-	// there will be a long time
-	console.log(Date.now() - t1);
-  </script>
-</html>
-```
-
-If inspecting facebook's index html file, we can see most of `<link>` are put ahead of `<body>`, and most of `<script>` are on the bottom.
-
-The reason is tha `<script>` block DOM parsing, `<link>` is not.
-
-## CSS import without blocking rendering
-
-Firstly, setting `link`'s `media` as `none`, this property can guarantee this CSS can be loaded without blocking rendering.
-
-Next, when it is loaded, setting the `media` to `all`. Like as below:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>web render block</title>
-    <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script>
-		var t1 = Date.now();
-	</script>
-	<link 
-		href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" 
-		rel="stylesheet"
-		media="none"
-		onload="this.media='all'"
-	/>
-  </head>
-  <body>
-	  <div>
-		  <h1 class="text-primary">test</h1>
-	  </div>
-  </body>
-  <script>
-	console.log(Date.now() - t1);
-  </script>
-</html>
-```
-
-- Notice: It may lead screen's style rules to change multiple times in a short time. 
-
-## JS import without blocking DOM parsing
-
-We can two properties `async` and `defer` to control it. Their differences are as below:
-
-<img src="../assets/script_defer_async.png" width="600px"/>
-
-## Reflow and Repaint
-
-Reflow, or Relayout, means the size of node has been changed, therefore the render engine needs to recalculate a large part of or total Render Tree.
-
-Repaint, such as set `visibility: hidden` or change font color, doesn't include the change of size, which means it will only impacts a part of Render Tree, not involve others.
-
-In some cases, such as changing elements' style at batch, browser will accumulate the operations changing element's style, and execute them at once, which is called increment reflow or asynchronize reflow.
-
-## `DOMContentLoaded` and `load`
-
-- The `DOMContentLoaded` event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
-
-- The `load` event is fired when the whole page has loaded, including all dependent resources such as stylesheets and images. 
-
-## Reference
-
-- <https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work>
-- <https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css>
-- <https://cloud.tencent.com/developer/article/1370715>
-- <https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event>
-</div></div>
+<h2 id="reflow-and-repaint">Reflow and Repaint</h2>
+<p>Reflow, or Relayout, means the size of node has been changed, therefore the render engine needs to recalculate a large part of or total Render Tree.</p>
+<p>Repaint, such as set <code>visibility: hidden</code> or change font color, doesn&#39;t include the change of size, which means it will only impacts a part of Render Tree, not involve others.</p>
+<p>In some cases, such as changing elements&#39; style at batch, browser will accumulate the operations changing element&#39;s style, and execute them at once, which is called increment reflow or asynchronize reflow.</p>
+<h2 id="domcontentloaded-and-load"><code>DOMContentLoaded</code> and <code>load</code></h2>
+<ul>
+<li><p>The <code>DOMContentLoaded</code> event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.</p>
+</li>
+<li><p>The <code>load</code> event is fired when the whole page has loaded, including all dependent resources such as stylesheets and images. </p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work">https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css">https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1370715">https://cloud.tencent.com/developer/article/1370715</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event">https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event</a></li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

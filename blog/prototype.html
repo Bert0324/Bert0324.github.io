@@ -25,90 +25,62 @@
 </head>
 
 <body>
-	<div><div># Prototype
+	<div><div><article class="markdown-body"><h1 id="prototype">Prototype</h1>
+<p>Unlike some of class-based languages, like Java and Cpp, JS uses prototype chain to implement inheritance.</p>
+<p>JavaScript only has one construct: objects.</p>
+<h2 id="__proto__-and-prototype"><code>__proto__</code> and <code>prototype</code></h2>
+<p>Each object has a private property which holds a link to another object called its prototype.</p>
+<p>The constructor function has <code>__proto__</code> and its instance has <code>prototype</code> property, they point to the same prototype object.</p>
+<p>The basic structure is as below:</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
 
-Unlike some of class-based languages, like Java and Cpp, JS uses prototype chain to implement inheritance.
+<p>That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. By definition, null has no prototype, and acts as the final link in this prototype chain.</p>
+<p>The link looks like as below:</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' />
 
-JavaScript only has one construct: objects.
-
-## `__proto__` and `prototype`
-
-Each object has a private property which holds a link to another object called its prototype.
-
-The constructor function has `__proto__` and its instance has `prototype` property, they point to the same prototype object.
-
-The basic structure is as below:
-
-<img src="../assets/base_prototype.png" width="400"/>
-
-That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. By definition, null has no prototype, and acts as the final link in this prototype chain.
-
-The link looks like as below:
-
-<img src="../assets/prototype_chain.png" />
-
-There is an example to use prototype to inherit properties:
-
-```ts
-function Person() {
-    this.name = 'Bert';
+<p>There is an example to use prototype to inherit properties:</p>
+<pre><code class="language-ts">function Person() {
+    this.name = &#39;Bert&#39;;
 }
 
 function Man() {
-    this.gender = 'male';
+    this.gender = &#39;male&#39;;
 }
 
 Man.prototype = new Person();
 Man.prototype.constructor = Man;
 
 const man = new Man();
-```
-
-### `instanceof` and `Object.isPrototypeOf`
-
-`isPrototypeOf()` differs from the `instanceof` operator. In the expression "object instanceof AFunction", the object prototype chain is checked against AFunction.prototype, not against AFunction itself.
-
-```ts
-a instanceof A
+</code></pre>
+<h3 id="instanceof-and-objectisprototypeof"><code>instanceof</code> and <code>Object.isPrototypeOf</code></h3>
+<p><code>isPrototypeOf()</code> differs from the <code>instanceof</code> operator. In the expression &quot;object instanceof AFunction&quot;, the object prototype chain is checked against AFunction.prototype, not against AFunction itself.</p>
+<pre><code class="language-ts">a instanceof A
 A.prototype.isPrototypeOf(a);
 
 a.__proto__ === A.prototype
-```
-
-## `constructor`
-
-The `constructor` property returns a reference to the Object constructor function that created the instance object.
-
-Note that the value of this property is a reference to the function itself, not a string containing the function's name.
-
-There is an example to use it:
-
-```ts
-function Person() {
-    this.name = 'Bert';
+</code></pre>
+<h2 id="constructor"><code>constructor</code></h2>
+<p>The <code>constructor</code> property returns a reference to the Object constructor function that created the instance object.</p>
+<p>Note that the value of this property is a reference to the function itself, not a string containing the function&#39;s name.</p>
+<p>There is an example to use it:</p>
+<pre><code class="language-ts">function Person() {
+    this.name = &#39;Bert&#39;;
 }
 
 function Man() {
     Person.call(this);
-    this.gender = 'male';
+    this.gender = &#39;male&#39;;
 }
 
 const man = new Man();
-```
-
-Notice: Unlike the object defined in `prototype` which will be shared within its all instances, the properties defined in `constructor` will create an object in each instantiation.
-
-## Combination Inheritance
-
-Combination inheritance combines prototype chaining and constructor stealing to get the best of each approach.
-
-The basic idea is to use prototype chaining to inherit properties and methods on the prototype, and to use constructor stealing to inherit instance properties.
-
-This allows function reuse by defining methods on the prototype and allows each instance to have its own properties. Consider the following:
-
-```ts
-function Person() {
-    this.name = 'Bert';
+</code></pre>
+<p>Notice: Unlike the object defined in <code>prototype</code> which will be shared within its all instances, the properties defined in <code>constructor</code> will create an object in each instantiation.</p>
+<h2 id="combination-inheritance">Combination Inheritance</h2>
+<p>Combination inheritance combines prototype chaining and constructor stealing to get the best of each approach.</p>
+<p>The basic idea is to use prototype chaining to inherit properties and methods on the prototype, and to use constructor stealing to inherit instance properties.</p>
+<p>This allows function reuse by defining methods on the prototype and allows each instance to have its own properties. Consider the following:</p>
+<pre><code class="language-ts">function Person() {
+    this.name = &#39;Bert&#39;;
 }
 
 Person.prototype.showName = function() {
@@ -118,7 +90,7 @@ Person.prototype.showName = function() {
 function Man() {
     // inherit properties of Person
     Person.call(this);
-    this.gender = 'male';
+    this.gender = &#39;male&#39;;
 }
 
 Man.prototype = new Person();
@@ -129,24 +101,20 @@ Man.prototype.showGender = function() {
 }
 
 const man = new Man();
-```
-
-## `class`
-
-JavaScript classes, introduced in ECMAScript 2015, are primarily syntactical sugar over JavaScript's existing prototype-based inheritance.
-
-The class syntax does not introduce a new object-oriented inheritance model to JavaScript.
-
-It's always used with `new`, see more in [here](/js/this.md)
-
-## Reference
-
-- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain>
-- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor>
-- <https://juejin.im/post/5c820d0e6fb9a04a0c2f3e12>
-- <https://juejin.im/post/5bf5580c51882511a852881f>
-- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>
-</div></div>
+</code></pre>
+<h2 id="class"><code>class</code></h2>
+<p>JavaScript classes, introduced in ECMAScript 2015, are primarily syntactical sugar over JavaScript&#39;s existing prototype-based inheritance.</p>
+<p>The class syntax does not introduce a new object-oriented inheritance model to JavaScript.</p>
+<p>It&#39;s always used with <code>new</code>, see more in <a href="/js/this.md">here</a></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor</a></li>
+<li><a href="https://juejin.im/post/5c820d0e6fb9a04a0c2f3e12">https://juejin.im/post/5c820d0e6fb9a04a0c2f3e12</a></li>
+<li><a href="https://juejin.im/post/5bf5580c51882511a852881f">https://juejin.im/post/5bf5580c51882511a852881f</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes</a></li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

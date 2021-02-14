@@ -25,137 +25,122 @@
 </head>
 
 <body>
-	<div><div># SSR
-
-## Advantages of SSR
-
-1. For me, the biggest reason is SEO. Although now Google started supporting JS in searching, 
-but pure HTML is always better for SEO. 
-
-2. Shorten first page response time. Don't need to waste time in downloading a lots of js files and css files to 
-show the page, users can see the page quickly.
-
-## Why is SSR possible in React
-
-I think the main reason is the virtual DOM and node.js. Obviously, in node.js, there is no DOM object. React does't operate 
+	<div><div><article class="markdown-body"><h1 id="ssr">SSR</h1>
+<h2 id="advantages-of-ssr">Advantages of SSR</h2>
+<ol>
+<li><p>For me, the biggest reason is SEO. Although now Google started supporting JS in searching, 
+but pure HTML is always better for SEO. </p>
+</li>
+<li><p>Shorten first page response time. Don&#39;t need to waste time in downloading a lots of js files and css files to 
+show the page, users can see the page quickly.</p>
+</li>
+</ol>
+<h2 id="why-is-ssr-possible-in-react">Why is SSR possible in React</h2>
+<p>I think the main reason is the virtual DOM and node.js. Obviously, in node.js, there is no DOM object. React does&#39;t operate 
 DOM directly too, it use VDOM to generate and change real DOM. So, in server side, node.js is able to generate a HTML template,
-provided that there is no operation involving Browser Object or DOM.
-
-## Key Points
-
-We use Node.js in server side to generate a HTML instead of a Browser JS engine, there are some things I think is worth to notice:
-
-1. No direct DOM and Browser Object operation.
-
-2. Each request has its own status, instead of sharing.
-
-3. Transfer Browser's JS to Node.js
-
-## SSR in React
-
-### static file server
-
-I will start two servers, one is in charge of restful API, and another is charge of static files and SSR.
-React has its specific API for SSR. The static files server based on express like as below:
-
-```js
-import React from "react";
-import ReactDomServer from 'react-dom/server';
-import App from '../src/app'
-import express from 'express';
-import path from 'path';
-import fs from 'fs';
+provided that there is no operation involving Browser Object or DOM.</p>
+<h2 id="key-points">Key Points</h2>
+<p>We use Node.js in server side to generate a HTML instead of a Browser JS engine, there are some things I think is worth to notice:</p>
+<ol>
+<li><p>No direct DOM and Browser Object operation.</p>
+</li>
+<li><p>Each request has its own status, instead of sharing.</p>
+</li>
+<li><p>Transfer Browser&#39;s JS to Node.js</p>
+</li>
+</ol>
+<h2 id="ssr-in-react">SSR in React</h2>
+<h3 id="static-file-server">static file server</h3>
+<p>I will start two servers, one is in charge of restful API, and another is charge of static files and SSR.
+React has its specific API for SSR. The static files server based on express like as below:</p>
+<pre><code class="language-js">import React from &quot;react&quot;;
+import ReactDomServer from &#39;react-dom/server&#39;;
+import App from &#39;../src/app&#39;
+import express from &#39;express&#39;;
+import path from &#39;path&#39;;
+import fs from &#39;fs&#39;;
 const app = express();
 const port = 3000;
 
 
-const SSR = (req, res, next)=>{
-    if (req.url === '/index' || req.url === '/'){
-        fs.readFile(path.resolve('./build/index.html'), 'utf8', (err, data)=>{
+const SSR = (req, res, next)=&gt;{
+    if (req.url === &#39;/index&#39; || req.url === &#39;/&#39;){
+        fs.readFile(path.resolve(&#39;./build/index.html&#39;), &#39;utf8&#39;, (err, data)=&gt;{
             if (err){
                 console.log(err);
-                return res.status(500).send('Server Error');
+                return res.status(500).send(&#39;Server Error&#39;);
             } else {
-                return res.send(data.replace('<div id="root"></div>',
-                        `<div id="root">${ReactDomServer.renderToString(<App url={'/index'} env={'node'}/>)}</div>`))
+                return res.send(data.replace(&#39;&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;&#39;,
+                        `&lt;div id=&quot;root&quot;&gt;${ReactDomServer.renderToString(&lt;App url={&#39;/index&#39;} env={&#39;node&#39;}/&gt;)}&lt;/div&gt;`))
             }
         })
     } else {
         return next();
     }
 };
-app.use('/media', express.static(path.resolve('media')));
+app.use(&#39;/media&#39;, express.static(path.resolve(&#39;media&#39;)));
 app.use(SSR);
-app.use(express.static(path.resolve('build')));
-app.use((req, res)=>{
-    res.sendFile(path.resolve('./build/index.html'));
+app.use(express.static(path.resolve(&#39;build&#39;)));
+app.use((req, res)=&gt;{
+    res.sendFile(path.resolve(&#39;./build/index.html&#39;));
 });
-app.listen(port, ()=>{
+app.listen(port, ()=&gt;{
     console.log(`listen on http://localhost:${port}`);
 });
-```
-
-### FrontEnd
-
-in '../src/app', the code is as below:
-
-```js
-//return a function to create a store, because every request need a new store
-const store = ()=>createStore(combineReducers(reducer), compose(
+</code></pre>
+<h3 id="frontend">FrontEnd</h3>
+<p>in &#39;../src/app&#39;, the code is as below:</p>
+<pre><code class="language-js">//return a function to create a store, because every request need a new store
+const store = ()=&gt;createStore(combineReducers(reducer), compose(
     applyMiddleware(thunk),
 ));
 export default function (props) {
     return (
-        <Provider store={store()}>
-            {(()=>{
+        &lt;Provider store={store()}&gt;
+            {(()=&gt;{
                 //this is for SSR
-                if (props.env === 'node'){
+                if (props.env === &#39;node&#39;){
                     return (
-                        <StaticRouter context={{}} location={props.url}>
-                            <Switch>
-                                <Route path={'/index'} component={Index}/>
-                                <Redirect to={'/index'}/>
-                            </Switch>
-                        </StaticRouter>
+                        &lt;StaticRouter context={{}} location={props.url}&gt;
+                            &lt;Switch&gt;
+                                &lt;Route path={&#39;/index&#39;} component={Index}/&gt;
+                                &lt;Redirect to={&#39;/index&#39;}/&gt;
+                            &lt;/Switch&gt;
+                        &lt;/StaticRouter&gt;
                     )
                 } else {
                     //this is for browser
                     return (
-                        <BrowserRouter>
-                            <Switch>
-                            //Page is a dynamic router uses <Suspense> and lazy(), so cannot be render in SSR
-                                {Page('/index', "index.page")}
-                                {Page('/sub1', "sub1.page")}
-                                {Page('/sub1', "sub2.page")}
-                                <Redirect to={'/index'}/>
-                            </Switch>
-                        </BrowserRouter>
+                        &lt;BrowserRouter&gt;
+                            &lt;Switch&gt;
+                            //Page is a dynamic router uses &lt;Suspense&gt; and lazy(), so cannot be render in SSR
+                                {Page(&#39;/index&#39;, &quot;index.page&quot;)}
+                                {Page(&#39;/sub1&#39;, &quot;sub1.page&quot;)}
+                                {Page(&#39;/sub1&#39;, &quot;sub2.page&quot;)}
+                                &lt;Redirect to={&#39;/index&#39;}/&gt;
+                            &lt;/Switch&gt;
+                        &lt;/BrowserRouter&gt;
                     )
                 }
             })()}
-        </Provider>
+        &lt;/Provider&gt;
     )
 };
-```
-
-In server side, `<BrowserRouter>` cannot be used, use `<StaticRouter>` instead. The location property is imperative, without it, it will
-render an empty page in server, and redirect in front end may lead to not SSR.
-
-### Compile server code
-
-Obviously, this code cannot directly run in node.js, so we need to compile it. There is a webpack example:
-
-```js
-const path = require('path');
+</code></pre>
+<p>In server side, <code>&lt;BrowserRouter&gt;</code> cannot be used, use <code>&lt;StaticRouter&gt;</code> instead. The location property is imperative, without it, it will
+render an empty page in server, and redirect in front end may lead to not SSR.</p>
+<h3 id="compile-server-code">Compile server code</h3>
+<p>Obviously, this code cannot directly run in node.js, so we need to compile it. There is a webpack example:</p>
+<pre><code class="language-js">const path = require(&#39;path&#39;);
 
 module.exports = {
-    mode: 'development',
-    target: 'node',
+    mode: &#39;development&#39;,
+    target: &#39;node&#39;,
     entry: {
-        static:"./server/static.js"
+        static:&quot;./server/static.js&quot;
     },
     output: {
-        filename: '[name].js',
+        filename: &#39;[name].js&#39;,
         path: path.resolve(__dirname)
     },
     module: {
@@ -163,30 +148,26 @@ module.exports = {
             test: /\.(js|jsx)?$/,
             exclude: /(node_modules)/,
             use: [{
-                loader: 'babel-loader',
+                loader: &#39;babel-loader&#39;,
                 options: {
-                    presets: ["@babel/preset-react", '@babel/preset-env'],
+                    presets: [&quot;@babel/preset-react&quot;, &#39;@babel/preset-env&#39;],
                 }
             }],
         },{
             test: /\.(css|scss)?$/,
-            use: ['isomorphic-style-loader', {
-                loader: 'css-loader',
+            use: [&#39;isomorphic-style-loader&#39;, {
+                loader: &#39;css-loader&#39;,
                 options: {modules: true}
             }]
         }]
     }
 };
-```
-
-## End
-
-After compile server side code and frontend code, when we start the static files server, we can see `/` and `/index` has been render in server side.
-
-This example does not consider about import images, svg and CSS framework. If you use some of CSS framework such as material-ui, you can find their SSR solution in the official website.
-
-If you have more questions or have better way to do SSR, welcome to leave a message.
-</div></div>
+</code></pre>
+<h2 id="end">End</h2>
+<p>After compile server side code and frontend code, when we start the static files server, we can see <code>/</code> and <code>/index</code> has been render in server side.</p>
+<p>This example does not consider about import images, svg and CSS framework. If you use some of CSS framework such as material-ui, you can find their SSR solution in the official website.</p>
+<p>If you have more questions or have better way to do SSR, welcome to leave a message.</p>
+</article></div></div>
 </body>
 
 </html>

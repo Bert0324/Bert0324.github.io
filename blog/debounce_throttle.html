@@ -25,60 +25,48 @@
 </head>
 
 <body>
-	<div><div># Throttle and Debounce
-
-## Throttle
-
-Thinking about a scenario, there is a button which will send a http request when clicked by a user.
-
-Obviously, if an impatient user clicked it for multiple times at short time, the page would send many unnecessary
-requests to the backend.
-
-One solution is to disable the button until the request got its response, one solution is to throttle the button, which means at certain time, it will send only one request.
-
-There is a implementation.
-
-```JavaScript
-const throttle = (fn, delay)=>{
+	<div><div><article class="markdown-body"><h1 id="throttle-and-debounce">Throttle and Debounce</h1>
+<h2 id="throttle">Throttle</h2>
+<p>Thinking about a scenario, there is a button which will send a http request when clicked by a user.</p>
+<p>Obviously, if an impatient user clicked it for multiple times at short time, the page would send many unnecessary
+requests to the backend.</p>
+<p>One solution is to disable the button until the request got its response, one solution is to throttle the button, which means at certain time, it will send only one request.</p>
+<p>There is a implementation.</p>
+<pre><code class="language-JavaScript">const throttle = (fn, delay)=&gt;{
     let avaliable = true;                //closure to save the timeout task handler
-    return (...args) => {
+    return (...args) =&gt; {
         if (!avaliable) return;
         avaliable = false;
-        setTimeout(()=>{
+        setTimeout(()=&gt;{
             fn.apply(this, args);
             avaliable = true;
         }, delay);
     }
 };
 
-document.getElementsByTagName('button')[0].addEventListener('click', throttle((e)=>{
+document.getElementsByTagName(&#39;button&#39;)[0].addEventListener(&#39;click&#39;, throttle((e)=&gt;{
     console.log(e);
 }, 2000));
-```
-
-## Debounce
-
-Unlike throttle, debounce is to cancel last uncompleted task.
-
-If there is a page which will auto save something after the user make an update, we can debounce the save until
-no more updates for a set period of time. That way we don't spam the save function.
-
-```JavaScript
-const debounce = (fn, delay)=>{
+</code></pre>
+<h2 id="debounce">Debounce</h2>
+<p>Unlike throttle, debounce is to cancel last uncompleted task.</p>
+<p>If there is a page which will auto save something after the user make an update, we can debounce the save until
+no more updates for a set period of time. That way we don&#39;t spam the save function.</p>
+<pre><code class="language-JavaScript">const debounce = (fn, delay)=&gt;{
     let task = null;
-    return (...args)=>{
+    return (...args)=&gt;{
         clearTimeout(task);
-        task = setTimeout(()=>{
+        task = setTimeout(()=&gt;{
             fn.apply(this, args);
         }, delay);
     }
 };
 
-document.getElementsByTagName('button')[0].addEventListener('click', debounce((e)=>{
+document.getElementsByTagName(&#39;button&#39;)[0].addEventListener(&#39;click&#39;, debounce((e)=&gt;{
     console.log(e);
 }, 2000));
-```
-</div></div>
+</code></pre>
+</article></div></div>
 </body>
 
 </html>

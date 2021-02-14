@@ -25,101 +25,82 @@
 </head>
 
 <body>
-	<div><div># Event Loop
+	<div><div><article class="markdown-body"><h1 id="event-loop">Event Loop</h1>
+<p>JavaScripts&#39; biggest feature is its event loop, because of it, we can ignore details of threads and focus on those codes which can create real worth.</p>
+<p>Event loop is responsible for executing the code, collecting and processing events, and executing queued sub-tasks.</p>
+<h2 id="tasks-and-microtasks">Tasks and MicroTasks</h2>
+<p>A <strong>task</strong> is any JavaScript scheduled to be run by the standard mechanisms such as initially starting to execute a program, an event triggering a callback, and so forth.</p>
+<p>Compared to task, <strong>microtasks</strong> will be executed until its queue is empty.</p>
+<p>The sequence is like:</p>
+<ul>
+<li><strong>clear one task</strong> =&gt; <strong>clear all microtasks</strong> =&gt; <strong>clear one task</strong> =&gt; <strong>clear all microtasks</strong> ....</li>
+</ul>
+<p>Microtasks includes <code>Promise</code>, <code>queueMicrotask</code>, <code>MutationObserver</code> and <code>process.nextTick</code> on Node.js.</p>
+<p>There is a typical codes to show it:</p>
+<pre><code class="language-ts">setTimeout(_ =&gt; console.log(4));
 
-JavaScripts' biggest feature is its event loop, because of it, we can ignore details of threads and focus on those codes which can create real worth.
-
-Event loop is responsible for executing the code, collecting and processing events, and executing queued sub-tasks.
-
-## Tasks and MicroTasks
-
-A **task** is any JavaScript scheduled to be run by the standard mechanisms such as initially starting to execute a program, an event triggering a callback, and so forth.
-
-Compared to task, **microtasks** will be executed until its queue is empty.
-
-The sequence is like:
-
-- **clear one task** => **clear all microtasks** => **clear one task** => **clear all microtasks** ....
-
-Microtasks includes `Promise`, `queueMicrotask`, `MutationObserver` and `process.nextTick` on Node.js.
-
-There is a typical codes to show it:
-
-```ts
-setTimeout(_ => console.log(4));
-
-new Promise(resolve => {
+new Promise(resolve =&gt; {
   resolve()
   console.log(1)
-}).then(_ => {
+}).then(_ =&gt; {
   console.log(3)
 });
 
 console.log(2);
 
 // 1 2 3 4
-```
+</code></pre>
+<h2 id="in-browser">In Browser</h2>
+<p>In modern browsers, there are 3 different types of event loop is running.</p>
+<h3 id="window-event-loop">Window Event Loop</h3>
+<p>It drives all of the windows sharing a similar origin.</p>
+<h3 id="worker-event-loop">Worker event loop</h3>
+<p> It includes all forms of workers, such as web worker, shared workers and service workers. Workers are kept in one or more agents that are separate from the &quot;main&quot; code; the browser may use a single event loop for all of the workers of a given type or may use multiple event loops to handle them.</p>
+<h3 id="worklet-event-loop">Worklet Event Loop</h3>
+<p>A worklet event loop is the event loop used to drive agents which run the code for the workelets for a given agent. This includes worklets of type Worklet, AudioWorklet, and PaintWorklet.</p>
+<h2 id="nodejs">Node.js</h2>
+<p>In Node.js, event loop is quite different from browsers. As it don&#39;t have render tasks and have more I/O tasks.</p>
+<p>When Node.js starts, it initializes the Event loop, processes the provided input script which may make async API calls, then begins processing the Event loop.</p>
+<p>There is only one thread and that is the thread Event loop runs on. Event loop works in a cyclical order, with different phases. The order of operation of Event loop is shown below.</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
 
-## In Browser
-
-In modern browsers, there are 3 different types of event loop is running.
-
-### Window Event Loop
-
-It drives all of the windows sharing a similar origin.
-
-### Worker event loop
-
- It includes all forms of workers, such as web worker, shared workers and service workers. Workers are kept in one or more agents that are separate from the "main" code; the browser may use a single event loop for all of the workers of a given type or may use multiple event loops to handle them.
-
-### Worklet Event Loop
-
-A worklet event loop is the event loop used to drive agents which run the code for the workelets for a given agent. This includes worklets of type Worklet, AudioWorklet, and PaintWorklet.
-
-## Node.js
-
-In Node.js, event loop is quite different from browsers. As it don't have render tasks and have more I/O tasks.
-
-When Node.js starts, it initializes the Event loop, processes the provided input script which may make async API calls, then begins processing the Event loop.
-
-There is only one thread and that is the thread Event loop runs on. Event loop works in a cyclical order, with different phases. The order of operation of Event loop is shown below.
-
-<img src="../assets/node_event_loop.png" width="400"/>
-
-- **timers**: this phase executes callbacks scheduled by setTimeout() and setInterval().
-- **pending callbacks**: executes I/O callbacks deferred to the next loop iteration.
-- **idle, prepare**: only used internally.
-- **poll**: retrieve new I/O events; execute I/O related callbacks (almost all with the exception of close callbacks, the ones scheduled by timers, and setImmediate()); node will block here when appropriate.
-- **check**: setImmediate() callbacks are invoked here.
-- **close callbacks**: some close callbacks, e.g. socket.on('close', ...).
-
-### Poll
-
-The poll phase has two main functions:
-
-1. Calculating how long it should block and poll for I/O, then
-2. Processing events in the poll queue.
-
-When the event loop enters the poll phase and there are no timers scheduled, one of two things will happen:
-
-- If the poll queue is not empty, the event loop will iterate through its queue of callbacks executing them synchronously until either the queue has been exhausted, or the system-dependent hard limit is reached.
-
-- If the poll queue is empty, one of two more things will happen:
-
-    1. If scripts have been scheduled by setImmediate(), the event loop will end the poll phase and continue to the check phase to execute those scheduled scripts.
-
-    2. If scripts have not been scheduled by setImmediate(), the event loop will wait for callbacks to be added to the queue, then execute them immediately.
-
-Once the poll queue is empty the event loop will check for timers whose time thresholds have been reached. If one or more timers are ready, the event loop will wrap back to the timers phase to execute those timers' callbacks.
-
-## Reference
-
-- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop>
-- <https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth>
-- <https://javascript.info/microtask-queue>
-- <https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/>
-- <https://stackoverflow.com/questions/47724811/why-setimmediate-execute-before-fs-readfile-in-nodejs-event-loops-works>
-</div></div>
+<ul>
+<li><strong>timers</strong>: this phase executes callbacks scheduled by setTimeout() and setInterval().</li>
+<li><strong>pending callbacks</strong>: executes I/O callbacks deferred to the next loop iteration.</li>
+<li><strong>idle, prepare</strong>: only used internally.</li>
+<li><strong>poll</strong>: retrieve new I/O events; execute I/O related callbacks (almost all with the exception of close callbacks, the ones scheduled by timers, and setImmediate()); node will block here when appropriate.</li>
+<li><strong>check</strong>: setImmediate() callbacks are invoked here.</li>
+<li><strong>close callbacks</strong>: some close callbacks, e.g. socket.on(&#39;close&#39;, ...).</li>
+</ul>
+<h3 id="poll">Poll</h3>
+<p>The poll phase has two main functions:</p>
+<ol>
+<li>Calculating how long it should block and poll for I/O, then</li>
+<li>Processing events in the poll queue.</li>
+</ol>
+<p>When the event loop enters the poll phase and there are no timers scheduled, one of two things will happen:</p>
+<ul>
+<li><p>If the poll queue is not empty, the event loop will iterate through its queue of callbacks executing them synchronously until either the queue has been exhausted, or the system-dependent hard limit is reached.</p>
+</li>
+<li><p>If the poll queue is empty, one of two more things will happen:</p>
+<ol>
+<li><p>If scripts have been scheduled by setImmediate(), the event loop will end the poll phase and continue to the check phase to execute those scheduled scripts.</p>
+</li>
+<li><p>If scripts have not been scheduled by setImmediate(), the event loop will wait for callbacks to be added to the queue, then execute them immediately.</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>Once the poll queue is empty the event loop will check for timers whose time thresholds have been reached. If one or more timers are ready, the event loop will wrap back to the timers phase to execute those timers&#39; callbacks.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop">https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth">https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth</a></li>
+<li><a href="https://javascript.info/microtask-queue">https://javascript.info/microtask-queue</a></li>
+<li><a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/</a></li>
+<li><a href="https://stackoverflow.com/questions/47724811/why-setimmediate-execute-before-fs-readfile-in-nodejs-event-loops-works">https://stackoverflow.com/questions/47724811/why-setimmediate-execute-before-fs-readfile-in-nodejs-event-loops-works</a></li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

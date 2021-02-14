@@ -25,17 +25,13 @@
 </head>
 
 <body>
-	<div><div># Sorting Algorithm
-
-## Bubble Sort
-
-Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order.
-
-```js
-((arr)=>{
-    for (let i = arr.length -1; i > 0; i--){
-        for (let j = 0; j < i; j++){
-            if (arr[j] > arr[j+1]){
+	<div><div><article class="markdown-body"><h1 id="sorting-algorithm">Sorting Algorithm</h1>
+<h2 id="bubble-sort">Bubble Sort</h2>
+<p>Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order.</p>
+<pre><code class="language-js">((arr)=&gt;{
+    for (let i = arr.length -1; i &gt; 0; i--){
+        for (let j = 0; j &lt; i; j++){
+            if (arr[j] &gt; arr[j+1]){
                 let temp = arr[j];
                 arr[j] = arr[j+1];
                 arr[j+1] = temp;
@@ -43,20 +39,16 @@ Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping 
         }
     }
     return arr;
-})(Array(100).fill(null).map(() => Math.round(Math.random()*100)));
-```
+})(Array(100).fill(null).map(() =&gt; Math.round(Math.random()*100)));
+</code></pre>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400" />
 
-<img src='../assets/bubble_sorting.gif' width="400" />
-
-## Selection Sort
-
-It is the reverse of Bubble Sorting.
-
-```js
-((arr)=>{
-    for (let i=0;i<arr.length;i++){
-        for (let j=i+1;j<arr.length;j++){
-            if (arr[j] < arr[i]){
+<h2 id="selection-sort">Selection Sort</h2>
+<p>It is the reverse of Bubble Sorting.</p>
+<pre><code class="language-js">((arr)=&gt;{
+    for (let i=0;i&lt;arr.length;i++){
+        for (let j=i+1;j&lt;arr.length;j++){
+            if (arr[j] &lt; arr[i]){
                 let temp = arr[j];
                 arr[j] = arr[i];
                 arr[i] = temp;
@@ -64,38 +56,28 @@ It is the reverse of Bubble Sorting.
         }
     }
     return arr;
-})(Array(100).fill(null).map(() => Math.round(Math.random()*100)));
-```
+})(Array(100).fill(null).map(() =&gt; Math.round(Math.random()*100)));
+</code></pre>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400" />
 
-<img src='../assets/selection_sorting.gif' width="400" />
-
-## Quick Sort
-
-A typical implementation of Divide-and-Conquer Method, selecting a pivot and using it to split the array to two part.
-
-Normally, its time complexity is n(nlogn). In worst situation that the first selected pivot is the extremum of the array, its time complexity is n(n^2).
-
-```js
-(_arr=>{
-    const quickSort = arr => {
-        if (arr.length < 2) return arr;
+<h2 id="quick-sort">Quick Sort</h2>
+<p>A typical implementation of Divide-and-Conquer Method, selecting a pivot and using it to split the array to two part.</p>
+<p>Normally, its time complexity is n(nlogn). In worst situation that the first selected pivot is the extremum of the array, its time complexity is n(n^2).</p>
+<pre><code class="language-js">(_arr=&gt;{
+    const quickSort = arr =&gt; {
+        if (arr.length &lt; 2) return arr;
         const pivot = arr.pop();
-        return [...quickSort(arr.filter(item => item < pivot)), pivot, ...quickSort(arr.filter(item => item >= pivot))];
+        return [...quickSort(arr.filter(item =&gt; item &lt; pivot)), pivot, ...quickSort(arr.filter(item =&gt; item &gt;= pivot))];
     };
     return quickSort(_arr);
-})(Array(100).fill(null).map(() => Math.round(Math.random()*100)));
-```
-
-## Insert Sort
-
-## Shell Sort
-
-## Heap Sort
-
-## Merge Sort
-
-## Bucket Sort
-</div></div>
+})(Array(100).fill(null).map(() =&gt; Math.round(Math.random()*100)));
+</code></pre>
+<h2 id="insert-sort">Insert Sort</h2>
+<h2 id="shell-sort">Shell Sort</h2>
+<h2 id="heap-sort">Heap Sort</h2>
+<h2 id="merge-sort">Merge Sort</h2>
+<h2 id="bucket-sort">Bucket Sort</h2>
+</article></div></div>
 </body>
 
 </html>

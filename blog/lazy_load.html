@@ -25,67 +25,56 @@
 </head>
 
 <body>
-	<div><div>At the beginning, I try to use `react-loadable` to realize router lazy load, but it made me a mess..., an error like below
-
-`Invariant Violation: Element type is invalid: expected a string`
-
-Fortunately, I found in React v16.6, official router lazy load has came out! So I try it and it works perfectly:
-
-```JavaScript
-
-import React from 'react';
-import {BrowserRouter, Redirect, Switch, Route} from 'react-router-dom';
+	<div><div><article class="markdown-body"><p>At the beginning, I try to use <code>react-loadable</code> to realize router lazy load, but it made me a mess..., an error like below</p>
+<p><code>Invariant Violation: Element type is invalid: expected a string</code></p>
+<p>Fortunately, I found in React v16.6, official router lazy load has came out! So I try it and it works perfectly:</p>
+<pre><code class="language-JavaScript">
+import React from &#39;react&#39;;
+import {BrowserRouter, Redirect, Switch, Route} from &#39;react-router-dom&#39;;
 
 function LoadingPage() {
     return (
-        <div>Loading...</div>
+        &lt;div&gt;Loading...&lt;/div&gt;
     )
 }
 
-const Page = (path, componentPath, notLazy)=>{
-    const Component = React.lazy(() => import(componentPath)
-        .then(module=>({
+const Page = (path, componentPath, notLazy)=&gt;{
+    const Component = React.lazy(() =&gt; import(componentPath)
+        .then(module=&gt;({
             default:module.default
         })));
 
-    return <Route path={path} component={props=>{
+    return &lt;Route path={path} component={props=&gt;{
         if (notLazy){
             return  (
-                <Component {...props}/>
+                &lt;Component {...props}/&gt;
             )
         } else {
             return  (
-                <React.Suspense fallback={LoadingPage()}>
-                    <Component {...props}/>
-                </React.Suspense>
+                &lt;React.Suspense fallback={LoadingPage()}&gt;
+                    &lt;Component {...props}/&gt;
+                &lt;/React.Suspense&gt;
             )
         }
-    }}/>
+    }}/&gt;
 };
 
 //in index
-<BrowserRouter>
-    <Switch>
-        {Page('/login', "./pages/login")}
-        <Redirect to={'/login'}/>
-    </Switch>
-</BrowserRouter>
-```
-
-Dont't need to import other things, simply use React to resolve whole things.
-
-## How it works
-
-`React.lazy` is to split code, instead of bundling whole code to one file, via it, when using webpack, the JS files can be split. 
-
-After that, when browser is rendering to `<Suspense>`, it will throw an error which is a Promise. 
-In the parent component's `ComponentDidCatch` period, it will catch this Promise, which is in `pending` status, 
-the parent component will render `fallback` component when the Promise is in `pending`. 
-One its status becomes `resolve`, the parent component will load real child component and replace `fallback`.
-
-
-
-</div></div>
+&lt;BrowserRouter&gt;
+    &lt;Switch&gt;
+        {Page(&#39;/login&#39;, &quot;./pages/login&quot;)}
+        &lt;Redirect to={&#39;/login&#39;}/&gt;
+    &lt;/Switch&gt;
+&lt;/BrowserRouter&gt;
+</code></pre>
+<p>Dont&#39;t need to import other things, simply use React to resolve whole things.</p>
+<h2 id="how-it-works">How it works</h2>
+<p><code>React.lazy</code> is to split code, instead of bundling whole code to one file, via it, when using webpack, the JS files can be split. </p>
+<p>After that, when browser is rendering to <code>&lt;Suspense&gt;</code>, it will throw an error which is a Promise. 
+In the parent component&#39;s <code>ComponentDidCatch</code> period, it will catch this Promise, which is in <code>pending</code> status, 
+the parent component will render <code>fallback</code> component when the Promise is in <code>pending</code>. 
+One its status becomes <code>resolve</code>, the parent component will load real child component and replace <code>fallback</code>.</p>
+</article></div></div>
 </body>
 
 </html>

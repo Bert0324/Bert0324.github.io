@@ -25,106 +25,81 @@
 </head>
 
 <body>
-	<div><div># Http Request
-
-## `XMLHttpRequest` Basic Usage
-
-```js
-const request = new XMLHttpRequest();
-request.addEventListener("load", () => console.log(request.responseText));
-request.open("GET", "https://www.google.com");
+	<div><div><article class="markdown-body"><h1 id="http-request">Http Request</h1>
+<h2 id="xmlhttprequest-basic-usage"><code>XMLHttpRequest</code> Basic Usage</h2>
+<pre><code class="language-js">const request = new XMLHttpRequest();
+request.addEventListener(&quot;load&quot;, () =&gt; console.log(request.responseText));
+request.open(&quot;GET&quot;, &quot;https://www.google.com&quot;);
 request.send();
-```
-
-## `fetch` Basic Usage
-
-get `ReadableStream`:
-
-```ts
-const data = await (await fetch('https://www.google.com')).text();
-```
-
-post data:
-
-```ts
-const postData = (url, data, encodeType) => fetch(url, {
-	body: JSON.stringify(data),
-	cache: 'no-cache',
-	credentials: 'same-origin',
-	headers: {
-		'content-type': encodeType
-	},
-	method: 'POST',
-	mode: 'cors',
-	redirect: 'follow',
-	referrer: 'no-referrer',
+</code></pre>
+<h2 id="fetch-basic-usage"><code>fetch</code> Basic Usage</h2>
+<p>get <code>ReadableStream</code>:</p>
+<pre><code class="language-ts">const data = await (await fetch(&#39;https://www.google.com&#39;)).text();
+</code></pre>
+<p>post data:</p>
+<pre><code class="language-ts">const postData = (url, data, encodeType) =&gt; fetch(url, {
+    body: JSON.stringify(data),
+    cache: &#39;no-cache&#39;,
+    credentials: &#39;same-origin&#39;,
+    headers: {
+        &#39;content-type&#39;: encodeType
+    },
+    method: &#39;POST&#39;,
+    mode: &#39;cors&#39;,
+    redirect: &#39;follow&#39;,
+    referrer: &#39;no-referrer&#39;,
 });
-```
+</code></pre>
+<h2 id="abort-request">Abort Request</h2>
+<p>Aborting request by <code>AbortController</code> with <code>signal</code>.</p>
+<pre><code class="language-ts">const { signal, abort } = new AbortController();
 
-## Abort Request
-
-Aborting request by `AbortController` with `signal`.
-
-```ts
-const { signal, abort } = new AbortController();
-
-const request = async (url: string, callback: Function) => {
+const request = async (url: string, callback: Function) =&gt; {
     const res = await fetch(url, { signal });
     callback(res);
 };
 
 request();
 abort();    // request is aborted
-```
+</code></pre>
+<h2 id="4-post-data-encoded-ways">4 POST data encoded ways</h2>
+<p>We can set post data format method by <code>Content-Type</code> in http request headers, or change <code>&lt;form&gt;</code>&#39;s <code>enctype</code> attribute. </p>
+<ol>
+<li>application/x-www-form-urlencoded</li>
+</ol>
+<p>As the name suggests, it encoded data like url: </p>
+<pre><code class="language-text">a=1&amp;b=2
+</code></pre>
+<p>This is <code>&lt;form&gt;</code>&#39;s default encode type.</p>
+<ol start="2">
+<li>application/json</li>
+</ol>
+<p>It will serialize contents as JSON:</p>
+<pre><code class="language-json">{ &quot;a&quot;: 1, &quot;b&quot;: 2 }
+</code></pre>
+<ol start="3">
+<li>multipart/form-data</li>
+</ol>
+<p>It will generate a boundary in http message started by <code>------</code>, end by <code>\n</code>, contents are recorded as key-value. Moreover, in the boundary <code>Content-Type</code> can be set as <code>image/png</code> to save images or files.</p>
+<p>Like as below:</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="600px"/>
 
-## 4 POST data encoded ways
-
-We can set post data format method by `Content-Type` in http request headers, or change `<form>`'s `enctype` attribute. 
-
-1. application/x-www-form-urlencoded
-
-As the name suggests, it encoded data like url: 
-
-```text
-a=1&b=2
-```
-
-This is `<form>`'s default encode type.
-
-2. application/json
-
-It will serialize contents as JSON:
-
-```json
-{ "a": 1, "b": 2 }
-```
-
-3. multipart/form-data
-
-It will generate a boundary in http message started by `------`, end by `\n`, contents are recorded as key-value. Moreover, in the boundary `Content-Type` can be set as `image/png` to save images or files.
-
-Like as below:
-
-<img src="../assets/multipart_encode.png" width="600px"/>
-
-4. text/xml
-
-It will send plain content as text, such as using XML to transfer data.
-
-## Set Max Number of Concurrency
-
-```ts
-const request = async (urls: string[], maxNumber: number, callback: Function) => {
+<ol start="4">
+<li>text/xml</li>
+</ol>
+<p>It will send plain content as text, such as using XML to transfer data.</p>
+<h2 id="set-max-number-of-concurrency">Set Max Number of Concurrency</h2>
+<pre><code class="language-ts">const request = async (urls: string[], maxNumber: number, callback: Function) =&gt; {
     const data = {
         queue: [...urls],
         count: 0,
     };
-    const handler = async () => {
+    const handler = async () =&gt; {
         switch (true) {
             case data.queue.length === 0:
                 callback();
                 break;
-            case data.count < maxNumber:
+            case data.count &lt; maxNumber:
                 data.count++;
                 await fetch(data.queue.shift());
                 data.count--;
@@ -135,14 +110,14 @@ const request = async (urls: string[], maxNumber: number, callback: Function) =>
     };
     await handler();
 };
-```
-
-## Reference
-
-- <https://imququ.com/post/four-ways-to-post-data-in-http.html>
-- <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch>
-- <https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/enctype>
-</div></div>
+</code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://imququ.com/post/four-ways-to-post-data-in-http.html">https://imququ.com/post/four-ways-to-post-data-in-http.html</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/enctype">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/enctype</a></li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

@@ -25,76 +25,69 @@
 </head>
 
 <body>
-	<div><div># Box Model
+	<div><div><article class="markdown-body"><h1 id="box-model">Box Model</h1>
+<p>All HTML elements can be considered as boxes. In CSS, the term &quot;box model&quot; is used when talking about design and layout.</p>
+<p>The CSS box model is essentially a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content.</p>
+<p>There is a screenshot from Chrome:</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
 
-All HTML elements can be considered as boxes. In CSS, the term "box model" is used when talking about design and layout.
-
-The CSS box model is essentially a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content.
-
-There is a screenshot from Chrome:
-
-<img src="../assets/box_model.png" width="400"/>
-
-## Margin collapse
-
-You can see this example in [Here](https://jsfiddle.net/d9zb13jy/):
-
-```html
-<div>
-    <p>p1</p>
-    <p>p2</p>
-</div>
-```
-
-```css
-p{
+<h2 id="margin-collapse">Margin collapse</h2>
+<p>You can see this example in <a href="https://jsfiddle.net/d9zb13jy/">Here</a>:</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;p&gt;p1&lt;/p&gt;
+    &lt;p&gt;p2&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">p{
     margin: 10px;
 }
-```
-
-In the final result, the top margin of p2 is 0. In other word, its margin merged with p1's bottom margin.
-
-But if we set `float: left;`, the horizontal margin won't collapse. As only one type of margin can collapse: Vertical (top and bottom). Margin collapse never applies to horizontal (left and right) margins.
-
-## height and width in Box Model
-
-If we set `width:100%`, the element will exceed the whole page, its width actually is larger than 100%. Because the default `box-sizing` is `content-box`, which won't involve margin and padding's value into calculation.
-
-Another choice is `border-box`, which will involve both content and padding size into calculation, still without margin.
-
-## BFC
-
-A Block Formatting Context is part of the visual CSS rendering of a web page in which block boxes are laid out. The positioning scheme to which it belongs is normal flow
-
-It is an HTML box that satisfies at least one of the following conditions:
-
-1. The value of float is not none
-2. The value of position is neither static nor relative
-3. The value of display is table-cell, table-caption, inline-block, flex, or inline-flex
-4. The value of overflow is not visible.
-
-## Position
-
-1. fix
-
-- the element is positioned related to the browser window, not BFC. The element will scroll with page scrolling.
-
-2. absolute
-
-- the element is positioned absolutely to its first positioned parent, not BFC. The element won't scroll with page scrolling.
-
-3. relative
-
-- the element is positioned relative to its normal position.
-
-4. static
-
-- this is the default value, all elements are in order as they appear in the document.
-
-5. sticky
-
-- the element is positioned based on the user's scroll position.
-</div></div>
+</code></pre>
+<p>In the final result, the top margin of p2 is 0. In other word, its margin merged with p1&#39;s bottom margin.</p>
+<p>But if we set <code>float: left;</code>, the horizontal margin won&#39;t collapse. As only one type of margin can collapse: Vertical (top and bottom). Margin collapse never applies to horizontal (left and right) margins.</p>
+<h2 id="height-and-width-in-box-model">height and width in Box Model</h2>
+<p>If we set <code>width:100%</code>, the element will exceed the whole page, its width actually is larger than 100%. Because the default <code>box-sizing</code> is <code>content-box</code>, which won&#39;t involve margin and padding&#39;s value into calculation.</p>
+<p>Another choice is <code>border-box</code>, which will involve both content and padding size into calculation, still without margin.</p>
+<h2 id="bfc">BFC</h2>
+<p>A Block Formatting Context is part of the visual CSS rendering of a web page in which block boxes are laid out. The positioning scheme to which it belongs is normal flow</p>
+<p>It is an HTML box that satisfies at least one of the following conditions:</p>
+<ol>
+<li>The value of float is not none</li>
+<li>The value of position is neither static nor relative</li>
+<li>The value of display is table-cell, table-caption, inline-block, flex, or inline-flex</li>
+<li>The value of overflow is not visible.</li>
+</ol>
+<h2 id="position">Position</h2>
+<ol>
+<li>fix</li>
+</ol>
+<ul>
+<li>the element is positioned related to the browser window, not BFC. The element will scroll with page scrolling.</li>
+</ul>
+<ol start="2">
+<li>absolute</li>
+</ol>
+<ul>
+<li>the element is positioned absolutely to its first positioned parent, not BFC. The element won&#39;t scroll with page scrolling.</li>
+</ul>
+<ol start="3">
+<li>relative</li>
+</ol>
+<ul>
+<li>the element is positioned relative to its normal position.</li>
+</ul>
+<ol start="4">
+<li>static</li>
+</ol>
+<ul>
+<li>this is the default value, all elements are in order as they appear in the document.</li>
+</ul>
+<ol start="5">
+<li>sticky</li>
+</ol>
+<ul>
+<li>the element is positioned based on the user&#39;s scroll position.</li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

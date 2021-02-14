@@ -25,30 +25,27 @@
 </head>
 
 <body>
-	<div><div># Dynamic Programming
-
-```ts
-const recursionFib = (n: number): number => {
-	if (n === 1 || n === 2) return 1;
-	return recursionFib(n - 1) + recursionFib(n - 2);
+	<div><div><article class="markdown-body"><h1 id="dynamic-programming">Dynamic Programming</h1>
+<pre><code class="language-ts">const recursionFib = (n: number): number =&gt; {
+    if (n === 1 || n === 2) return 1;
+    return recursionFib(n - 1) + recursionFib(n - 2);
 };
 
-const dpFib = (n: number): number => {
-	const dp = Array(n + 1).fill(0);
-	dp[1] = dp[2] = 1;
-	for (let i = 3; i <= n; i++) {
-		dp[i] = dp[i - 1] + dp[i - 2];
-	}
-	return dp[n];
+const dpFib = (n: number): number =&gt; {
+    const dp = Array(n + 1).fill(0);
+    dp[1] = dp[2] = 1;
+    for (let i = 3; i &lt;= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
 };
-```
-
-## Reference
-
-- <https://zhuanlan.zhihu.com/p/78220312>
-- <https://www.hackerearth.com/zh/practice/algorithms/dynamic-programming/introduction-to-dynamic-programming-1/tutorial/>
-
-</div></div>
+</code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/78220312">https://zhuanlan.zhihu.com/p/78220312</a></li>
+<li><a href="https://www.hackerearth.com/zh/practice/algorithms/dynamic-programming/introduction-to-dynamic-programming-1/tutorial/">https://www.hackerearth.com/zh/practice/algorithms/dynamic-programming/introduction-to-dynamic-programming-1/tutorial/</a></li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

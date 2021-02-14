@@ -33,7 +33,7 @@ export const generateHTMLFiles = (index: string, about: string) => {
 		if (item.content) return item;
 		if (existsSync(`${projectRootPath}${map[item.key]}`)) {
 			try {
-				item.content = readFileSync(`${projectRootPath}${map[item.key]}`, 'utf-8');
+				item.content = processMarkdown(readFileSync(`${projectRootPath}${map[item.key]}`, 'utf-8'));
 			} catch (e) {
 				console.log(e);
 			}

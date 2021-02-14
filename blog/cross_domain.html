@@ -25,59 +25,46 @@
 </head>
 
 <body>
-	<div><div>When a web client want to request resources from a cross-domain server, normally, I will use 3 ways as below in different situation:
-
-## HTML tags
-
-such as `<img src=''><link href=''><script src=''> `, these tags will not restricted by browsers' cross-domain policy. From my experience, it is very useful when you need an external server's API to record hit in our own website, and some of parameters can be saved in the attribute's URL.
-
-## JSONP
-
-If we want to get data from other site, and the server has designed JSONP API for us, we can use it. The principle is that `<script>` is not limited by cross-domain policy, so the server can write data in the script and send it to client. For example:
-
-Client side:
-```JavaScript
-function jsonp(url, callback) {
+	<div><div><article class="markdown-body"><p>When a web client want to request resources from a cross-domain server, normally, I will use 3 ways as below in different situation:</p>
+<h2 id="html-tags">HTML tags</h2>
+<p>such as <code>&lt;img src=&#39;&#39;&gt;&lt;link href=&#39;&#39;&gt;&lt;script src=&#39;&#39;&gt; </code>, these tags will not restricted by browsers&#39; cross-domain policy. From my experience, it is very useful when you need an external server&#39;s API to record hit in our own website, and some of parameters can be saved in the attribute&#39;s URL.</p>
+<h2 id="jsonp">JSONP</h2>
+<p>If we want to get data from other site, and the server has designed JSONP API for us, we can use it. The principle is that <code>&lt;script&gt;</code> is not limited by cross-domain policy, so the server can write data in the script and send it to client. For example:</p>
+<p>Client side:</p>
+<pre><code class="language-JavaScript">function jsonp(url, callback) {
     window.callback = callback;
-    let script = document.createElement('script');
-    script.setAttribute("type","text/javascript");
+    let script = document.createElement(&#39;script&#39;);
+    script.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);
     script.src = url;
     document.body.insertBefore(script, document.body.lastChild);
 }
 
-jsonp("http://localhost:9093/jsonp", function (data) {
+jsonp(&quot;http://localhost:9093/jsonp&quot;, function (data) {
     //do something to the data got from the server
 
 });
-```
-
-Server side (Node.js):
-```JavaScript
-let data = {a:1,b:2};   //this data will be sent to the client
-res.writeHead(200, {"Content-Type":"application/javascript"};
+</code></pre>
+<p>Server side (Node.js):</p>
+<pre><code class="language-JavaScript">let data = {a:1,b:2};   //this data will be sent to the client
+res.writeHead(200, {&quot;Content-Type&quot;:&quot;application/javascript&quot;};
 res.end(`window.callback(${JSON.stringify(data)})`);
-```
-
-## the server enables cross-domain request (Node.js):
-
-```JavaScript
-res.setHeader("Access-Control-Allow-Origin", "*");
-res.setHeader("Access-Control-Allow-Headers",
-    "Access-Control-Allow-Headers, " +
-    "Origin,Accept, " +
-    "X-Requested-With, " +
-    "Content-Type, " +
-    "Access-Control-Request-Method, " +
-    "Access-Control-Request-Headers");
-res.setHeader("Access-Control-Allow-Methods","POST,GET,OPTIONS");
-```
-
-### Http Options
-
-When a page is sending an AJAX request to a cross domain URL, it will send an OPTIONS request to the 
-server to check whether support cross domain request, if allowed, it will return `204 No Content`, if not, it will return 
-`405 Not Allowed`.
-</div></div>
+</code></pre>
+<h2 id="the-server-enables-cross-domain-request-nodejs">the server enables cross-domain request (Node.js):</h2>
+<pre><code class="language-JavaScript">res.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);
+res.setHeader(&quot;Access-Control-Allow-Headers&quot;,
+    &quot;Access-Control-Allow-Headers, &quot; +
+    &quot;Origin,Accept, &quot; +
+    &quot;X-Requested-With, &quot; +
+    &quot;Content-Type, &quot; +
+    &quot;Access-Control-Request-Method, &quot; +
+    &quot;Access-Control-Request-Headers&quot;);
+res.setHeader(&quot;Access-Control-Allow-Methods&quot;,&quot;POST,GET,OPTIONS&quot;);
+</code></pre>
+<h3 id="http-options">Http Options</h3>
+<p>When a page is sending an AJAX request to a cross domain URL, it will send an OPTIONS request to the 
+server to check whether support cross domain request, if allowed, it will return <code>204 No Content</code>, if not, it will return 
+<code>405 Not Allowed</code>.</p>
+</article></div></div>
 </body>
 
 </html>

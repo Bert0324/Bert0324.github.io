@@ -25,81 +25,66 @@
 </head>
 
 <body>
-	<div><div># Promise
-
-`Promise` is a powerful alternative way to replace callback in JS. Compared to callback, `Promise` provides a better way to write coherent codes.
-
-## How to use
-
-First of all, let's see its definition:
-
-```ts
-/**
+	<div><div><article class="markdown-body"><h1 id="promise">Promise</h1>
+<p><code>Promise</code> is a powerful alternative way to replace callback in JS. Compared to callback, <code>Promise</code> provides a better way to write coherent codes.</p>
+<h2 id="how-to-use">How to use</h2>
+<p>First of all, let&#39;s see its definition:</p>
+<pre><code class="language-ts">/**
  * Represents the completion of an asynchronous operation
  */
-interface Promise<T> {
+interface Promise&lt;T&gt; {
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    then&lt;TResult1 = T, TResult2 = never&gt;(onfulfilled?: ((value: T) =&gt; TResult1 | PromiseLike&lt;TResult1&gt;) | undefined | null, onrejected?: ((reason: any) =&gt; TResult2 | PromiseLike&lt;TResult2&gt;) | undefined | null): Promise&lt;TResult1 | TResult2&gt;;
 
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    catch&lt;TResult = never&gt;(onrejected?: ((reason: any) =&gt; TResult | PromiseLike&lt;TResult&gt;) | undefined | null): Promise&lt;T | TResult&gt;;
 }
-```
-
-The first function in then is resolve function, the second function is reject function which can on catch the error from `reject`, not from `throw`.
-
-The functions `resolve` and `reject` is to change the status of `Promise`.
-
-There is a demo:
-
-```ts
-const resolveTask = () => new Promise((resolve, reject) => resolve(1))
-.then(res => {
-    console.log('resolve', res);
-    throw Error('throw error')
-}, err => {
-    console.log('reject', err);
+</code></pre>
+<p>The first function in then is resolve function, the second function is reject function which can on catch the error from <code>reject</code>, not from <code>throw</code>.</p>
+<p>The functions <code>resolve</code> and <code>reject</code> is to change the status of <code>Promise</code>.</p>
+<p>There is a demo:</p>
+<pre><code class="language-ts">const resolveTask = () =&gt; new Promise((resolve, reject) =&gt; resolve(1))
+.then(res =&gt; {
+    console.log(&#39;resolve&#39;, res);
+    throw Error(&#39;throw error&#39;)
+}, err =&gt; {
+    console.log(&#39;reject&#39;, err);
 })
-.catch(err => console.log('catch', err));
+.catch(err =&gt; console.log(&#39;catch&#39;, err));
 
-const rejectTask = () => new Promise((resolve, reject) => reject(1))
-.then(res => {
-    console.log('resolve', res);
-    throw Error('throw error')
-}, err => {
-    console.log('reject', err);
+const rejectTask = () =&gt; new Promise((resolve, reject) =&gt; reject(1))
+.then(res =&gt; {
+    console.log(&#39;resolve&#39;, res);
+    throw Error(&#39;throw error&#39;)
+}, err =&gt; {
+    console.log(&#39;reject&#39;, err);
 })
-.catch(err => console.log('catch', err));
+.catch(err =&gt; console.log(&#39;catch&#39;, err));
 
 // resolve 1
 // catch Error: throw error
 resolveTask();
 // reject 1
 rejectTask();
-```
-
-## Promise implementation
-
-For me, the key point to understand Promise's then and catch is the event-loop. Because the main thread task will be operated to the end first. So the `thenList` and `onCatch` must be ready when the first callback starts.
-
-There is a simple example I wrote:
-
-```ts
-class MyPromise<T>{
+</code></pre>
+<h2 id="promise-implementation">Promise implementation</h2>
+<p>For me, the key point to understand Promise&#39;s then and catch is the event-loop. Because the main thread task will be operated to the end first. So the <code>thenList</code> and <code>onCatch</code> must be ready when the first callback starts.</p>
+<p>There is a simple example I wrote:</p>
+<pre><code class="language-ts">class MyPromise&lt;T&gt;{
 
     static statusList = {
-        pending:Symbol('pending'),
-        resolved:Symbol('resolved'),
-        rejected:Symbol('rejected')
+        pending:Symbol(&#39;pending&#39;),
+        resolved:Symbol(&#39;resolved&#39;),
+        rejected:Symbol(&#39;rejected&#39;)
     } as const;
 
     private status = MyPromise.statusList.pending;
@@ -107,7 +92,7 @@ class MyPromise<T>{
     private thenList: Function[] = [];          //the container saving the callback in then
     private onCatch: Function | undefined = undefined;    //the container saving the catch function
 
-    constructor(action: (resolve: Function, reject?: Function) => void) {
+    constructor(action: (resolve: Function, reject?: Function) =&gt; void) {
         // start filling thenList and onCatch
         action(this.resolve.bind(this), this.reject?.bind?.(this));
     }
@@ -125,13 +110,13 @@ class MyPromise<T>{
     resolve(value) {
         this.status = MyPromise.statusList.resolved;
         this.value = value;
-        for (let i=0;i<this.thenList.length;i++){
+        for (let i=0;i&lt;this.thenList.length;i++){
             this.status = MyPromise.statusList.pending;
             try{
                 this.value = this.thenList[i](this.value);
                 this.status = MyPromise.statusList.resolved;
                 if (this.value instanceof MyPromise) {
-                    //if it's new Promise, change the target Promise
+                    //if it&#39;s new Promise, change the target Promise
                     this.value.thenList = this.thenList.splice(i+1);
                     break;
                 }
@@ -157,39 +142,32 @@ class MyPromise<T>{
     }
 };
 
-new MyPromise((resolve, reject) => {
-    require('request')("http://www.npmjs.com", (err, res, body)=>{
-        if (!err && res.statusCode === 200){
+new MyPromise((resolve, reject) =&gt; {
+    require(&#39;request&#39;)(&quot;http://www.npmjs.com&quot;, (err, res, body)=&gt;{
+        if (!err &amp;&amp; res.statusCode === 200){
             resolve(res.statusCode);
         } else {
             reject(err);
         }
     })
-}).then(data=>{
+}).then(data=&gt;{
     console.log(data);
     return 1;
 })
-    .then(data=>{
+    .then(data=&gt;{
         console.log(data);
     })
-    .catch(err=>{
+    .catch(err=&gt;{
     console.log(err);
 });
-```
-
-## `Promise.all`, `Promise.race`, `Promise.finally` and `Promise.parallel`
-
-About `all` and `race`, I know a really vivid and interesting metaphor: The `all` is a horse race that ends when all horses reach the terminal point, the `race` is a horse race that ends when the first horse reaches the terminal point.
-
-In other word, the `all` will return results of all callback tasks, the `race` will return the callback result of the first finished task.
-
-Notice, `race` and `all` both will run the whole asynchronize task, the only different is the final returned value.
-
-Their implements are as below:
-
-```ts
-Promise.myRace = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
-    tasks.forEach(async task => {
+</code></pre>
+<h2 id="promiseall-promiserace-promisefinally-and-promiseparallel"><code>Promise.all</code>, <code>Promise.race</code>, <code>Promise.finally</code> and <code>Promise.parallel</code></h2>
+<p>About <code>all</code> and <code>race</code>, I know a really vivid and interesting metaphor: The <code>all</code> is a horse race that ends when all horses reach the terminal point, the <code>race</code> is a horse race that ends when the first horse reaches the terminal point.</p>
+<p>In other word, the <code>all</code> will return results of all callback tasks, the <code>race</code> will return the callback result of the first finished task.</p>
+<p>Notice, <code>race</code> and <code>all</code> both will run the whole asynchronize task, the only different is the final returned value.</p>
+<p>Their implements are as below:</p>
+<pre><code class="language-ts">Promise.myRace = (tasks: Promise&lt;unknown&gt;[]) =&gt; new Promise((resolve, reject) =&gt; {
+    tasks.forEach(async task =&gt; {
         try {
             const res = await task;
             // a Promise can be resolved once
@@ -201,9 +179,9 @@ Promise.myRace = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) =>
 });
 
 
-Promise.myAll = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
+Promise.myAll = (tasks: Promise&lt;unknown&gt;[]) =&gt; new Promise((resolve, reject) =&gt; {
     const res = [];
-    tasks.forEach(async task => {
+    tasks.forEach(async task =&gt; {
         try {
             const data = await task;
             res.push(data);
@@ -216,14 +194,14 @@ Promise.myAll = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => 
 
 Promise.prototype.myFinally = function(cb) {
     return this.then(
-        v => Promise.resolve(cb()).then(() => v),
-        e => Promise.resolve(cb()).then(() => { throw e })
+        v =&gt; Promise.resolve(cb()).then(() =&gt; v),
+        e =&gt; Promise.resolve(cb()).then(() =&gt; { throw e })
     )
 };
 
-Promise.parallelByReduce = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
+Promise.parallelByReduce = (tasks: Promise&lt;unknown&gt;[]) =&gt; new Promise((resolve, reject) =&gt; {
     try {
-        resolve(await tasks.reduce(async (acc, crr) => {
+        resolve(await tasks.reduce(async (acc, crr) =&gt; {
             acc = await acc;
             acc.push(await crr);
             return acc;
@@ -233,10 +211,10 @@ Promise.parallelByReduce = (tasks: Promise<unknown>[]) => new Promise((resolve, 
     }
 });
 
-Promise.parallelByRecursion = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
+Promise.parallelByRecursion = (tasks: Promise&lt;unknown&gt;[]) =&gt; new Promise((resolve, reject) =&gt; {
     const res = [];
-    const iter = async () => {
-        if (tasks.length > 0) {
+    const iter = async () =&gt; {
+        if (tasks.length &gt; 0) {
             const task = tasks.shift();
             const data = await task;
             res.push(data);
@@ -250,54 +228,37 @@ Promise.parallelByRecursion = (tasks: Promise<unknown>[]) => new Promise((resolv
         reject(e);
     }
 });
-```
-
-## async & await
-
-`async` and `await` it a better solution to replace `then`. Writing asynchronize codes with synchronize sequence.
-
-### What is async function
-
-Actually, `async function` will return an `AsyncFunction` object, which can be created as below (notice: it is not a global variable):
-
-```ts
-Object.getPrototypeOf(async function(){}).constructor
-```
-
-### always return Promise
-
-It will always return a Promise object, even if we return other things:
-
-```ts
-async function task() {
+</code></pre>
+<h2 id="async--await">async &amp; await</h2>
+<p><code>async</code> and <code>await</code> it a better solution to replace <code>then</code>. Writing asynchronize codes with synchronize sequence.</p>
+<h3 id="what-is-async-function">What is async function</h3>
+<p>Actually, <code>async function</code> will return an <code>AsyncFunction</code> object, which can be created as below (notice: it is not a global variable):</p>
+<pre><code class="language-ts">Object.getPrototypeOf(async function(){}).constructor
+</code></pre>
+<h3 id="always-return-promise">always return Promise</h3>
+<p>It will always return a Promise object, even if we return other things:</p>
+<pre><code class="language-ts">async function task() {
     return 1;
 }
 console.log(task())     // Promise { 1 }
-```
-
-### await can only get Promise.resolve
-
-The `await` operator is used to wait for a `Promise`. It can only be used inside an `async function`. But it can only receive `Promise.resolve`. For example:
-
-If the `Promise` is rejected, the await expression throws the rejected value.
-
-```ts
-(async function () {
-    const result = await Promise.resolve('success');
+</code></pre>
+<h3 id="await-can-only-get-promiseresolve">await can only get Promise.resolve</h3>
+<p>The <code>await</code> operator is used to wait for a <code>Promise</code>. It can only be used inside an <code>async function</code>. But it can only receive <code>Promise.resolve</code>. For example:</p>
+<p>If the <code>Promise</code> is rejected, the await expression throws the rejected value.</p>
+<pre><code class="language-ts">(async function () {
+    const result = await Promise.resolve(&#39;success&#39;);
     console.log(result);
 })();   // success
 
 (async function () {
-    const result = await Promise.reject('success');
+    const result = await Promise.reject(&#39;success&#39;);
     console.log(result);
 })()    // UnhandledPromiseRejectionWarning: success
-```
-
-## Conclusion
-
-In this way, for me, when I don't care about the error, I perfer to use `throw Error`, when I want to process
-error, `Promise.reject` maybe more useful.
-</div></div>
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this way, for me, when I don&#39;t care about the error, I perfer to use <code>throw Error</code>, when I want to process
+error, <code>Promise.reject</code> maybe more useful.</p>
+</article></div></div>
 </body>
 
 </html>

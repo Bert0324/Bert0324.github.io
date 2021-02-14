@@ -25,31 +25,20 @@
 </head>
 
 <body>
-	<div><div>## Value object and Reference Object
-
-Before talking about Object's copy, there is a key point that the differences between Value object and Reference Object in JS.
-
-JS basic data type including Number, String, Null, Undefined, Boolean, Object and Symbol, whose value is invariable. When I first know it, I feel quite confused. Because when I process string, I feel I was changing its value. 
-
-But my intuition is wrong, actually, every time I just deassign a new variable.
-
-For example:
-
-```JavaScript
-var str = '123';
-str[0] = '0';
-console.log(str);   //'123'
-```
-
-When we are using `===` to compare 2 value objects, we are do comparing their values.
-
-But for Reference Object, the fact is not. Reference Object's variable name points to a memory address where save the real content's memory address.
-Therefore, when we are comparing Reference Object, we are comparing their pointers.
-
-There is a typical example to show that one is value, one is pointer:
-
-```JavaScript
-var a = {value:1};
+	<div><div><article class="markdown-body"><h2 id="value-object-and-reference-object">Value object and Reference Object</h2>
+<p>Before talking about Object&#39;s copy, there is a key point that the differences between Value object and Reference Object in JS.</p>
+<p>JS basic data type including Number, String, Null, Undefined, Boolean, Object and Symbol, whose value is invariable. When I first know it, I feel quite confused. Because when I process string, I feel I was changing its value. </p>
+<p>But my intuition is wrong, actually, every time I just deassign a new variable.</p>
+<p>For example:</p>
+<pre><code class="language-JavaScript">var str = &#39;123&#39;;
+str[0] = &#39;0&#39;;
+console.log(str);   //&#39;123&#39;
+</code></pre>
+<p>When we are using <code>===</code> to compare 2 value objects, we are do comparing their values.</p>
+<p>But for Reference Object, the fact is not. Reference Object&#39;s variable name points to a memory address where save the real content&#39;s memory address.
+Therefore, when we are comparing Reference Object, we are comparing their pointers.</p>
+<p>There is a typical example to show that one is value, one is pointer:</p>
+<pre><code class="language-JavaScript">var a = {value:1};
 var b = a;
 b.value = 2;
 console.log(a); //a.value becomes 2 too.
@@ -59,17 +48,12 @@ var d = c;
 d++;
 console.log(c); //1
 console.log(d); //2
-```
-
-## Shallow copy
-
-According to the above, the key point to copy an object is to copy its value object instead of Reference Object, which can avoid to only copy a 
-pointer.
-
-Like as below:
-
-```JavaScript
-let obj = {
+</code></pre>
+<h2 id="shallow-copy">Shallow copy</h2>
+<p>According to the above, the key point to copy an object is to copy its value object instead of Reference Object, which can avoid to only copy a 
+pointer.</p>
+<p>Like as below:</p>
+<pre><code class="language-JavaScript">let obj = {
     a:0,
     b:1,
     c:2
@@ -89,100 +73,92 @@ let copy = shallowCopy(obj);
 copy.a= 1;
 console.log(obj);
 console.log(copy);
-```
+</code></pre>
+<h2 id="deep-copy">Deep copy</h2>
+<p>For those objects including Reference Object, shallow copy is not enough. 
+We need to split whole objects to Value Objects.</p>
+<p>The <a href="https://github.com/jquery/jquery/blob/master/src/core.js">jQuery.extend</a> as the example:</p>
+<pre><code class="language-js">jQuery.extend = jQuery.fn.extend = function() {
+    var options, name, src, copy, copyIsArray, clone,
+        target = arguments[ 0 ] || {},
+        i = 1,
+        length = arguments.length,
+        deep = false;
 
-## Deep copy
+    // Handle a deep copy situation
+    if ( typeof target === &quot;boolean&quot; ) {
+        deep = target;
 
-For those objects including Reference Object, shallow copy is not enough. 
-We need to split whole objects to Value Objects.
+        // Skip the boolean and the target
+        target = arguments[ i ] || {};
+        i++;
+    }
 
-The [jQuery.extend](https://github.com/jquery/jquery/blob/master/src/core.js) as the example:
+    // Handle case when target is a string or something (possible in deep copy)
+    if ( typeof target !== &quot;object&quot; &amp;&amp; typeof target !== &quot;function&quot; ) {
+        target = {};
+    }
 
-```js
-jQuery.extend = jQuery.fn.extend = function() {
-	var options, name, src, copy, copyIsArray, clone,
-		target = arguments[ 0 ] || {},
-		i = 1,
-		length = arguments.length,
-		deep = false;
+    // Extend jQuery itself if only one argument is passed
+    if ( i === length ) {
+        target = this;
+        i--;
+    }
 
-	// Handle a deep copy situation
-	if ( typeof target === "boolean" ) {
-		deep = target;
+    for ( ; i &lt; length; i++ ) {
 
-		// Skip the boolean and the target
-		target = arguments[ i ] || {};
-		i++;
-	}
+        // Only deal with non-null/undefined values
+        if ( ( options = arguments[ i ] ) != null ) {
 
-	// Handle case when target is a string or something (possible in deep copy)
-	if ( typeof target !== "object" && typeof target !== "function" ) {
-		target = {};
-	}
+            // Extend the base object
+            for ( name in options ) {
+                copy = options[ name ];
 
-	// Extend jQuery itself if only one argument is passed
-	if ( i === length ) {
-		target = this;
-		i--;
-	}
+                // Prevent Object.prototype pollution
+                // Prevent never-ending loop
+                if ( name === &quot;__proto__&quot; || target === copy ) {
+                    continue;
+                }
 
-	for ( ; i < length; i++ ) {
+                // Recurse if we&#39;re merging plain objects or arrays
+                if ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject( copy ) ||
+                    ( copyIsArray = Array.isArray( copy ) ) ) ) {
+                    src = target[ name ];
 
-		// Only deal with non-null/undefined values
-		if ( ( options = arguments[ i ] ) != null ) {
+                    // Ensure proper type for the source value
+                    if ( copyIsArray &amp;&amp; !Array.isArray( src ) ) {
+                        clone = [];
+                    } else if ( !copyIsArray &amp;&amp; !jQuery.isPlainObject( src ) ) {
+                        clone = {};
+                    } else {
+                        clone = src;
+                    }
+                    copyIsArray = false;
 
-			// Extend the base object
-			for ( name in options ) {
-				copy = options[ name ];
+                    // Never move original objects, clone them
+                    target[ name ] = jQuery.extend( deep, clone, copy );
 
-				// Prevent Object.prototype pollution
-				// Prevent never-ending loop
-				if ( name === "__proto__" || target === copy ) {
-					continue;
-				}
+                // Don&#39;t bring in undefined values
+                } else if ( copy !== undefined ) {
+                    target[ name ] = copy;
+                }
+            }
+        }
+    }
 
-				// Recurse if we're merging plain objects or arrays
-				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
-					( copyIsArray = Array.isArray( copy ) ) ) ) {
-					src = target[ name ];
-
-					// Ensure proper type for the source value
-					if ( copyIsArray && !Array.isArray( src ) ) {
-						clone = [];
-					} else if ( !copyIsArray && !jQuery.isPlainObject( src ) ) {
-						clone = {};
-					} else {
-						clone = src;
-					}
-					copyIsArray = false;
-
-					// Never move original objects, clone them
-					target[ name ] = jQuery.extend( deep, clone, copy );
-
-				// Don't bring in undefined values
-				} else if ( copy !== undefined ) {
-					target[ name ] = copy;
-				}
-			}
-		}
-	}
-
-	// Return the modified object
-	return target;
+    // Return the modified object
+    return target;
 };
-```
-
-It uses recursion to get whole child object. There is a more simple version:
-
-```JavaScript
-function deepCopy(source){
-    if (typeof source !== 'object'){
+</code></pre>
+<p>It uses recursion to get whole child object. There is a more simple version:</p>
+<pre><code class="language-JavaScript">function deepCopy(source){
+    if (typeof source !== &#39;object&#39;){
         return source;
     }
     
-    if (Object.prototype.toString.call(source) === '[object Array]'){
+    if (Object.prototype.toString.call(source) === &#39;[object Array]&#39;){
         let copy = [];
-        source.forEach(item=>{
+        source.forEach(item=&gt;{
             copy.push(deepCopy(item))
         });
         return copy;
@@ -208,18 +184,9 @@ let copy = deepCopy(obj)
 copy.a.value = 0;
 console.log(obj);
 console.log(copy);
-```
-
-That's all. If I make something wrong, welcome to contact me to let me modify it!
-
-
-
-
-
-
-
-
-</div></div>
+</code></pre>
+<p>That&#39;s all. If I make something wrong, welcome to contact me to let me modify it!</p>
+</article></div></div>
 </body>
 
 </html>

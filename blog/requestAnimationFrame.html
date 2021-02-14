@@ -25,99 +25,84 @@
 </head>
 
 <body>
-	<div><div># `requestAnimationFrame`
-
-## Why we need `requestAnimationFrame`
-
-When we want to implement some of animation in the browser, the first thing in our mind must be CSS, like `animation` with `@keyframes`, or `transition`.
-
-But for the tasks whose animation is driven by complex data structure, JS is still the only choice.
-
-There is an example in [fiddle](https://jsfiddle.net/y6xshd3e/), we can see the animation will be stuck while the main thread is being used, such as scripting or rendering.
-
-Under this circumstance, `requestAnimationFrame` can be a good choice.
-
-There is a solution via `requestAnimationFrame` in [fiddle](https://jsfiddle.net/xe7oqfjs/1/).
-
-Compared to the first animation, The second animation is smoother, the reason is that `setTimeout` cannot make sure the task can be executed within specific interval while there is a task occupying the main thread.
-
-## How `requestAnimationFrame` works
-
-`requestAnimationFrame` will request that your animation function be called before the browser performs the next repaint. 
-
-The number of callbacks is usually 60 times per second, but will generally match the display refresh rate in most web browsers as per W3C recommendation.
-
-In this way, `requestAnimationFrame`'s interval is more stable, and aim to animation, browsers do more optimization via `requestAnimationFrame`.
-
-## use `requestAnimationFrame` to calculate FPS
-
-As `requestAnimationFrame` is called between two repaint time point, in this way, it can be used to calculate FPS.
-
-```js
-const getFpsAtTimePoint = () => {
-  return new Promise((resolve) => {
-    requestAnimationFrame((t1) => {
-      requestAnimationFrame((t2) => {
+	<div><div><article class="markdown-body"><h1 id="requestanimationframe"><code>requestAnimationFrame</code></h1>
+<h2 id="why-we-need-requestanimationframe">Why we need <code>requestAnimationFrame</code></h2>
+<p>When we want to implement some of animation in the browser, the first thing in our mind must be CSS, like <code>animation</code> with <code>@keyframes</code>, or <code>transition</code>.</p>
+<p>But for the tasks whose animation is driven by complex data structure, JS is still the only choice.</p>
+<p>There is an example in <a href="https://jsfiddle.net/y6xshd3e/">fiddle</a>, we can see the animation will be stuck while the main thread is being used, such as scripting or rendering.</p>
+<p>Under this circumstance, <code>requestAnimationFrame</code> can be a good choice.</p>
+<p>There is a solution via <code>requestAnimationFrame</code> in <a href="https://jsfiddle.net/xe7oqfjs/1/">fiddle</a>.</p>
+<p>Compared to the first animation, The second animation is smoother, the reason is that <code>setTimeout</code> cannot make sure the task can be executed within specific interval while there is a task occupying the main thread.</p>
+<h2 id="how-requestanimationframe-works">How <code>requestAnimationFrame</code> works</h2>
+<p><code>requestAnimationFrame</code> will request that your animation function be called before the browser performs the next repaint. </p>
+<p>The number of callbacks is usually 60 times per second, but will generally match the display refresh rate in most web browsers as per W3C recommendation.</p>
+<p>In this way, <code>requestAnimationFrame</code>&#39;s interval is more stable, and aim to animation, browsers do more optimization via <code>requestAnimationFrame</code>.</p>
+<h2 id="use-requestanimationframe-to-calculate-fps">use <code>requestAnimationFrame</code> to calculate FPS</h2>
+<p>As <code>requestAnimationFrame</code> is called between two repaint time point, in this way, it can be used to calculate FPS.</p>
+<pre><code class="language-js">const getFpsAtTimePoint = () =&gt; {
+  return new Promise((resolve) =&gt; {
+    requestAnimationFrame((t1) =&gt; {
+      requestAnimationFrame((t2) =&gt; {
         resolve(Math.round(1000 / (t2 - t1)));
       });
     });
   });
 };
 
-const getFpsWithinTheSecond = () => new Promise(resolve => {
-	let repaint = 0;
-	const start = performance.now();
-	const withRepaint = () => {
-		requestAnimationFrame(() => {
-			if ((performance.now() - start) < 1000) {
-				repaint += 1;
-				withRepaint();
-			} else {
-				resolve(repaint);
-			}
-		});
-	};
-	withRepaint();
+const getFpsWithinTheSecond = () =&gt; new Promise(resolve =&gt; {
+    let repaint = 0;
+    const start = performance.now();
+    const withRepaint = () =&gt; {
+        requestAnimationFrame(() =&gt; {
+            if ((performance.now() - start) &lt; 1000) {
+                repaint += 1;
+                withRepaint();
+            } else {
+                resolve(repaint);
+            }
+        });
+    };
+    withRepaint();
 });
 
-const createFpsHandler = () => {
-	let repaint;
-	let stop;
-	let ret;
-	let start;
-	const init = () => {
-		ret = undefined;
-		stop = false;
-		repaint = 0;
-		start = performance.now();
-	};
-	init();
-	const withRepaint = () => {
-		requestAnimationFrame(() => {
-			if (!stop) {
-				repaint += 1;
-				withRepaint();
-			}
-		});
-	};
-	return {
-		start: () => {
-			init();
-			withRepaint();
-		},
-		end: () => {
-			stop = true;
-			if (!ret) ret = repaint / ((performance.now() - start) / 1000);
-			return ret;
-		}
-	}
+const createFpsHandler = () =&gt; {
+    let repaint;
+    let stop;
+    let ret;
+    let start;
+    const init = () =&gt; {
+        ret = undefined;
+        stop = false;
+        repaint = 0;
+        start = performance.now();
+    };
+    init();
+    const withRepaint = () =&gt; {
+        requestAnimationFrame(() =&gt; {
+            if (!stop) {
+                repaint += 1;
+                withRepaint();
+            }
+        });
+    };
+    return {
+        start: () =&gt; {
+            init();
+            withRepaint();
+        },
+        end: () =&gt; {
+            stop = true;
+            if (!ret) ret = repaint / ((performance.now() - start) / 1000);
+            return ret;
+        }
+    }
 };
-```
-
-## Reference
-
-- <https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame>
-</div></div>
+</code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame</a></li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

@@ -25,46 +25,39 @@
 </head>
 
 <body>
-	<div><div># Socket
-
-## Demo
-
-server:
-
-```rust
-use std::net::UdpSocket;
+	<div><div><article class="markdown-body"><h1 id="socket">Socket</h1>
+<h2 id="demo">Demo</h2>
+<p>server:</p>
+<pre><code class="language-rust">use std::net::UdpSocket;
 fn main() {
-    let socket = UdpSocket::bind("0.0.0.0:8888").unwrap();
+    let socket = UdpSocket::bind(&quot;0.0.0.0:8888&quot;).unwrap();
 
     let mut buf = [0; 65535];
     loop {
-        let (amt, src) = socket.recv_from(&mut buf).unwrap();
-        println!("received {} bytes from: {:?}", amt, src);
+        let (amt, src) = socket.recv_from(&amp;mut buf).unwrap();
+        println!(&quot;received {} bytes from: {:?}&quot;, amt, src);
     }
 }
-```
-
-client:
-
-```rust
-use std::net::UdpSocket;
+</code></pre>
+<p>client:</p>
+<pre><code class="language-rust">use std::net::UdpSocket;
 use std::{thread, time};
 fn main() {
-    let socket = UdpSocket::bind("0.0.0.0:22222").unwrap();
+    let socket = UdpSocket::bind(&quot;0.0.0.0:22222&quot;).unwrap();
     let buf = [1u8; 60000];
     let mut count = 100;
     loop {
-        socket.send_to(&buf[0..count], "0.0.0.0:8888").unwrap();
+        socket.send_to(&amp;buf[0..count], &quot;0.0.0.0:8888&quot;).unwrap();
         count = count + 1;
-        println!("{}", count);
+        println!(&quot;{}&quot;, count);
         if count == 102 {
             break;
         }
     }
     thread::sleep(time::Duration::from_millis(100000));
 }
-```
-</div></div>
+</code></pre>
+</article></div></div>
 </body>
 
 </html>

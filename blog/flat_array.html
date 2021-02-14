@@ -25,19 +25,13 @@
 </head>
 
 <body>
-	<div><div>The problem is from the [link](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/39).
-
-There is a multi-level layers array:
-
-```JavaScript
-var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
-```
-
-How can I get a plain array and sort it without repetition? My thinking is as below:
-
-```JavaScript
-function flatten(source){
-    if (Object.prototype.toString.call(source) !== '[object Array]'){
+	<div><div><article class="markdown-body"><p>The problem is from the <a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/39">link</a>.</p>
+<p>There is a multi-level layers array:</p>
+<pre><code class="language-JavaScript">var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+</code></pre>
+<p>How can I get a plain array and sort it without repetition? My thinking is as below:</p>
+<pre><code class="language-JavaScript">function flatten(source){
+    if (Object.prototype.toString.call(source) !== &#39;[object Array]&#39;){
         return [source];
     }
     let target = [];
@@ -46,18 +40,14 @@ function flatten(source){
     }
     return target;
 }
-let result = Array.from(new Set(flatten(arr))).sort((a,b)=>a-b);
+let result = Array.from(new Set(flatten(arr))).sort((a,b)=&gt;a-b);
 console.log(result);
-```
-
-There is a more clear way I found:
-```JavaScript
-Array.from(new Set(arr.flat(Number.POSITIVE_INFINITY))).sort((a,b)=>a-b);
-```
-
-If you have some better way to solve this question, welcome to write it!
-
- </div></div>
+</code></pre>
+<p>There is a more clear way I found:</p>
+<pre><code class="language-JavaScript">Array.from(new Set(arr.flat(Number.POSITIVE_INFINITY))).sort((a,b)=&gt;a-b);
+</code></pre>
+<p>If you have some better way to solve this question, welcome to write it!</p>
+</article></div></div>
 </body>
 
 </html>

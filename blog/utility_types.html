@@ -25,45 +25,31 @@
 </head>
 
 <body>
-	<div><div># Utility Types
-
-See Official Documents in here <https://www.typescriptlang.org/docs/handbook/utility-types.html>.
-
-The concept of Utility Types in TS, for me, it is kink of similar to  `Option<T>` and `Result<T, E>` in Rust.
-
-There are some of real implementation of common Utility Types in here.
-
-## `Pick<T,K>` and `Omit<T,K>`
-
-## `Exclude<T,U>` and `Extract<T,U>`
-
-## `Partial<T>` and `Required<T>`
-
-## `Parameters<T>` and `ReturnType<T>`
-
-```ts
-const f = (p1: string, p2: number) => ({ p1, p2 });
-type P = Parameters<typeof f>;
-type R = ReturnType<typeof f>;
-const p: P = ['1', 2];
+	<div><div><article class="markdown-body"><h1 id="utility-types">Utility Types</h1>
+<p>See Official Documents in here <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html">https://www.typescriptlang.org/docs/handbook/utility-types.html</a>.</p>
+<p>The concept of Utility Types in TS, for me, it is kink of similar to  <code>Option&lt;T&gt;</code> and <code>Result&lt;T, E&gt;</code> in Rust.</p>
+<p>There are some of real implementation of common Utility Types in here.</p>
+<h2 id="picktk-and-omittk"><code>Pick&lt;T,K&gt;</code> and <code>Omit&lt;T,K&gt;</code></h2>
+<h2 id="excludetu-and-extracttu"><code>Exclude&lt;T,U&gt;</code> and <code>Extract&lt;T,U&gt;</code></h2>
+<h2 id="partialt-and-requiredt"><code>Partial&lt;T&gt;</code> and <code>Required&lt;T&gt;</code></h2>
+<h2 id="parameterst-and-returntypet"><code>Parameters&lt;T&gt;</code> and <code>ReturnType&lt;T&gt;</code></h2>
+<pre><code class="language-ts">const f = (p1: string, p2: number) =&gt; ({ p1, p2 });
+type P = Parameters&lt;typeof f&gt;;
+type R = ReturnType&lt;typeof f&gt;;
+const p: P = [&#39;1&#39;, 2];
 const r: R = f(...p);
-```
-
-## `Readonly<T>`
-
-## `Record<K,T>`
-
-## Get Key of Enum
-
-```ts
-enum NUM {
+</code></pre>
+<h2 id="readonlyt"><code>Readonly&lt;T&gt;</code></h2>
+<h2 id="recordkt"><code>Record&lt;K,T&gt;</code></h2>
+<h2 id="get-key-of-enum">Get Key of Enum</h2>
+<pre><code class="language-ts">enum NUM {
     A,
     B,
     C
 }
 type T = keyof typeof NUM;
-```
-</div></div>
+</code></pre>
+</article></div></div>
 </body>
 
 </html>

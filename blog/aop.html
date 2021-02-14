@@ -25,36 +25,26 @@
 </head>
 
 <body>
-	<div><div># AOP and The Onion Model
+	<div><div><article class="markdown-body"><h1 id="aop-and-the-onion-model">AOP and The Onion Model</h1>
+<h2 id="aop">AOP</h2>
+<p>AOP (Aspect-Oriented Programming) addresses the problem of cross-cutting concerns, which would be any kind of code that is repeated in different methods and can&#39;t normally be completely refactored into its own module, like with logging or verification. So, with AOP you can leave that stuff out of the main code and define it vertically.</p>
+<h2 id="onion-model">Onion Model</h2>
+<p>The onion model is a graph-based diagram and conceptual model for describing relationships among levels of a hierarchy, evoking a metaphor of the layered &quot;shells&quot; exposed when an onion (or other concentric assembly of spheroidal objects) is bisected by a plane that intersects the center or the innermost shell.</p>
+<p>The outer layers in the model typically add size and/or complexity, incrementally, around the inner layers they enclose.</p>
+<p>In Koa, it uses multiple layers to process a request as below:</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
 
-## AOP
+<h2 id="example-the-onion-model-of-nestjs">Example: The Onion Model of NestJS</h2>
+<p>It is like the diagram as below:</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
 
-AOP (Aspect-Oriented Programming) addresses the problem of cross-cutting concerns, which would be any kind of code that is repeated in different methods and can't normally be completely refactored into its own module, like with logging or verification. So, with AOP you can leave that stuff out of the main code and define it vertically.
-
-## Onion Model
-
-The onion model is a graph-based diagram and conceptual model for describing relationships among levels of a hierarchy, evoking a metaphor of the layered "shells" exposed when an onion (or other concentric assembly of spheroidal objects) is bisected by a plane that intersects the center or the innermost shell.
-
-The outer layers in the model typically add size and/or complexity, incrementally, around the inner layers they enclose.
-
-In Koa, it uses multiple layers to process a request as below:
-
-<img src="../assets/onion_model.png" width="400"/>
-
-## Example: The Onion Model of NestJS
-
-It is like the diagram as below:
-
-<img src="../assets/nestjs_aop.png" width="400"/>
-
-The controller is the core module of this onion model, including `Module`, `Service`, `Controller` and so on.
-
-Before accessing the controller, the request will be processed by various middleware, and after leaving controller, it will also be processed by interceptors.
-
-## Reference
-
-- <https://docs.nestjs.com/faq/request-lifecycle>
-</div></div>
+<p>The controller is the core module of this onion model, including <code>Module</code>, <code>Service</code>, <code>Controller</code> and so on.</p>
+<p>Before accessing the controller, the request will be processed by various middleware, and after leaving controller, it will also be processed by interceptors.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://docs.nestjs.com/faq/request-lifecycle">https://docs.nestjs.com/faq/request-lifecycle</a></li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

@@ -25,63 +25,48 @@
 </head>
 
 <body>
-	<div><div># Number in JS
-
-## Precision
-
-### 0.1 + 0.2 === 0.3
-
-Actually, it returns false, which counters people's institution. The reason is that JS use 64-bit floating point representation, whose problem is that numbers are represented in this format as a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
-
-In this way, when we have to compare floats, the appropriate way is to:
-
-```JS
-Number.prototype.compare = f => Math.abs(f - this) < Number.EPSILON;
+	<div><div><article class="markdown-body"><h1 id="number-in-js">Number in JS</h1>
+<h2 id="precision">Precision</h2>
+<h3 id="01--02--03">0.1 + 0.2 === 0.3</h3>
+<p>Actually, it returns false, which counters people&#39;s institution. The reason is that JS use 64-bit floating point representation, whose problem is that numbers are represented in this format as a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.</p>
+<p>In this way, when we have to compare floats, the appropriate way is to:</p>
+<pre><code class="language-JS">Number.prototype.compare = f =&gt; Math.abs(f - this) &lt; Number.EPSILON;
 console.log(0.3.compare(0.1 + 0.2));   //true
-```
-
-### Max integer
-
-Base on IEEE754, The max safe number in JS is `Math.pow(2, 53) - 1`, we can access it by `Number.MAX_SAFE_INTEGER`.
-
-Over this number, the operation will be unsafe, for example:
-
-```JS
-console.log(Math.pow(2, 53) - 1 === Math.pow(2, 53) + 1);   // false
+</code></pre>
+<h3 id="max-integer">Max integer</h3>
+<p>Base on IEEE754, The max safe number in JS is <code>Math.pow(2, 53) - 1</code>, we can access it by <code>Number.MAX_SAFE_INTEGER</code>.</p>
+<p>Over this number, the operation will be unsafe, for example:</p>
+<pre><code class="language-JS">console.log(Math.pow(2, 53) - 1 === Math.pow(2, 53) + 1);   // false
 console.log(Math.pow(2, 54) - 1 === Math.pow(2, 54) + 1);   // true
-```
-
-## Bitwise
-
-### ^ XOR
-
-- `a ^ b`: Returns a 1 in each bit position for which the corresponding bits of either but not both operands are 1s.
-
-There is an important trait of XOR operation: `a=a^b^b`.
-
-In practice, XOR operation has application scenarios as below:
-
-1. invert specific bit: For example, if we want to invert 5th and 6th bit in `10100110`, we can do XOR it with `00001100`.
-
-2. Exchange Value without temporary variable:
-
-```js
-var a=0b10100001;
+</code></pre>
+<h2 id="bitwise">Bitwise</h2>
+<h3 id="-xor">^ XOR</h3>
+<ul>
+<li><code>a ^ b</code>: Returns a 1 in each bit position for which the corresponding bits of either but not both operands are 1s.</li>
+</ul>
+<p>There is an important trait of XOR operation: <code>a=a^b^b</code>.</p>
+<p>In practice, XOR operation has application scenarios as below:</p>
+<ol>
+<li><p>invert specific bit: For example, if we want to invert 5th and 6th bit in <code>10100110</code>, we can do XOR it with <code>00001100</code>.</p>
+</li>
+<li><p>Exchange Value without temporary variable:</p>
+</li>
+</ol>
+<pre><code class="language-js">var a=0b10100001;
 var b=0b00000110;
 a=a^b; 　　//a=10100111
 b=b^a; 　　//b=10100001
 a=a^b; 　　//a=00000110
-```
-
-3. encryption. There is simple example as below base on `a=a^b^b`:
-
-```js
-const encryptAndDecrypt = (str, key) => {
-    const keyCode = Array.from(key).map(char => char.charCodeAt(0)).join('').substr(0, 2);  // < 128
-    return Array.from(str).map(char => String.fromCharCode(char.charCodeAt(0) ^ keyCode)).join('');
+</code></pre>
+<ol start="3">
+<li>encryption. There is simple example as below base on <code>a=a^b^b</code>:</li>
+</ol>
+<pre><code class="language-js">const encryptAndDecrypt = (str, key) =&gt; {
+    const keyCode = Array.from(key).map(char =&gt; char.charCodeAt(0)).join(&#39;&#39;).substr(0, 2);  // &lt; 128
+    return Array.from(str).map(char =&gt; String.fromCharCode(char.charCodeAt(0) ^ keyCode)).join(&#39;&#39;);
 };
-```
-</div></div>
+</code></pre>
+</article></div></div>
 </body>
 
 </html>

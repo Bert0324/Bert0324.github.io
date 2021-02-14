@@ -25,37 +25,28 @@
 </head>
 
 <body>
-	<div><div># Object Proxy
-
-In Vue 2, it uses `Object.defineProperty` to proxy data, and in Vue 3, it will use `Proxy` to do it.
-
-## `Object.defineProperty`
-
-Its definition is as below:
-
-```ts
-/**
+	<div><div><article class="markdown-body"><h1 id="object-proxy">Object Proxy</h1>
+<p>In Vue 2, it uses <code>Object.defineProperty</code> to proxy data, and in Vue 3, it will use <code>Proxy</code> to do it.</p>
+<h2 id="objectdefineproperty"><code>Object.defineProperty</code></h2>
+<p>Its definition is as below:</p>
+<pre><code class="language-ts">/**
  * Adds a property to an object, or modifies attributes of an existing property.
  * @param o Object on which to add or modify the property. This can be a native JavaScript object
  * (that is, a user-defined object or a built in object) or a DOM object.
  * @param p The property name.
  * @param attributes Descriptor for the property. It can be for a data property or an accessor property.
  */
-defineProperty(o: any, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): any;
-```
-
-The `PropertyDescriptor`'s properties see in the [MDN document](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
-
-### Deep Observe and Observe An Array
-
-```ts
-class Watcher {
+defineProperty(o: any, p: PropertyKey, attributes: PropertyDescriptor &amp; ThisType&lt;any&gt;): any;
+</code></pre>
+<p>The <code>PropertyDescriptor</code>&#39;s properties see in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">MDN document</a>.</p>
+<h3 id="deep-observe-and-observe-an-array">Deep Observe and Observe An Array</h3>
+<pre><code class="language-ts">class Watcher {
 
     private arrayProto: any[] = [];
 
     constructor() {
         this.arrayProto = Object.create(Array.prototype);
-        ['push', 'pop', 'shift', 'unshift', 'splice'].forEach(fn => {
+        [&#39;push&#39;, &#39;pop&#39;, &#39;shift&#39;, &#39;unshift&#39;, &#39;splice&#39;].forEach(fn =&gt; {
             const updateView = this.updateView;
             this.arrayProto[fn] = function() {
                 Array.prototype[fn].call(this, ...arguments);
@@ -65,18 +56,18 @@ class Watcher {
     }
 
     updateView() {
-        console.log('render');
+        console.log(&#39;render&#39;);
     }
 
     observer(target: any) {
         const targetType: string = Object.prototype.toString.call(target);
         // if it is not Object
-        if (!target || !targetType.startsWith('[object ')) {
+        if (!target || !targetType.startsWith(&#39;[object &#39;)) {
             return target;
         }
 
         // if it is an array, replace its prototype
-        if (targetType === '[object Array]') {
+        if (targetType === &#39;[object Array]&#39;) {
             target.__proto__ = this.arrayProto;
         }
 
@@ -84,8 +75,8 @@ class Watcher {
             let value = target[item];    // avoid circular reference
             this.observer(value);
             Object.defineProperty(target, item, {
-                get: () => value,
-                set: newValue => {
+                get: () =&gt; value,
+                set: newValue =&gt; {
                     if (newValue !== value) {
                         value = newValue;
                         this.updateView();
@@ -108,24 +99,21 @@ watcher.observer(obj);
 obj.a = 2;
 obj.b.c = 3;
 obj.d.push(1);
-```
-
-### Problems
-
-From the implementation as above, we can say there are some limitations.
-
-- it cannot observer object add new property and delete property. (use `Vue.set` and `Vue.delete` instead)
-- it has to observer whole object at once
-- it cannot observe an array's change
-
-## Proxy
-
-TODO
-
-## Reference
-
-- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty>
-</div></div>
+</code></pre>
+<h3 id="problems">Problems</h3>
+<p>From the implementation as above, we can say there are some limitations.</p>
+<ul>
+<li>it cannot observer object add new property and delete property. (use <code>Vue.set</code> and <code>Vue.delete</code> instead)</li>
+<li>it has to observer whole object at once</li>
+<li>it cannot observe an array&#39;s change</li>
+</ul>
+<h2 id="proxy">Proxy</h2>
+<p>TODO</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a></li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

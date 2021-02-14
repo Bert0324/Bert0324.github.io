@@ -25,123 +25,96 @@
 </head>
 
 <body>
-	<div><div># Stream and Buffer
-
-## What is Buffer
-
-From the definition from [Data Buffer](https://en.wikipedia.org/wiki/Data_buffer), we can see, data buffer is a real
-physical storage medium.
-
-A majority of buffers are implemented in software, which typically use the faster RAM to store temporary data, due to the
-**much faster access** time compared with hard disk drives.
-
-The main purpose including:
-
-1. Interconnecting two digital circuits operating at different rates
-
-2. Holding data for later use,
-
-3. Allowing timing corrections to be made on a data stream,
-
-4. Collecting binary data bits into groups that can then be operated on as a unit,
-
-5. Delaying the transit time of a signal in order to allow other operations to occur.
-
-## What is Stream
-
-Apprarently, if we can understand the meaning of existence of Buffer, it's easier to understand Stream.
-
-a data stream is a sequence of digitally encoded coherent signals (packets of data or data packets) used to transmit or receive information that is in the process of being transmitted.
-
-If a file is too big and we cannot read it (load it to memory at one time), the data will be saved to Buffer area first, and then, via Stream, we can read the data in order.
-
-## Buffer and Stream in Node.js
-
-### Buffer API
-
-```js
-// create Buffer
+	<div><div><article class="markdown-body"><h1 id="stream-and-buffer">Stream and Buffer</h1>
+<h2 id="what-is-buffer">What is Buffer</h2>
+<p>From the definition from <a href="https://en.wikipedia.org/wiki/Data_buffer">Data Buffer</a>, we can see, data buffer is a real
+physical storage medium.</p>
+<p>A majority of buffers are implemented in software, which typically use the faster RAM to store temporary data, due to the
+<strong>much faster access</strong> time compared with hard disk drives.</p>
+<p>The main purpose including:</p>
+<ol>
+<li><p>Interconnecting two digital circuits operating at different rates</p>
+</li>
+<li><p>Holding data for later use,</p>
+</li>
+<li><p>Allowing timing corrections to be made on a data stream,</p>
+</li>
+<li><p>Collecting binary data bits into groups that can then be operated on as a unit,</p>
+</li>
+<li><p>Delaying the transit time of a signal in order to allow other operations to occur.</p>
+</li>
+</ol>
+<h2 id="what-is-stream">What is Stream</h2>
+<p>Apprarently, if we can understand the meaning of existence of Buffer, it&#39;s easier to understand Stream.</p>
+<p>a data stream is a sequence of digitally encoded coherent signals (packets of data or data packets) used to transmit or receive information that is in the process of being transmitted.</p>
+<p>If a file is too big and we cannot read it (load it to memory at one time), the data will be saved to Buffer area first, and then, via Stream, we can read the data in order.</p>
+<h2 id="buffer-and-stream-in-nodejs">Buffer and Stream in Node.js</h2>
+<h3 id="buffer-api">Buffer API</h3>
+<pre><code class="language-js">// create Buffer
 const buf1 = Buffer.alloc(size, value); // return a hexadecimal byte
 // create Buffer from String
-const buf2 = Buffer.from("hello"); // <Buffer 68 65 6c 6c 6f>
+const buf2 = Buffer.from(&quot;hello&quot;); // &lt;Buffer 68 65 6c 6c 6f&gt;
 
 // String to Buffer
-buf2.toString(); // directlt return the string content: 'hello'
-buf2.toString("hex"); // return a hexadecimal string: '68656c6c6f'
-```
-
-[Tips](https://nodejs.org/dist/latest-v12.x/docs/api/buffer.html#buffer_buffer): Instances of the Buffer class are similar to arrays of integers from 0 to 255 (other integers are coerced to this range by & 255 operation) but correspond to fixed-sized, raw memory allocations outside the V8 heap. The size of the Buffer is established when it is created and cannot be changed.
-
-### Use Buffer in Node.js
-
-In Node.js Stream, we don't need to directly operate Buffer as Node.js has package it in Stream class like as below:
-
-```js
-const inputStream = fs.createReadStream("input.txt");
-const outputStream = fs.createWriteStream("output.txt");
+buf2.toString(); // directlt return the string content: &#39;hello&#39;
+buf2.toString(&quot;hex&quot;); // return a hexadecimal string: &#39;68656c6c6f&#39;
+</code></pre>
+<p><a href="https://nodejs.org/dist/latest-v12.x/docs/api/buffer.html#buffer_buffer">Tips</a>: Instances of the Buffer class are similar to arrays of integers from 0 to 255 (other integers are coerced to this range by &amp; 255 operation) but correspond to fixed-sized, raw memory allocations outside the V8 heap. The size of the Buffer is established when it is created and cannot be changed.</p>
+<h3 id="use-buffer-in-nodejs">Use Buffer in Node.js</h3>
+<p>In Node.js Stream, we don&#39;t need to directly operate Buffer as Node.js has package it in Stream class like as below:</p>
+<pre><code class="language-js">const inputStream = fs.createReadStream(&quot;input.txt&quot;);
+const outputStream = fs.createWriteStream(&quot;output.txt&quot;);
 inputStream.pipe(outputStream);
-```
-
-In `crypto`, buffer can be used to be filled by bytes.
-
-Besides, in Http server, using Buffer to transfer data is more efficient than String:
-
-```js
-res.end(Buffer.from("{a:1}"));
-res.end("{a:1}");
-```
-
-### Stream
-
-Streams can be readable, writable, or both. All streams are instances of [EventEmitter](https://nodejs.org/dist/latest-v12.x/docs/api/events.html#events_class_eventemitter), indluding Writable, Readable, Duplex and Transform.
-
-1. createWriteStream
-
-```js
-const writeS = fs.createWriteStream("output.txt");
-writeS.once("open", fd => {
-  for (let i = 0; i < 100; i++) {
+</code></pre>
+<p>In <code>crypto</code>, buffer can be used to be filled by bytes.</p>
+<p>Besides, in Http server, using Buffer to transfer data is more efficient than String:</p>
+<pre><code class="language-js">res.end(Buffer.from(&quot;{a:1}&quot;));
+res.end(&quot;{a:1}&quot;);
+</code></pre>
+<h3 id="stream">Stream</h3>
+<p>Streams can be readable, writable, or both. All streams are instances of <a href="https://nodejs.org/dist/latest-v12.x/docs/api/events.html#events_class_eventemitter">EventEmitter</a>, indluding Writable, Readable, Duplex and Transform.</p>
+<ol>
+<li>createWriteStream</li>
+</ol>
+<pre><code class="language-js">const writeS = fs.createWriteStream(&quot;output.txt&quot;);
+writeS.once(&quot;open&quot;, fd =&gt; {
+  for (let i = 0; i &lt; 100; i++) {
     writeS.write(`${i}\n`);
   }
   writeS.end();
 });
-```
-
-2. createReadStream
-
-```js
-const readS = fs.createReadStream("output.txt");
-let content = "";
-readS.on("data", chunk => {
+</code></pre>
+<ol start="2">
+<li>createReadStream</li>
+</ol>
+<pre><code class="language-js">const readS = fs.createReadStream(&quot;output.txt&quot;);
+let content = &quot;&quot;;
+readS.on(&quot;data&quot;, chunk =&gt; {
   content += chunk;
 });
-readS.on("end", chunk => {
+readS.on(&quot;end&quot;, chunk =&gt; {
   if (!chunk) {
     console.log(content);
   }
 });
-```
-
-In addition, `pipe` event can be used to access stream, in order to such as compress files:
-
-```js
-const fs = require("fs");
-const r = fs.createReadStream("file.txt");
+</code></pre>
+<p>In addition, <code>pipe</code> event can be used to access stream, in order to such as compress files:</p>
+<pre><code class="language-js">const fs = require(&quot;fs&quot;);
+const r = fs.createReadStream(&quot;file.txt&quot;);
 const z = zlib.createGzip();
-const w = fs.createWriteStream("file.txt.gz");
+const w = fs.createWriteStream(&quot;file.txt.gz&quot;);
 r.pipe(z).pipe(w);
-```
-
-3. Duplex streams are streams that implement both the Readable and Writable interfaces.
-
-4. Transform streams are Duplex streams where the output is in some way related to the input. Like all Duplex streams, Transform streams implement both the Readable and Writable interfaces.
-
-When operating large size files, obviously, `Stream` is the better choice compared with `fs.readFile`.
-
-## Reference
-
-More official information can be seen at [document](https://nodejs.org/dist/latest-v12.x/docs/api/stream.html).
-</div></div>
+</code></pre>
+<ol start="3">
+<li><p>Duplex streams are streams that implement both the Readable and Writable interfaces.</p>
+</li>
+<li><p>Transform streams are Duplex streams where the output is in some way related to the input. Like all Duplex streams, Transform streams implement both the Readable and Writable interfaces.</p>
+</li>
+</ol>
+<p>When operating large size files, obviously, <code>Stream</code> is the better choice compared with <code>fs.readFile</code>.</p>
+<h2 id="reference">Reference</h2>
+<p>More official information can be seen at <a href="https://nodejs.org/dist/latest-v12.x/docs/api/stream.html">document</a>.</p>
+</article></div></div>
 </body>
 
 </html>

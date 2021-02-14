@@ -25,81 +25,70 @@
 </head>
 
 <body>
-	<div><div># `this`
-
-In most cases, the value of `this` is determined by how a function is called (runtime binding). It can't be set by assignment during execution, and it may be different each time the function is called.
-
-## Runtime binding
-
-There is a demo:
-
-```ts
-function bike() {
+	<div><div><article class="markdown-body"><h1 id="this"><code>this</code></h1>
+<p>In most cases, the value of <code>this</code> is determined by how a function is called (runtime binding). It can&#39;t be set by assignment during execution, and it may be different each time the function is called.</p>
+<h2 id="runtime-binding">Runtime binding</h2>
+<p>There is a demo:</p>
+<pre><code class="language-ts">function bike() {
   console.log(this.name);
 }
 
-var name = "Ninja";
-var obj1 = { name: "Pulsar", bike: bike };
-var obj2 = { name: "Gixxer", bike: bike };
+var name = &quot;Ninja&quot;;
+var obj1 = { name: &quot;Pulsar&quot;, bike: bike };
+var obj2 = { name: &quot;Gixxer&quot;, bike: bike };
 
-bike();           // "Ninja"
-obj1.bike();      // "Pulsar"
-obj2.bike();      // "Gixxer"
-```
-
-## `apply`, `call` and `bind`
-
-These three functions are able to change `this` value in a function when it calls them.
-
-1. `bind` will change `this` but not run the function. A function can only be bind once.
-2. `call` will change `this` and run it.
-3. `apply` will change `this`, and params will be passed as an array.
-
-```ts
-function fn(a, b) {
+bike();           // &quot;Ninja&quot;
+obj1.bike();      // &quot;Pulsar&quot;
+obj2.bike();      // &quot;Gixxer&quot;
+</code></pre>
+<h2 id="apply-call-and-bind"><code>apply</code>, <code>call</code> and <code>bind</code></h2>
+<p>These three functions are able to change <code>this</code> value in a function when it calls them.</p>
+<ol>
+<li><code>bind</code> will change <code>this</code> but not run the function. A function can only be bind once.</li>
+<li><code>call</code> will change <code>this</code> and run it.</li>
+<li><code>apply</code> will change <code>this</code>, and params will be passed as an array.</li>
+</ol>
+<pre><code class="language-ts">function fn(a, b) {
     console.log(this, a, b);
 }
 
 const bindFn = fn.bind({});
 fn.call({}, 1, 2);
 fn.apply({}, [1, 2]);
-```
-
-## `new` a `Class` in JS
-
-The new keyword in front of any function turns the function call into constructor call and below things occurred when new keyword put in front of function:
-
-1. A brand new empty object gets created
-2. new empty object gets linked to prototype property of that function
-3. same new empty object gets bound as this keyword for execution context of that function call
-4. if that function does not return anything then it implicit returns this object.
-
-```ts
-function bike() {
-  var name = "Ninja";
-  this.maker = "Kawasaki";
-  console.log(this.name + " " + maker);  // undefined Bajaj
+</code></pre>
+<h2 id="new-a-class-in-js"><code>new</code> a <code>Class</code> in JS</h2>
+<p>The new keyword in front of any function turns the function call into constructor call and below things occurred when new keyword put in front of function:</p>
+<ol>
+<li>A brand new empty object gets created</li>
+<li>new empty object gets linked to prototype property of that function</li>
+<li>same new empty object gets bound as this keyword for execution context of that function call</li>
+<li>if that function does not return anything then it implicit returns this object.</li>
+</ol>
+<pre><code class="language-ts">function bike() {
+  var name = &quot;Ninja&quot;;
+  this.maker = &quot;Kawasaki&quot;;
+  console.log(this.name + &quot; &quot; + maker);  // undefined Bajaj
 }
 
-var name = "Pulsar";
-var maker = "Bajaj";
+var name = &quot;Pulsar&quot;;
+var maker = &quot;Bajaj&quot;;
 
 obj = new bike();
-console.log(obj.maker);                  // "Kawasaki"
-```
-
-## Precedence of `this` keyword bindings
-
-1. First it checks whether the function is called with new keyword.
-2. Second it checks whether the function is called with call() or apply() method means explicit binding.
-3. Third it checks if the function called via context object (implicit binding).
-4. Default global object (undefined in case of strict mode).
-
-## Reference
-
-- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this>
-- <https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c>
-</div></div>
+console.log(obj.maker);                  // &quot;Kawasaki&quot;
+</code></pre>
+<h2 id="precedence-of-this-keyword-bindings">Precedence of <code>this</code> keyword bindings</h2>
+<ol>
+<li>First it checks whether the function is called with new keyword.</li>
+<li>Second it checks whether the function is called with call() or apply() method means explicit binding.</li>
+<li>Third it checks if the function called via context object (implicit binding).</li>
+<li>Default global object (undefined in case of strict mode).</li>
+</ol>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this</a></li>
+<li><a href="https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c">https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c</a></li>
+</ul>
+</article></div></div>
 </body>
 
 </html>

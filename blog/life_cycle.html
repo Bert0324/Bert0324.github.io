@@ -25,36 +25,29 @@
 </head>
 
 <body>
-	<div><div># Vue Life Cycle
+	<div><div><article class="markdown-body"><h1 id="vue-life-cycle">Vue Life Cycle</h1>
+<h2 id="life-cycle-hooks">Life Cycle Hooks</h2>
+<p>There is an image from official website of Vue.</p>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400" />
 
-## Life Cycle Hooks
-
-There is an image from official website of Vue.
-
-<img src="../assets/vue_lifecycle.png" width="400" />
-
-## Parent and Children
-
-When a Vue component is instantiated with a child component, their life cycle hooks' sequence is as below:
-
-1. parent `created`
-2. child `created`
-3. child `mounted`
-4. parent `mounted`
-5. parent `beforeUpdate`
-6. child `beforeUpdate`
-7. child `updated`
-8. parent `updated`
-9. child `destroyed`
-10. parent `destroyed`
-
-Vue has to create the parent object, after that, to create the child object. 
-
-In contrast, after the child component is rendered, we can say a parent component's rendering is finished, destroying a component is like the same.
-
-## $nextTick
-
-</div></div>
+<h2 id="parent-and-children">Parent and Children</h2>
+<p>When a Vue component is instantiated with a child component, their life cycle hooks&#39; sequence is as below:</p>
+<ol>
+<li>parent <code>created</code></li>
+<li>child <code>created</code></li>
+<li>child <code>mounted</code></li>
+<li>parent <code>mounted</code></li>
+<li>parent <code>beforeUpdate</code></li>
+<li>child <code>beforeUpdate</code></li>
+<li>child <code>updated</code></li>
+<li>parent <code>updated</code></li>
+<li>child <code>destroyed</code></li>
+<li>parent <code>destroyed</code></li>
+</ol>
+<p>Vue has to create the parent object, after that, to create the child object. </p>
+<p>In contrast, after the child component is rendered, we can say a parent component&#39;s rendering is finished, destroying a component is like the same.</p>
+<h2 id="nexttick">$nextTick</h2>
+</article></div></div>
 </body>
 
 </html>

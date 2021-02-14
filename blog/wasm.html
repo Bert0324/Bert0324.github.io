@@ -25,51 +25,35 @@
 </head>
 
 <body>
-	<div><div># WebAssembly
-
-## What is WebAssembly
-
-Old rules, let's see the definition of WebAssembly:
-
-> WebAssembly is a binary instruction format for a stack-based virtual machine.
-
-So, WASM is not a specific programming language, but a bytecode standard. Whatever we write any language, it will be finally compiled to LLVM bytecode implemented by the language's compiler itself.
-
-Also, it doesn't mean their performance is the same.
-
-There is a [browser support list](https://caniuse.com/#search=wasm).
-
-## A WASM Demo
-
-There is a [demo](https://github.com/Bert0324/wasm-demo) base on Rust, to calculate fibonacci(30). I run it in different browsers, their logs are as below:
-
-Chrome:
-
-```log
-832040
+	<div><div><article class="markdown-body"><h1 id="webassembly">WebAssembly</h1>
+<h2 id="what-is-webassembly">What is WebAssembly</h2>
+<p>Old rules, let&#39;s see the definition of WebAssembly:</p>
+<blockquote>
+<p>WebAssembly is a binary instruction format for a stack-based virtual machine.</p>
+</blockquote>
+<p>So, WASM is not a specific programming language, but a bytecode standard. Whatever we write any language, it will be finally compiled to LLVM bytecode implemented by the language&#39;s compiler itself.</p>
+<p>Also, it doesn&#39;t mean their performance is the same.</p>
+<p>There is a <a href="https://caniuse.com/#search=wasm">browser support list</a>.</p>
+<h2 id="a-wasm-demo">A WASM Demo</h2>
+<p>There is a <a href="https://github.com/Bert0324/wasm-demo">demo</a> base on Rust, to calculate fibonacci(30). I run it in different browsers, their logs are as below:</p>
+<p>Chrome:</p>
+<pre><code class="language-log">832040
 9
 832040
 28
-```
-
-Safari:
-
-```log
-832040
+</code></pre>
+<p>Safari:</p>
+<pre><code class="language-log">832040
 6
 832040
 35
-```
-
-Firefox:
-
-```log
-TypeError: Response has unsupported MIME type
-```
-
-As we can see, in Chrome and Safari, wasm function is able to obviously improve CPU-bound
-tasks.
-</div></div>
+</code></pre>
+<p>Firefox:</p>
+<pre><code class="language-log">TypeError: Response has unsupported MIME type
+</code></pre>
+<p>As we can see, in Chrome and Safari, wasm function is able to obviously improve CPU-bound
+tasks.</p>
+</article></div></div>
 </body>
 
 </html>
