@@ -1,0 +1,31 @@
+{
+  "name": "bert0324.github.io",
+  "version": "1.0.0",
+  "scripts": {
+    "preview": "http-server .",
+    "build": "ts-node ./src/build/index.ts && cp ./src/template/style.less ../blog/style.less && cp ../blog/index.html ../index.html"
+  },
+  "dependencies": {
+    "html-minifier": "^4.0.0",
+    "lodash": "^4.17.20",
+    "lodash-es": "^4.17.20",
+    "marked": "^2.0.0",
+    "node-fetch": "^2.6.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/html-minifier": "^4.0.0",
+    "@types/lodash": "^4.14.168",
+    "@types/lodash-es": "^4.17.4",
+    "@types/marked": "^1.2.2",
+    "@types/node": "^14.14.27",
+    "@types/node-fetch": "^2.5.8",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/rimraf": "^3.0.0"
+  }
+}

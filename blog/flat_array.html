@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Bert's Blog</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin=anonymous><link rel=stylesheet/less type=text/css href=/blog/style.less><script src=//cdn.jsdelivr.net/npm/less@3.13></script><style>.markdown-body {
+			box-sizing: border-box;
+			min-width: 200px;
+			max-width: 980px;
+			margin: 0 auto;
+			padding: 45px;
+		}
+	
+		@media (max-width: 767px) {
+			.markdown-body {
+				padding: 15px;
+			}
+		}</style></head><body><div><div>The problem is from the [link](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/39). There is a multi-level layers array: ```JavaScript var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10]; ``` How can I get a plain array and sort it without repetition? My thinking is as below: ```JavaScript function flatten(source){ if (Object.prototype.toString.call(source) !== '[object Array]'){ return [source]; } let target = []; for (let i in source){ target = target.concat(flatten(source[i])); } return target; } let result = Array.from(new Set(flatten(arr))).sort((a,b)=>a-b); console.log(result); ``` There is a more clear way I found: ```JavaScript Array.from(new Set(arr.flat(Number.POSITIVE_INFINITY))).sort((a,b)=>a-b); ``` If you have some better way to solve this question, welcome to write it!</div></div></body></html>

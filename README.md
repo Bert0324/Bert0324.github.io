@@ -97,7 +97,7 @@ The place I can organize my thoughts and review knowledge.
 
 ### Design Patterns
 
-- [FP and OOP](/design/fp_oop.md)
+- [FP and OOP](/design/fp_loop.md)
 - [AOP and The Onion Model](/design/aop.md)
 - [DI and Factory Pattern](/design/di_factory.md)
 - [SOLID Design Principles](/design/solid.md)
@@ -109,4 +109,4 @@ The place I can organize my thoughts and review knowledge.
 
 > If you would like to right a wrong or are interested in me, welcome to contact me via email: yuchenhuang0324@gmail.com or WeChat, my QR code is as below:
 
-<img src="assets/qr_code.jpeg" width="400"/>
+<img src="./assets/qr_code.jpeg" width="400"/>
