@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,19 +25,44 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="number-in-js">Number in JS</h1>
-<h2 id="precision">Precision</h2>
-<h3 id="01--02--03">0.1 + 0.2 === 0.3</h3>
-<p>Actually, it returns false, which counters people&#39;s institution. The reason is that JS use 64-bit floating point representation, whose problem is that numbers are represented in this format as a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#precision">precision</a></li><li><a href="#0.1 + 0.2 === 0.3">0.1 + 0.2 === 0.3</a></li><li><a href="#max integer">max integer</a></li><li><a href="#bitwise">bitwise</a></li><li><a href="#^ xor">^ xor</a></li></ul></div></div>
+			<div>
+			<h1 id='number in js'>
+				Number in JS
+			</h1>
+		
+			<h2 id='precision'>
+				Precision
+			</h2>
+		
+			<h3 id='0.1 + 0.2 === 0.3'>
+				0.1 + 0.2 === 0.3
+			</h3>
+		<p>Actually, it returns false, which counters people&#39;s institution. The reason is that JS use 64-bit floating point representation, whose problem is that numbers are represented in this format as a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.</p>
 <p>In this way, when we have to compare floats, the appropriate way is to:</p>
-<pre><code class="hljs JS"><span class="hljs-built_in">Number</span>.prototype.compare = <span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> <span class="hljs-built_in">Math</span>.abs(f - <span class="hljs-built_in">this</span>) &lt; <span class="hljs-built_in">Number</span>.EPSILON;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0.3</span>.compare(<span class="hljs-number">0.1</span> + <span class="hljs-number">0.2</span>));   <span class="hljs-comment">//true</span></code></pre><h3 id="max-integer">Max integer</h3>
-<p>Base on IEEE754, The max safe number in JS is <code>Math.pow(2, 53) - 1</code>, we can access it by <code>Number.MAX_SAFE_INTEGER</code>.</p>
+<pre><code class="language-JS"><span class="hljs-built_in">Number</span>.prototype.compare = <span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> <span class="hljs-built_in">Math</span>.abs(f - <span class="hljs-built_in">this</span>) &lt; <span class="hljs-built_in">Number</span>.EPSILON;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0.3</span>.compare(<span class="hljs-number">0.1</span> + <span class="hljs-number">0.2</span>));   <span class="hljs-comment">//true</span>
+</code></pre>
+
+			<h3 id='max integer'>
+				Max integer
+			</h3>
+		<p>Base on IEEE754, The max safe number in JS is <code>Math.pow(2, 53) - 1</code>, we can access it by <code>Number.MAX_SAFE_INTEGER</code>.</p>
 <p>Over this number, the operation will be unsafe, for example:</p>
-<pre><code class="hljs JS"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">53</span>) - <span class="hljs-number">1</span> === <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">53</span>) + <span class="hljs-number">1</span>);   <span class="hljs-comment">// false</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">54</span>) - <span class="hljs-number">1</span> === <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">54</span>) + <span class="hljs-number">1</span>);   <span class="hljs-comment">// true</span></code></pre><h2 id="bitwise">Bitwise</h2>
-<h3 id="-xor">^ XOR</h3>
-<ul>
+<pre><code class="language-JS"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">53</span>) - <span class="hljs-number">1</span> === <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">53</span>) + <span class="hljs-number">1</span>);   <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">54</span>) - <span class="hljs-number">1</span> === <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">54</span>) + <span class="hljs-number">1</span>);   <span class="hljs-comment">// true</span>
+</code></pre>
+
+			<h2 id='bitwise'>
+				Bitwise
+			</h2>
+		
+			<h3 id='^ xor'>
+				^ XOR
+			</h3>
+		<ul>
 <li><code>a ^ b</code>: Returns a 1 in each bit position for which the corresponding bits of either but not both operands are 1s.</li>
 </ul>
 <p>There is an important trait of XOR operation: <code>a=a^b^b</code>.</p>
@@ -48,17 +73,23 @@
 <li><p>Exchange Value without temporary variable:</p>
 </li>
 </ol>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> a=<span class="hljs-number">0b10100001</span>;
+<pre><code class="language-js"><span class="hljs-keyword">var</span> a=<span class="hljs-number">0b10100001</span>;
 <span class="hljs-keyword">var</span> b=<span class="hljs-number">0b00000110</span>;
 a=a^b; 　　<span class="hljs-comment">//a=10100111</span>
 b=b^a; 　　<span class="hljs-comment">//b=10100001</span>
-a=a^b; 　　<span class="hljs-comment">//a=00000110</span></code></pre><ol start="3">
+a=a^b; 　　<span class="hljs-comment">//a=00000110</span>
+</code></pre>
+<ol start="3">
 <li>encryption. There is simple example as below base on <code>a=a^b^b</code>:</li>
 </ol>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> encryptAndDecrypt = <span class="hljs-function">(<span class="hljs-params">str, key</span>) =&gt;</span> {
+<pre><code class="language-js"><span class="hljs-keyword">const</span> encryptAndDecrypt = <span class="hljs-function">(<span class="hljs-params">str, key</span>) =&gt;</span> {
     <span class="hljs-keyword">const</span> keyCode = <span class="hljs-built_in">Array</span>.from(key).map(<span class="hljs-function"><span class="hljs-params">char</span> =&gt;</span> char.charCodeAt(<span class="hljs-number">0</span>)).join(<span class="hljs-string">&#x27;&#x27;</span>).substr(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>);  <span class="hljs-comment">// &lt; 128</span>
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(str).map(<span class="hljs-function"><span class="hljs-params">char</span> =&gt;</span> <span class="hljs-built_in">String</span>.fromCharCode(char.charCodeAt(<span class="hljs-number">0</span>) ^ keyCode)).join(<span class="hljs-string">&#x27;&#x27;</span>);
-};</code></pre></article></div></div>
+};
+</code></pre>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

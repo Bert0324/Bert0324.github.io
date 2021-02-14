@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,27 +25,60 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="utility-types">Utility Types</h1>
-<p>See Official Documents in here <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html">https://www.typescriptlang.org/docs/handbook/utility-types.html</a>.</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#pickt,k and omitt,k">pickt,k and omitt,k</a></li><li><a href="#excludet,u and extractt,u">excludet,u and extractt,u</a></li><li><a href="#partialt and requiredt">partialt and requiredt</a></li><li><a href="#parameterst and returntypet">parameterst and returntypet</a></li><li><a href="#readonlyt">readonlyt</a></li><li><a href="#recordk,t">recordk,t</a></li><li><a href="#get key of enum">get key of enum</a></li></ul></div></div>
+			<div>
+			<h1 id='utility types'>
+				Utility Types
+			</h1>
+		<p>See Official Documents in here <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html">https://www.typescriptlang.org/docs/handbook/utility-types.html</a>.</p>
 <p>The concept of Utility Types in TS, for me, it is kink of similar to  <code>Option&lt;T&gt;</code> and <code>Result&lt;T, E&gt;</code> in Rust.</p>
 <p>There are some of real implementation of common Utility Types in here.</p>
-<h2 id="picktk-and-omittk"><code>Pick&lt;T,K&gt;</code> and <code>Omit&lt;T,K&gt;</code></h2>
-<h2 id="excludetu-and-extracttu"><code>Exclude&lt;T,U&gt;</code> and <code>Extract&lt;T,U&gt;</code></h2>
-<h2 id="partialt-and-requiredt"><code>Partial&lt;T&gt;</code> and <code>Required&lt;T&gt;</code></h2>
-<h2 id="parameterst-and-returntypet"><code>Parameters&lt;T&gt;</code> and <code>ReturnType&lt;T&gt;</code></h2>
-<pre><code class="hljs ts"><span class="hljs-keyword">const</span> f = <span class="hljs-function">(<span class="hljs-params">p1: <span class="hljs-built_in">string</span>, p2: <span class="hljs-built_in">number</span></span>) =&gt;</span> ({ p1, p2 });
+
+			<h2 id='pickt,k and omitt,k'>
+				<code>Pick&lt;T,K&gt;</code> and <code>Omit&lt;T,K&gt;</code>
+			</h2>
+		
+			<h2 id='excludet,u and extractt,u'>
+				<code>Exclude&lt;T,U&gt;</code> and <code>Extract&lt;T,U&gt;</code>
+			</h2>
+		
+			<h2 id='partialt and requiredt'>
+				<code>Partial&lt;T&gt;</code> and <code>Required&lt;T&gt;</code>
+			</h2>
+		
+			<h2 id='parameterst and returntypet'>
+				<code>Parameters&lt;T&gt;</code> and <code>ReturnType&lt;T&gt;</code>
+			</h2>
+		<pre><code class="language-ts"><span class="hljs-keyword">const</span> f = <span class="hljs-function">(<span class="hljs-params">p1: <span class="hljs-built_in">string</span>, p2: <span class="hljs-built_in">number</span></span>) =&gt;</span> ({ p1, p2 });
 <span class="hljs-keyword">type</span> P = Parameters&lt;<span class="hljs-keyword">typeof</span> f&gt;;
 <span class="hljs-keyword">type</span> R = ReturnType&lt;<span class="hljs-keyword">typeof</span> f&gt;;
 <span class="hljs-keyword">const</span> p: P = [<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-number">2</span>];
-<span class="hljs-keyword">const</span> r: R = f(...p);</code></pre><h2 id="readonlyt"><code>Readonly&lt;T&gt;</code></h2>
-<h2 id="recordkt"><code>Record&lt;K,T&gt;</code></h2>
-<h2 id="get-key-of-enum">Get Key of Enum</h2>
-<pre><code class="hljs ts"><span class="hljs-built_in">enum</span> NUM {
+<span class="hljs-keyword">const</span> r: R = f(...p);
+</code></pre>
+
+			<h2 id='readonlyt'>
+				<code>Readonly&lt;T&gt;</code>
+			</h2>
+		
+			<h2 id='recordk,t'>
+				<code>Record&lt;K,T&gt;</code>
+			</h2>
+		
+			<h2 id='get key of enum'>
+				Get Key of Enum
+			</h2>
+		<pre><code class="language-ts"><span class="hljs-built_in">enum</span> NUM {
     A,
     B,
     C
 }
-<span class="hljs-keyword">type</span> T = keyof <span class="hljs-keyword">typeof</span> NUM;</code></pre></article></div></div>
+<span class="hljs-keyword">type</span> T = keyof <span class="hljs-keyword">typeof</span> NUM;
+</code></pre>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

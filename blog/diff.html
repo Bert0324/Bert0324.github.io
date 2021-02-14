@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,12 +25,21 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="react-reconciliation">React Reconciliation</h1>
-<p>In React, the most significant feature is Virtual DOM which is based on Diff Algorithm.</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#diff strategy">diff strategy</a></li><li><a href="#tree diff">tree diff</a></li><li><a href="#component diff">component diff</a></li><li><a href="#element diff">element diff</a></li><li><a href="#more optimization">more optimization</a></li><li><a href="#anonymous function in jsx">anonymous function in jsx</a></li><li><a href="#reference">reference</a></li></ul></div></div>
+			<div>
+			<h1 id='react reconciliation'>
+				React Reconciliation
+			</h1>
+		<p>In React, the most significant feature is Virtual DOM which is based on Diff Algorithm.</p>
 <p>By understanding diff in React, we are able to write a React Application with higher performance.</p>
-<h2 id="diff-strategy">Diff Strategy</h2>
-<p>There is an easiest diff function to traverse an tree by recursion as below:</p>
-<pre><code class="hljs ts"><span class="hljs-keyword">const</span> result = [];
+
+			<h2 id='diff strategy'>
+				Diff Strategy
+			</h2>
+		<p>There is an easiest diff function to traverse an tree by recursion as below:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> result = [];
 <span class="hljs-comment">// compare sub nodes</span>
 <span class="hljs-keyword">const</span> diffLeafs = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">beforeLeaf, afterLeaf</span>) </span>{
     <span class="hljs-comment">// get the max length of last tree and next tree</span>
@@ -64,10 +73,15 @@
         }
     }
     <span class="hljs-keyword">return</span> result;
-}</code></pre><p>It needs to traverse two trees and their children, therefore its time complexity is O(n^3), which means it is too expensive to be used in practice.</p>
+}
+</code></pre>
+<p>It needs to traverse two trees and their children, therefore its time complexity is O(n^3), which means it is too expensive to be used in practice.</p>
 <p>React use its advanced diff strategy to reduce the time complexity to O(n), which is based on 3 strategy as below:</p>
-<h3 id="tree-diff">Tree Diff</h3>
-<p>In practice, it&#39;s rare to operate DOM crossing its tree level.</p>
+
+			<h3 id='tree diff'>
+				Tree Diff
+			</h3>
+		<p>In practice, it&#39;s rare to operate DOM crossing its tree level.</p>
 <p>In this way, when moving an element to another element in different level, React won&#39;t move the element, instead, React will remove it and recreate it. The process is as below:</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/tree_diff.png' width="400"/>
 
@@ -76,8 +90,11 @@
 <li>Keep the structure of DOM stable, changing the tree structure as less as possible.</li>
 <li>When we need to remove and add a node frequently, we can use CSS to hide it, instead of removing it from the DOM tree.</li>
 </ul>
-<h3 id="component-diff">Component Diff</h3>
-<p>React assumes that the same components will generate the same DOM structure, in contrast, different components will generate a different DOM structure.</p>
+
+			<h3 id='component diff'>
+				Component Diff
+			</h3>
+		<p>React assumes that the same components will generate the same DOM structure, in contrast, different components will generate a different DOM structure.</p>
 <p>The component like as below is that we need to avoid when we using React:</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/com_diff.png' width="400"/>
 
@@ -86,8 +103,11 @@
 <li>use <code>shouldComponentUpdate</code> or <code>React.memo</code> (<code>PureComponent</code>) to avoid unnecessary rendering.</li>
 <li>UI with the similar structure can be wrote as a component.</li>
 </ul>
-<h3 id="element-diff">Element Diff</h3>
-<p>For elements they are in the one level and same list, they can be recognized by an unique key.</p>
+
+			<h3 id='element diff'>
+				Element Diff
+			</h3>
+		<p>For elements they are in the one level and same list, they can be recognized by an unique key.</p>
 <p>For those elements they changed their position, React use a principle <code>previousIndex &gt; currentIndex =&gt; Not Move</code> to judge which elements need to be moved.</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/element_diff.png' width="400"/>
 
@@ -97,20 +117,33 @@
 <li>add a real unique key in list.</li>
 <li>avoid to shift the last element in a list to the head.</li>
 </ul>
-<h3 id="more-optimization">More Optimization</h3>
-<h4 id="anonymous-function-in-jsx">Anonymous function in JSX</h4>
-<p>if writing anonymous function in JSX, every time React rerender, it will re-execute the anonymous function.</p>
+
+			<h3 id='more optimization'>
+				More Optimization
+			</h3>
+		
+			<h4 id='anonymous function in jsx'>
+				Anonymous function in JSX
+			</h4>
+		<p>if writing anonymous function in JSX, every time React rerender, it will re-execute the anonymous function.</p>
 <p>Because React uses <code>===</code> to compare <code>props</code>:</p>
-<pre><code class="hljs js">(<span class="hljs-function">() =&gt;</span> {}) === (<span class="hljs-function">() =&gt;</span> {}); <span class="hljs-comment">// false</span></code></pre><p><code>Function</code> object in JS is reference type, in this way, even the same anonymous function will be treated as different object to trigger re-execute.</p>
+<pre><code class="language-js">(<span class="hljs-function">() =&gt;</span> {}) === (<span class="hljs-function">() =&gt;</span> {}); <span class="hljs-comment">// false</span>
+</code></pre>
+<p><code>Function</code> object in JS is reference type, in this way, even the same anonymous function will be treated as different object to trigger re-execute.</p>
 <p>For those components rendered frequently, we&#39;d better to use <code>useCallback</code> or <code>useMemo</code> to reduce its render times.</p>
-<h2 id="reference">Reference</h2>
-<ul>
+
+			<h2 id='reference'>
+				Reference
+			</h2>
+		<ul>
 <li><a href="https://reactjs.org/docs/reconciliation.html">https://reactjs.org/docs/reconciliation.html</a></li>
 <li><a href="https://www.jianshu.com/p/6e9c91c62d0f">https://www.jianshu.com/p/6e9c91c62d0f</a></li>
 <li><a href="https://www.cronj.com/blog/diff-algorithm-implemented-reactjs/">https://www.cronj.com/blog/diff-algorithm-implemented-reactjs/</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/20346379">https://zhuanlan.zhihu.com/p/20346379</a></li>
 </ul>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

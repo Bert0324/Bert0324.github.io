@@ -18,7 +18,7 @@ There is a [demo](https://github.com/Bert0324/wasm-demo) base on Rust, to calcul
 
 Chrome:
 
-```log
+```
 832040
 9
 832040
@@ -27,7 +27,7 @@ Chrome:
 
 Safari:
 
-```log
+```
 832040
 6
 832040
@@ -36,7 +36,7 @@ Safari:
 
 Firefox:
 
-```log
+```
 TypeError: Response has unsupported MIME type
 ```
 

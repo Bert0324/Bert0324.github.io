@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,15 +25,31 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="http-request">Http Request</h1>
-<h2 id="xmlhttprequest-basic-usage"><code>XMLHttpRequest</code> Basic Usage</h2>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> request = <span class="hljs-keyword">new</span> XMLHttpRequest();
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#xmlhttprequest basic usage">xmlhttprequest basic usage</a></li><li><a href="#fetch basic usage">fetch basic usage</a></li><li><a href="#abort request">abort request</a></li><li><a href="#4 post data encoded ways">4 post data encoded ways</a></li><li><a href="#set max number of concurrency">set max number of concurrency</a></li><li><a href="#reference">reference</a></li></ul></div></div>
+			<div>
+			<h1 id='http request'>
+				Http Request
+			</h1>
+		
+			<h2 id='xmlhttprequest basic usage'>
+				<code>XMLHttpRequest</code> Basic Usage
+			</h2>
+		<pre><code class="language-js"><span class="hljs-keyword">const</span> request = <span class="hljs-keyword">new</span> XMLHttpRequest();
 request.addEventListener(<span class="hljs-string">&quot;load&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(request.responseText));
 request.open(<span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string">&quot;https://www.google.com&quot;</span>);
-request.send();</code></pre><h2 id="fetch-basic-usage"><code>fetch</code> Basic Usage</h2>
-<p>get <code>ReadableStream</code>:</p>
-<pre><code class="hljs ts"><span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> (<span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://www.google.com&#x27;</span>)).text();</code></pre><p>post data:</p>
-<pre><code class="hljs ts"><span class="hljs-keyword">const</span> postData = <span class="hljs-function">(<span class="hljs-params">url, data, encodeType</span>) =&gt;</span> fetch(url, {
+request.send();
+</code></pre>
+
+			<h2 id='fetch basic usage'>
+				<code>fetch</code> Basic Usage
+			</h2>
+		<p>get <code>ReadableStream</code>:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> (<span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;https://www.google.com&#x27;</span>)).text();
+</code></pre>
+<p>post data:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> postData = <span class="hljs-function">(<span class="hljs-params">url, data, encodeType</span>) =&gt;</span> fetch(url, {
     <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify(data),
     <span class="hljs-attr">cache</span>: <span class="hljs-string">&#x27;no-cache&#x27;</span>,
     <span class="hljs-attr">credentials</span>: <span class="hljs-string">&#x27;same-origin&#x27;</span>,
@@ -44,9 +60,14 @@ request.send();</code></pre><h2 id="fetch-basic-usage"><code>fetch</code> Basic 
     <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;cors&#x27;</span>,
     <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;follow&#x27;</span>,
     <span class="hljs-attr">referrer</span>: <span class="hljs-string">&#x27;no-referrer&#x27;</span>,
-});</code></pre><h2 id="abort-request">Abort Request</h2>
-<p>Aborting request by <code>AbortController</code> with <code>signal</code>.</p>
-<pre><code class="hljs ts"><span class="hljs-keyword">const</span> { signal, abort } = <span class="hljs-keyword">new</span> AbortController();
+});
+</code></pre>
+
+			<h2 id='abort request'>
+				Abort Request
+			</h2>
+		<p>Aborting request by <code>AbortController</code> with <code>signal</code>.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> { signal, abort } = <span class="hljs-keyword">new</span> AbortController();
 
 <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">async</span> (url: <span class="hljs-built_in">string</span>, <span class="hljs-attr">callback</span>: <span class="hljs-built_in">Function</span>) =&gt; {
     <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> fetch(url, { signal });
@@ -54,18 +75,27 @@ request.send();</code></pre><h2 id="fetch-basic-usage"><code>fetch</code> Basic 
 };
 
 request();
-abort();    <span class="hljs-comment">// request is aborted</span></code></pre><h2 id="4-post-data-encoded-ways">4 POST data encoded ways</h2>
-<p>We can set post data format method by <code>Content-Type</code> in http request headers, or change <code>&lt;form&gt;</code>&#39;s <code>enctype</code> attribute. </p>
+abort();    <span class="hljs-comment">// request is aborted</span>
+</code></pre>
+
+			<h2 id='4 post data encoded ways'>
+				4 POST data encoded ways
+			</h2>
+		<p>We can set post data format method by <code>Content-Type</code> in http request headers, or change <code>&lt;form&gt;</code>&#39;s <code>enctype</code> attribute. </p>
 <ol>
 <li>application/x-www-form-urlencoded</li>
 </ol>
 <p>As the name suggests, it encoded data like url: </p>
-<pre><code class="hljs text">a=1&amp;b=2</code></pre><p>This is <code>&lt;form&gt;</code>&#39;s default encode type.</p>
+<pre><code class="language-text">a=1&amp;b=2
+</code></pre>
+<p>This is <code>&lt;form&gt;</code>&#39;s default encode type.</p>
 <ol start="2">
 <li>application/json</li>
 </ol>
 <p>It will serialize contents as JSON:</p>
-<pre><code class="hljs json">{ <span class="hljs-attr">&quot;a&quot;</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">&quot;b&quot;</span>: <span class="hljs-number">2</span> }</code></pre><ol start="3">
+<pre><code class="language-json">{ <span class="hljs-attr">&quot;a&quot;</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">&quot;b&quot;</span>: <span class="hljs-number">2</span> }
+</code></pre>
+<ol start="3">
 <li>multipart/form-data</li>
 </ol>
 <p>It will generate a boundary in http message started by <code>------</code>, end by <code>\n</code>, contents are recorded as key-value. Moreover, in the boundary <code>Content-Type</code> can be set as <code>image/png</code> to save images or files.</p>
@@ -76,8 +106,11 @@ abort();    <span class="hljs-comment">// request is aborted</span></code></pre>
 <li>text/xml</li>
 </ol>
 <p>It will send plain content as text, such as using XML to transfer data.</p>
-<h2 id="set-max-number-of-concurrency">Set Max Number of Concurrency</h2>
-<pre><code class="hljs ts"><span class="hljs-keyword">const</span> request = <span class="hljs-keyword">async</span> (urls: <span class="hljs-built_in">string</span>[], <span class="hljs-attr">maxNumber</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">callback</span>: <span class="hljs-built_in">Function</span>) =&gt; {
+
+			<h2 id='set max number of concurrency'>
+				Set Max Number of Concurrency
+			</h2>
+		<pre><code class="language-ts"><span class="hljs-keyword">const</span> request = <span class="hljs-keyword">async</span> (urls: <span class="hljs-built_in">string</span>[], <span class="hljs-attr">maxNumber</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">callback</span>: <span class="hljs-built_in">Function</span>) =&gt; {
     <span class="hljs-keyword">const</span> data = {
         <span class="hljs-attr">queue</span>: [...urls],
         <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>,
@@ -97,13 +130,20 @@ abort();    <span class="hljs-comment">// request is aborted</span></code></pre>
         }
     };
     <span class="hljs-keyword">await</span> handler();
-};</code></pre><h2 id="reference">Reference</h2>
-<ul>
+};
+</code></pre>
+
+			<h2 id='reference'>
+				Reference
+			</h2>
+		<ul>
 <li><a href="https://imququ.com/post/four-ways-to-post-data-in-http.html">https://imququ.com/post/four-ways-to-post-data-in-http.html</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/enctype">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/enctype</a></li>
 </ul>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

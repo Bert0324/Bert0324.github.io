@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,26 +25,45 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="box-model">Box Model</h1>
-<p>All HTML elements can be considered as boxes. In CSS, the term &quot;box model&quot; is used when talking about design and layout.</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#margin collapse">margin collapse</a></li><li><a href="#height and width in box model">height and width in box model</a></li><li><a href="#bfc">bfc</a></li><li><a href="#position">position</a></li></ul></div></div>
+			<div>
+			<h1 id='box model'>
+				Box Model
+			</h1>
+		<p>All HTML elements can be considered as boxes. In CSS, the term &quot;box model&quot; is used when talking about design and layout.</p>
 <p>The CSS box model is essentially a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content.</p>
 <p>There is a screenshot from Chrome:</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/box_model.png' width="400"/>
 
-<h2 id="margin-collapse">Margin collapse</h2>
-<p>You can see this example in <a href="https://jsfiddle.net/d9zb13jy/">Here</a>:</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+
+			<h2 id='margin collapse'>
+				Margin collapse
+			</h2>
+		<p>You can see this example in <a href="https://jsfiddle.net/d9zb13jy/">Here</a>:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>p1<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>p2<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><pre><code class="hljs css"><span class="hljs-selector-tag">p</span>{
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<pre><code class="language-css"><span class="hljs-selector-tag">p</span>{
     <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;
-}</code></pre><p>In the final result, the top margin of p2 is 0. In other word, its margin merged with p1&#39;s bottom margin.</p>
+}
+</code></pre>
+<p>In the final result, the top margin of p2 is 0. In other word, its margin merged with p1&#39;s bottom margin.</p>
 <p>But if we set <code>float: left;</code>, the horizontal margin won&#39;t collapse. As only one type of margin can collapse: Vertical (top and bottom). Margin collapse never applies to horizontal (left and right) margins.</p>
-<h2 id="height-and-width-in-box-model">height and width in Box Model</h2>
-<p>If we set <code>width:100%</code>, the element will exceed the whole page, its width actually is larger than 100%. Because the default <code>box-sizing</code> is <code>content-box</code>, which won&#39;t involve margin and padding&#39;s value into calculation.</p>
+
+			<h2 id='height and width in box model'>
+				height and width in Box Model
+			</h2>
+		<p>If we set <code>width:100%</code>, the element will exceed the whole page, its width actually is larger than 100%. Because the default <code>box-sizing</code> is <code>content-box</code>, which won&#39;t involve margin and padding&#39;s value into calculation.</p>
 <p>Another choice is <code>border-box</code>, which will involve both content and padding size into calculation, still without margin.</p>
-<h2 id="bfc">BFC</h2>
-<p>A Block Formatting Context is part of the visual CSS rendering of a web page in which block boxes are laid out. The positioning scheme to which it belongs is normal flow</p>
+
+			<h2 id='bfc'>
+				BFC
+			</h2>
+		<p>A Block Formatting Context is part of the visual CSS rendering of a web page in which block boxes are laid out. The positioning scheme to which it belongs is normal flow</p>
 <p>It is an HTML box that satisfies at least one of the following conditions:</p>
 <ol>
 <li>The value of float is not none</li>
@@ -52,8 +71,11 @@
 <li>The value of display is table-cell, table-caption, inline-block, flex, or inline-flex</li>
 <li>The value of overflow is not visible.</li>
 </ol>
-<h2 id="position">Position</h2>
-<ol>
+
+			<h2 id='position'>
+				Position
+			</h2>
+		<ol>
 <li>fix</li>
 </ol>
 <ul>
@@ -83,7 +105,9 @@
 <ul>
 <li>the element is positioned based on the user&#39;s scroll position.</li>
 </ul>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

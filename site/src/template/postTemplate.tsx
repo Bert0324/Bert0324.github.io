@@ -1,9 +1,8 @@
 import React from 'react';
+import { Container } from './components/layout';
 
 export default ({ content }: { content: string }) => {
 	return (
-		<div>
-			<div dangerouslySetInnerHTML={{ __html: content }} />
-		</div>
+		<Container Content={() => <div dangerouslySetInnerHTML={{ __html: content }} />} />
 	)
 };

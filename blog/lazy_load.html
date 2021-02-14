@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,10 +25,13 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><p>At the beginning, I try to use <code>react-loadable</code> to realize router lazy load, but it made me a mess..., an error like below</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#how it works">how it works</a></li></ul></div></div>
+			<div><p>At the beginning, I try to use <code>react-loadable</code> to realize router lazy load, but it made me a mess..., an error like below</p>
 <p><code>Invariant Violation: Element type is invalid: expected a string</code></p>
 <p>Fortunately, I found in React v16.6, official router lazy load has came out! So I try it and it works perfectly:</p>
-<pre><code class="hljs JavaScript">
+<pre><code class="language-JavaScript">
 <span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
 <span class="hljs-keyword">import</span> {BrowserRouter, Redirect, Switch, Route} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span>;
 
@@ -65,14 +68,21 @@
         {Page(&#x27;/login&#x27;, &quot;./pages/login&quot;)}
         <span class="hljs-tag">&lt;<span class="hljs-name">Redirect</span> <span class="hljs-attr">to</span>=<span class="hljs-string">{</span>&#x27;/<span class="hljs-attr">login</span>&#x27;}/&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">Switch</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">BrowserRouter</span>&gt;</span></span></code></pre><p>Dont&#39;t need to import other things, simply use React to resolve whole things.</p>
-<h2 id="how-it-works">How it works</h2>
-<p><code>React.lazy</code> is to split code, instead of bundling whole code to one file, via it, when using webpack, the JS files can be split. </p>
+<span class="hljs-tag">&lt;/<span class="hljs-name">BrowserRouter</span>&gt;</span></span>
+</code></pre>
+<p>Dont&#39;t need to import other things, simply use React to resolve whole things.</p>
+
+			<h2 id='how it works'>
+				How it works
+			</h2>
+		<p><code>React.lazy</code> is to split code, instead of bundling whole code to one file, via it, when using webpack, the JS files can be split. </p>
 <p>After that, when browser is rendering to <code>&lt;Suspense&gt;</code>, it will throw an error which is a Promise. 
 In the parent component&#39;s <code>ComponentDidCatch</code> period, it will catch this Promise, which is in <code>pending</code> status, 
 the parent component will render <code>fallback</code> component when the Promise is in <code>pending</code>. 
 One its status becomes <code>resolve</code>, the parent component will load real child component and replace <code>fallback</code>.</p>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

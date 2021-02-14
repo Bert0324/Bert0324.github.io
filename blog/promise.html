@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,11 +25,20 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="promise">Promise</h1>
-<p><code>Promise</code> is a powerful alternative way to replace callback in JS. Compared to callback, <code>Promise</code> provides a better way to write coherent codes.</p>
-<h2 id="how-to-use">How to use</h2>
-<p>First of all, let&#39;s see its definition:</p>
-<pre><code class="hljs ts"><span class="hljs-comment">/**
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#how to use">how to use</a></li><li><a href="#promise implementation">promise implementation</a></li><li><a href="#promise.all, promise.race, promise.finally and promise.parallel">promise.all, promise.race, promise.finally and promise.parallel</a></li><li><a href="#async  await">async  await</a></li><li><a href="#what is async function">what is async function</a></li><li><a href="#always return promise">always return promise</a></li><li><a href="#await can only get promise.resolve">await can only get promise.resolve</a></li><li><a href="#conclusion">conclusion</a></li></ul></div></div>
+			<div>
+			<h1 id='promise'>
+				Promise
+			</h1>
+		<p><code>Promise</code> is a powerful alternative way to replace callback in JS. Compared to callback, <code>Promise</code> provides a better way to write coherent codes.</p>
+
+			<h2 id='how to use'>
+				How to use
+			</h2>
+		<p>First of all, let&#39;s see its definition:</p>
+<pre><code class="language-ts"><span class="hljs-comment">/**
  * Represents the completion of an asynchronous operation
  */</span>
 <span class="hljs-keyword">interface</span> Promise&lt;T&gt; {
@@ -47,10 +56,12 @@
      * <span class="hljs-doctag">@returns </span>A Promise for the completion of the callback.
      */</span>
     <span class="hljs-keyword">catch</span>&lt;TResult = <span class="hljs-built_in">never</span>&gt;(onrejected?: (<span class="hljs-function">(<span class="hljs-params">reason: <span class="hljs-built_in">any</span></span>) =&gt;</span> TResult | PromiseLike&lt;TResult&gt;) | <span class="hljs-literal">undefined</span> | <span class="hljs-literal">null</span>): <span class="hljs-built_in">Promise</span>&lt;T | TResult&gt;;
-}</code></pre><p>The first function in then is resolve function, the second function is reject function which can on catch the error from <code>reject</code>, not from <code>throw</code>.</p>
+}
+</code></pre>
+<p>The first function in then is resolve function, the second function is reject function which can on catch the error from <code>reject</code>, not from <code>throw</code>.</p>
 <p>The functions <code>resolve</code> and <code>reject</code> is to change the status of <code>Promise</code>.</p>
 <p>There is a demo:</p>
-<pre><code class="hljs ts"><span class="hljs-keyword">const</span> resolveTask = <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> resolve(<span class="hljs-number">1</span>))
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> resolveTask = <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> resolve(<span class="hljs-number">1</span>))
 .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;resolve&#x27;</span>, res);
     <span class="hljs-keyword">throw</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;throw error&#x27;</span>)
@@ -72,10 +83,15 @@
 <span class="hljs-comment">// catch Error: throw error</span>
 resolveTask();
 <span class="hljs-comment">// reject 1</span>
-rejectTask();</code></pre><h2 id="promise-implementation">Promise implementation</h2>
-<p>For me, the key point to understand Promise&#39;s then and catch is the event-loop. Because the main thread task will be operated to the end first. So the <code>thenList</code> and <code>onCatch</code> must be ready when the first callback starts.</p>
+rejectTask();
+</code></pre>
+
+			<h2 id='promise implementation'>
+				Promise implementation
+			</h2>
+		<p>For me, the key point to understand Promise&#39;s then and catch is the event-loop. Because the main thread task will be operated to the end first. So the <code>thenList</code> and <code>onCatch</code> must be ready when the first callback starts.</p>
 <p>There is a simple example I wrote:</p>
-<pre><code class="hljs ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPromise</span>&lt;<span class="hljs-title">T</span>&gt;</span>{
+<pre><code class="language-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPromise</span>&lt;<span class="hljs-title">T</span>&gt;</span>{
 
     <span class="hljs-keyword">static</span> statusList = {
         <span class="hljs-attr">pending</span>:<span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;pending&#x27;</span>),
@@ -155,12 +171,17 @@ rejectTask();</code></pre><h2 id="promise-implementation">Promise implementation
     })
     .catch(<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>{
     <span class="hljs-built_in">console</span>.log(err);
-});</code></pre><h2 id="promiseall-promiserace-promisefinally-and-promiseparallel"><code>Promise.all</code>, <code>Promise.race</code>, <code>Promise.finally</code> and <code>Promise.parallel</code></h2>
-<p>About <code>all</code> and <code>race</code>, I know a really vivid and interesting metaphor: The <code>all</code> is a horse race that ends when all horses reach the terminal point, the <code>race</code> is a horse race that ends when the first horse reaches the terminal point.</p>
+});
+</code></pre>
+
+			<h2 id='promise.all, promise.race, promise.finally and promise.parallel'>
+				<code>Promise.all</code>, <code>Promise.race</code>, <code>Promise.finally</code> and <code>Promise.parallel</code>
+			</h2>
+		<p>About <code>all</code> and <code>race</code>, I know a really vivid and interesting metaphor: The <code>all</code> is a horse race that ends when all horses reach the terminal point, the <code>race</code> is a horse race that ends when the first horse reaches the terminal point.</p>
 <p>In other word, the <code>all</code> will return results of all callback tasks, the <code>race</code> will return the callback result of the first finished task.</p>
 <p>Notice, <code>race</code> and <code>all</code> both will run the whole asynchronize task, the only different is the final returned value.</p>
 <p>Their implements are as below:</p>
-<pre><code class="hljs ts"><span class="hljs-built_in">Promise</span>.myRace = <span class="hljs-function">(<span class="hljs-params">tasks: <span class="hljs-built_in">Promise</span>&lt;unknown&gt;[]</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+<pre><code class="language-ts"><span class="hljs-built_in">Promise</span>.myRace = <span class="hljs-function">(<span class="hljs-params">tasks: <span class="hljs-built_in">Promise</span>&lt;unknown&gt;[]</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
     tasks.forEach(<span class="hljs-keyword">async</span> task =&gt; {
         <span class="hljs-keyword">try</span> {
             <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> task;
@@ -221,19 +242,37 @@ rejectTask();</code></pre><h2 id="promise-implementation">Promise implementation
     } <span class="hljs-keyword">catch</span> (e) {
         reject(e);
     }
-});</code></pre><h2 id="async--await">async &amp; await</h2>
-<p><code>async</code> and <code>await</code> it a better solution to replace <code>then</code>. Writing asynchronize codes with synchronize sequence.</p>
-<h3 id="what-is-async-function">What is async function</h3>
-<p>Actually, <code>async function</code> will return an <code>AsyncFunction</code> object, which can be created as below (notice: it is not a global variable):</p>
-<pre><code class="hljs ts"><span class="hljs-built_in">Object</span>.getPrototypeOf(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}).constructor</code></pre><h3 id="always-return-promise">always return Promise</h3>
-<p>It will always return a Promise object, even if we return other things:</p>
-<pre><code class="hljs ts"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">task</span>(<span class="hljs-params"></span>) </span>{
+});
+</code></pre>
+
+			<h2 id='async  await'>
+				async &amp; await
+			</h2>
+		<p><code>async</code> and <code>await</code> it a better solution to replace <code>then</code>. Writing asynchronize codes with synchronize sequence.</p>
+
+			<h3 id='what is async function'>
+				What is async function
+			</h3>
+		<p>Actually, <code>async function</code> will return an <code>AsyncFunction</code> object, which can be created as below (notice: it is not a global variable):</p>
+<pre><code class="language-ts"><span class="hljs-built_in">Object</span>.getPrototypeOf(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}).constructor
+</code></pre>
+
+			<h3 id='always return promise'>
+				always return Promise
+			</h3>
+		<p>It will always return a Promise object, even if we return other things:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">task</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 }
-<span class="hljs-built_in">console</span>.log(task())     <span class="hljs-comment">// Promise { 1 }</span></code></pre><h3 id="await-can-only-get-promiseresolve">await can only get Promise.resolve</h3>
-<p>The <code>await</code> operator is used to wait for a <code>Promise</code>. It can only be used inside an <code>async function</code>. But it can only receive <code>Promise.resolve</code>. For example:</p>
+<span class="hljs-built_in">console</span>.log(task())     <span class="hljs-comment">// Promise { 1 }</span>
+</code></pre>
+
+			<h3 id='await can only get promise.resolve'>
+				await can only get Promise.resolve
+			</h3>
+		<p>The <code>await</code> operator is used to wait for a <code>Promise</code>. It can only be used inside an <code>async function</code>. But it can only receive <code>Promise.resolve</code>. For example:</p>
 <p>If the <code>Promise</code> is rejected, the await expression throws the rejected value.</p>
-<pre><code class="hljs ts">(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+<pre><code class="language-ts">(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-string">&#x27;success&#x27;</span>);
     <span class="hljs-built_in">console</span>.log(result);
 })();   <span class="hljs-comment">// success</span>
@@ -241,10 +280,17 @@ rejectTask();</code></pre><h2 id="promise-implementation">Promise implementation
 (<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-string">&#x27;success&#x27;</span>);
     <span class="hljs-built_in">console</span>.log(result);
-})()    <span class="hljs-comment">// UnhandledPromiseRejectionWarning: success</span></code></pre><h2 id="conclusion">Conclusion</h2>
-<p>In this way, for me, when I don&#39;t care about the error, I perfer to use <code>throw Error</code>, when I want to process
+})()    <span class="hljs-comment">// UnhandledPromiseRejectionWarning: success</span>
+</code></pre>
+
+			<h2 id='conclusion'>
+				Conclusion
+			</h2>
+		<p>In this way, for me, when I don&#39;t care about the error, I perfer to use <code>throw Error</code>, when I want to process
 error, <code>Promise.reject</code> maybe more useful.</p>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

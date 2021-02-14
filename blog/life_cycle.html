@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,13 +25,25 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="vue-life-cycle">Vue Life Cycle</h1>
-<h2 id="life-cycle-hooks">Life Cycle Hooks</h2>
-<p>There is an image from official website of Vue.</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#life cycle hooks">life cycle hooks</a></li><li><a href="#parent and children">parent and children</a></li><li><a href="#$nexttick">$nexttick</a></li></ul></div></div>
+			<div>
+			<h1 id='vue life cycle'>
+				Vue Life Cycle
+			</h1>
+		
+			<h2 id='life cycle hooks'>
+				Life Cycle Hooks
+			</h2>
+		<p>There is an image from official website of Vue.</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/vue_lifecycle.png' width="400" />
 
-<h2 id="parent-and-children">Parent and Children</h2>
-<p>When a Vue component is instantiated with a child component, their life cycle hooks&#39; sequence is as below:</p>
+
+			<h2 id='parent and children'>
+				Parent and Children
+			</h2>
+		<p>When a Vue component is instantiated with a child component, their life cycle hooks&#39; sequence is as below:</p>
 <ol>
 <li>parent <code>created</code></li>
 <li>child <code>created</code></li>
@@ -46,8 +58,13 @@
 </ol>
 <p>Vue has to create the parent object, after that, to create the child object. </p>
 <p>In contrast, after the child component is rendered, we can say a parent component&#39;s rendering is finished, destroying a component is like the same.</p>
-<h2 id="nexttick">$nextTick</h2>
-</article></div></div>
+
+			<h2 id='$nexttick'>
+				$nextTick
+			</h2>
+		</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

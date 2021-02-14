@@ -7,7 +7,7 @@
 以下是能联系到我的方式：
 
 - email：yuchenhuang0324@gmail.com
-- github: https://github.com/Bert0324
+- wechat: bertkk
 
 ## 支持一下本站
 

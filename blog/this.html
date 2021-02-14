@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,11 +25,20 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="this"><code>this</code></h1>
-<p>In most cases, the value of <code>this</code> is determined by how a function is called (runtime binding). It can&#39;t be set by assignment during execution, and it may be different each time the function is called.</p>
-<h2 id="runtime-binding">Runtime binding</h2>
-<p>There is a demo:</p>
-<pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#runtime binding">runtime binding</a></li><li><a href="#apply, call and bind">apply, call and bind</a></li><li><a href="#new a class in js">new a class in js</a></li><li><a href="#precedence of this keyword bindings">precedence of this keyword bindings</a></li><li><a href="#reference">reference</a></li></ul></div></div>
+			<div>
+			<h1 id='this'>
+				<code>this</code>
+			</h1>
+		<p>In most cases, the value of <code>this</code> is determined by how a function is called (runtime binding). It can&#39;t be set by assignment during execution, and it may be different each time the function is called.</p>
+
+			<h2 id='runtime binding'>
+				Runtime binding
+			</h2>
+		<p>There is a demo:</p>
+<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);
 }
 
@@ -39,28 +48,38 @@
 
 bike();           <span class="hljs-comment">// &quot;Ninja&quot;</span>
 obj1.bike();      <span class="hljs-comment">// &quot;Pulsar&quot;</span>
-obj2.bike();      <span class="hljs-comment">// &quot;Gixxer&quot;</span></code></pre><h2 id="apply-call-and-bind"><code>apply</code>, <code>call</code> and <code>bind</code></h2>
-<p>These three functions are able to change <code>this</code> value in a function when it calls them.</p>
+obj2.bike();      <span class="hljs-comment">// &quot;Gixxer&quot;</span>
+</code></pre>
+
+			<h2 id='apply, call and bind'>
+				<code>apply</code>, <code>call</code> and <code>bind</code>
+			</h2>
+		<p>These three functions are able to change <code>this</code> value in a function when it calls them.</p>
 <ol>
 <li><code>bind</code> will change <code>this</code> but not run the function. A function can only be bind once.</li>
 <li><code>call</code> will change <code>this</code> and run it.</li>
 <li><code>apply</code> will change <code>this</code>, and params will be passed as an array.</li>
 </ol>
-<pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">a, b</span>) </span>{
+<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>, a, b);
 }
 
 <span class="hljs-keyword">const</span> bindFn = fn.bind({});
 fn.call({}, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
-fn.apply({}, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]);</code></pre><h2 id="new-a-class-in-js"><code>new</code> a <code>Class</code> in JS</h2>
-<p>The new keyword in front of any function turns the function call into constructor call and below things occurred when new keyword put in front of function:</p>
+fn.apply({}, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]);
+</code></pre>
+
+			<h2 id='new a class in js'>
+				<code>new</code> a <code>Class</code> in JS
+			</h2>
+		<p>The new keyword in front of any function turns the function call into constructor call and below things occurred when new keyword put in front of function:</p>
 <ol>
 <li>A brand new empty object gets created</li>
 <li>new empty object gets linked to prototype property of that function</li>
 <li>same new empty object gets bound as this keyword for execution context of that function call</li>
 <li>if that function does not return anything then it implicit returns this object.</li>
 </ol>
-<pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
+<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">var</span> name = <span class="hljs-string">&quot;Ninja&quot;</span>;
   <span class="hljs-built_in">this</span>.maker = <span class="hljs-string">&quot;Kawasaki&quot;</span>;
   <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name + <span class="hljs-string">&quot; &quot;</span> + maker);  <span class="hljs-comment">// undefined Bajaj</span>
@@ -70,19 +89,29 @@ fn.apply({}, [<span class="hljs-number">1</span>, <span class="hljs-number">2</s
 <span class="hljs-keyword">var</span> maker = <span class="hljs-string">&quot;Bajaj&quot;</span>;
 
 obj = <span class="hljs-keyword">new</span> bike();
-<span class="hljs-built_in">console</span>.log(obj.maker);                  <span class="hljs-comment">// &quot;Kawasaki&quot;</span></code></pre><h2 id="precedence-of-this-keyword-bindings">Precedence of <code>this</code> keyword bindings</h2>
-<ol>
+<span class="hljs-built_in">console</span>.log(obj.maker);                  <span class="hljs-comment">// &quot;Kawasaki&quot;</span>
+</code></pre>
+
+			<h2 id='precedence of this keyword bindings'>
+				Precedence of <code>this</code> keyword bindings
+			</h2>
+		<ol>
 <li>First it checks whether the function is called with new keyword.</li>
 <li>Second it checks whether the function is called with call() or apply() method means explicit binding.</li>
 <li>Third it checks if the function called via context object (implicit binding).</li>
 <li>Default global object (undefined in case of strict mode).</li>
 </ol>
-<h2 id="reference">Reference</h2>
-<ul>
+
+			<h2 id='reference'>
+				Reference
+			</h2>
+		<ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this</a></li>
 <li><a href="https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c">https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c</a></li>
 </ul>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

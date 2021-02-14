@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,9 +25,18 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="ssr">SSR</h1>
-<h2 id="advantages-of-ssr">Advantages of SSR</h2>
-<ol>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#advantages of ssr">advantages of ssr</a></li><li><a href="#why is ssr possible in react">why is ssr possible in react</a></li><li><a href="#key points">key points</a></li><li><a href="#ssr in react">ssr in react</a></li><li><a href="#static file server">static file server</a></li><li><a href="#frontend">frontend</a></li><li><a href="#compile server code">compile server code</a></li><li><a href="#end">end</a></li></ul></div></div>
+			<div>
+			<h1 id='ssr'>
+				SSR
+			</h1>
+		
+			<h2 id='advantages of ssr'>
+				Advantages of SSR
+			</h2>
+		<ol>
 <li><p>For me, the biggest reason is SEO. Although now Google started supporting JS in searching, 
 but pure HTML is always better for SEO. </p>
 </li>
@@ -35,12 +44,18 @@ but pure HTML is always better for SEO. </p>
 show the page, users can see the page quickly.</p>
 </li>
 </ol>
-<h2 id="why-is-ssr-possible-in-react">Why is SSR possible in React</h2>
-<p>I think the main reason is the virtual DOM and node.js. Obviously, in node.js, there is no DOM object. React does&#39;t operate 
+
+			<h2 id='why is ssr possible in react'>
+				Why is SSR possible in React
+			</h2>
+		<p>I think the main reason is the virtual DOM and node.js. Obviously, in node.js, there is no DOM object. React does&#39;t operate 
 DOM directly too, it use VDOM to generate and change real DOM. So, in server side, node.js is able to generate a HTML template,
 provided that there is no operation involving Browser Object or DOM.</p>
-<h2 id="key-points">Key Points</h2>
-<p>We use Node.js in server side to generate a HTML instead of a Browser JS engine, there are some things I think is worth to notice:</p>
+
+			<h2 id='key points'>
+				Key Points
+			</h2>
+		<p>We use Node.js in server side to generate a HTML instead of a Browser JS engine, there are some things I think is worth to notice:</p>
 <ol>
 <li><p>No direct DOM and Browser Object operation.</p>
 </li>
@@ -49,11 +64,17 @@ provided that there is no operation involving Browser Object or DOM.</p>
 <li><p>Transfer Browser&#39;s JS to Node.js</p>
 </li>
 </ol>
-<h2 id="ssr-in-react">SSR in React</h2>
-<h3 id="static-file-server">static file server</h3>
-<p>I will start two servers, one is in charge of restful API, and another is charge of static files and SSR.
+
+			<h2 id='ssr in react'>
+				SSR in React
+			</h2>
+		
+			<h3 id='static file server'>
+				static file server
+			</h3>
+		<p>I will start two servers, one is in charge of restful API, and another is charge of static files and SSR.
 React has its specific API for SSR. The static files server based on express like as below:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<pre><code class="language-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
 <span class="hljs-keyword">import</span> ReactDomServer <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dom/server&#x27;</span>;
 <span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../src/app&#x27;</span>
 <span class="hljs-keyword">import</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;express&#x27;</span>;
@@ -86,9 +107,14 @@ app.use((req, res)=&gt;{
 });
 app.listen(port, ()=&gt;{
     console.log(`</span>listen on http:<span class="hljs-regexp">//</span>localhost:${port}<span class="hljs-string">`);
-});</span></span></span></code></pre><h3 id="frontend">FrontEnd</h3>
-<p>in &#39;../src/app&#39;, the code is as below:</p>
-<pre><code class="hljs js"><span class="hljs-comment">//return a function to create a store, because every request need a new store</span>
+});</span></span></span>
+</code></pre>
+
+			<h3 id='frontend'>
+				FrontEnd
+			</h3>
+		<p>in &#39;../src/app&#39;, the code is as below:</p>
+<pre><code class="language-js"><span class="hljs-comment">//return a function to create a store, because every request need a new store</span>
 <span class="hljs-keyword">const</span> store = <span class="hljs-function">()=&gt;</span>createStore(combineReducers(reducer), compose(
     applyMiddleware(thunk),
 ));
@@ -123,11 +149,16 @@ app.listen(port, ()=&gt;{
             })()}
         <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span>
     )
-};</span></code></pre><p>In server side, <code>&lt;BrowserRouter&gt;</code> cannot be used, use <code>&lt;StaticRouter&gt;</code> instead. The location property is imperative, without it, it will
+};</span>
+</code></pre>
+<p>In server side, <code>&lt;BrowserRouter&gt;</code> cannot be used, use <code>&lt;StaticRouter&gt;</code> instead. The location property is imperative, without it, it will
 render an empty page in server, and redirect in front end may lead to not SSR.</p>
-<h3 id="compile-server-code">Compile server code</h3>
-<p>Obviously, this code cannot directly run in node.js, so we need to compile it. There is a webpack example:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
+
+			<h3 id='compile server code'>
+				Compile server code
+			</h3>
+		<p>Obviously, this code cannot directly run in node.js, so we need to compile it. There is a webpack example:</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
 
 <span class="hljs-built_in">module</span>.exports = {
     <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>,
@@ -157,11 +188,18 @@ render an empty page in server, and redirect in front end may lead to not SSR.</
             }]
         }]
     }
-};</code></pre><h2 id="end">End</h2>
-<p>After compile server side code and frontend code, when we start the static files server, we can see <code>/</code> and <code>/index</code> has been render in server side.</p>
+};
+</code></pre>
+
+			<h2 id='end'>
+				End
+			</h2>
+		<p>After compile server side code and frontend code, when we start the static files server, we can see <code>/</code> and <code>/index</code> has been render in server side.</p>
 <p>This example does not consider about import images, svg and CSS framework. If you use some of CSS framework such as material-ui, you can find their SSR solution in the official website.</p>
 <p>If you have more questions or have better way to do SSR, welcome to leave a message.</p>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

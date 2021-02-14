@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,18 +25,26 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h2 id="value-object-and-reference-object">Value object and Reference Object</h2>
-<p>Before talking about Object&#39;s copy, there is a key point that the differences between Value object and Reference Object in JS.</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#value object and reference object">value object and reference object</a></li><li><a href="#shallow copy">shallow copy</a></li><li><a href="#deep copy">deep copy</a></li></ul></div></div>
+			<div>
+			<h2 id='value object and reference object'>
+				Value object and Reference Object
+			</h2>
+		<p>Before talking about Object&#39;s copy, there is a key point that the differences between Value object and Reference Object in JS.</p>
 <p>JS basic data type including Number, String, Null, Undefined, Boolean, Object and Symbol, whose value is invariable. When I first know it, I feel quite confused. Because when I process string, I feel I was changing its value. </p>
 <p>But my intuition is wrong, actually, every time I just deassign a new variable.</p>
 <p>For example:</p>
-<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">&#x27;123&#x27;</span>;
+<pre><code class="language-JavaScript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">&#x27;123&#x27;</span>;
 str[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;0&#x27;</span>;
-<span class="hljs-built_in">console</span>.log(str);   <span class="hljs-comment">//&#x27;123&#x27;</span></code></pre><p>When we are using <code>===</code> to compare 2 value objects, we are do comparing their values.</p>
+<span class="hljs-built_in">console</span>.log(str);   <span class="hljs-comment">//&#x27;123&#x27;</span>
+</code></pre>
+<p>When we are using <code>===</code> to compare 2 value objects, we are do comparing their values.</p>
 <p>But for Reference Object, the fact is not. Reference Object&#39;s variable name points to a memory address where save the real content&#39;s memory address.
 Therefore, when we are comparing Reference Object, we are comparing their pointers.</p>
 <p>There is a typical example to show that one is value, one is pointer:</p>
-<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> a = {<span class="hljs-attr">value</span>:<span class="hljs-number">1</span>};
+<pre><code class="language-JavaScript"><span class="hljs-keyword">var</span> a = {<span class="hljs-attr">value</span>:<span class="hljs-number">1</span>};
 <span class="hljs-keyword">var</span> b = a;
 b.value = <span class="hljs-number">2</span>;
 <span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">//a.value becomes 2 too.</span>
@@ -45,11 +53,16 @@ b.value = <span class="hljs-number">2</span>;
 <span class="hljs-keyword">var</span> d = c;
 d++;
 <span class="hljs-built_in">console</span>.log(c); <span class="hljs-comment">//1</span>
-<span class="hljs-built_in">console</span>.log(d); <span class="hljs-comment">//2</span></code></pre><h2 id="shallow-copy">Shallow copy</h2>
-<p>According to the above, the key point to copy an object is to copy its value object instead of Reference Object, which can avoid to only copy a 
+<span class="hljs-built_in">console</span>.log(d); <span class="hljs-comment">//2</span>
+</code></pre>
+
+			<h2 id='shallow copy'>
+				Shallow copy
+			</h2>
+		<p>According to the above, the key point to copy an object is to copy its value object instead of Reference Object, which can avoid to only copy a 
 pointer.</p>
 <p>Like as below:</p>
-<pre><code class="hljs JavaScript"><span class="hljs-keyword">let</span> obj = {
+<pre><code class="language-JavaScript"><span class="hljs-keyword">let</span> obj = {
     <span class="hljs-attr">a</span>:<span class="hljs-number">0</span>,
     <span class="hljs-attr">b</span>:<span class="hljs-number">1</span>,
     <span class="hljs-attr">c</span>:<span class="hljs-number">2</span>
@@ -68,11 +81,16 @@ pointer.</p>
 <span class="hljs-keyword">let</span> copy = shallowCopy(obj);
 copy.a= <span class="hljs-number">1</span>;
 <span class="hljs-built_in">console</span>.log(obj);
-<span class="hljs-built_in">console</span>.log(copy);</code></pre><h2 id="deep-copy">Deep copy</h2>
-<p>For those objects including Reference Object, shallow copy is not enough. 
+<span class="hljs-built_in">console</span>.log(copy);
+</code></pre>
+
+			<h2 id='deep copy'>
+				Deep copy
+			</h2>
+		<p>For those objects including Reference Object, shallow copy is not enough. 
 We need to split whole objects to Value Objects.</p>
 <p>The <a href="https://github.com/jquery/jquery/blob/master/src/core.js">jQuery.extend</a> as the example:</p>
-<pre><code class="hljs js">jQuery.extend = jQuery.fn.extend = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+<pre><code class="language-js">jQuery.extend = jQuery.fn.extend = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> options, name, src, copy, copyIsArray, clone,
         target = <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">0</span> ] || {},
         i = <span class="hljs-number">1</span>,
@@ -142,8 +160,10 @@ We need to split whole objects to Value Objects.</p>
 
     <span class="hljs-comment">// Return the modified object</span>
     <span class="hljs-keyword">return</span> target;
-};</code></pre><p>It uses recursion to get whole child object. There is a more simple version:</p>
-<pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deepCopy</span>(<span class="hljs-params">source</span>)</span>{
+};
+</code></pre>
+<p>It uses recursion to get whole child object. There is a more simple version:</p>
+<pre><code class="language-JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deepCopy</span>(<span class="hljs-params">source</span>)</span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> source !== <span class="hljs-string">&#x27;object&#x27;</span>){
         <span class="hljs-keyword">return</span> source;
     }
@@ -175,8 +195,12 @@ We need to split whole objects to Value Objects.</p>
 <span class="hljs-keyword">let</span> copy = deepCopy(obj)
 copy.a.value = <span class="hljs-number">0</span>;
 <span class="hljs-built_in">console</span>.log(obj);
-<span class="hljs-built_in">console</span>.log(copy);</code></pre><p>That&#39;s all. If I make something wrong, welcome to contact me to let me modify it!</p>
-</article></div></div>
+<span class="hljs-built_in">console</span>.log(copy);
+</code></pre>
+<p>That&#39;s all. If I make something wrong, welcome to contact me to let me modify it!</p>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

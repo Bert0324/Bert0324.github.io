@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,11 +25,20 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="event-loop">Event Loop</h1>
-<p>JavaScripts&#39; biggest feature is its event loop, because of it, we can ignore details of threads and focus on those codes which can create real worth.</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#tasks and microtasks">tasks and microtasks</a></li><li><a href="#in browser">in browser</a></li><li><a href="#window event loop">window event loop</a></li><li><a href="#worker event loop">worker event loop</a></li><li><a href="#worklet event loop">worklet event loop</a></li><li><a href="#node.js">node.js</a></li><li><a href="#poll">poll</a></li><li><a href="#reference">reference</a></li></ul></div></div>
+			<div>
+			<h1 id='event loop'>
+				Event Loop
+			</h1>
+		<p>JavaScripts&#39; biggest feature is its event loop, because of it, we can ignore details of threads and focus on those codes which can create real worth.</p>
 <p>Event loop is responsible for executing the code, collecting and processing events, and executing queued sub-tasks.</p>
-<h2 id="tasks-and-microtasks">Tasks and MicroTasks</h2>
-<p>A <strong>task</strong> is any JavaScript scheduled to be run by the standard mechanisms such as initially starting to execute a program, an event triggering a callback, and so forth.</p>
+
+			<h2 id='tasks and microtasks'>
+				Tasks and MicroTasks
+			</h2>
+		<p>A <strong>task</strong> is any JavaScript scheduled to be run by the standard mechanisms such as initially starting to execute a program, an event triggering a callback, and so forth.</p>
 <p>Compared to task, <strong>microtasks</strong> will be executed until its queue is empty.</p>
 <p>The sequence is like:</p>
 <ul>
@@ -37,7 +46,7 @@
 </ul>
 <p>Microtasks includes <code>Promise</code>, <code>queueMicrotask</code>, <code>MutationObserver</code> and <code>process.nextTick</code> on Node.js.</p>
 <p>There is a typical codes to show it:</p>
-<pre><code class="hljs ts"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-number">4</span>));
+<pre><code class="language-ts"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-number">4</span>));
 
 <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
   resolve()
@@ -48,16 +57,33 @@
 
 <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);
 
-<span class="hljs-comment">// 1 2 3 4</span></code></pre><h2 id="in-browser">In Browser</h2>
-<p>In modern browsers, there are 3 different types of event loop is running.</p>
-<h3 id="window-event-loop">Window Event Loop</h3>
-<p>It drives all of the windows sharing a similar origin.</p>
-<h3 id="worker-event-loop">Worker event loop</h3>
-<p> It includes all forms of workers, such as web worker, shared workers and service workers. Workers are kept in one or more agents that are separate from the &quot;main&quot; code; the browser may use a single event loop for all of the workers of a given type or may use multiple event loops to handle them.</p>
-<h3 id="worklet-event-loop">Worklet Event Loop</h3>
-<p>A worklet event loop is the event loop used to drive agents which run the code for the workelets for a given agent. This includes worklets of type Worklet, AudioWorklet, and PaintWorklet.</p>
-<h2 id="nodejs">Node.js</h2>
-<p>In Node.js, event loop is quite different from browsers. As it don&#39;t have render tasks and have more I/O tasks.</p>
+<span class="hljs-comment">// 1 2 3 4</span>
+</code></pre>
+
+			<h2 id='in browser'>
+				In Browser
+			</h2>
+		<p>In modern browsers, there are 3 different types of event loop is running.</p>
+
+			<h3 id='window event loop'>
+				Window Event Loop
+			</h3>
+		<p>It drives all of the windows sharing a similar origin.</p>
+
+			<h3 id='worker event loop'>
+				Worker event loop
+			</h3>
+		<p> It includes all forms of workers, such as web worker, shared workers and service workers. Workers are kept in one or more agents that are separate from the &quot;main&quot; code; the browser may use a single event loop for all of the workers of a given type or may use multiple event loops to handle them.</p>
+
+			<h3 id='worklet event loop'>
+				Worklet Event Loop
+			</h3>
+		<p>A worklet event loop is the event loop used to drive agents which run the code for the workelets for a given agent. This includes worklets of type Worklet, AudioWorklet, and PaintWorklet.</p>
+
+			<h2 id='node.js'>
+				Node.js
+			</h2>
+		<p>In Node.js, event loop is quite different from browsers. As it don&#39;t have render tasks and have more I/O tasks.</p>
 <p>When Node.js starts, it initializes the Event loop, processes the provided input script which may make async API calls, then begins processing the Event loop.</p>
 <p>There is only one thread and that is the thread Event loop runs on. Event loop works in a cyclical order, with different phases. The order of operation of Event loop is shown below.</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/node_event_loop.png' width="400"/>
@@ -70,8 +96,11 @@
 <li><strong>check</strong>: setImmediate() callbacks are invoked here.</li>
 <li><strong>close callbacks</strong>: some close callbacks, e.g. socket.on(&#39;close&#39;, ...).</li>
 </ul>
-<h3 id="poll">Poll</h3>
-<p>The poll phase has two main functions:</p>
+
+			<h3 id='poll'>
+				Poll
+			</h3>
+		<p>The poll phase has two main functions:</p>
 <ol>
 <li>Calculating how long it should block and poll for I/O, then</li>
 <li>Processing events in the poll queue.</li>
@@ -90,15 +119,20 @@
 </li>
 </ul>
 <p>Once the poll queue is empty the event loop will check for timers whose time thresholds have been reached. If one or more timers are ready, the event loop will wrap back to the timers phase to execute those timers&#39; callbacks.</p>
-<h2 id="reference">Reference</h2>
-<ul>
+
+			<h2 id='reference'>
+				Reference
+			</h2>
+		<ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop">https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth">https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth</a></li>
 <li><a href="https://javascript.info/microtask-queue">https://javascript.info/microtask-queue</a></li>
 <li><a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/</a></li>
 <li><a href="https://stackoverflow.com/questions/47724811/why-setimmediate-execute-before-fs-readfile-in-nodejs-event-loops-works">https://stackoverflow.com/questions/47724811/why-setimmediate-execute-before-fs-readfile-in-nodejs-event-loops-works</a></li>
 </ul>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

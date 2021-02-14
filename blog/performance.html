@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,29 +25,53 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="web-performance">Web Performance</h1>
-<p>从why, how, what三个纬度去讨论下前端性能监控这件事。</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#why">why</a></li><li><a href="#全球趋势">全球趋势</a></li><li><a href="#网速">网速</a></li><li><a href="#文件大小">文件大小</a></li><li><a href="#首屏时间">首屏时间</a></li><li><a href="#性能和留住用户的关系">性能和留住用户的关系</a></li><li><a href="#衡量的方式">衡量的方式</a></li><li><a href="#how">how</a></li><li><a href="#监控什么">监控什么</a></li><li><a href="#syn vs rum">syn vs rum</a></li><li><a href="#量化分析">量化分析</a></li><li><a href="#性能体验">性能体验</a></li><li><a href="#上报">上报</a></li><li><a href="#reference">reference</a></li></ul></div></div>
+			<div>
+			<h1 id='web performance'>
+				Web Performance
+			</h1>
+		<p>从why, how, what三个纬度去讨论下前端性能监控这件事。</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/www.png' width='600px' />
 
-<h2 id="why">Why</h2>
-<h3 id="全球趋势">全球趋势</h3>
-<p>在讨论之前，我们可以来看一下，一些制约前端性能的因素，在全球的一些情况：</p>
-<h4 id="网速">网速</h4>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/global_speed.png' width='600px' />
+
+			<h2 id='why'>
+				Why
+			</h2>
+		
+			<h3 id='全球趋势'>
+				全球趋势
+			</h3>
+		<p>在讨论之前，我们可以来看一下，一些制约前端性能的因素，在全球的一些情况：</p>
+
+			<h4 id='网速'>
+				网速
+			</h4>
+		<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/global_speed.png' width='600px' />
 
 <p>可以看到，mobile端的网速上升的比固定宽带的快很多，但是从绝对值上来说，仍然是很慢的，从很长的一个时间段上来说，mobile端的加载速度，仍然是比起来相对慢的。</p>
-<h4 id="文件大小">文件大小</h4>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/file_size.png' width='600px' />
+
+			<h4 id='文件大小'>
+				文件大小
+			</h4>
+		<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/file_size.png' width='600px' />
 
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/js_size.png' width='600px' />
 
 <p>从中可以看到，web的静态资源体积是总体一直在上涨的，其中js的上涨速度尤其的快。</p>
-<h4 id="首屏时间">首屏时间</h4>
-<p>可以参考这个报告：</p>
+
+			<h4 id='首屏时间'>
+				首屏时间
+			</h4>
+		<p>可以参考这个报告：</p>
 <p><a href="https://httparchive.org/reports/loading-speed">https://httparchive.org/reports/loading-speed</a></p>
 <p>可见，即使文件体积变大了，全球网站的响应速度仍然是越来越快的，如果跟不上这个发展，那我们的网站表现的就会尤其扎眼。</p>
-<h3 id="性能和留住用户的关系">性能和留住用户的关系</h3>
-<ol>
+
+			<h3 id='性能和留住用户的关系'>
+				性能和留住用户的关系
+			</h3>
+		<ol>
 <li><p>更快的打开速度和用户流量和注册率的关系</p>
 <ul>
 <li>Pinterest reduced perceived wait times by 40% and this <a href="https://medium.com/@Pinterest_Engineering/driving-user-growth-with-performance-improvements-cfc50dafadd7">increased search engine traffic and sign-ups by 15%</a>.</li>
@@ -67,15 +91,24 @@
 </ol>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/frame_change.png' width='600px' />
 
-<h3 id="衡量的方式">衡量的方式</h3>
-<p>对于不同的页面，我们可以有不同的衡量方式</p>
+
+			<h3 id='衡量的方式'>
+				衡量的方式
+			</h3>
+		<p>对于不同的页面，我们可以有不同的衡量方式</p>
 <ul>
 <li>对于主要用于展示的内容页，我们可以用syn的方式，比如lighthouse，做提前的检测</li>
 <li>对于重交互的页面，比如登录表单之类的，我们可以用rum的监测，来记录到底用户体验如何</li>
 </ul>
-<h2 id="how">How</h2>
-<h3 id="监控什么">监控什么</h3>
-<p>首先我们需要知道应该监控些什么呢？有哪些具体的指标？</p>
+
+			<h2 id='how'>
+				How
+			</h2>
+		
+			<h3 id='监控什么'>
+				监控什么
+			</h3>
+		<p>首先我们需要知道应该监控些什么呢？有哪些具体的指标？</p>
 <p>一个页面被打开有很多阶段，这些阶段，既不一定存在，也不一定连续。如下：</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/stage.png' width='600px' />
 
@@ -116,8 +149,11 @@
 <li>页面加载方式，是直接打开，还是刷新打开，还是前进后退打开等等</li>
 <li>是否启用 HTTP2、Service Worker</li>
 </ol>
-<h3 id="syn-vs-rum">SYN vs RUM</h3>
-<p>从技术方面来讲，前端性能监控主要分为两种方式，一种叫做合成监控（Synthetic Monitoring，SYN），另一种是真实用户监控（Real User Monitoring，RUM）。</p>
+
+			<h3 id='syn vs rum'>
+				SYN vs RUM
+			</h3>
+		<p>从技术方面来讲，前端性能监控主要分为两种方式，一种叫做合成监控（Synthetic Monitoring，SYN），另一种是真实用户监控（Real User Monitoring，RUM）。</p>
 <p>SYN就是在一个模拟场景里，去提交一个需要做性能审计的页面，通过一系列的工具、规则去运行你的页面，提取一些性能指标，得出一个审计报告, 比如Google 的 Lighthouse。优缺点如下：</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/syn.png' width='600px' />
 
@@ -128,8 +164,11 @@
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/syn_vs_rum.png' width='600px' />
 
 <p>个人认为，RUM是更适合中台前端去做的，能定量分析页面，可定制化添加一些额外功能比如报表和告警，也容易有沉淀。</p>
-<h3 id="量化分析">量化分析</h3>
-<p>在量化数据的展示上坚持一个原则：以90%位数为准。这个数字意味这什么呢，意味我们可以承诺90%的用户是可以满足这个数据的。</p>
+
+			<h3 id='量化分析'>
+				量化分析
+			</h3>
+		<p>在量化数据的展示上坚持一个原则：以90%位数为准。这个数字意味这什么呢，意味我们可以承诺90%的用户是可以满足这个数据的。</p>
 <p>比如，fp时间90%位数是1s，我们就可以承诺90%的用户的初次渲染时间在1s内。</p>
 <p>相比于容易受影响的平均值，这个数字可以帮助我们更好的去总结一些结果，作为作出重要承诺的一个依据。</p>
 <p>在量化分析上，提供了首屏，体验分和load静态文件资源这三个维度上的量化。</p>
@@ -151,8 +190,11 @@
 <li>304， a little transferSize，0 encodedSize</li>
 <li>200, full transferSize，full encodedSize</li>
 </ol>
-<h3 id="性能体验">性能体验</h3>
-<p>在性能体验上对谷歌<a href="https://web.dev/rail/">rail模型</a>的实践。同时，这种即时互动性能体验，也是rum监控区别于syn监控的最大不同。</p>
+
+			<h3 id='性能体验'>
+				性能体验
+			</h3>
+		<p>在性能体验上对谷歌<a href="https://web.dev/rail/">rail模型</a>的实践。同时，这种即时互动性能体验，也是rum监控区别于syn监控的最大不同。</p>
 <ul>
 <li><code>Response</code></li>
 </ul>
@@ -176,8 +218,11 @@
 </ul>
 <p>基于谷歌的心理学分析，如果一个页面超过5秒不可交互，那用户gone的可能性就大大增加。当然对于千寻的业务，其实影响不那么大，真的有人有会冲动消费定位服务吗。</p>
 <p>但是，这个部分相当体现前端的价值，因为load时间缩短，直接体现了有些优化的价值，比如缓存，合并批操作，渲染逻辑等等。具体参见首屏。</p>
-<h3 id="上报">上报</h3>
-<p>在接入的sdk上报上有两个点要去满足：</p>
+
+			<h3 id='上报'>
+				上报
+			</h3>
+		<p>在接入的sdk上报上有两个点要去满足：</p>
 <ol>
 <li>不影响前端主项目的工作</li>
 <li>减小对后端服务的压力，避免服务挂掉</li>
@@ -189,8 +234,11 @@
 <p>后端只存disk返回204，然后定时任务逐条处理。</p>
 <p>总结一下，现在的处理方式核心理念是实时记录，后置处理。在这种设计下，可以很有信心的保证sdk在记录全面的前提下不会影响性能，后端服务不会挂掉。</p>
 <p>更进一步，在以后的迭代中，可以直接取sls或者nginx的记录来处理分析，服务本身连disk都不用存。如果是nginx的话，甚至连收集接口都可以直接去掉，slb配置返回204，service就是纯粹的定时任务。</p>
-<h2 id="reference">Reference</h2>
-<ul>
+
+			<h2 id='reference'>
+				Reference
+			</h2>
+		<ul>
 <li><a href="https://www.infoq.cn/article/Dxa8aM44oz*Lukk5Ufhy">https://www.infoq.cn/article/Dxa8aM44oz*Lukk5Ufhy</a></li>
 <li><a href="https://web.dev/rail/">https://web.dev/rail/</a></li>
 <li><a href="https://codeburst.io/performance-metrics-whats-this-all-about-1128461ad6b">https://codeburst.io/performance-metrics-whats-this-all-about-1128461ad6b</a></li>
@@ -203,7 +251,9 @@
 <li><a href="https://web.dev/why-speed-matters/">https://web.dev/why-speed-matters/</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/Performance">https://developer.mozilla.org/en-US/docs/Web/Performance</a></li>
 </ul>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>

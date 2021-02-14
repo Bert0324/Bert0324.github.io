@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
-	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
+	<link rel="stylesheet" href="/blog/style.css" />
 	<style>
 		.markdown-body {
 			box-sizing: border-box;
@@ -25,19 +25,34 @@
 </head>
 
 <body>
-	<div><div><article class="markdown-body"><h1 id="web-cache">Web Cache</h1>
-<h2 id="remote-resource-cache">Remote Resource Cache</h2>
-<p>Caching is one of the most important way to improve the FP response time of Web Applications.</p>
+	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+		<div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#remote resource cache">remote resource cache</a></li><li><a href="#sw caching">sw caching</a></li><li><a href="#http caching">http caching</a></li><li><a href="#cdn">cdn</a></li><li><a href="#local cache">local cache</a></li></ul></div></div>
+			<div>
+			<h1 id='web cache'>
+				Web Cache
+			</h1>
+		
+			<h2 id='remote resource cache'>
+				Remote Resource Cache
+			</h2>
+		<p>Caching is one of the most important way to improve the FP response time of Web Applications.</p>
 <p>Nowadays, We have multiple ways to control it.</p>
 <p>Traditionally, we can control web caching by Http caching. </p>
 <p>The order of a request passing web cache methods is as below:</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/cache_order.png' width="400"/>
 
-<h3 id="sw-caching">SW caching</h3>
-<p>Along with emergence of ES6, SW is a newer and more powerful way to do it, if ignoring its compatibility.</p>
+
+			<h3 id='sw caching'>
+				SW caching
+			</h3>
+		<p>Along with emergence of ES6, SW is a newer and more powerful way to do it, if ignoring its compatibility.</p>
 <p>It can proxy whole requests to check whether needs to update by <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/caches">caches</a>, see more in my blog <a href="/blog/service_worker.html">Service Worker</a>.</p>
-<h3 id="http-caching">Http caching</h3>
-<p>Http caching is to use Http headers to control browser resource&#39;s cache. There are some steps how browsers to do it:</p>
+
+			<h3 id='http caching'>
+				Http caching
+			</h3>
+		<p>Http caching is to use Http headers to control browser resource&#39;s cache. There are some steps how browsers to do it:</p>
 <ol>
 <li>search in Browser cache</li>
 </ol>
@@ -80,12 +95,17 @@
 <li><code>ETag</code> and <code>If-None-Match</code></li>
 </ul>
 <p>Although <code>Last-Modified</code> and <code>If-Modified-Since</code> is able to cover most of cache situations, they have limits as below:</p>
-<pre><code class="hljs undefined">1. When the resource content has been modified, but we don&#x27;t want the client to GET it again.
+<pre><code>1. When the resource content has been modified, but we don&#x27;t want the client to GET it again.
 2. The modified time accuracy is under second, as `Last-Modified` can only accurate to second.
-3. When the server cannot get the modified time of the resource</code></pre><p>In this way, we can use <code>ETag</code> and <code>If-None-Match</code>.</p>
+3. When the server cannot get the modified time of the resource
+</code></pre>
+<p>In this way, we can use <code>ETag</code> and <code>If-None-Match</code>.</p>
 <p><code>ETag</code> is relative to files&#39; content, such as content hash, or relative to its modified time. And in next request, its value will be sent in <code>If-None-Match</code>.</p>
-<h3 id="cdn">CDN</h3>
-<p>The full name is Content Delivery Network. It can disperse traffic from the source server and optimize network load.</p>
+
+			<h3 id='cdn'>
+				CDN
+			</h3>
+		<p>The full name is Content Delivery Network. It can disperse traffic from the source server and optimize network load.</p>
 <p>There are its steps:</p>
 <ol>
 <li><p>First, keep statistics of the access logs of the original domain name to get the addresses of frequently-accessed
@@ -104,8 +124,11 @@ to the provided domain name address of the CDN server.</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/cdn_steps.jpg' width="600"/>
 
 <p>See a reference: <a href="https://blog.csdn.net/xiangzhihong8/article/details/83147542">https://blog.csdn.net/xiangzhihong8/article/details/83147542</a></p>
-<h2 id="local-cache">Local Cache</h2>
-<ol>
+
+			<h2 id='local cache'>
+				Local Cache
+			</h2>
+		<ol>
 <li>key-value storage</li>
 </ol>
 <p>If we want to save some of key-value data, localStorage and sessionStorage can be our choices. They both have <code>get</code> and <code>set</code> function for saving and getting data.</p>
@@ -122,14 +145,18 @@ to the provided domain name address of the CDN server.</p>
 </ol>
 <p>IndexedDB is a large-scale, NoSQL storage system. It lets you store just about anything in the user&#39;s browser.</p>
 <p>Compared to <code>localStorage</code>, IndexedDB:</p>
-<pre><code class="hljs undefined">1. mostly asynchronous
+<pre><code>1. mostly asynchronous
 2. supported to access the data from same domain
 3. can save an object instead of only string
-4. its capacity is about 250MB, or without limitation</code></pre><ol start="3">
+4. its capacity is about 250MB, or without limitation
+</code></pre>
+<ol start="3">
 <li>cookie</li>
 </ol>
 <p>cookie also can save some key-value data, although it is not a good way.</p>
-</article></div></div>
+</div>
+		</div>
+	</article></div></div></div>
 </body>
 
 </html>
