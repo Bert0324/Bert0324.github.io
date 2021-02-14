@@ -29,14 +29,14 @@
 <h2 id="browser-structure">Browser Structure</h2>
 <p>Before talking about the steps of browser rendering, it&#39;s important to know modern browser&#39;s structure.</p>
 <p>There is an image showing Firefox&#39;s structure:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/browser_structure.png' width="400"/>
 
 <p>Safari and Chrome use Webkit as their rendering engine instead of Gecko.</p>
 <p>Safari uses JavaScriptCore as their JS engine, while Chrome use V8.</p>
 <p><a href="https://github.com/WebKit/webkit">Webkit</a> is an open source rendering engine originally designed for Linux, and Apple transplanted it to Mac and Windows.</p>
 <h2 id="process">Process</h2>
 <p>When a modern browser is rendering a html page, the main steps are as below:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/browser_rendering.png' width="400"/>
 
 <p>As we can see, there are 5 main steps:</p>
 <ol>
@@ -108,7 +108,7 @@
 </ul>
 <h2 id="js-import-without-blocking-dom-parsing">JS import without blocking DOM parsing</h2>
 <p>We can two properties <code>async</code> and <code>defer</code> to control it. Their differences are as below:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="600px"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/script_defer_async.png' width="600px"/>
 
 <h2 id="reflow-and-repaint">Reflow and Repaint</h2>
 <p>Reflow, or Relayout, means the size of node has been changed, therefore the render engine needs to recalculate a large part of or total Render Tree.</p>

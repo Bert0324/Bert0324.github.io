@@ -32,11 +32,11 @@
 <p>Each object has a private property which holds a link to another object called its prototype.</p>
 <p>The constructor function has <code>__proto__</code> and its instance has <code>prototype</code> property, they point to the same prototype object.</p>
 <p>The basic structure is as below:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/base_prototype.png' width="400"/>
 
 <p>That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. By definition, null has no prototype, and acts as the final link in this prototype chain.</p>
 <p>The link looks like as below:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/prototype_chain.png' />
 
 <p>There is an example to use prototype to inherit properties:</p>
 <pre><code class="language-ts">function Person() {

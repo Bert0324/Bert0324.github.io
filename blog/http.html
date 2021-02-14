@@ -42,7 +42,7 @@
 <p>The termination uses a four-way handshake, with each side of the connection terminating independently.</p>
 <p>Each side needs to send a FIN and ACK packet to another side. Therefore, a typical tear-down requires a pair of FIN and ACK segments from each TCP endpoint.</p>
 <p>There is a picture to show it:</p>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/../' width="400"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/tcp_teardown.png' width="400"/>
 
 <p>Why the initiator needs to wait for 2 maximum segment lifetime?</p>
 <p>If the receiver doesn&#39;t get its ACK packet from the initiator, it will resend a FIN to the initiator. It can guarantee the connection can be teardown safely.</p>

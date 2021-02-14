@@ -9,7 +9,7 @@ export const processMarkdown = (markdown: string) => {
 	return `<article class="markdown-body">${
 		minifyHTML(
 			marked(
-				markdown.replace(/src\=["|'](.*)[\/]?assets\/([^\"^']*)["|']/g, `src='${remoteResourceUrl}/assets/$1'`)
+				markdown.replace(/src\=["|'](.*)[\/]?assets\/([^\"^']*)["|']/g, `src='${remoteResourceUrl}/assets/$2'`)
 			)
 		)
 	}</article>`;
