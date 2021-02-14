@@ -6,6 +6,7 @@
     "build": "ts-node ./src/build/index.ts && cp ./src/template/style.less ../blog/style.less && cp ../blog/index.html ../index.html"
   },
   "dependencies": {
+    "highlight.js": "^10.6.0",
     "html-minifier": "^4.0.0",
     "lodash": "^4.17.20",
     "lodash-es": "^4.17.20",

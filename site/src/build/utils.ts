@@ -1,14 +1,25 @@
-import marked from 'marked';
+import { setOptions, Renderer } from 'marked';
 import { readFileSync, existsSync } from 'fs';
+import { getLanguage, highlight } from 'highlight.js';
 import { markdownUrl, projectRootPath, remoteResourceUrl } from './config';
 import { IFileContent } from './fetchFile';
 
 export const minifyHTML = (html: string) => html;
 
+const markToHTML = (markdown: string) => {
+	const renderer = new Renderer();
+	renderer.code = (code, language) => {
+		const validLang = !!(language && getLanguage(language));
+		const highlighted = highlight(validLang ? language || 'text' : 'text', code).value
+		return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+	};
+	return setOptions({ renderer })(markdown);
+};
+
 export const processMarkdown = (markdown: string) => {	
 	return `<article class="markdown-body">${
 		minifyHTML(
-			marked(
+			markToHTML(
 				markdown
 				.replace(new RegExp(`(${markdownUrl})(.*)\/([^\.]*)\.md`, 'g'), '/blog/$3.html')
 				.replace(/src\=["|'](.*)[\/]?assets\/([^\"^']*)["|']/g, `src='${remoteResourceUrl}/assets/$2'`)
@@ -34,11 +45,7 @@ export const generateHTMLFiles = (index: string, about: string) => {
 	ret.forEach((item => {
 		if (item.content) return item;
 		if (existsSync(`${projectRootPath}${map[item.key]}`)) {
-			try {
-				item.content = processMarkdown(readFileSync(`${projectRootPath}${map[item.key]}`, 'utf-8'));
-			} catch (e) {
-				console.log(e);
-			}
+			item.content = processMarkdown(readFileSync(`${projectRootPath}${map[item.key]}`, 'utf-8'));
 		}
 		return item;
 	}))

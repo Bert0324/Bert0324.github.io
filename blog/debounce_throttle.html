@@ -32,41 +32,37 @@
 requests to the backend.</p>
 <p>One solution is to disable the button until the request got its response, one solution is to throttle the button, which means at certain time, it will send only one request.</p>
 <p>There is a implementation.</p>
-<pre><code class="language-JavaScript">const throttle = (fn, delay)=&gt;{
-    let avaliable = true;                //closure to save the timeout task handler
-    return (...args) =&gt; {
-        if (!avaliable) return;
-        avaliable = false;
-        setTimeout(()=&gt;{
-            fn.apply(this, args);
-            avaliable = true;
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> throttle = <span class="hljs-function">(<span class="hljs-params">fn, delay</span>)=&gt;</span>{
+    <span class="hljs-keyword">let</span> avaliable = <span class="hljs-literal">true</span>;                <span class="hljs-comment">//closure to save the timeout task handler</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!avaliable) <span class="hljs-keyword">return</span>;
+        avaliable = <span class="hljs-literal">false</span>;
+        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>{
+            fn.apply(<span class="hljs-built_in">this</span>, args);
+            avaliable = <span class="hljs-literal">true</span>;
         }, delay);
     }
 };
 
-document.getElementsByTagName(&#39;button&#39;)[0].addEventListener(&#39;click&#39;, throttle((e)=&gt;{
-    console.log(e);
-}, 2000));
-</code></pre>
-<h2 id="debounce">Debounce</h2>
+<span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&#x27;button&#x27;</span>)[<span class="hljs-number">0</span>].addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, throttle(<span class="hljs-function">(<span class="hljs-params">e</span>)=&gt;</span>{
+    <span class="hljs-built_in">console</span>.log(e);
+}, <span class="hljs-number">2000</span>));</code></pre><h2 id="debounce">Debounce</h2>
 <p>Unlike throttle, debounce is to cancel last uncompleted task.</p>
 <p>If there is a page which will auto save something after the user make an update, we can debounce the save until
 no more updates for a set period of time. That way we don&#39;t spam the save function.</p>
-<pre><code class="language-JavaScript">const debounce = (fn, delay)=&gt;{
-    let task = null;
-    return (...args)=&gt;{
-        clearTimeout(task);
-        task = setTimeout(()=&gt;{
-            fn.apply(this, args);
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> debounce = <span class="hljs-function">(<span class="hljs-params">fn, delay</span>)=&gt;</span>{
+    <span class="hljs-keyword">let</span> task = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...args</span>)=&gt;</span>{
+        <span class="hljs-built_in">clearTimeout</span>(task);
+        task = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>{
+            fn.apply(<span class="hljs-built_in">this</span>, args);
         }, delay);
     }
 };
 
-document.getElementsByTagName(&#39;button&#39;)[0].addEventListener(&#39;click&#39;, debounce((e)=&gt;{
-    console.log(e);
-}, 2000));
-</code></pre>
-</article></div></div>
+<span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&#x27;button&#x27;</span>)[<span class="hljs-number">0</span>].addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, debounce(<span class="hljs-function">(<span class="hljs-params">e</span>)=&gt;</span>{
+    <span class="hljs-built_in">console</span>.log(e);
+}, <span class="hljs-number">2000</span>));</code></pre></article></div></div>
 </body>
 
 </html>

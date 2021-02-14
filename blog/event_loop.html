@@ -37,20 +37,18 @@
 </ul>
 <p>Microtasks includes <code>Promise</code>, <code>queueMicrotask</code>, <code>MutationObserver</code> and <code>process.nextTick</code> on Node.js.</p>
 <p>There is a typical codes to show it:</p>
-<pre><code class="language-ts">setTimeout(_ =&gt; console.log(4));
+<pre><code class="hljs ts"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-number">4</span>));
 
-new Promise(resolve =&gt; {
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
   resolve()
-  console.log(1)
-}).then(_ =&gt; {
-  console.log(3)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>)
+}).then(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">3</span>)
 });
 
-console.log(2);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);
 
-// 1 2 3 4
-</code></pre>
-<h2 id="in-browser">In Browser</h2>
+<span class="hljs-comment">// 1 2 3 4</span></code></pre><h2 id="in-browser">In Browser</h2>
 <p>In modern browsers, there are 3 different types of event loop is running.</p>
 <h3 id="window-event-loop">Window Event Loop</h3>
 <p>It drives all of the windows sharing a similar origin.</p>

@@ -31,175 +31,165 @@ property: <code>next</code>. </p>
 <p>Like in Python, <code>yield</code> means to relinquish the control. It makes the function is possible to 
 stop, and restart by the controller.</p>
 <p>There is a simple example:</p>
-<pre><code class="language-js">function* gen(arr) {
-  for (let i of arr){
-      yield i;
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params">arr</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> arr){
+      <span class="hljs-keyword">yield</span> i;
   }
 }
 
-var it = gen([1,2,3]);
-it.next();  //value: 1, done: false
-it.next();  //value: 2, done: false
-it.next();  //value: 3, done: false
-it.next();  //value: undefined, done: true
-</code></pre>
-<p>In addition, in <code>next</code>, it can put a new parameter like as below:</p>
-<pre><code class="language-js">function* gen(arr) {
-  for (let i of arr){
-      var result = yield i;
-      console.log(result);
+<span class="hljs-keyword">var</span> it = gen([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
+it.next();  <span class="hljs-comment">//value: 1, done: false</span>
+it.next();  <span class="hljs-comment">//value: 2, done: false</span>
+it.next();  <span class="hljs-comment">//value: 3, done: false</span>
+it.next();  <span class="hljs-comment">//value: undefined, done: true</span></code></pre><p>In addition, in <code>next</code>, it can put a new parameter like as below:</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params">arr</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> arr){
+      <span class="hljs-keyword">var</span> result = <span class="hljs-keyword">yield</span> i;
+      <span class="hljs-built_in">console</span>.log(result);
   }
 }
-var it = gen([1,2,3]);
-it.next(1);  //
-it.next(2);  //2
-it.next(3);  //3
-it.next(4);  //4
-</code></pre>
-<p>As we can see, the first <code>it.next(1)</code> did not log anything. The reason is that in generator, the <code>next</code> will only execute to 
+<span class="hljs-keyword">var</span> it = gen([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
+it.next(<span class="hljs-number">1</span>);  <span class="hljs-comment">//</span>
+it.next(<span class="hljs-number">2</span>);  <span class="hljs-comment">//2</span>
+it.next(<span class="hljs-number">3</span>);  <span class="hljs-comment">//3</span>
+it.next(<span class="hljs-number">4</span>);  <span class="hljs-comment">//4</span></code></pre><p>As we can see, the first <code>it.next(1)</code> did not log anything. The reason is that in generator, the <code>next</code> will only execute to 
 <code>yield</code>, so in the first <code>next</code>, the variable <code>result</code> is not assigned. To prove it:</p>
-<pre><code class="language-js">function* gen(arr) {
-    var container ={};
-    Object.defineProperty(container, &#39;result&#39;, {
-        set:function () {
-            console.log(&#39;result is defined&#39;);
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params">arr</span>) </span>{
+    <span class="hljs-keyword">var</span> container ={};
+    <span class="hljs-built_in">Object</span>.defineProperty(container, <span class="hljs-string">&#x27;result&#x27;</span>, {
+        <span class="hljs-attr">set</span>:<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;result is defined&#x27;</span>);
         }
     });
-    for (let i of arr){
-        container.result = yield i;
-        console.log(container.result);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> arr){
+        container.result = <span class="hljs-keyword">yield</span> i;
+        <span class="hljs-built_in">console</span>.log(container.result);
     }
 }
-var it = gen([1,2,3]);
-it.next(1);  //
-it.next(2);  //result is defined
-it.next(3);  //result is defined
-it.next(4);  //result is defined
-</code></pre>
-<h2 id="async-and-await">async and await</h2>
+<span class="hljs-keyword">var</span> it = gen([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
+it.next(<span class="hljs-number">1</span>);  <span class="hljs-comment">//</span>
+it.next(<span class="hljs-number">2</span>);  <span class="hljs-comment">//result is defined</span>
+it.next(<span class="hljs-number">3</span>);  <span class="hljs-comment">//result is defined</span>
+it.next(<span class="hljs-number">4</span>);  <span class="hljs-comment">//result is defined</span></code></pre><h2 id="async-and-await">async and await</h2>
 <p>Firstly, let&#39;s see how babel to transfer it, see in <a href="https://babeljs.io/repl#?babili=false&amp;browsers=&amp;build=&amp;builtIns=false&amp;spec=false&amp;loose=false&amp;code_lz=G4QwTgBALiDODWEC8EAUAHEBzApgSiQD4BvAKAgojBygFcwA7CBnAdwgAUwB7AWwEtYOVCOqxuAG2A4ANFRwArHAGMoeZIQhlKOiBJoQAHgAtIKFuwAaAWQAyACShR0AJRwBHWjlhRUeANzkuhQmYAB03Og4DKgA5ADiAKIAKrFyAAbGTuiwAFwA9PnU7mJh_Az5IOj8-bRCYLAA_Ji4SAAkxC04AL7pclBgXgFBwaERDNQgACYAnj4gUCrGIAy4yBAAZrQMqvzcMXjawbr8G2hjk7MAyjCLyEgoACyHI8fBp-emYfN0sPcoACYAAxAl5vcGUAYzI4Q2HycRSYQAKSuAHkAHJhTANYQXbzofZCZI4QxqYZwt7dCDKBbKYxofBaV4U47UJSqVD4ZksiDdbkQqk4CRCJk83RslS-MY_Op4fngvlwxXHbqBN7S6JTVAMWgSCTkyjdPDDVWkM1wGY7TbbXb7aBweCwPyiyj6KDw3VQACM6xArBA_HdMAQqC9Boobo9EigAN9_sD9pDAPD1MJkhwYQk3CwqDEnrDasoyjT-kz2dz3k9ycCfKAA&amp;debug=false&amp;forceAllTransforms=false&amp;shippedProposals=false&amp;circleciRepo=&amp;evaluate=false&amp;fileSize=false&amp;timeTravel=false&amp;sourceType=module&amp;lineWrap=true&amp;presets=es2017%2Creact%2Cstage-2&amp;prettier=false&amp;targets=&amp;version=7.5.5&amp;externalPlugins=">here</a>:</p>
-<pre><code class="language-js">//origin
-var task = (page)=&gt;{
-    return new Promise(((resolve, reject) =&gt; {
-        let xhr = new XMLHttpRequest();
-        xhr.open(&#39;GET&#39;, `https://reqres.in/api/users?page=${page}`, true);
-        xhr.onreadystatechange = function(){
-            if (xhr.readyState === 4){
-                if (xhr.status === 200){
-                    try{
-                        resolve(JSON.parse(xhr.responseText));
-                    } catch (e) {
+<pre><code class="hljs js"><span class="hljs-comment">//origin</span>
+<span class="hljs-keyword">var</span> task = <span class="hljs-function">(<span class="hljs-params">page</span>)=&gt;</span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+        <span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+        xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">`https://reqres.in/api/users?page=<span class="hljs-subst">${page}</span>`</span>, <span class="hljs-literal">true</span>);
+        xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+            <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">4</span>){
+                <span class="hljs-keyword">if</span> (xhr.status === <span class="hljs-number">200</span>){
+                    <span class="hljs-keyword">try</span>{
+                        resolve(<span class="hljs-built_in">JSON</span>.parse(xhr.responseText));
+                    } <span class="hljs-keyword">catch</span> (e) {
                         reject(e)
                     }
-                } else {
+                } <span class="hljs-keyword">else</span> {
                     reject(xhr.status)
                 }
             }
         };
-        xhr.send(null);
+        xhr.send(<span class="hljs-literal">null</span>);
     }));
 };
 
 
-async function tasks() {
-    let result1 = await task(1);
-    let result2 = await task(2);
-    console.log(result1);
-    console.log(result2);
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tasks</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">let</span> result1 = <span class="hljs-keyword">await</span> task(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">let</span> result2 = <span class="hljs-keyword">await</span> task(<span class="hljs-number">2</span>);
+    <span class="hljs-built_in">console</span>.log(result1);
+    <span class="hljs-built_in">console</span>.log(result2);
 }
 
 
-//babel transfer
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-    try { 
-        var info = gen[key](arg); 
-        var value = info.value; 
-    } catch (error) { 
+<span class="hljs-comment">//babel transfer</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asyncGeneratorStep</span>(<span class="hljs-params">gen, resolve, reject, _next, _throw, key, arg</span>) </span>{
+    <span class="hljs-keyword">try</span> { 
+        <span class="hljs-keyword">var</span> info = gen[key](arg); 
+        <span class="hljs-keyword">var</span> value = info.value; 
+    } <span class="hljs-keyword">catch</span> (error) { 
         reject(error); 
-        return; 
+        <span class="hljs-keyword">return</span>; 
     } 
-    if (info.done) { 
+    <span class="hljs-keyword">if</span> (info.done) { 
         resolve(value); 
-    } else { 
-        Promise.resolve(value).then(_next, _throw); 
+    } <span class="hljs-keyword">else</span> { 
+        <span class="hljs-built_in">Promise</span>.resolve(value).then(_next, _throw); 
     } 
 }
 
-function _asyncToGenerator(fn) { 
-    return function () {
-        var self = this, 
-            args = arguments; 
-        return new Promise(function (resolve, reject) { 
-            var gen = fn.apply(self, args); 
-            function _next(value) { 
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, &quot;next&quot;, value); 
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_asyncToGenerator</span>(<span class="hljs-params">fn</span>) </span>{ 
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> self = <span class="hljs-built_in">this</span>, 
+            args = <span class="hljs-built_in">arguments</span>; 
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>{ 
+            <span class="hljs-keyword">var</span> gen = fn.apply(self, args); 
+            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_next</span>(<span class="hljs-params">value</span>) </span>{ 
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, <span class="hljs-string">&quot;next&quot;</span>, value); 
             } 
-            function _throw(err) { 
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, &quot;throw&quot;, err); 
+            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_throw</span>(<span class="hljs-params">err</span>) </span>{ 
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, <span class="hljs-string">&quot;throw&quot;</span>, err); 
             } 
-            _next(undefined); 
+            _next(<span class="hljs-literal">undefined</span>); 
         });
     }; 
 }
 
-var task = page =&gt; {
-  return new Promise((resolve, reject) =&gt; {
-    let xhr = new XMLHttpRequest();
-    xhr.open(&#39;GET&#39;, `https://reqres.in/api/users?page=${page}`, true);
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          try {
-            resolve(JSON.parse(xhr.responseText));
-          } catch (e) {
+<span class="hljs-keyword">var</span> task = <span class="hljs-function"><span class="hljs-params">page</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    <span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+    xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">`https://reqres.in/api/users?page=<span class="hljs-subst">${page}</span>`</span>, <span class="hljs-literal">true</span>);
+    xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">4</span>) {
+        <span class="hljs-keyword">if</span> (xhr.status === <span class="hljs-number">200</span>) {
+          <span class="hljs-keyword">try</span> {
+            resolve(<span class="hljs-built_in">JSON</span>.parse(xhr.responseText));
+          } <span class="hljs-keyword">catch</span> (e) {
             reject(e);
           }
-        } else {
+        } <span class="hljs-keyword">else</span> {
           reject(xhr.status);
         }
       }
     };
 
-    xhr.send(null);
+    xhr.send(<span class="hljs-literal">null</span>);
   });
 };
 
-function tasks() {
-  return _tasks.apply(this, arguments);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tasks</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> _tasks.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>);
 }
 
-function _tasks() {
-  _tasks = _asyncToGenerator(function* () {
-    let result1 = yield task(1);
-    let result2 = yield task(2);
-    console.log(result1);
-    console.log(result2);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tasks</span>(<span class="hljs-params"></span>) </span>{
+  _tasks = _asyncToGenerator(<span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">let</span> result1 = <span class="hljs-keyword">yield</span> task(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">let</span> result2 = <span class="hljs-keyword">yield</span> task(<span class="hljs-number">2</span>);
+    <span class="hljs-built_in">console</span>.log(result1);
+    <span class="hljs-built_in">console</span>.log(result2);
   });
-  return _tasks.apply(this, arguments);
-}
-</code></pre>
-<p>As we can see, babel use generator + <code>Promise</code> to transfer <code>aysnc</code> + <code>await</code>,
+  <span class="hljs-keyword">return</span> _tasks.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>);
+}</code></pre><p>As we can see, babel use generator + <code>Promise</code> to transfer <code>aysnc</code> + <code>await</code>,
 as <code>yield</code> can wait until the <code>Promise</code> finished. </p>
 <p>There is a more simple function, but the principle is the same:</p>
-<pre><code class="language-js">function* gen(task, pages) {
-    for (let page of pages){
-        yield task(page);
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params">task, pages</span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> page <span class="hljs-keyword">of</span> pages){
+        <span class="hljs-keyword">yield</span> task(page);
     }
 }
 
-var it = gen(task, [1,2]);
+<span class="hljs-keyword">var</span> it = gen(task, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]);
 
-while (true){
-    let result = it.next();
-    result.value.then(data=&gt;{
-        console.log(data);
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>){
+    <span class="hljs-keyword">let</span> result = it.next();
+    result.value.then(<span class="hljs-function"><span class="hljs-params">data</span>=&gt;</span>{
+        <span class="hljs-built_in">console</span>.log(data);
     });
-    if (result.done){
-        break;
+    <span class="hljs-keyword">if</span> (result.done){
+        <span class="hljs-keyword">break</span>;
     }
-}
-</code></pre>
-</article></div></div>
+}</code></pre></article></div></div>
 </body>
 
 </html>

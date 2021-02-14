@@ -33,37 +33,33 @@
 <ul>
 <li>:hover: Selects links on mouse over</li>
 </ul>
-<pre><code class="language-html">&lt;div class=&quot;test-class&quot;&gt;
-  &lt;p&gt;first line&lt;/p&gt;
-&lt;/div&gt;
-&lt;style&gt;
-.test-class p:hover {
-    color: red;
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;test-class&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>first line<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+<span class="hljs-selector-class">.test-class</span> <span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:hover</span> {
+    <span class="hljs-attribute">color</span>: red;
 }
-&lt;/style&gt;
-</code></pre>
-<h2 id="pseudo-elements">Pseudo Elements</h2>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre><h2 id="pseudo-elements">Pseudo Elements</h2>
 <p>A pseudo-element is a new fake element when the selected elements is not exist in DOM, such as first character in a <code>&lt;p&gt;</code> tag.</p>
 <h3 id="example-before-and-after">Example: <code>::before</code> and <code>::after</code></h3>
 <ul>
 <li>::before: Insert content before every <code>&lt;p&gt;</code> element</li>
 <li>::after: Insert content after every <code>&lt;p&gt;</code> element</li>
 </ul>
-<pre><code class="language-html">&lt;div class=&quot;test-elements&quot;&gt;
-  &lt;p&gt;first line&lt;/p&gt;
-  &lt;p&gt;second line&lt;/p&gt;
-  &lt;p&gt;third line&lt;/p&gt;
-&lt;/div&gt;
-&lt;style&gt;
-.test-elements p::after {
-    content: &quot; - after&quot;;
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;test-elements&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>first line<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>second line<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>third line<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+<span class="hljs-selector-class">.test-elements</span> <span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">::after</span> {
+    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot; - after&quot;</span>;
 }
-.test-elements p::before {
-    content: &quot;before - &quot;;
+<span class="hljs-selector-class">.test-elements</span> <span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">::before</span> {
+    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;before - &quot;</span>;
 }
-&lt;/style&gt;
-</code></pre>
-<h2 id="reference">Reference</h2>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre><h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/css/css_pseudo_classes.asp">https://www.w3schools.com/css/css_pseudo_classes.asp</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes</a></li>

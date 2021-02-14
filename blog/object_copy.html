@@ -30,162 +30,152 @@
 <p>JS basic data type including Number, String, Null, Undefined, Boolean, Object and Symbol, whose value is invariable. When I first know it, I feel quite confused. Because when I process string, I feel I was changing its value. </p>
 <p>But my intuition is wrong, actually, every time I just deassign a new variable.</p>
 <p>For example:</p>
-<pre><code class="language-JavaScript">var str = &#39;123&#39;;
-str[0] = &#39;0&#39;;
-console.log(str);   //&#39;123&#39;
-</code></pre>
-<p>When we are using <code>===</code> to compare 2 value objects, we are do comparing their values.</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">&#x27;123&#x27;</span>;
+str[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;0&#x27;</span>;
+<span class="hljs-built_in">console</span>.log(str);   <span class="hljs-comment">//&#x27;123&#x27;</span></code></pre><p>When we are using <code>===</code> to compare 2 value objects, we are do comparing their values.</p>
 <p>But for Reference Object, the fact is not. Reference Object&#39;s variable name points to a memory address where save the real content&#39;s memory address.
 Therefore, when we are comparing Reference Object, we are comparing their pointers.</p>
 <p>There is a typical example to show that one is value, one is pointer:</p>
-<pre><code class="language-JavaScript">var a = {value:1};
-var b = a;
-b.value = 2;
-console.log(a); //a.value becomes 2 too.
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> a = {<span class="hljs-attr">value</span>:<span class="hljs-number">1</span>};
+<span class="hljs-keyword">var</span> b = a;
+b.value = <span class="hljs-number">2</span>;
+<span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">//a.value becomes 2 too.</span>
 
-var c = 1;
-var d = c;
+<span class="hljs-keyword">var</span> c = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">var</span> d = c;
 d++;
-console.log(c); //1
-console.log(d); //2
-</code></pre>
-<h2 id="shallow-copy">Shallow copy</h2>
+<span class="hljs-built_in">console</span>.log(c); <span class="hljs-comment">//1</span>
+<span class="hljs-built_in">console</span>.log(d); <span class="hljs-comment">//2</span></code></pre><h2 id="shallow-copy">Shallow copy</h2>
 <p>According to the above, the key point to copy an object is to copy its value object instead of Reference Object, which can avoid to only copy a 
 pointer.</p>
 <p>Like as below:</p>
-<pre><code class="language-JavaScript">let obj = {
-    a:0,
-    b:1,
-    c:2
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">let</span> obj = {
+    <span class="hljs-attr">a</span>:<span class="hljs-number">0</span>,
+    <span class="hljs-attr">b</span>:<span class="hljs-number">1</span>,
+    <span class="hljs-attr">c</span>:<span class="hljs-number">2</span>
 }
 
-function shallowCopy(src){
-    let dist = {};
-    for (let key in src){
-        if (src.hasOwnProperty(key)){
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shallowCopy</span>(<span class="hljs-params">src</span>)</span>{
+    <span class="hljs-keyword">let</span> dist = {};
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> src){
+        <span class="hljs-keyword">if</span> (src.hasOwnProperty(key)){
             dist[key] = src[key];
         }
     }
-    return dist;
+    <span class="hljs-keyword">return</span> dist;
 }
 
-let copy = shallowCopy(obj);
-copy.a= 1;
-console.log(obj);
-console.log(copy);
-</code></pre>
-<h2 id="deep-copy">Deep copy</h2>
+<span class="hljs-keyword">let</span> copy = shallowCopy(obj);
+copy.a= <span class="hljs-number">1</span>;
+<span class="hljs-built_in">console</span>.log(obj);
+<span class="hljs-built_in">console</span>.log(copy);</code></pre><h2 id="deep-copy">Deep copy</h2>
 <p>For those objects including Reference Object, shallow copy is not enough. 
 We need to split whole objects to Value Objects.</p>
 <p>The <a href="https://github.com/jquery/jquery/blob/master/src/core.js">jQuery.extend</a> as the example:</p>
-<pre><code class="language-js">jQuery.extend = jQuery.fn.extend = function() {
-    var options, name, src, copy, copyIsArray, clone,
-        target = arguments[ 0 ] || {},
-        i = 1,
-        length = arguments.length,
-        deep = false;
+<pre><code class="hljs js">jQuery.extend = jQuery.fn.extend = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> options, name, src, copy, copyIsArray, clone,
+        target = <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">0</span> ] || {},
+        i = <span class="hljs-number">1</span>,
+        length = <span class="hljs-built_in">arguments</span>.length,
+        deep = <span class="hljs-literal">false</span>;
 
-    // Handle a deep copy situation
-    if ( typeof target === &quot;boolean&quot; ) {
+    <span class="hljs-comment">// Handle a deep copy situation</span>
+    <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> target === <span class="hljs-string">&quot;boolean&quot;</span> ) {
         deep = target;
 
-        // Skip the boolean and the target
-        target = arguments[ i ] || {};
+        <span class="hljs-comment">// Skip the boolean and the target</span>
+        target = <span class="hljs-built_in">arguments</span>[ i ] || {};
         i++;
     }
 
-    // Handle case when target is a string or something (possible in deep copy)
-    if ( typeof target !== &quot;object&quot; &amp;&amp; typeof target !== &quot;function&quot; ) {
+    <span class="hljs-comment">// Handle case when target is a string or something (possible in deep copy)</span>
+    <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> target !== <span class="hljs-string">&quot;object&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> target !== <span class="hljs-string">&quot;function&quot;</span> ) {
         target = {};
     }
 
-    // Extend jQuery itself if only one argument is passed
-    if ( i === length ) {
-        target = this;
+    <span class="hljs-comment">// Extend jQuery itself if only one argument is passed</span>
+    <span class="hljs-keyword">if</span> ( i === length ) {
+        target = <span class="hljs-built_in">this</span>;
         i--;
     }
 
-    for ( ; i &lt; length; i++ ) {
+    <span class="hljs-keyword">for</span> ( ; i &lt; length; i++ ) {
 
-        // Only deal with non-null/undefined values
-        if ( ( options = arguments[ i ] ) != null ) {
+        <span class="hljs-comment">// Only deal with non-null/undefined values</span>
+        <span class="hljs-keyword">if</span> ( ( options = <span class="hljs-built_in">arguments</span>[ i ] ) != <span class="hljs-literal">null</span> ) {
 
-            // Extend the base object
-            for ( name in options ) {
+            <span class="hljs-comment">// Extend the base object</span>
+            <span class="hljs-keyword">for</span> ( name <span class="hljs-keyword">in</span> options ) {
                 copy = options[ name ];
 
-                // Prevent Object.prototype pollution
-                // Prevent never-ending loop
-                if ( name === &quot;__proto__&quot; || target === copy ) {
-                    continue;
+                <span class="hljs-comment">// Prevent Object.prototype pollution</span>
+                <span class="hljs-comment">// Prevent never-ending loop</span>
+                <span class="hljs-keyword">if</span> ( name === <span class="hljs-string">&quot;__proto__&quot;</span> || target === copy ) {
+                    <span class="hljs-keyword">continue</span>;
                 }
 
-                // Recurse if we&#39;re merging plain objects or arrays
-                if ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject( copy ) ||
-                    ( copyIsArray = Array.isArray( copy ) ) ) ) {
+                <span class="hljs-comment">// Recurse if we&#x27;re merging plain objects or arrays</span>
+                <span class="hljs-keyword">if</span> ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject( copy ) ||
+                    ( copyIsArray = <span class="hljs-built_in">Array</span>.isArray( copy ) ) ) ) {
                     src = target[ name ];
 
-                    // Ensure proper type for the source value
-                    if ( copyIsArray &amp;&amp; !Array.isArray( src ) ) {
+                    <span class="hljs-comment">// Ensure proper type for the source value</span>
+                    <span class="hljs-keyword">if</span> ( copyIsArray &amp;&amp; !<span class="hljs-built_in">Array</span>.isArray( src ) ) {
                         clone = [];
-                    } else if ( !copyIsArray &amp;&amp; !jQuery.isPlainObject( src ) ) {
+                    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( !copyIsArray &amp;&amp; !jQuery.isPlainObject( src ) ) {
                         clone = {};
-                    } else {
+                    } <span class="hljs-keyword">else</span> {
                         clone = src;
                     }
-                    copyIsArray = false;
+                    copyIsArray = <span class="hljs-literal">false</span>;
 
-                    // Never move original objects, clone them
+                    <span class="hljs-comment">// Never move original objects, clone them</span>
                     target[ name ] = jQuery.extend( deep, clone, copy );
 
-                // Don&#39;t bring in undefined values
-                } else if ( copy !== undefined ) {
+                <span class="hljs-comment">// Don&#x27;t bring in undefined values</span>
+                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( copy !== <span class="hljs-literal">undefined</span> ) {
                     target[ name ] = copy;
                 }
             }
         }
     }
 
-    // Return the modified object
-    return target;
-};
-</code></pre>
-<p>It uses recursion to get whole child object. There is a more simple version:</p>
-<pre><code class="language-JavaScript">function deepCopy(source){
-    if (typeof source !== &#39;object&#39;){
-        return source;
+    <span class="hljs-comment">// Return the modified object</span>
+    <span class="hljs-keyword">return</span> target;
+};</code></pre><p>It uses recursion to get whole child object. There is a more simple version:</p>
+<pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deepCopy</span>(<span class="hljs-params">source</span>)</span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> source !== <span class="hljs-string">&#x27;object&#x27;</span>){
+        <span class="hljs-keyword">return</span> source;
     }
     
-    if (Object.prototype.toString.call(source) === &#39;[object Array]&#39;){
-        let copy = [];
-        source.forEach(item=&gt;{
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(source) === <span class="hljs-string">&#x27;[object Array]&#x27;</span>){
+        <span class="hljs-keyword">let</span> copy = [];
+        source.forEach(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>{
             copy.push(deepCopy(item))
         });
-        return copy;
+        <span class="hljs-keyword">return</span> copy;
     }
     
-    let copy = {};
-    for (let key in source){
-        if (source.hasOwnProperty(key)){
+    <span class="hljs-keyword">let</span> copy = {};
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> source){
+        <span class="hljs-keyword">if</span> (source.hasOwnProperty(key)){
             copy[key] = deepCopy(source[key]);
         }
     }
-    return copy;
+    <span class="hljs-keyword">return</span> copy;
 }
 
 
-let obj = {
-    a:{
-        value:1
+<span class="hljs-keyword">let</span> obj = {
+    <span class="hljs-attr">a</span>:{
+        <span class="hljs-attr">value</span>:<span class="hljs-number">1</span>
     },
-    b:2
+    <span class="hljs-attr">b</span>:<span class="hljs-number">2</span>
 }
-let copy = deepCopy(obj)
-copy.a.value = 0;
-console.log(obj);
-console.log(copy);
-</code></pre>
-<p>That&#39;s all. If I make something wrong, welcome to contact me to let me modify it!</p>
+<span class="hljs-keyword">let</span> copy = deepCopy(obj)
+copy.a.value = <span class="hljs-number">0</span>;
+<span class="hljs-built_in">console</span>.log(obj);
+<span class="hljs-built_in">console</span>.log(copy);</code></pre><p>That&#39;s all. If I make something wrong, welcome to contact me to let me modify it!</p>
 </article></div></div>
 </body>
 

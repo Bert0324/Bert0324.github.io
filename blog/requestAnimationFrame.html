@@ -39,25 +39,25 @@
 <p>In this way, <code>requestAnimationFrame</code>&#39;s interval is more stable, and aim to animation, browsers do more optimization via <code>requestAnimationFrame</code>.</p>
 <h2 id="use-requestanimationframe-to-calculate-fps">use <code>requestAnimationFrame</code> to calculate FPS</h2>
 <p>As <code>requestAnimationFrame</code> is called between two repaint time point, in this way, it can be used to calculate FPS.</p>
-<pre><code class="language-js">const getFpsAtTimePoint = () =&gt; {
-  return new Promise((resolve) =&gt; {
-    requestAnimationFrame((t1) =&gt; {
-      requestAnimationFrame((t2) =&gt; {
-        resolve(Math.round(1000 / (t2 - t1)));
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> getFpsAtTimePoint = <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
+    requestAnimationFrame(<span class="hljs-function">(<span class="hljs-params">t1</span>) =&gt;</span> {
+      requestAnimationFrame(<span class="hljs-function">(<span class="hljs-params">t2</span>) =&gt;</span> {
+        resolve(<span class="hljs-built_in">Math</span>.round(<span class="hljs-number">1000</span> / (t2 - t1)));
       });
     });
   });
 };
 
-const getFpsWithinTheSecond = () =&gt; new Promise(resolve =&gt; {
-    let repaint = 0;
-    const start = performance.now();
-    const withRepaint = () =&gt; {
-        requestAnimationFrame(() =&gt; {
-            if ((performance.now() - start) &lt; 1000) {
-                repaint += 1;
+<span class="hljs-keyword">const</span> getFpsWithinTheSecond = <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
+    <span class="hljs-keyword">let</span> repaint = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> start = performance.now();
+    <span class="hljs-keyword">const</span> withRepaint = <span class="hljs-function">() =&gt;</span> {
+        requestAnimationFrame(<span class="hljs-function">() =&gt;</span> {
+            <span class="hljs-keyword">if</span> ((performance.now() - start) &lt; <span class="hljs-number">1000</span>) {
+                repaint += <span class="hljs-number">1</span>;
                 withRepaint();
-            } else {
+            } <span class="hljs-keyword">else</span> {
                 resolve(repaint);
             }
         });
@@ -65,40 +65,38 @@ const getFpsWithinTheSecond = () =&gt; new Promise(resolve =&gt; {
     withRepaint();
 });
 
-const createFpsHandler = () =&gt; {
-    let repaint;
-    let stop;
-    let ret;
-    let start;
-    const init = () =&gt; {
-        ret = undefined;
-        stop = false;
-        repaint = 0;
+<span class="hljs-keyword">const</span> createFpsHandler = <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">let</span> repaint;
+    <span class="hljs-keyword">let</span> stop;
+    <span class="hljs-keyword">let</span> ret;
+    <span class="hljs-keyword">let</span> start;
+    <span class="hljs-keyword">const</span> init = <span class="hljs-function">() =&gt;</span> {
+        ret = <span class="hljs-literal">undefined</span>;
+        stop = <span class="hljs-literal">false</span>;
+        repaint = <span class="hljs-number">0</span>;
         start = performance.now();
     };
     init();
-    const withRepaint = () =&gt; {
-        requestAnimationFrame(() =&gt; {
-            if (!stop) {
-                repaint += 1;
+    <span class="hljs-keyword">const</span> withRepaint = <span class="hljs-function">() =&gt;</span> {
+        requestAnimationFrame(<span class="hljs-function">() =&gt;</span> {
+            <span class="hljs-keyword">if</span> (!stop) {
+                repaint += <span class="hljs-number">1</span>;
                 withRepaint();
             }
         });
     };
-    return {
-        start: () =&gt; {
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">start</span>: <span class="hljs-function">() =&gt;</span> {
             init();
             withRepaint();
         },
-        end: () =&gt; {
-            stop = true;
-            if (!ret) ret = repaint / ((performance.now() - start) / 1000);
-            return ret;
+        <span class="hljs-attr">end</span>: <span class="hljs-function">() =&gt;</span> {
+            stop = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">if</span> (!ret) ret = repaint / ((performance.now() - start) / <span class="hljs-number">1000</span>);
+            <span class="hljs-keyword">return</span> ret;
         }
     }
-};
-</code></pre>
-<h2 id="reference">Reference</h2>
+};</code></pre><h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame</a></li>
 </ul>

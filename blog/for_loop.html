@@ -29,63 +29,55 @@
 <h2 id="for-in-vs-objectkeys">for-in VS Object.keys</h2>
 <p>for-in can access whole properties&#39; enumerable name, including prototype.</p>
 <p>Object.keys can only access object itself properties&#39; enumerable name, not including prototype.</p>
-<pre><code class="language-ts">const obj = { a:1 };
-const obj2 = Object.create(obj);
-obj2.b = 2;
+<pre><code class="hljs ts"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">a</span>:<span class="hljs-number">1</span> };
+<span class="hljs-keyword">const</span> obj2 = <span class="hljs-built_in">Object</span>.create(obj);
+obj2.b = <span class="hljs-number">2</span>;
 
-for (let i in obj2){
-    console.log(i)  //b, a
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> obj2){
+    <span class="hljs-built_in">console</span>.log(i)  <span class="hljs-comment">//b, a</span>
 }
 
-console.log(Object.keys(obj2)); //[&quot;b&quot;]
-</code></pre>
-<h2 id="for-in-vs-for-of">for-in VS for-of</h2>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.keys(obj2)); <span class="hljs-comment">//[&quot;b&quot;]</span></code></pre><h2 id="for-in-vs-for-of">for-in VS for-of</h2>
 <p>for a key-value object, for-in will get its key, while key-of can get its value. For example, traverse an
 array:</p>
-<pre><code class="language-ts">const arr = [1,2,3];
-for (let i in arr){
-    console.log(i); //0,1,2
+<pre><code class="hljs ts"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> arr){
+    <span class="hljs-built_in">console</span>.log(i); <span class="hljs-comment">//0,1,2</span>
 }
-for (let item of arr){
-    console.log(item);  //1,2,3
-}
-</code></pre>
-<p>In fact, if it don&#39;t need to change the element of the array, <code>forEach</code> is better a choice. If it needs to change the element, <code>map</code> is better. <code>forEach</code> and <code>map</code>&#39;s second parameter <code>thisArg</code> can change <code>this</code> point in the <code>callback</code>.</p>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> arr){
+    <span class="hljs-built_in">console</span>.log(item);  <span class="hljs-comment">//1,2,3</span>
+}</code></pre><p>In fact, if it don&#39;t need to change the element of the array, <code>forEach</code> is better a choice. If it needs to change the element, <code>map</code> is better. <code>forEach</code> and <code>map</code>&#39;s second parameter <code>thisArg</code> can change <code>this</code> point in the <code>callback</code>.</p>
 <h2 id="let-in-for-loop">let in for loop</h2>
 <p>In any for loop, use <code>let</code> to define the variable is always better than <code>var</code>. There is a typical example:</p>
-<pre><code class="language-ts">for (var i=0;i&lt;5;i++){
-    setTimeout(()=&gt;{
-        console.log(i); //5,5,5,5,5
+<pre><code class="hljs ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">5</span>;i++){
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>{
+        <span class="hljs-built_in">console</span>.log(i); <span class="hljs-comment">//5,5,5,5,5</span>
     });
 }
-for (let i=0;i&lt;5;i++){
-    setTimeout(()=&gt;{
-        console.log(i); //0,1,2,3,4
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">5</span>;i++){
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>{
+        <span class="hljs-built_in">console</span>.log(i); <span class="hljs-comment">//0,1,2,3,4</span>
     });
-}
-</code></pre>
-<h2 id="the-performance-impact-of-nested-sequence">the performance impact of Nested sequence</h2>
-<pre><code class="language-ts">var t1 = new Date().getTime()
-for (let i = 0; i &lt; 100; i++) {
-  for (let j = 0; j &lt; 1000; j++) {
-    for (let k = 0; k &lt; 10000; k++) {
+}</code></pre><h2 id="the-performance-impact-of-nested-sequence">the performance impact of Nested sequence</h2>
+<pre><code class="hljs ts"><span class="hljs-keyword">var</span> t1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">1000</span>; j++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">10000</span>; k++) {
     }
   }
 }
-var t2 = new Date().getTime()
-console.log(&#39;first time&#39;, t2 - t1)
+<span class="hljs-keyword">var</span> t2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;first time&#x27;</span>, t2 - t1)
 
-for (let i = 0; i &lt; 10000; i++) {
-  for (let j = 0; j &lt; 1000; j++) {
-    for (let k = 0; k &lt; 100; k++) {
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10000</span>; i++) {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">1000</span>; j++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">100</span>; k++) {
 
     }
   }
 }
-var t3 = new Date().getTime()
-console.log(&#39;two time&#39;, t3 - t2)
-</code></pre>
-<p>Their loop times is the same, but their execution time is different.</p>
+<span class="hljs-keyword">var</span> t3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;two time&#x27;</span>, t3 - t2)</code></pre><p>Their loop times is the same, but their execution time is different.</p>
 <p>The reason is that they have different variable initialization times:</p>
 <ul>
 <li><p>first loop:</p>

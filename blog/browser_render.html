@@ -50,60 +50,56 @@
 <p>When browser meets a <code>&lt;script&gt;</code> tag, it will block parsing DOM and next JS execution until the script is loaded. </p>
 <p>During this time, browser will render parsed DOM before this <code>&lt;script&gt;</code> in order to avoid wasting waiting time.</p>
 <p>As a contrast, if browser meets a <code>&lt;link&gt;</code> tag, it will keep parsing DOM, block Render, block next execution of JS script, like as below:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-    &lt;title&gt;web render block&lt;/title&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-    &lt;script&gt;
-        var t1 = Date.now();
-    &lt;/script&gt;
-    &lt;link href=&quot;https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-      &lt;div&gt;
-          &lt;h1 class=&quot;text-primary&quot;&gt;test&lt;/h1&gt;
-      &lt;/div&gt;
-  &lt;/body&gt;
-  &lt;script&gt;
-    // there will be a long time
-    console.log(Date.now() - t1);
-  &lt;/script&gt;
-&lt;/html&gt;
-</code></pre>
-<p>If inspecting facebook&#39;s index html file, we can see most of <code>&lt;link&gt;</code> are put ahead of <code>&lt;body&gt;</code>, and most of <code>&lt;script&gt;</code> are on the bottom.</p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>web render block<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+        <span class="hljs-keyword">var</span> t1 = <span class="hljs-built_in">Date</span>.now();
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-primary&quot;</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-comment">// there will be a long time</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Date</span>.now() - t1);
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><p>If inspecting facebook&#39;s index html file, we can see most of <code>&lt;link&gt;</code> are put ahead of <code>&lt;body&gt;</code>, and most of <code>&lt;script&gt;</code> are on the bottom.</p>
 <p>The reason is tha <code>&lt;script&gt;</code> block DOM parsing, <code>&lt;link&gt;</code> is not.</p>
 <h2 id="css-import-without-blocking-rendering">CSS import without blocking rendering</h2>
 <p>Firstly, setting <code>link</code>&#39;s <code>media</code> as <code>none</code>, this property can guarantee this CSS can be loaded without blocking rendering.</p>
 <p>Next, when it is loaded, setting the <code>media</code> to <code>all</code>. Like as below:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-    &lt;title&gt;web render block&lt;/title&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-    &lt;script&gt;
-        var t1 = Date.now();
-    &lt;/script&gt;
-    &lt;link 
-        href=&quot;https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css&quot; 
-        rel=&quot;stylesheet&quot;
-        media=&quot;none&quot;
-        onload=&quot;this.media=&#39;all&#39;&quot;
-    /&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-      &lt;div&gt;
-          &lt;h1 class=&quot;text-primary&quot;&gt;test&lt;/h1&gt;
-      &lt;/div&gt;
-  &lt;/body&gt;
-  &lt;script&gt;
-    console.log(Date.now() - t1);
-  &lt;/script&gt;
-&lt;/html&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>web render block<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+        <span class="hljs-keyword">var</span> t1 = <span class="hljs-built_in">Date</span>.now();
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> 
+        <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css&quot;</span> 
+        <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>
+        <span class="hljs-attr">media</span>=<span class="hljs-string">&quot;none&quot;</span>
+        <span class="hljs-attr">onload</span>=<span class="hljs-string">&quot;this.media=&#x27;all&#x27;&quot;</span>
+    /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-primary&quot;</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Date</span>.now() - t1);
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><ul>
 <li>Notice: It may lead screen&#39;s style rules to change multiple times in a short time. </li>
 </ul>
 <h2 id="js-import-without-blocking-dom-parsing">JS import without blocking DOM parsing</h2>

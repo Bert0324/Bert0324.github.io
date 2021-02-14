@@ -39,70 +39,62 @@
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/prototype_chain.png' />
 
 <p>There is an example to use prototype to inherit properties:</p>
-<pre><code class="language-ts">function Person() {
-    this.name = &#39;Bert&#39;;
+<pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&#x27;Bert&#x27;</span>;
 }
 
-function Man() {
-    this.gender = &#39;male&#39;;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Man</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.gender = <span class="hljs-string">&#x27;male&#x27;</span>;
 }
 
-Man.prototype = new Person();
+Man.prototype = <span class="hljs-keyword">new</span> Person();
 Man.prototype.constructor = Man;
 
-const man = new Man();
-</code></pre>
-<h3 id="instanceof-and-objectisprototypeof"><code>instanceof</code> and <code>Object.isPrototypeOf</code></h3>
+<span class="hljs-keyword">const</span> man = <span class="hljs-keyword">new</span> Man();</code></pre><h3 id="instanceof-and-objectisprototypeof"><code>instanceof</code> and <code>Object.isPrototypeOf</code></h3>
 <p><code>isPrototypeOf()</code> differs from the <code>instanceof</code> operator. In the expression &quot;object instanceof AFunction&quot;, the object prototype chain is checked against AFunction.prototype, not against AFunction itself.</p>
-<pre><code class="language-ts">a instanceof A
+<pre><code class="hljs ts">a <span class="hljs-keyword">instanceof</span> A
 A.prototype.isPrototypeOf(a);
 
-a.__proto__ === A.prototype
-</code></pre>
-<h2 id="constructor"><code>constructor</code></h2>
+a.__proto__ === A.prototype</code></pre><h2 id="constructor"><code>constructor</code></h2>
 <p>The <code>constructor</code> property returns a reference to the Object constructor function that created the instance object.</p>
 <p>Note that the value of this property is a reference to the function itself, not a string containing the function&#39;s name.</p>
 <p>There is an example to use it:</p>
-<pre><code class="language-ts">function Person() {
-    this.name = &#39;Bert&#39;;
+<pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&#x27;Bert&#x27;</span>;
 }
 
-function Man() {
-    Person.call(this);
-    this.gender = &#39;male&#39;;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Man</span>(<span class="hljs-params"></span>) </span>{
+    Person.call(<span class="hljs-built_in">this</span>);
+    <span class="hljs-built_in">this</span>.gender = <span class="hljs-string">&#x27;male&#x27;</span>;
 }
 
-const man = new Man();
-</code></pre>
-<p>Notice: Unlike the object defined in <code>prototype</code> which will be shared within its all instances, the properties defined in <code>constructor</code> will create an object in each instantiation.</p>
+<span class="hljs-keyword">const</span> man = <span class="hljs-keyword">new</span> Man();</code></pre><p>Notice: Unlike the object defined in <code>prototype</code> which will be shared within its all instances, the properties defined in <code>constructor</code> will create an object in each instantiation.</p>
 <h2 id="combination-inheritance">Combination Inheritance</h2>
 <p>Combination inheritance combines prototype chaining and constructor stealing to get the best of each approach.</p>
 <p>The basic idea is to use prototype chaining to inherit properties and methods on the prototype, and to use constructor stealing to inherit instance properties.</p>
 <p>This allows function reuse by defining methods on the prototype and allows each instance to have its own properties. Consider the following:</p>
-<pre><code class="language-ts">function Person() {
-    this.name = &#39;Bert&#39;;
+<pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&#x27;Bert&#x27;</span>;
 }
 
-Person.prototype.showName = function() {
-    console.log(this.name);
+Person.prototype.showName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);
 };
 
-function Man() {
-    // inherit properties of Person
-    Person.call(this);
-    this.gender = &#39;male&#39;;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Man</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// inherit properties of Person</span>
+    Person.call(<span class="hljs-built_in">this</span>);
+    <span class="hljs-built_in">this</span>.gender = <span class="hljs-string">&#x27;male&#x27;</span>;
 }
 
-Man.prototype = new Person();
+Man.prototype = <span class="hljs-keyword">new</span> Person();
 Man.prototype.constructor = Man;
 
-Man.prototype.showGender = function() {
-    console.log(this.gender);
+Man.prototype.showGender = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.gender);
 }
 
-const man = new Man();
-</code></pre>
-<h2 id="class"><code>class</code></h2>
+<span class="hljs-keyword">const</span> man = <span class="hljs-keyword">new</span> Man();</code></pre><h2 id="class"><code>class</code></h2>
 <p>JavaScript classes, introduced in ECMAScript 2015, are primarily syntactical sugar over JavaScript&#39;s existing prototype-based inheritance.</p>
 <p>The class syntax does not introduce a new object-oriented inheritance model to JavaScript.</p>
 <p>It&#39;s always used with <code>new</code>, see more in <a href="/blog/this.html">here</a></p>

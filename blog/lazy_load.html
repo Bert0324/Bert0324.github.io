@@ -28,46 +28,44 @@
 	<div><div><article class="markdown-body"><p>At the beginning, I try to use <code>react-loadable</code> to realize router lazy load, but it made me a mess..., an error like below</p>
 <p><code>Invariant Violation: Element type is invalid: expected a string</code></p>
 <p>Fortunately, I found in React v16.6, official router lazy load has came out! So I try it and it works perfectly:</p>
-<pre><code class="language-JavaScript">
-import React from &#39;react&#39;;
-import {BrowserRouter, Redirect, Switch, Route} from &#39;react-router-dom&#39;;
+<pre><code class="hljs JavaScript">
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> {BrowserRouter, Redirect, Switch, Route} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span>;
 
-function LoadingPage() {
-    return (
-        &lt;div&gt;Loading...&lt;/div&gt;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LoadingPage</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Loading...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
     )
 }
 
-const Page = (path, componentPath, notLazy)=&gt;{
-    const Component = React.lazy(() =&gt; import(componentPath)
-        .then(module=&gt;({
-            default:module.default
+<span class="hljs-keyword">const</span> Page = <span class="hljs-function">(<span class="hljs-params">path, componentPath, notLazy</span>)=&gt;</span>{
+    <span class="hljs-keyword">const</span> Component = React.lazy(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(componentPath)
+        .then(<span class="hljs-function"><span class="hljs-params">module</span>=&gt;</span>({
+            <span class="hljs-attr">default</span>:<span class="hljs-built_in">module</span>.default
         })));
 
-    return &lt;Route path={path} component={props=&gt;{
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">{path}</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{props</span>=&gt;</span>{
         if (notLazy){
             return  (
-                &lt;Component {...props}/&gt;
+                <span class="hljs-tag">&lt;<span class="hljs-name">Component</span> {<span class="hljs-attr">...props</span>}/&gt;</span>
             )
         } else {
             return  (
-                &lt;React.Suspense fallback={LoadingPage()}&gt;
-                    &lt;Component {...props}/&gt;
-                &lt;/React.Suspense&gt;
+                <span class="hljs-tag">&lt;<span class="hljs-name">React.Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{LoadingPage()}</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Component</span> {<span class="hljs-attr">...props</span>}/&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">React.Suspense</span>&gt;</span>
             )
         }
-    }}/&gt;
+    }}/&gt;</span>
 };
 
-//in index
-&lt;BrowserRouter&gt;
-    &lt;Switch&gt;
-        {Page(&#39;/login&#39;, &quot;./pages/login&quot;)}
-        &lt;Redirect to={&#39;/login&#39;}/&gt;
-    &lt;/Switch&gt;
-&lt;/BrowserRouter&gt;
-</code></pre>
-<p>Dont&#39;t need to import other things, simply use React to resolve whole things.</p>
+<span class="hljs-comment">//in index</span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">BrowserRouter</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Switch</span>&gt;</span>
+        {Page(&#x27;/login&#x27;, &quot;./pages/login&quot;)}
+        <span class="hljs-tag">&lt;<span class="hljs-name">Redirect</span> <span class="hljs-attr">to</span>=<span class="hljs-string">{</span>&#x27;/<span class="hljs-attr">login</span>&#x27;}/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Switch</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">BrowserRouter</span>&gt;</span></span></code></pre><p>Dont&#39;t need to import other things, simply use React to resolve whole things.</p>
 <h2 id="how-it-works">How it works</h2>
 <p><code>React.lazy</code> is to split code, instead of bundling whole code to one file, via it, when using webpack, the JS files can be split. </p>
 <p>After that, when browser is rendering to <code>&lt;Suspense&gt;</code>, it will throw an error which is a Promise. 

@@ -40,7 +40,7 @@
 <p><em>在握手成功后，传输的就是数据帧(frame)了，由1个或多个帧组成一条完整的消息(message)。</em></p>
 <p><em>发送端将消息切割成多个帧，并发送给服务端，接收端接收消息帧，并将关联的帧重新组装成完整的消息。</em></p>
 <p>ws数据帧的<a href="https://tools.ietf.org/html/rfc6455#section-5.2">统一格式</a>如下：</p>
-<pre><code class="language-text">  0                   1                   2                   3
+<pre><code class="hljs text">  0                   1                   2                   3
   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
  +-+-+-+-+-------+-+-------------+-------------------------------+
  |F|R|R|R| opcode|M| Payload len |    Extended payload length    |
@@ -57,23 +57,19 @@
  :                     Payload Data continued ...                :
  + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
  |                     Payload Data continued ...                |
- +---------------------------------------------------------------+
-</code></pre>
-<p>如果FIN是1，这是message的最后一个分片，如果是0，则不是。</p>
+ +---------------------------------------------------------------+</code></pre><p>如果FIN是1，这是message的最后一个分片，如果是0，则不是。</p>
 <p>opcode来区分操作的类型。比如0x8表示断开连接，0x0-0x2表示数据交互(其中0x1是文本，0x2是二进制)。</p>
 <p>mask表示负载数据是否被掩码，如果设置为 1，那么负载数据应该按照后面的 Masking-key 解码。</p>
 <p>点击B站的某个视频之后的ws连接，他们应该是把对象stringify后转换成了<code>ArrayBuffer</code>之后，直接emit，所以opcode是2:</p>
 <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/bilibili_ws.png' width="800" />
 
-<pre><code class="language-ts">00000000: 0000 0062 0012 0001 0000 0007 0000 0001  ...b............
+<pre><code class="hljs ts">00000000: 0000 0062 0012 0001 0000 0007 0000 0001  ...b............
 00000001: 0000 7b22 726f 6f6d 5f69 6422 3a22 7669  ..{&quot;room_id&quot;:&quot;vi
 00000002: 6465 6f3a 2f2f 3431 3337 3632 3334 332f  deo://413762343/
 00000003: 3231 3233 3634 3938 3722 2c22 706c 6174  212364987&quot;,&quot;plat
 00000004: 666f 726d 223a 2277 6562 222c 2261 6363  form&quot;:&quot;web&quot;,&quot;acc
 00000005: 6570 7473 223a 5b31 3030 302c 3130 3135  epts&quot;:[1000,1015
-00000006: 5d7d                                     ]}
-</code></pre>
-<h2 id="心跳">心跳</h2>
+00000006: 5d7d                                     ]}</code></pre><h2 id="心跳">心跳</h2>
 <p><em>WebSocket 为了保持客户端、服务端的实时双向通信，需要确保客户端、服务端之间的 TCP 通道保持连接没有断开。然而，对于长时间没有数据往来的连接，如果依旧长时间保持着，可能会浪费包括的连接资源。</em></p>
 <p>但不排除有些场景，客户端、服务端虽然长时间没有数据往来，但仍需要保持连接。这个时候，可以采用心跳来实现。</p>
 <p>发送方 -&gt; 接收方：ping
@@ -118,33 +114,31 @@ ping、pong 的操作，对应的是 WebSocket 的两个控制帧，opcode分别
 </div>
 
 <p>基于<code>node-redis</code>的发布订阅demo：</p>
-<pre><code class="language-ts">const redis = require(&quot;redis&quot;);
+<pre><code class="hljs ts"><span class="hljs-keyword">const</span> redis = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;redis&quot;</span>);
 
-const subscriber = redis.createClient();
-const publisher = redis.createClient();
+<span class="hljs-keyword">const</span> subscriber = redis.createClient();
+<span class="hljs-keyword">const</span> publisher = redis.createClient();
 
-let messageCount = 0;
+<span class="hljs-keyword">let</span> messageCount = <span class="hljs-number">0</span>;
 
-subscriber.on(&quot;subscribe&quot;, function(channel, count) {
-  publisher.publish(&quot;a channel&quot;, &quot;a message&quot;);
-  publisher.publish(&quot;a channel&quot;, &quot;another message&quot;);
+subscriber.on(<span class="hljs-string">&quot;subscribe&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">channel, count</span>) </span>{
+  publisher.publish(<span class="hljs-string">&quot;a channel&quot;</span>, <span class="hljs-string">&quot;a message&quot;</span>);
+  publisher.publish(<span class="hljs-string">&quot;a channel&quot;</span>, <span class="hljs-string">&quot;another message&quot;</span>);
 });
 
-subscriber.on(&quot;message&quot;, function(channel, message) {
-  messageCount += 1;
+subscriber.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">channel, message</span>) </span>{
+  messageCount += <span class="hljs-number">1</span>;
 
-  console.log(&quot;Subscriber received message in channel &#39;&quot; + channel + &quot;&#39;: &quot; + message);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Subscriber received message in channel &#x27;&quot;</span> + channel + <span class="hljs-string">&quot;&#x27;: &quot;</span> + message);
 
-  if (messageCount === 2) {
+  <span class="hljs-keyword">if</span> (messageCount === <span class="hljs-number">2</span>) {
     subscriber.unsubscribe();
     subscriber.quit();
     publisher.quit();
   }
 });
 
-subscriber.subscribe(&quot;a channel&quot;);
-</code></pre>
-<h2 id="reference">Reference</h2>
+subscriber.subscribe(<span class="hljs-string">&quot;a channel&quot;</span>);</code></pre><h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://zh.wikipedia.org/wiki/WebSocket">https://zh.wikipedia.org/wiki/WebSocket</a></li>
 <li><a href="https://redis.io/topics/pubsub">https://redis.io/topics/pubsub</a></li>

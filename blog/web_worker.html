@@ -30,39 +30,35 @@
 like other languages&#39; multiple threads function, Web Worker can create a new thread that can be in charge of CPU-bound
 tasks.</p>
 <p>For example:</p>
-<pre><code class="language-js">//main thread
-const worker = new Worker(&#39;worker.js&#39;);
-worker.postMessage(&#39;Hi&#39;);
-worker.onmessage = e =&gt; {
-    console.log(e.data);
+<pre><code class="hljs js"><span class="hljs-comment">//main thread</span>
+<span class="hljs-keyword">const</span> worker = <span class="hljs-keyword">new</span> Worker(<span class="hljs-string">&#x27;worker.js&#x27;</span>);
+worker.postMessage(<span class="hljs-string">&#x27;Hi&#x27;</span>);
+worker.onmessage = <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(e.data);
     worker.terminate();
 }
 
-//web worker
-importScripts(&#39;....&#39;);  //load other reource
+<span class="hljs-comment">//web worker</span>
+importScripts(<span class="hljs-string">&#x27;....&#x27;</span>);  <span class="hljs-comment">//load other reource</span>
 
-const _self = this;
-_self.addEventListener(&#39;message&#39;, e =&gt; {
-    console.log(e.data);
-    _self.postMessage(&#39;I am working&#39;);
-})
-</code></pre>
-<p>Except using a independent as Web Worker, a Blob object can be too. like:</p>
-<pre><code class="language-js">const task = new Blob([`importScripts(&#39;....&#39;);  //load other reource
+<span class="hljs-keyword">const</span> _self = <span class="hljs-built_in">this</span>;
+_self.addEventListener(<span class="hljs-string">&#x27;message&#x27;</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(e.data);
+    _self.postMessage(<span class="hljs-string">&#x27;I am working&#x27;</span>);
+})</code></pre><p>Except using a independent as Web Worker, a Blob object can be too. like:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> task = <span class="hljs-keyword">new</span> Blob([<span class="hljs-string">`importScripts(&#x27;....&#x27;);  //load other reource
                         
                         const _self = this;
-                        _self.addEventListener(&#39;message&#39;, e =&gt; {
+                        _self.addEventListener(&#x27;message&#x27;, e =&gt; {
                             console.log(e.data);
-                            _self.postMessage(&#39;I am working&#39;);
-                        })`],  { type: &#39;application/javascript&#39; });
-const worker = new Worker(URL.createObjectURL(task));
-worker.postMessage(&#39;Hi&#39;);
-worker.onmessage = e =&gt; {
-    console.log(e.data);
+                            _self.postMessage(&#x27;I am working&#x27;);
+                        })`</span>],  { <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;application/javascript&#x27;</span> });
+<span class="hljs-keyword">const</span> worker = <span class="hljs-keyword">new</span> Worker(URL.createObjectURL(task));
+worker.postMessage(<span class="hljs-string">&#x27;Hi&#x27;</span>);
+worker.onmessage = <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(e.data);
     worker.terminate();
-}
-</code></pre>
-<h2 id="worker-loader">Worker-loader</h2>
+}</code></pre><h2 id="worker-loader">Worker-loader</h2>
 <p><a href="https://github.com/webpack-contrib/worker-loader">worker-loader</a> uses webpack to pack worker.js file to string and load in 
 main thread, which is more convenient to use and maintain.</p>
 <h2 id="differences-compared-to-main-thread">Differences compared to main thread</h2>

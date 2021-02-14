@@ -26,21 +26,19 @@
 
 <body>
 	<div><div><article class="markdown-body"><h1 id="dynamic-programming">Dynamic Programming</h1>
-<pre><code class="language-ts">const recursionFib = (n: number): number =&gt; {
-    if (n === 1 || n === 2) return 1;
-    return recursionFib(n - 1) + recursionFib(n - 2);
+<pre><code class="hljs ts"><span class="hljs-keyword">const</span> recursionFib = (n: <span class="hljs-built_in">number</span>): <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span> || n === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> recursionFib(n - <span class="hljs-number">1</span>) + recursionFib(n - <span class="hljs-number">2</span>);
 };
 
-const dpFib = (n: number): number =&gt; {
-    const dp = Array(n + 1).fill(0);
-    dp[1] = dp[2] = 1;
-    for (let i = 3; i &lt;= n; i++) {
-        dp[i] = dp[i - 1] + dp[i - 2];
+<span class="hljs-keyword">const</span> dpFib = (n: <span class="hljs-built_in">number</span>): <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> dp = <span class="hljs-built_in">Array</span>(n + <span class="hljs-number">1</span>).fill(<span class="hljs-number">0</span>);
+    dp[<span class="hljs-number">1</span>] = dp[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">3</span>; i &lt;= n; i++) {
+        dp[i] = dp[i - <span class="hljs-number">1</span>] + dp[i - <span class="hljs-number">2</span>];
     }
-    return dp[n];
-};
-</code></pre>
-<h2 id="reference">Reference</h2>
+    <span class="hljs-keyword">return</span> dp[n];
+};</code></pre><h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/78220312">https://zhuanlan.zhihu.com/p/78220312</a></li>
 <li><a href="https://www.hackerearth.com/zh/practice/algorithms/dynamic-programming/introduction-to-dynamic-programming-1/tutorial/">https://www.hackerearth.com/zh/practice/algorithms/dynamic-programming/introduction-to-dynamic-programming-1/tutorial/</a></li>

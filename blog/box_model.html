@@ -33,16 +33,12 @@
 
 <h2 id="margin-collapse">Margin collapse</h2>
 <p>You can see this example in <a href="https://jsfiddle.net/d9zb13jy/">Here</a>:</p>
-<pre><code class="language-html">&lt;div&gt;
-    &lt;p&gt;p1&lt;/p&gt;
-    &lt;p&gt;p2&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">p{
-    margin: 10px;
-}
-</code></pre>
-<p>In the final result, the top margin of p2 is 0. In other word, its margin merged with p1&#39;s bottom margin.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>p1<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>p2<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><pre><code class="hljs css"><span class="hljs-selector-tag">p</span>{
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;
+}</code></pre><p>In the final result, the top margin of p2 is 0. In other word, its margin merged with p1&#39;s bottom margin.</p>
 <p>But if we set <code>float: left;</code>, the horizontal margin won&#39;t collapse. As only one type of margin can collapse: Vertical (top and bottom). Margin collapse never applies to horizontal (left and right) margins.</p>
 <h2 id="height-and-width-in-box-model">height and width in Box Model</h2>
 <p>If we set <code>width:100%</code>, the element will exceed the whole page, its width actually is larger than 100%. Because the default <code>box-sizing</code> is <code>content-box</code>, which won&#39;t involve margin and padding&#39;s value into calculation.</p>

@@ -30,16 +30,12 @@
 <h3 id="01--02--03">0.1 + 0.2 === 0.3</h3>
 <p>Actually, it returns false, which counters people&#39;s institution. The reason is that JS use 64-bit floating point representation, whose problem is that numbers are represented in this format as a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.</p>
 <p>In this way, when we have to compare floats, the appropriate way is to:</p>
-<pre><code class="language-JS">Number.prototype.compare = f =&gt; Math.abs(f - this) &lt; Number.EPSILON;
-console.log(0.3.compare(0.1 + 0.2));   //true
-</code></pre>
-<h3 id="max-integer">Max integer</h3>
+<pre><code class="hljs JS"><span class="hljs-built_in">Number</span>.prototype.compare = <span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> <span class="hljs-built_in">Math</span>.abs(f - <span class="hljs-built_in">this</span>) &lt; <span class="hljs-built_in">Number</span>.EPSILON;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0.3</span>.compare(<span class="hljs-number">0.1</span> + <span class="hljs-number">0.2</span>));   <span class="hljs-comment">//true</span></code></pre><h3 id="max-integer">Max integer</h3>
 <p>Base on IEEE754, The max safe number in JS is <code>Math.pow(2, 53) - 1</code>, we can access it by <code>Number.MAX_SAFE_INTEGER</code>.</p>
 <p>Over this number, the operation will be unsafe, for example:</p>
-<pre><code class="language-JS">console.log(Math.pow(2, 53) - 1 === Math.pow(2, 53) + 1);   // false
-console.log(Math.pow(2, 54) - 1 === Math.pow(2, 54) + 1);   // true
-</code></pre>
-<h2 id="bitwise">Bitwise</h2>
+<pre><code class="hljs JS"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">53</span>) - <span class="hljs-number">1</span> === <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">53</span>) + <span class="hljs-number">1</span>);   <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">54</span>) - <span class="hljs-number">1</span> === <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">54</span>) + <span class="hljs-number">1</span>);   <span class="hljs-comment">// true</span></code></pre><h2 id="bitwise">Bitwise</h2>
 <h3 id="-xor">^ XOR</h3>
 <ul>
 <li><code>a ^ b</code>: Returns a 1 in each bit position for which the corresponding bits of either but not both operands are 1s.</li>
@@ -52,21 +48,17 @@ console.log(Math.pow(2, 54) - 1 === Math.pow(2, 54) + 1);   // true
 <li><p>Exchange Value without temporary variable:</p>
 </li>
 </ol>
-<pre><code class="language-js">var a=0b10100001;
-var b=0b00000110;
-a=a^b; 　　//a=10100111
-b=b^a; 　　//b=10100001
-a=a^b; 　　//a=00000110
-</code></pre>
-<ol start="3">
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> a=<span class="hljs-number">0b10100001</span>;
+<span class="hljs-keyword">var</span> b=<span class="hljs-number">0b00000110</span>;
+a=a^b; 　　<span class="hljs-comment">//a=10100111</span>
+b=b^a; 　　<span class="hljs-comment">//b=10100001</span>
+a=a^b; 　　<span class="hljs-comment">//a=00000110</span></code></pre><ol start="3">
 <li>encryption. There is simple example as below base on <code>a=a^b^b</code>:</li>
 </ol>
-<pre><code class="language-js">const encryptAndDecrypt = (str, key) =&gt; {
-    const keyCode = Array.from(key).map(char =&gt; char.charCodeAt(0)).join(&#39;&#39;).substr(0, 2);  // &lt; 128
-    return Array.from(str).map(char =&gt; String.fromCharCode(char.charCodeAt(0) ^ keyCode)).join(&#39;&#39;);
-};
-</code></pre>
-</article></div></div>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> encryptAndDecrypt = <span class="hljs-function">(<span class="hljs-params">str, key</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> keyCode = <span class="hljs-built_in">Array</span>.from(key).map(<span class="hljs-function"><span class="hljs-params">char</span> =&gt;</span> char.charCodeAt(<span class="hljs-number">0</span>)).join(<span class="hljs-string">&#x27;&#x27;</span>).substr(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>);  <span class="hljs-comment">// &lt; 128</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(str).map(<span class="hljs-function"><span class="hljs-params">char</span> =&gt;</span> <span class="hljs-built_in">String</span>.fromCharCode(char.charCodeAt(<span class="hljs-number">0</span>) ^ keyCode)).join(<span class="hljs-string">&#x27;&#x27;</span>);
+};</code></pre></article></div></div>
 </body>
 
 </html>

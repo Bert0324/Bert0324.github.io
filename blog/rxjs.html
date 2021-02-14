@@ -45,156 +45,138 @@ event stream.</p>
 <p>Any functions can be in <code>pipe</code>, but finally, they need return an <code>Observable</code> instance.</p>
 <h3 id="switchmap">switchMap</h3>
 <p>A way to cancel stale events. An example as below:</p>
-<pre><code class="language-js">import { fromEvent, interval } from &#39;rxjs&#39;;
-import { switchMap } from &#39;rxjs/operators&#39;;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> { fromEvent, interval } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs&#x27;</span>;
+<span class="hljs-keyword">import</span> { switchMap } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs/operators&#x27;</span>;
 
-const obs$1 = fromEvent(document, &#39;click&#39;);
-const obs$2 = interval(1000);
-const finalObs$ = obs$1.pipe(
-  switchMap(event =&gt; obs$2)
+<span class="hljs-keyword">const</span> obs$<span class="hljs-number">1</span> = fromEvent(<span class="hljs-built_in">document</span>, <span class="hljs-string">&#x27;click&#x27;</span>);
+<span class="hljs-keyword">const</span> obs$<span class="hljs-number">2</span> = interval(<span class="hljs-number">1000</span>);
+<span class="hljs-keyword">const</span> finalObs$ = obs$<span class="hljs-number">1.</span>pipe(
+  switchMap(<span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> obs$<span class="hljs-number">2</span>)
 );
-const subscription = finalObs$.subscribe((value) =&gt; console.log(value));
-</code></pre>
-<h3 id="mergemap">mergeMap</h3>
+<span class="hljs-keyword">const</span> subscription = finalObs$.subscribe(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(value));</code></pre><h3 id="mergemap">mergeMap</h3>
 <p>A way to merge events. An example as below:</p>
-<pre><code class="language-js">import { of } from &#39;rxjs&#39;;
-import { mergeMap, map  } from &#39;rxjs/operators&#39;;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> { <span class="hljs-keyword">of</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs&#x27;</span>;
+<span class="hljs-keyword">import</span> { mergeMap, map  } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs/operators&#x27;</span>;
 
-const firstNameObs$ = of(&#39;Naveen&#39;);
-const lastNameObs$ = of(&#39;Chandupatla&#39;);
-const finalObs$ = firstNameObs$.pipe(
-  mergeMap(event1 =&gt; lastNameObs$.pipe(map(event2 =&gt; event1+&#39; &#39;+event2)))
+<span class="hljs-keyword">const</span> firstNameObs$ = <span class="hljs-keyword">of</span>(<span class="hljs-string">&#x27;Naveen&#x27;</span>);
+<span class="hljs-keyword">const</span> lastNameObs$ = <span class="hljs-keyword">of</span>(<span class="hljs-string">&#x27;Chandupatla&#x27;</span>);
+<span class="hljs-keyword">const</span> finalObs$ = firstNameObs$.pipe(
+  mergeMap(<span class="hljs-function"><span class="hljs-params">event1</span> =&gt;</span> lastNameObs$.pipe(map(<span class="hljs-function"><span class="hljs-params">event2</span> =&gt;</span> event1+<span class="hljs-string">&#x27; &#x27;</span>+event2)))
 );
-const subscription = finalObs$.subscribe((value) =&gt; console.log(value));
-</code></pre>
-<h3 id="tap">tap</h3>
+<span class="hljs-keyword">const</span> subscription = finalObs$.subscribe(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(value));</code></pre><h3 id="tap">tap</h3>
 <p>A way to perform transparent actions such as logging. An example as below:</p>
-<pre><code class="language-js">
-import { of } from &#39;rxjs&#39;;
-import { tap, map } from &#39;rxjs/operators&#39;;
+<pre><code class="hljs js">
+<span class="hljs-keyword">import</span> { <span class="hljs-keyword">of</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs&#x27;</span>;
+<span class="hljs-keyword">import</span> { tap, map } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs/operators&#x27;</span>;
 
-const obs$ = of(1, 2, 3, 4, 5);
+<span class="hljs-keyword">const</span> obs$ = <span class="hljs-keyword">of</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>);
 obs$.pipe(
-  tap(val =&gt; console.log(`BEFORE MAP: ${val}`)),
-  map(val =&gt; val + 10),
-  tap(val =&gt; console.log(`AFTER MAP: ${val}`))
-).subscribe(val =&gt; console.log(val));
-</code></pre>
-<h3 id="map">map</h3>
+  tap(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`BEFORE MAP: <span class="hljs-subst">${val}</span>`</span>)),
+  map(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> val + <span class="hljs-number">10</span>),
+  tap(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`AFTER MAP: <span class="hljs-subst">${val}</span>`</span>))
+).subscribe(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(val));</code></pre><h3 id="map">map</h3>
 <p>a way to traverse observable&#39;s each value.</p>
 <h3 id="pluck">pluck</h3>
 <p>a way to extract specific value from observable.</p>
-<pre><code class="language-js">import { from } from &#39;rxjs&#39;; 
-import { pluck } from &#39;rxjs/operators&#39;;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> { <span class="hljs-keyword">from</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs&#x27;</span>; 
+<span class="hljs-keyword">import</span> { pluck } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs/operators&#x27;</span>;
 
-const data = [{id:1, value:&#39;one&#39;}, {id:2, value:&#39;two&#39;}, {id:3, value:&#39;three&#39;}];
+<span class="hljs-keyword">const</span> data = [{<span class="hljs-attr">id</span>:<span class="hljs-number">1</span>, <span class="hljs-attr">value</span>:<span class="hljs-string">&#x27;one&#x27;</span>}, {<span class="hljs-attr">id</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">value</span>:<span class="hljs-string">&#x27;two&#x27;</span>}, {<span class="hljs-attr">id</span>:<span class="hljs-number">3</span>, <span class="hljs-attr">value</span>:<span class="hljs-string">&#x27;three&#x27;</span>}];
 
-const obsPluck$ = from(data).pipe(
-  pluck(&#39;value&#39;)
-).subscribe(x =&gt; console.log(x));
+<span class="hljs-keyword">const</span> obsPluck$ = <span class="hljs-keyword">from</span>(data).pipe(
+  pluck(<span class="hljs-string">&#x27;value&#x27;</span>)
+).subscribe(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(x));
 
-const obsMap$ = from(data).pipe(
-  map(data =&gt; data.value)
-).subscribe(x =&gt; console.log(x));
-</code></pre>
-<h3 id="debouncetime--distinctuntilchanged--throttletime">debounceTime &amp;&amp; distinctUntilChanged &amp;&amp; throttleTime</h3>
+<span class="hljs-keyword">const</span> obsMap$ = <span class="hljs-keyword">from</span>(data).pipe(
+  map(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.value)
+).subscribe(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(x));</code></pre><h3 id="debouncetime--distinctuntilchanged--throttletime">debounceTime &amp;&amp; distinctUntilChanged &amp;&amp; throttleTime</h3>
 <p>A simple way to anti-shaking and throttling. </p>
-<pre><code class="language-js">
-import { fromEvent } from &#39;rxjs&#39;; 
-import { pluck,map, debounceTime, distinctUntilChanged } from &#39;rxjs/operators&#39;;
+<pre><code class="hljs js">
+<span class="hljs-keyword">import</span> { fromEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs&#x27;</span>; 
+<span class="hljs-keyword">import</span> { pluck,map, debounceTime, distinctUntilChanged } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs/operators&#x27;</span>;
 
-const input = document.querySelector(&#39;input&#39;);
-const obs$ = fromEvent(input, &#39;input&#39;);
+<span class="hljs-keyword">const</span> input = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;input&#x27;</span>);
+<span class="hljs-keyword">const</span> obs$ = fromEvent(input, <span class="hljs-string">&#x27;input&#x27;</span>);
 obs$.pipe(
-map(event =&gt; event.target.value),
-debounceTime(1000),
-throttleTime(3000),
+map(<span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> event.target.value),
+debounceTime(<span class="hljs-number">1000</span>),
+throttleTime(<span class="hljs-number">3000</span>),
 distinctUntilChanged())
-.subscribe((value) =&gt; console.log(value));
-</code></pre>
-<h3 id="catcherror">catchError</h3>
+.subscribe(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(value));</code></pre><h3 id="catcherror">catchError</h3>
 <p>A way to handle errors.</p>
-<pre><code class="language-js">import { fromEvent, from, of } from &#39;rxjs&#39;; 
-import { catchError } from &#39;rxjs/operators&#39;;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> { fromEvent, <span class="hljs-keyword">from</span>, <span class="hljs-keyword">of</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs&#x27;</span>; 
+<span class="hljs-keyword">import</span> { catchError } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs/operators&#x27;</span>;
 
-const defaultRejectedPromise = () =&gt;
-  new Promise((resolve, reject) =&gt; 
-  reject(&#39;defaultRejectedPromise!&#39;));
+<span class="hljs-keyword">const</span> defaultRejectedPromise = <span class="hljs-function">() =&gt;</span>
+  <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> 
+  reject(<span class="hljs-string">&#x27;defaultRejectedPromise!&#x27;</span>));
 
-const sourceObs$ = from(defaultRejectedPromise());
-sourceObs$.pipe(catchError(error =&gt; of(`Bad Promise: ${error}`)))
-.subscribe(next =&gt; console.log(next));
-</code></pre>
-<h3 id="combinelatest">combineLatest</h3>
+<span class="hljs-keyword">const</span> sourceObs$ = <span class="hljs-keyword">from</span>(defaultRejectedPromise());
+sourceObs$.pipe(catchError(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-keyword">of</span>(<span class="hljs-string">`Bad Promise: <span class="hljs-subst">${error}</span>`</span>)))
+.subscribe(<span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(next));</code></pre><h3 id="combinelatest">combineLatest</h3>
 <p>A way to get latest value among multiple events</p>
-<pre><code class="language-js">import { timer, combineLatest } from &#39;rxjs&#39;;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> { timer, combineLatest } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs&#x27;</span>;
 
-//timerOne emits first value at 1s, then once every 4s
-const timerOne$ = timer(1000, 4000);
-//timerTwo emits first value at 2s, then once every 4s
-const timerTwo$ = timer(2000, 4000);
-//timerThree emits first value at 3s, then once every 4s
-const timerThree$ = timer(3000, 4000);
-//when one timer emits, emit the latest values from each timer as an array
+<span class="hljs-comment">//timerOne emits first value at 1s, then once every 4s</span>
+<span class="hljs-keyword">const</span> timerOne$ = timer(<span class="hljs-number">1000</span>, <span class="hljs-number">4000</span>);
+<span class="hljs-comment">//timerTwo emits first value at 2s, then once every 4s</span>
+<span class="hljs-keyword">const</span> timerTwo$ = timer(<span class="hljs-number">2000</span>, <span class="hljs-number">4000</span>);
+<span class="hljs-comment">//timerThree emits first value at 3s, then once every 4s</span>
+<span class="hljs-keyword">const</span> timerThree$ = timer(<span class="hljs-number">3000</span>, <span class="hljs-number">4000</span>);
+<span class="hljs-comment">//when one timer emits, emit the latest values from each timer as an array</span>
 combineLatest(timerOne$, timerTwo$, timerThree$).subscribe(
-  (items) =&gt; {
-    console.log(
-    `Timer One Latest: ${items[0]},
-     Timer Two Latest: ${items[1]},
-     Timer Three Latest: ${items[2]}`
+  <span class="hljs-function">(<span class="hljs-params">items</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(
+    <span class="hljs-string">`Timer One Latest: <span class="hljs-subst">${items[<span class="hljs-number">0</span>]}</span>,
+     Timer Two Latest: <span class="hljs-subst">${items[<span class="hljs-number">1</span>]}</span>,
+     Timer Three Latest: <span class="hljs-subst">${items[<span class="hljs-number">2</span>]}</span>`</span>
     );
   }
-);
-</code></pre>
-<h3 id="zip">zip</h3>
+);</code></pre><h3 id="zip">zip</h3>
 <p>A way to wait for all observable to emit and then it zips those values into an array as an output.</p>
-<pre><code class="language-js">import { timer, zip } from &#39;rxjs&#39;;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> { timer, zip } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs&#x27;</span>;
 
-//timerOne emits first value at 1s, then once every 4s
-const timerOne$ = timer(1000, 4000);
-//timerTwo emits first value at 2s, then once every 4s
-const timerTwo$ = timer(2000, 4000);
-//timerThree emits first value at 3s, then once every 4s
-const timerThree$ = timer(3000, 4000);
-//when one timer emits, emit the latest values from each timer as an array
+<span class="hljs-comment">//timerOne emits first value at 1s, then once every 4s</span>
+<span class="hljs-keyword">const</span> timerOne$ = timer(<span class="hljs-number">1000</span>, <span class="hljs-number">4000</span>);
+<span class="hljs-comment">//timerTwo emits first value at 2s, then once every 4s</span>
+<span class="hljs-keyword">const</span> timerTwo$ = timer(<span class="hljs-number">2000</span>, <span class="hljs-number">4000</span>);
+<span class="hljs-comment">//timerThree emits first value at 3s, then once every 4s</span>
+<span class="hljs-keyword">const</span> timerThree$ = timer(<span class="hljs-number">3000</span>, <span class="hljs-number">4000</span>);
+<span class="hljs-comment">//when one timer emits, emit the latest values from each timer as an array</span>
 zip(timerOne$, timerTwo$, timerThree$).subscribe(
-  (items) =&gt; {
-    console.log(
-    `Timer One Latest: ${items[0]},
-     Timer Two Latest: ${items[1]},
-     Timer Three Latest: ${items[2]}`
+  <span class="hljs-function">(<span class="hljs-params">items</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(
+    <span class="hljs-string">`Timer One Latest: <span class="hljs-subst">${items[<span class="hljs-number">0</span>]}</span>,
+     Timer Two Latest: <span class="hljs-subst">${items[<span class="hljs-number">1</span>]}</span>,
+     Timer Three Latest: <span class="hljs-subst">${items[<span class="hljs-number">2</span>]}</span>`</span>
     );
   }
-);
-</code></pre>
-<h2 id="hot-vs-cold-observables">Hot vs Cold Observables</h2>
+);</code></pre><h2 id="hot-vs-cold-observables">Hot vs Cold Observables</h2>
 <p>Normally, Observables is cold, which means the code is executed when it is subscribed. Each subscribe will create a new event.</p>
 <p>Hot Observables means the event is single, each subscribe will access the only event instance.</p>
 <p>We can use <code>share</code> to transfer cold Observables to hot Observables.</p>
 <p>There is code to show it:</p>
-<pre><code class="language-js">let obs = new Observable(subscriber =&gt; {
-    setInterval(()=&gt;{
-        subscriber.next(Date.now());
-    },500)
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> obs = <span class="hljs-keyword">new</span> Observable(<span class="hljs-function"><span class="hljs-params">subscriber</span> =&gt;</span> {
+    <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">()=&gt;</span>{
+        subscriber.next(<span class="hljs-built_in">Date</span>.now());
+    },<span class="hljs-number">500</span>)
 }).pipe(share());
 
-let task = obs.subscribe(v=&gt;{
-    console.log(v);
+<span class="hljs-keyword">let</span> task = obs.subscribe(<span class="hljs-function"><span class="hljs-params">v</span>=&gt;</span>{
+    <span class="hljs-built_in">console</span>.log(v);
 });
-setTimeout(()=&gt;{
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>{
     task.unsubscribe();
-}, 1000);
+}, <span class="hljs-number">1000</span>);
 
-setTimeout(()=&gt;{
-    let task = obs.subscribe(v=&gt;{
-        console.log(v);
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>{
+    <span class="hljs-keyword">let</span> task = obs.subscribe(<span class="hljs-function"><span class="hljs-params">v</span>=&gt;</span>{
+        <span class="hljs-built_in">console</span>.log(v);
     });
-    setTimeout(()=&gt;{
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>{
         task.unsubscribe();
-    }, 1000);
-}, 1000);
-</code></pre>
-</article></div></div>
+    }, <span class="hljs-number">1000</span>);
+}, <span class="hljs-number">1000</span>);</code></pre></article></div></div>
 </body>
 
 </html>

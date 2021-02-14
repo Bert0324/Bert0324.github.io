@@ -29,57 +29,55 @@
 <p>In Vue 2, it uses <code>Object.defineProperty</code> to proxy data, and in Vue 3, it will use <code>Proxy</code> to do it.</p>
 <h2 id="objectdefineproperty"><code>Object.defineProperty</code></h2>
 <p>Its definition is as below:</p>
-<pre><code class="language-ts">/**
+<pre><code class="hljs ts"><span class="hljs-comment">/**
  * Adds a property to an object, or modifies attributes of an existing property.
- * @param o Object on which to add or modify the property. This can be a native JavaScript object
+ * <span class="hljs-doctag">@param </span>o Object on which to add or modify the property. This can be a native JavaScript object
  * (that is, a user-defined object or a built in object) or a DOM object.
- * @param p The property name.
- * @param attributes Descriptor for the property. It can be for a data property or an accessor property.
- */
-defineProperty(o: any, p: PropertyKey, attributes: PropertyDescriptor &amp; ThisType&lt;any&gt;): any;
-</code></pre>
-<p>The <code>PropertyDescriptor</code>&#39;s properties see in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">MDN document</a>.</p>
+ * <span class="hljs-doctag">@param </span>p The property name.
+ * <span class="hljs-doctag">@param </span>attributes Descriptor for the property. It can be for a data property or an accessor property.
+ */</span>
+defineProperty(o: <span class="hljs-built_in">any</span>, <span class="hljs-attr">p</span>: PropertyKey, <span class="hljs-attr">attributes</span>: PropertyDescriptor &amp; ThisType&lt;<span class="hljs-built_in">any</span>&gt;): <span class="hljs-built_in">any</span>;</code></pre><p>The <code>PropertyDescriptor</code>&#39;s properties see in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">MDN document</a>.</p>
 <h3 id="deep-observe-and-observe-an-array">Deep Observe and Observe An Array</h3>
-<pre><code class="language-ts">class Watcher {
+<pre><code class="hljs ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Watcher</span> </span>{
 
-    private arrayProto: any[] = [];
+    <span class="hljs-keyword">private</span> arrayProto: <span class="hljs-built_in">any</span>[] = [];
 
-    constructor() {
-        this.arrayProto = Object.create(Array.prototype);
-        [&#39;push&#39;, &#39;pop&#39;, &#39;shift&#39;, &#39;unshift&#39;, &#39;splice&#39;].forEach(fn =&gt; {
-            const updateView = this.updateView;
-            this.arrayProto[fn] = function() {
-                Array.prototype[fn].call(this, ...arguments);
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.arrayProto = <span class="hljs-built_in">Object</span>.create(<span class="hljs-built_in">Array</span>.prototype);
+        [<span class="hljs-string">&#x27;push&#x27;</span>, <span class="hljs-string">&#x27;pop&#x27;</span>, <span class="hljs-string">&#x27;shift&#x27;</span>, <span class="hljs-string">&#x27;unshift&#x27;</span>, <span class="hljs-string">&#x27;splice&#x27;</span>].forEach(<span class="hljs-function"><span class="hljs-params">fn</span> =&gt;</span> {
+            <span class="hljs-keyword">const</span> updateView = <span class="hljs-built_in">this</span>.updateView;
+            <span class="hljs-built_in">this</span>.arrayProto[fn] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+                <span class="hljs-built_in">Array</span>.prototype[fn].call(<span class="hljs-built_in">this</span>, ...arguments);
                 updateView();
             }
         });
     }
 
-    updateView() {
-        console.log(&#39;render&#39;);
+    <span class="hljs-function"><span class="hljs-title">updateView</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;render&#x27;</span>);
     }
 
-    observer(target: any) {
-        const targetType: string = Object.prototype.toString.call(target);
-        // if it is not Object
-        if (!target || !targetType.startsWith(&#39;[object &#39;)) {
-            return target;
+    <span class="hljs-function"><span class="hljs-title">observer</span>(<span class="hljs-params">target: <span class="hljs-built_in">any</span></span>)</span> {
+        <span class="hljs-keyword">const</span> targetType: <span class="hljs-built_in">string</span> = <span class="hljs-built_in">Object</span>.prototype.toString.call(target);
+        <span class="hljs-comment">// if it is not Object</span>
+        <span class="hljs-keyword">if</span> (!target || !targetType.startsWith(<span class="hljs-string">&#x27;[object &#x27;</span>)) {
+            <span class="hljs-keyword">return</span> target;
         }
 
-        // if it is an array, replace its prototype
-        if (targetType === &#39;[object Array]&#39;) {
-            target.__proto__ = this.arrayProto;
+        <span class="hljs-comment">// if it is an array, replace its prototype</span>
+        <span class="hljs-keyword">if</span> (targetType === <span class="hljs-string">&#x27;[object Array]&#x27;</span>) {
+            target.__proto__ = <span class="hljs-built_in">this</span>.arrayProto;
         }
 
-        for (let item in target) {
-            let value = target[item];    // avoid circular reference
-            this.observer(value);
-            Object.defineProperty(target, item, {
-                get: () =&gt; value,
-                set: newValue =&gt; {
-                    if (newValue !== value) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">in</span> target) {
+            <span class="hljs-keyword">let</span> value = target[item];    <span class="hljs-comment">// avoid circular reference</span>
+            <span class="hljs-built_in">this</span>.observer(value);
+            <span class="hljs-built_in">Object</span>.defineProperty(target, item, {
+                <span class="hljs-attr">get</span>: <span class="hljs-function">() =&gt;</span> value,
+                <span class="hljs-attr">set</span>: <span class="hljs-function"><span class="hljs-params">newValue</span> =&gt;</span> {
+                    <span class="hljs-keyword">if</span> (newValue !== value) {
                         value = newValue;
-                        this.updateView();
+                        <span class="hljs-built_in">this</span>.updateView();
                     }
                 }
             });
@@ -87,20 +85,18 @@ defineProperty(o: any, p: PropertyKey, attributes: PropertyDescriptor &amp; This
     }
 }
 
-const watcher = new Watcher();
-const obj = {
-    a: 1,
-    b: {
-        c: 1
+<span class="hljs-keyword">const</span> watcher = <span class="hljs-keyword">new</span> Watcher();
+<span class="hljs-keyword">const</span> obj = {
+    <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">b</span>: {
+        <span class="hljs-attr">c</span>: <span class="hljs-number">1</span>
     },
-    d: [{}]
+    <span class="hljs-attr">d</span>: [{}]
 };
 watcher.observer(obj);
-obj.a = 2;
-obj.b.c = 3;
-obj.d.push(1);
-</code></pre>
-<h3 id="problems">Problems</h3>
+obj.a = <span class="hljs-number">2</span>;
+obj.b.c = <span class="hljs-number">3</span>;
+obj.d.push(<span class="hljs-number">1</span>);</code></pre><h3 id="problems">Problems</h3>
 <p>From the implementation as above, we can say there are some limitations.</p>
 <ul>
 <li>it cannot observer object add new property and delete property. (use <code>Vue.set</code> and <code>Vue.delete</code> instead)</li>

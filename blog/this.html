@@ -29,34 +29,30 @@
 <p>In most cases, the value of <code>this</code> is determined by how a function is called (runtime binding). It can&#39;t be set by assignment during execution, and it may be different each time the function is called.</p>
 <h2 id="runtime-binding">Runtime binding</h2>
 <p>There is a demo:</p>
-<pre><code class="language-ts">function bike() {
-  console.log(this.name);
+<pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);
 }
 
-var name = &quot;Ninja&quot;;
-var obj1 = { name: &quot;Pulsar&quot;, bike: bike };
-var obj2 = { name: &quot;Gixxer&quot;, bike: bike };
+<span class="hljs-keyword">var</span> name = <span class="hljs-string">&quot;Ninja&quot;</span>;
+<span class="hljs-keyword">var</span> obj1 = { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Pulsar&quot;</span>, <span class="hljs-attr">bike</span>: bike };
+<span class="hljs-keyword">var</span> obj2 = { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Gixxer&quot;</span>, <span class="hljs-attr">bike</span>: bike };
 
-bike();           // &quot;Ninja&quot;
-obj1.bike();      // &quot;Pulsar&quot;
-obj2.bike();      // &quot;Gixxer&quot;
-</code></pre>
-<h2 id="apply-call-and-bind"><code>apply</code>, <code>call</code> and <code>bind</code></h2>
+bike();           <span class="hljs-comment">// &quot;Ninja&quot;</span>
+obj1.bike();      <span class="hljs-comment">// &quot;Pulsar&quot;</span>
+obj2.bike();      <span class="hljs-comment">// &quot;Gixxer&quot;</span></code></pre><h2 id="apply-call-and-bind"><code>apply</code>, <code>call</code> and <code>bind</code></h2>
 <p>These three functions are able to change <code>this</code> value in a function when it calls them.</p>
 <ol>
 <li><code>bind</code> will change <code>this</code> but not run the function. A function can only be bind once.</li>
 <li><code>call</code> will change <code>this</code> and run it.</li>
 <li><code>apply</code> will change <code>this</code>, and params will be passed as an array.</li>
 </ol>
-<pre><code class="language-ts">function fn(a, b) {
-    console.log(this, a, b);
+<pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>, a, b);
 }
 
-const bindFn = fn.bind({});
-fn.call({}, 1, 2);
-fn.apply({}, [1, 2]);
-</code></pre>
-<h2 id="new-a-class-in-js"><code>new</code> a <code>Class</code> in JS</h2>
+<span class="hljs-keyword">const</span> bindFn = fn.bind({});
+fn.call({}, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+fn.apply({}, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]);</code></pre><h2 id="new-a-class-in-js"><code>new</code> a <code>Class</code> in JS</h2>
 <p>The new keyword in front of any function turns the function call into constructor call and below things occurred when new keyword put in front of function:</p>
 <ol>
 <li>A brand new empty object gets created</li>
@@ -64,19 +60,17 @@ fn.apply({}, [1, 2]);
 <li>same new empty object gets bound as this keyword for execution context of that function call</li>
 <li>if that function does not return anything then it implicit returns this object.</li>
 </ol>
-<pre><code class="language-ts">function bike() {
-  var name = &quot;Ninja&quot;;
-  this.maker = &quot;Kawasaki&quot;;
-  console.log(this.name + &quot; &quot; + maker);  // undefined Bajaj
+<pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> name = <span class="hljs-string">&quot;Ninja&quot;</span>;
+  <span class="hljs-built_in">this</span>.maker = <span class="hljs-string">&quot;Kawasaki&quot;</span>;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name + <span class="hljs-string">&quot; &quot;</span> + maker);  <span class="hljs-comment">// undefined Bajaj</span>
 }
 
-var name = &quot;Pulsar&quot;;
-var maker = &quot;Bajaj&quot;;
+<span class="hljs-keyword">var</span> name = <span class="hljs-string">&quot;Pulsar&quot;</span>;
+<span class="hljs-keyword">var</span> maker = <span class="hljs-string">&quot;Bajaj&quot;</span>;
 
-obj = new bike();
-console.log(obj.maker);                  // &quot;Kawasaki&quot;
-</code></pre>
-<h2 id="precedence-of-this-keyword-bindings">Precedence of <code>this</code> keyword bindings</h2>
+obj = <span class="hljs-keyword">new</span> bike();
+<span class="hljs-built_in">console</span>.log(obj.maker);                  <span class="hljs-comment">// &quot;Kawasaki&quot;</span></code></pre><h2 id="precedence-of-this-keyword-bindings">Precedence of <code>this</code> keyword bindings</h2>
 <ol>
 <li>First it checks whether the function is called with new keyword.</li>
 <li>Second it checks whether the function is called with call() or apply() method means explicit binding.</li>

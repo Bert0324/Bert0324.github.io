@@ -28,51 +28,45 @@
 	<div><div><article class="markdown-body"><h1 id="sorting-algorithm">Sorting Algorithm</h1>
 <h2 id="bubble-sort">Bubble Sort</h2>
 <p>Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order.</p>
-<pre><code class="language-js">((arr)=&gt;{
-    for (let i = arr.length -1; i &gt; 0; i--){
-        for (let j = 0; j &lt; i; j++){
-            if (arr[j] &gt; arr[j+1]){
-                let temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+<pre><code class="hljs js">(<span class="hljs-function">(<span class="hljs-params">arr</span>)=&gt;</span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = arr.length -<span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; i--){
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; i; j++){
+            <span class="hljs-keyword">if</span> (arr[j] &gt; arr[j+<span class="hljs-number">1</span>]){
+                <span class="hljs-keyword">let</span> temp = arr[j];
+                arr[j] = arr[j+<span class="hljs-number">1</span>];
+                arr[j+<span class="hljs-number">1</span>] = temp;
             }
         }
     }
-    return arr;
-})(Array(100).fill(null).map(() =&gt; Math.round(Math.random()*100)));
-</code></pre>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/bubble_sorting.gif' width="400" />
+    <span class="hljs-keyword">return</span> arr;
+})(<span class="hljs-built_in">Array</span>(<span class="hljs-number">100</span>).fill(<span class="hljs-literal">null</span>).map(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random()*<span class="hljs-number">100</span>)));</code></pre><img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/bubble_sorting.gif' width="400" />
 
 <h2 id="selection-sort">Selection Sort</h2>
 <p>It is the reverse of Bubble Sorting.</p>
-<pre><code class="language-js">((arr)=&gt;{
-    for (let i=0;i&lt;arr.length;i++){
-        for (let j=i+1;j&lt;arr.length;j++){
-            if (arr[j] &lt; arr[i]){
-                let temp = arr[j];
+<pre><code class="hljs js">(<span class="hljs-function">(<span class="hljs-params">arr</span>)=&gt;</span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;arr.length;i++){
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j=i+<span class="hljs-number">1</span>;j&lt;arr.length;j++){
+            <span class="hljs-keyword">if</span> (arr[j] &lt; arr[i]){
+                <span class="hljs-keyword">let</span> temp = arr[j];
                 arr[j] = arr[i];
                 arr[i] = temp;
             }
         }
     }
-    return arr;
-})(Array(100).fill(null).map(() =&gt; Math.round(Math.random()*100)));
-</code></pre>
-<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/selection_sorting.gif' width="400" />
+    <span class="hljs-keyword">return</span> arr;
+})(<span class="hljs-built_in">Array</span>(<span class="hljs-number">100</span>).fill(<span class="hljs-literal">null</span>).map(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random()*<span class="hljs-number">100</span>)));</code></pre><img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/selection_sorting.gif' width="400" />
 
 <h2 id="quick-sort">Quick Sort</h2>
 <p>A typical implementation of Divide-and-Conquer Method, selecting a pivot and using it to split the array to two part.</p>
 <p>Normally, its time complexity is n(nlogn). In worst situation that the first selected pivot is the extremum of the array, its time complexity is n(n^2).</p>
-<pre><code class="language-js">(_arr=&gt;{
-    const quickSort = arr =&gt; {
-        if (arr.length &lt; 2) return arr;
-        const pivot = arr.pop();
-        return [...quickSort(arr.filter(item =&gt; item &lt; pivot)), pivot, ...quickSort(arr.filter(item =&gt; item &gt;= pivot))];
+<pre><code class="hljs js">(<span class="hljs-function"><span class="hljs-params">_arr</span>=&gt;</span>{
+    <span class="hljs-keyword">const</span> quickSort = <span class="hljs-function"><span class="hljs-params">arr</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (arr.length &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> arr;
+        <span class="hljs-keyword">const</span> pivot = arr.pop();
+        <span class="hljs-keyword">return</span> [...quickSort(arr.filter(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item &lt; pivot)), pivot, ...quickSort(arr.filter(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item &gt;= pivot))];
     };
-    return quickSort(_arr);
-})(Array(100).fill(null).map(() =&gt; Math.round(Math.random()*100)));
-</code></pre>
-<h2 id="insert-sort">Insert Sort</h2>
+    <span class="hljs-keyword">return</span> quickSort(_arr);
+})(<span class="hljs-built_in">Array</span>(<span class="hljs-number">100</span>).fill(<span class="hljs-literal">null</span>).map(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random()*<span class="hljs-number">100</span>)));</code></pre><h2 id="insert-sort">Insert Sort</h2>
 <h2 id="shell-sort">Shell Sort</h2>
 <h2 id="heap-sort">Heap Sort</h2>
 <h2 id="merge-sort">Merge Sort</h2>

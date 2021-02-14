@@ -32,14 +32,12 @@
 <p>In Http1.1, the transmission is parallel, therefore next file has to wait to be transferred until the last transmission is finished, which obviously waste current bandwidth. In Http2, it will transfer multiple files mixed in one connection. Each frame has its id, so the client is able to joint it to a full message.</p>
 <h2 id="server-push">server push</h2>
 <p>Traditionally, when the client request index.html, server can only send index.html. But in Http2, the server knows if the client load index.html, some resources, such as css or JS file will be requested, server can initiatively send these. For example, in Nginx:</p>
-<pre><code class="language-nginx">location / {
-    root   /usr/share/nginx/html;
-    index  index.html index.htm;
-    http2_push /style.css;
-    http2_push /app.js;
-}
-</code></pre>
-</article></div></div>
+<pre><code class="hljs nginx"><span class="hljs-attribute">location</span> / {
+    <span class="hljs-attribute">root</span>   /usr/share/nginx/html;
+    <span class="hljs-attribute">index</span>  index.html index.htm;
+    <span class="hljs-attribute">http2_push</span> /style.css;
+    <span class="hljs-attribute">http2_push</span> /app.js;
+}</code></pre></article></div></div>
 </body>
 
 </html>

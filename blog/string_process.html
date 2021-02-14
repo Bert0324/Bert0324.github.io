@@ -33,42 +33,30 @@ substr(start[, length])
 substring(from[, to])</p>
 </blockquote>
 <p>Next, try a code.</p>
-<pre><code class="language-js">let str = &quot;012345&quot;;
-console.log(`slice:${str.slice(1, 3)}`)
-console.log(`substring:${str.substring(1, 3)}`)
-console.log(`substr:${str.substr(1, 3)}`)
-</code></pre>
-<p>the result is:</p>
-<pre><code class="language-text">slice:12
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&quot;012345&quot;</span>;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`slice:<span class="hljs-subst">${str.slice(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)}</span>`</span>)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`substring:<span class="hljs-subst">${str.substring(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)}</span>`</span>)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`substr:<span class="hljs-subst">${str.substr(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)}</span>`</span>)</code></pre><p>the result is:</p>
+<pre><code class="hljs text">slice:12
 substring:12
-substr:123
-</code></pre>
-<p>We can see both slice and substring is to return a string from parameter1 (start index) to parameter2 (end index), but notice, it will include start index&#39;s char, but not include the end index&#39;s char.</p>
+substr:123</code></pre><p>We can see both slice and substring is to return a string from parameter1 (start index) to parameter2 (end index), but notice, it will include start index&#39;s char, but not include the end index&#39;s char.</p>
 <p>For substr, it is to return a string whose length is parameter2 from parameter1 (start index).</p>
 <h2 id="about-minus-there-are-some-differences">about minus, there are some differences</h2>
 <p>try a code which is trying to extract the final char:</p>
-<pre><code class="language-js">let str = &quot;012345&quot;;
-console.log(`slice:${str.slice(-1)}`)
-console.log(`substring:${str.substring(-1)}`)
-console.log(`substr:${str.substr(-1, 1)}`)
-</code></pre>
-<p>the result is:</p>
-<pre><code class="language-text">slice:5
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&quot;012345&quot;</span>;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`slice:<span class="hljs-subst">${str.slice(-<span class="hljs-number">1</span>)}</span>`</span>)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`substring:<span class="hljs-subst">${str.substring(-<span class="hljs-number">1</span>)}</span>`</span>)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`substr:<span class="hljs-subst">${str.substr(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)}</span>`</span>)</code></pre><p>the result is:</p>
+<pre><code class="hljs text">slice:5
 substring:012345
-substr:5
-</code></pre>
-<p>As we can see, both of slice and substr can accept minus as parameter, but substring will transfer any minus parameter as 0.</p>
+substr:5</code></pre><p>As we can see, both of slice and substr can accept minus as parameter, but substring will transfer any minus parameter as 0.</p>
 <h2 id="for-slice-and-substring-if-second-parameter-is-larger-than-first-parameter-what-happen">for slice and substring, if second parameter is larger than first parameter, what happen?</h2>
 <p>try a code:</p>
-<pre><code class="language-js">let str = &quot;012345&quot;;
-console.log(`slice:${str.slice(4, 2)}`)
-console.log(`substring:${str.substring(4, 2)}`)
-</code></pre>
-<p>the result is:</p>
-<pre><code class="language-text">slice:
-substring:23
-</code></pre>
-<p>So, we can see, slice will return an empty string, while substring will automatically change their positions to str.substring(2, 4).</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&quot;012345&quot;</span>;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`slice:<span class="hljs-subst">${str.slice(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>)}</span>`</span>)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`substring:<span class="hljs-subst">${str.substring(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>)}</span>`</span>)</code></pre><p>the result is:</p>
+<pre><code class="hljs text">slice:
+substring:23</code></pre><p>So, we can see, slice will return an empty string, while substring will automatically change their positions to str.substring(2, 4).</p>
 <p>That&#39;s all, if anyone have some additional remarks or want to right a wrong, welcome to leave a message.</p>
 </article></div></div>
 </body>

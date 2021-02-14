@@ -80,11 +80,9 @@
 <li><code>ETag</code> and <code>If-None-Match</code></li>
 </ul>
 <p>Although <code>Last-Modified</code> and <code>If-Modified-Since</code> is able to cover most of cache situations, they have limits as below:</p>
-<pre><code>1. When the resource content has been modified, but we don&#39;t want the client to GET it again.
+<pre><code class="hljs undefined">1. When the resource content has been modified, but we don&#x27;t want the client to GET it again.
 2. The modified time accuracy is under second, as `Last-Modified` can only accurate to second.
-3. When the server cannot get the modified time of the resource
-</code></pre>
-<p>In this way, we can use <code>ETag</code> and <code>If-None-Match</code>.</p>
+3. When the server cannot get the modified time of the resource</code></pre><p>In this way, we can use <code>ETag</code> and <code>If-None-Match</code>.</p>
 <p><code>ETag</code> is relative to files&#39; content, such as content hash, or relative to its modified time. And in next request, its value will be sent in <code>If-None-Match</code>.</p>
 <h3 id="cdn">CDN</h3>
 <p>The full name is Content Delivery Network. It can disperse traffic from the source server and optimize network load.</p>
@@ -124,12 +122,10 @@ to the provided domain name address of the CDN server.</p>
 </ol>
 <p>IndexedDB is a large-scale, NoSQL storage system. It lets you store just about anything in the user&#39;s browser.</p>
 <p>Compared to <code>localStorage</code>, IndexedDB:</p>
-<pre><code>1. mostly asynchronous
+<pre><code class="hljs undefined">1. mostly asynchronous
 2. supported to access the data from same domain
 3. can save an object instead of only string
-4. its capacity is about 250MB, or without limitation
-</code></pre>
-<ol start="3">
+4. its capacity is about 250MB, or without limitation</code></pre><ol start="3">
 <li>cookie</li>
 </ol>
 <p>cookie also can save some key-value data, although it is not a good way.</p>

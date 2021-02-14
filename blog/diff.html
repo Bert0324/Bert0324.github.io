@@ -30,43 +30,41 @@
 <p>By understanding diff in React, we are able to write a React Application with higher performance.</p>
 <h2 id="diff-strategy">Diff Strategy</h2>
 <p>There is an easiest diff function to traverse an tree by recursion as below:</p>
-<pre><code class="language-ts">const result = [];
-// compare sub nodes
-const diffLeafs = function (beforeLeaf, afterLeaf) {
-    // get the max length of last tree and next tree
-    let count = Math.max(beforeLeaf.children.length, afterLeaf.children.length);
-    for (let i = 0; i &lt; count; i++) {
-        const beforeTag = beforeLeaf.children[i];
-        const afterTag = afterLeaf.children[i];
-        // add afterTag node
-        if (beforeTag === undefined) {
-            result.push({ type: &quot;add&quot;, element: afterTag });
-            // remove beforeTag node
-        } else if (afterTag === undefined) {
-            result.push({ type: &quot;remove&quot;, element: beforeTag });
-            // when node type has changed, removing beforeTag node, add afterTag node
-        } else if (beforeTag.tagName !== afterTag.tagName) {
-            result.push({ type: &quot;remove&quot;, element: beforeTag });
-            result.push({ type: &quot;add&quot;, element: afterTag });
-            // when node type is the same, changing its content
-        } else if (beforeTag.innerHTML !== afterTag.innerHTML) {
-            if (beforeTag.children.length === 0) {
+<pre><code class="hljs ts"><span class="hljs-keyword">const</span> result = [];
+<span class="hljs-comment">// compare sub nodes</span>
+<span class="hljs-keyword">const</span> diffLeafs = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">beforeLeaf, afterLeaf</span>) </span>{
+    <span class="hljs-comment">// get the max length of last tree and next tree</span>
+    <span class="hljs-keyword">let</span> count = <span class="hljs-built_in">Math</span>.max(beforeLeaf.children.length, afterLeaf.children.length);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; count; i++) {
+        <span class="hljs-keyword">const</span> beforeTag = beforeLeaf.children[i];
+        <span class="hljs-keyword">const</span> afterTag = afterLeaf.children[i];
+        <span class="hljs-comment">// add afterTag node</span>
+        <span class="hljs-keyword">if</span> (beforeTag === <span class="hljs-literal">undefined</span>) {
+            result.push({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;add&quot;</span>, <span class="hljs-attr">element</span>: afterTag });
+            <span class="hljs-comment">// remove beforeTag node</span>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (afterTag === <span class="hljs-literal">undefined</span>) {
+            result.push({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;remove&quot;</span>, <span class="hljs-attr">element</span>: beforeTag });
+            <span class="hljs-comment">// when node type has changed, removing beforeTag node, add afterTag node</span>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (beforeTag.tagName !== afterTag.tagName) {
+            result.push({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;remove&quot;</span>, <span class="hljs-attr">element</span>: beforeTag });
+            result.push({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;add&quot;</span>, <span class="hljs-attr">element</span>: afterTag });
+            <span class="hljs-comment">// when node type is the same, changing its content</span>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (beforeTag.innerHTML !== afterTag.innerHTML) {
+            <span class="hljs-keyword">if</span> (beforeTag.children.length === <span class="hljs-number">0</span>) {
                 result.push({
-                    type: &quot;changed&quot;,
-                    beforeElement: beforeTag,
-                    afterElement: afterTag,
-                    html: afterTag.innerHTML
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;changed&quot;</span>,
+                    <span class="hljs-attr">beforeElement</span>: beforeTag,
+                    <span class="hljs-attr">afterElement</span>: afterTag,
+                    <span class="hljs-attr">html</span>: afterTag.innerHTML
                 });
-            } else {
-                // recursion comparison
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">// recursion comparison</span>
                 diffLeafs(beforeTag, afterTag);
             }
         }
     }
-    return result;
-}
-</code></pre>
-<p>It needs to traverse two trees and their children, therefore its time complexity is O(n^3), which means it is too expensive to be used in practice.</p>
+    <span class="hljs-keyword">return</span> result;
+}</code></pre><p>It needs to traverse two trees and their children, therefore its time complexity is O(n^3), which means it is too expensive to be used in practice.</p>
 <p>React use its advanced diff strategy to reduce the time complexity to O(n), which is based on 3 strategy as below:</p>
 <h3 id="tree-diff">Tree Diff</h3>
 <p>In practice, it&#39;s rare to operate DOM crossing its tree level.</p>
@@ -103,9 +101,7 @@ const diffLeafs = function (beforeLeaf, afterLeaf) {
 <h4 id="anonymous-function-in-jsx">Anonymous function in JSX</h4>
 <p>if writing anonymous function in JSX, every time React rerender, it will re-execute the anonymous function.</p>
 <p>Because React uses <code>===</code> to compare <code>props</code>:</p>
-<pre><code class="language-js">(() =&gt; {}) === (() =&gt; {}); // false
-</code></pre>
-<p><code>Function</code> object in JS is reference type, in this way, even the same anonymous function will be treated as different object to trigger re-execute.</p>
+<pre><code class="hljs js">(<span class="hljs-function">() =&gt;</span> {}) === (<span class="hljs-function">() =&gt;</span> {}); <span class="hljs-comment">// false</span></code></pre><p><code>Function</code> object in JS is reference type, in this way, even the same anonymous function will be treated as different object to trigger re-execute.</p>
 <p>For those components rendered frequently, we&#39;d better to use <code>useCallback</code> or <code>useMemo</code> to reduce its render times.</p>
 <h2 id="reference">Reference</h2>
 <ul>

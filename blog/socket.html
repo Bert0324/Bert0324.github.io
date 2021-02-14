@@ -28,36 +28,32 @@
 	<div><div><article class="markdown-body"><h1 id="socket">Socket</h1>
 <h2 id="demo">Demo</h2>
 <p>server:</p>
-<pre><code class="language-rust">use std::net::UdpSocket;
-fn main() {
-    let socket = UdpSocket::bind(&quot;0.0.0.0:8888&quot;).unwrap();
+<pre><code class="hljs rust"><span class="hljs-keyword">use</span> std::net::UdpSocket;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> socket = UdpSocket::bind(<span class="hljs-string">&quot;0.0.0.0:8888&quot;</span>).unwrap();
 
-    let mut buf = [0; 65535];
-    loop {
-        let (amt, src) = socket.recv_from(&amp;mut buf).unwrap();
-        println!(&quot;received {} bytes from: {:?}&quot;, amt, src);
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> buf = [<span class="hljs-number">0</span>; <span class="hljs-number">65535</span>];
+    <span class="hljs-keyword">loop</span> {
+        <span class="hljs-keyword">let</span> (amt, src) = socket.recv_from(&amp;<span class="hljs-keyword">mut</span> buf).unwrap();
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;received {} bytes from: {:?}&quot;</span>, amt, src);
     }
-}
-</code></pre>
-<p>client:</p>
-<pre><code class="language-rust">use std::net::UdpSocket;
-use std::{thread, time};
-fn main() {
-    let socket = UdpSocket::bind(&quot;0.0.0.0:22222&quot;).unwrap();
-    let buf = [1u8; 60000];
-    let mut count = 100;
-    loop {
-        socket.send_to(&amp;buf[0..count], &quot;0.0.0.0:8888&quot;).unwrap();
-        count = count + 1;
-        println!(&quot;{}&quot;, count);
-        if count == 102 {
-            break;
+}</code></pre><p>client:</p>
+<pre><code class="hljs rust"><span class="hljs-keyword">use</span> std::net::UdpSocket;
+<span class="hljs-keyword">use</span> std::{thread, time};
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> socket = UdpSocket::bind(<span class="hljs-string">&quot;0.0.0.0:22222&quot;</span>).unwrap();
+    <span class="hljs-keyword">let</span> buf = [<span class="hljs-number">1u8</span>; <span class="hljs-number">60000</span>];
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> count = <span class="hljs-number">100</span>;
+    <span class="hljs-keyword">loop</span> {
+        socket.send_to(&amp;buf[<span class="hljs-number">0</span>..count], <span class="hljs-string">&quot;0.0.0.0:8888&quot;</span>).unwrap();
+        count = count + <span class="hljs-number">1</span>;
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, count);
+        <span class="hljs-keyword">if</span> count == <span class="hljs-number">102</span> {
+            <span class="hljs-keyword">break</span>;
         }
     }
-    thread::sleep(time::Duration::from_millis(100000));
-}
-</code></pre>
-</article></div></div>
+    thread::sleep(time::Duration::from_millis(<span class="hljs-number">100000</span>));
+}</code></pre></article></div></div>
 </body>
 
 </html>

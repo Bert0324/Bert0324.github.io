@@ -29,233 +29,219 @@
 <p><code>Promise</code> is a powerful alternative way to replace callback in JS. Compared to callback, <code>Promise</code> provides a better way to write coherent codes.</p>
 <h2 id="how-to-use">How to use</h2>
 <p>First of all, let&#39;s see its definition:</p>
-<pre><code class="language-ts">/**
+<pre><code class="hljs ts"><span class="hljs-comment">/**
  * Represents the completion of an asynchronous operation
- */
-interface Promise&lt;T&gt; {
-    /**
+ */</span>
+<span class="hljs-keyword">interface</span> Promise&lt;T&gt; {
+    <span class="hljs-comment">/**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then&lt;TResult1 = T, TResult2 = never&gt;(onfulfilled?: ((value: T) =&gt; TResult1 | PromiseLike&lt;TResult1&gt;) | undefined | null, onrejected?: ((reason: any) =&gt; TResult2 | PromiseLike&lt;TResult2&gt;) | undefined | null): Promise&lt;TResult1 | TResult2&gt;;
+     * <span class="hljs-doctag">@param </span>onfulfilled The callback to execute when the Promise is resolved.
+     * <span class="hljs-doctag">@param </span>onrejected The callback to execute when the Promise is rejected.
+     * <span class="hljs-doctag">@returns </span>A Promise for the completion of which ever callback is executed.
+     */</span>
+    then&lt;TResult1 = T, TResult2 = <span class="hljs-built_in">never</span>&gt;(onfulfilled?: (<span class="hljs-function">(<span class="hljs-params">value: T</span>) =&gt;</span> TResult1 | PromiseLike&lt;TResult1&gt;) | <span class="hljs-literal">undefined</span> | <span class="hljs-literal">null</span>, onrejected?: (<span class="hljs-function">(<span class="hljs-params">reason: <span class="hljs-built_in">any</span></span>) =&gt;</span> TResult2 | PromiseLike&lt;TResult2&gt;) | <span class="hljs-literal">undefined</span> | <span class="hljs-literal">null</span>): <span class="hljs-built_in">Promise</span>&lt;TResult1 | TResult2&gt;;
 
-    /**
+    <span class="hljs-comment">/**
      * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch&lt;TResult = never&gt;(onrejected?: ((reason: any) =&gt; TResult | PromiseLike&lt;TResult&gt;) | undefined | null): Promise&lt;T | TResult&gt;;
-}
-</code></pre>
-<p>The first function in then is resolve function, the second function is reject function which can on catch the error from <code>reject</code>, not from <code>throw</code>.</p>
+     * <span class="hljs-doctag">@param </span>onrejected The callback to execute when the Promise is rejected.
+     * <span class="hljs-doctag">@returns </span>A Promise for the completion of the callback.
+     */</span>
+    <span class="hljs-keyword">catch</span>&lt;TResult = <span class="hljs-built_in">never</span>&gt;(onrejected?: (<span class="hljs-function">(<span class="hljs-params">reason: <span class="hljs-built_in">any</span></span>) =&gt;</span> TResult | PromiseLike&lt;TResult&gt;) | <span class="hljs-literal">undefined</span> | <span class="hljs-literal">null</span>): <span class="hljs-built_in">Promise</span>&lt;T | TResult&gt;;
+}</code></pre><p>The first function in then is resolve function, the second function is reject function which can on catch the error from <code>reject</code>, not from <code>throw</code>.</p>
 <p>The functions <code>resolve</code> and <code>reject</code> is to change the status of <code>Promise</code>.</p>
 <p>There is a demo:</p>
-<pre><code class="language-ts">const resolveTask = () =&gt; new Promise((resolve, reject) =&gt; resolve(1))
-.then(res =&gt; {
-    console.log(&#39;resolve&#39;, res);
-    throw Error(&#39;throw error&#39;)
-}, err =&gt; {
-    console.log(&#39;reject&#39;, err);
+<pre><code class="hljs ts"><span class="hljs-keyword">const</span> resolveTask = <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> resolve(<span class="hljs-number">1</span>))
+.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;resolve&#x27;</span>, res);
+    <span class="hljs-keyword">throw</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;throw error&#x27;</span>)
+}, <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;reject&#x27;</span>, err);
 })
-.catch(err =&gt; console.log(&#39;catch&#39;, err));
+.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;catch&#x27;</span>, err));
 
-const rejectTask = () =&gt; new Promise((resolve, reject) =&gt; reject(1))
-.then(res =&gt; {
-    console.log(&#39;resolve&#39;, res);
-    throw Error(&#39;throw error&#39;)
-}, err =&gt; {
-    console.log(&#39;reject&#39;, err);
+<span class="hljs-keyword">const</span> rejectTask = <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> reject(<span class="hljs-number">1</span>))
+.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;resolve&#x27;</span>, res);
+    <span class="hljs-keyword">throw</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;throw error&#x27;</span>)
+}, <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;reject&#x27;</span>, err);
 })
-.catch(err =&gt; console.log(&#39;catch&#39;, err));
+.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;catch&#x27;</span>, err));
 
-// resolve 1
-// catch Error: throw error
+<span class="hljs-comment">// resolve 1</span>
+<span class="hljs-comment">// catch Error: throw error</span>
 resolveTask();
-// reject 1
-rejectTask();
-</code></pre>
-<h2 id="promise-implementation">Promise implementation</h2>
+<span class="hljs-comment">// reject 1</span>
+rejectTask();</code></pre><h2 id="promise-implementation">Promise implementation</h2>
 <p>For me, the key point to understand Promise&#39;s then and catch is the event-loop. Because the main thread task will be operated to the end first. So the <code>thenList</code> and <code>onCatch</code> must be ready when the first callback starts.</p>
 <p>There is a simple example I wrote:</p>
-<pre><code class="language-ts">class MyPromise&lt;T&gt;{
+<pre><code class="hljs ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPromise</span>&lt;<span class="hljs-title">T</span>&gt;</span>{
 
-    static statusList = {
-        pending:Symbol(&#39;pending&#39;),
-        resolved:Symbol(&#39;resolved&#39;),
-        rejected:Symbol(&#39;rejected&#39;)
-    } as const;
+    <span class="hljs-keyword">static</span> statusList = {
+        <span class="hljs-attr">pending</span>:<span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;pending&#x27;</span>),
+        <span class="hljs-attr">resolved</span>:<span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;resolved&#x27;</span>),
+        <span class="hljs-attr">rejected</span>:<span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;rejected&#x27;</span>)
+    } <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>;
 
-    private status = MyPromise.statusList.pending;
-    private value: T = undefined;      // the container for transferring return value
-    private thenList: Function[] = [];          //the container saving the callback in then
-    private onCatch: Function | undefined = undefined;    //the container saving the catch function
+    <span class="hljs-keyword">private</span> status = MyPromise.statusList.pending;
+    <span class="hljs-keyword">private</span> value: T = <span class="hljs-literal">undefined</span>;      <span class="hljs-comment">// the container for transferring return value</span>
+    <span class="hljs-keyword">private</span> thenList: <span class="hljs-built_in">Function</span>[] = [];          <span class="hljs-comment">//the container saving the callback in then</span>
+    <span class="hljs-keyword">private</span> onCatch: <span class="hljs-built_in">Function</span> | <span class="hljs-literal">undefined</span> = <span class="hljs-literal">undefined</span>;    <span class="hljs-comment">//the container saving the catch function</span>
 
-    constructor(action: (resolve: Function, reject?: Function) =&gt; void) {
-        // start filling thenList and onCatch
-        action(this.resolve.bind(this), this.reject?.bind?.(this));
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">action: (resolve: <span class="hljs-built_in">Function</span>, reject?: <span class="hljs-built_in">Function</span>) =&gt; <span class="hljs-built_in">void</span></span>)</span> {
+        <span class="hljs-comment">// start filling thenList and onCatch</span>
+        action(<span class="hljs-built_in">this</span>.resolve.bind(<span class="hljs-built_in">this</span>), <span class="hljs-built_in">this</span>.reject?.bind?.(<span class="hljs-built_in">this</span>));
     }
 
-    then(cb) {
-        this.thenList.push(cb);
-        return this;
+    <span class="hljs-function"><span class="hljs-title">then</span>(<span class="hljs-params">cb</span>)</span> {
+        <span class="hljs-built_in">this</span>.thenList.push(cb);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
     }
 
-    catch(cb) {
-        this.onCatch = cb;
-        return this;
+    <span class="hljs-keyword">catch</span>(cb) {
+        <span class="hljs-built_in">this</span>.onCatch = cb;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
     }
 
-    resolve(value) {
-        this.status = MyPromise.statusList.resolved;
-        this.value = value;
-        for (let i=0;i&lt;this.thenList.length;i++){
-            this.status = MyPromise.statusList.pending;
-            try{
-                this.value = this.thenList[i](this.value);
-                this.status = MyPromise.statusList.resolved;
-                if (this.value instanceof MyPromise) {
-                    //if it&#39;s new Promise, change the target Promise
-                    this.value.thenList = this.thenList.splice(i+1);
-                    break;
+    <span class="hljs-function"><span class="hljs-title">resolve</span>(<span class="hljs-params">value</span>)</span> {
+        <span class="hljs-built_in">this</span>.status = MyPromise.statusList.resolved;
+        <span class="hljs-built_in">this</span>.value = value;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">this</span>.thenList.length;i++){
+            <span class="hljs-built_in">this</span>.status = MyPromise.statusList.pending;
+            <span class="hljs-keyword">try</span>{
+                <span class="hljs-built_in">this</span>.value = <span class="hljs-built_in">this</span>.thenList[i](<span class="hljs-built_in">this</span>.value);
+                <span class="hljs-built_in">this</span>.status = MyPromise.statusList.resolved;
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.value <span class="hljs-keyword">instanceof</span> MyPromise) {
+                    <span class="hljs-comment">//if it&#x27;s new Promise, change the target Promise</span>
+                    <span class="hljs-built_in">this</span>.value.thenList = <span class="hljs-built_in">this</span>.thenList.splice(i+<span class="hljs-number">1</span>);
+                    <span class="hljs-keyword">break</span>;
                 }
-            } catch (e) {
-                if (this.onCatch){
-                    this.onCatch(e);
-                    this.status = MyPromise.statusList.rejected;
-                } else {
-                    throw new Error(e.toString());
+            } <span class="hljs-keyword">catch</span> (e) {
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.onCatch){
+                    <span class="hljs-built_in">this</span>.onCatch(e);
+                    <span class="hljs-built_in">this</span>.status = MyPromise.statusList.rejected;
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(e.toString());
                 }
             }
         }
     }
 
-    reject(value) {
-        this.status = MyPromise.statusList.rejected;
-        this.value = value;
-        if (this.onCatch){
-            this.onCatch(this.value);
-        } else {
-            throw new Error(this.value.toString());
+    <span class="hljs-function"><span class="hljs-title">reject</span>(<span class="hljs-params">value</span>)</span> {
+        <span class="hljs-built_in">this</span>.status = MyPromise.statusList.rejected;
+        <span class="hljs-built_in">this</span>.value = value;
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.onCatch){
+            <span class="hljs-built_in">this</span>.onCatch(<span class="hljs-built_in">this</span>.value);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-built_in">this</span>.value.toString());
         }
     }
 };
 
-new MyPromise((resolve, reject) =&gt; {
-    require(&#39;request&#39;)(&quot;http://www.npmjs.com&quot;, (err, res, body)=&gt;{
-        if (!err &amp;&amp; res.statusCode === 200){
+<span class="hljs-keyword">new</span> MyPromise(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;request&#x27;</span>)(<span class="hljs-string">&quot;http://www.npmjs.com&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err, res, body</span>)=&gt;</span>{
+        <span class="hljs-keyword">if</span> (!err &amp;&amp; res.statusCode === <span class="hljs-number">200</span>){
             resolve(res.statusCode);
-        } else {
+        } <span class="hljs-keyword">else</span> {
             reject(err);
         }
     })
-}).then(data=&gt;{
-    console.log(data);
-    return 1;
+}).then(<span class="hljs-function"><span class="hljs-params">data</span>=&gt;</span>{
+    <span class="hljs-built_in">console</span>.log(data);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 })
-    .then(data=&gt;{
-        console.log(data);
+    .then(<span class="hljs-function"><span class="hljs-params">data</span>=&gt;</span>{
+        <span class="hljs-built_in">console</span>.log(data);
     })
-    .catch(err=&gt;{
-    console.log(err);
-});
-</code></pre>
-<h2 id="promiseall-promiserace-promisefinally-and-promiseparallel"><code>Promise.all</code>, <code>Promise.race</code>, <code>Promise.finally</code> and <code>Promise.parallel</code></h2>
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>{
+    <span class="hljs-built_in">console</span>.log(err);
+});</code></pre><h2 id="promiseall-promiserace-promisefinally-and-promiseparallel"><code>Promise.all</code>, <code>Promise.race</code>, <code>Promise.finally</code> and <code>Promise.parallel</code></h2>
 <p>About <code>all</code> and <code>race</code>, I know a really vivid and interesting metaphor: The <code>all</code> is a horse race that ends when all horses reach the terminal point, the <code>race</code> is a horse race that ends when the first horse reaches the terminal point.</p>
 <p>In other word, the <code>all</code> will return results of all callback tasks, the <code>race</code> will return the callback result of the first finished task.</p>
 <p>Notice, <code>race</code> and <code>all</code> both will run the whole asynchronize task, the only different is the final returned value.</p>
 <p>Their implements are as below:</p>
-<pre><code class="language-ts">Promise.myRace = (tasks: Promise&lt;unknown&gt;[]) =&gt; new Promise((resolve, reject) =&gt; {
-    tasks.forEach(async task =&gt; {
-        try {
-            const res = await task;
-            // a Promise can be resolved once
+<pre><code class="hljs ts"><span class="hljs-built_in">Promise</span>.myRace = <span class="hljs-function">(<span class="hljs-params">tasks: <span class="hljs-built_in">Promise</span>&lt;unknown&gt;[]</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    tasks.forEach(<span class="hljs-keyword">async</span> task =&gt; {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> task;
+            <span class="hljs-comment">// a Promise can be resolved once</span>
             resolve(res);
-        } catch (e) {
+        } <span class="hljs-keyword">catch</span> (e) {
             reject(e);
         }
     });
 });
 
 
-Promise.myAll = (tasks: Promise&lt;unknown&gt;[]) =&gt; new Promise((resolve, reject) =&gt; {
-    const res = [];
-    tasks.forEach(async task =&gt; {
-        try {
-            const data = await task;
+<span class="hljs-built_in">Promise</span>.myAll = <span class="hljs-function">(<span class="hljs-params">tasks: <span class="hljs-built_in">Promise</span>&lt;unknown&gt;[]</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> res = [];
+    tasks.forEach(<span class="hljs-keyword">async</span> task =&gt; {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> task;
             res.push(data);
-            if (res.length === tasks.length) resolve(res);
-        } catch (e) {
+            <span class="hljs-keyword">if</span> (res.length === tasks.length) resolve(res);
+        } <span class="hljs-keyword">catch</span> (e) {
             reject(e);
         }
     });
 });
 
-Promise.prototype.myFinally = function(cb) {
-    return this.then(
-        v =&gt; Promise.resolve(cb()).then(() =&gt; v),
-        e =&gt; Promise.resolve(cb()).then(() =&gt; { throw e })
+<span class="hljs-built_in">Promise</span>.prototype.myFinally = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">cb</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.then(
+        <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-built_in">Promise</span>.resolve(cb()).then(<span class="hljs-function">() =&gt;</span> v),
+        <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-built_in">Promise</span>.resolve(cb()).then(<span class="hljs-function">() =&gt;</span> { <span class="hljs-keyword">throw</span> e })
     )
 };
 
-Promise.parallelByReduce = (tasks: Promise&lt;unknown&gt;[]) =&gt; new Promise((resolve, reject) =&gt; {
-    try {
-        resolve(await tasks.reduce(async (acc, crr) =&gt; {
-            acc = await acc;
-            acc.push(await crr);
-            return acc;
+<span class="hljs-built_in">Promise</span>.parallelByReduce = <span class="hljs-function">(<span class="hljs-params">tasks: <span class="hljs-built_in">Promise</span>&lt;unknown&gt;[]</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    <span class="hljs-keyword">try</span> {
+        resolve(<span class="hljs-keyword">await</span> tasks.reduce(<span class="hljs-keyword">async</span> (acc, crr) =&gt; {
+            acc = <span class="hljs-keyword">await</span> acc;
+            acc.push(<span class="hljs-keyword">await</span> crr);
+            <span class="hljs-keyword">return</span> acc;
         }, []));
-    } catch (e) {
+    } <span class="hljs-keyword">catch</span> (e) {
         reject(e);
     }
 });
 
-Promise.parallelByRecursion = (tasks: Promise&lt;unknown&gt;[]) =&gt; new Promise((resolve, reject) =&gt; {
-    const res = [];
-    const iter = async () =&gt; {
-        if (tasks.length &gt; 0) {
-            const task = tasks.shift();
-            const data = await task;
+<span class="hljs-built_in">Promise</span>.parallelByRecursion = <span class="hljs-function">(<span class="hljs-params">tasks: <span class="hljs-built_in">Promise</span>&lt;unknown&gt;[]</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> res = [];
+    <span class="hljs-keyword">const</span> iter = <span class="hljs-keyword">async</span> () =&gt; {
+        <span class="hljs-keyword">if</span> (tasks.length &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">const</span> task = tasks.shift();
+            <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> task;
             res.push(data);
             iter();
         }
     };
-    try {
-        await iter();
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">await</span> iter();
         resolve(res);
-    } catch (e) {
+    } <span class="hljs-keyword">catch</span> (e) {
         reject(e);
     }
-});
-</code></pre>
-<h2 id="async--await">async &amp; await</h2>
+});</code></pre><h2 id="async--await">async &amp; await</h2>
 <p><code>async</code> and <code>await</code> it a better solution to replace <code>then</code>. Writing asynchronize codes with synchronize sequence.</p>
 <h3 id="what-is-async-function">What is async function</h3>
 <p>Actually, <code>async function</code> will return an <code>AsyncFunction</code> object, which can be created as below (notice: it is not a global variable):</p>
-<pre><code class="language-ts">Object.getPrototypeOf(async function(){}).constructor
-</code></pre>
-<h3 id="always-return-promise">always return Promise</h3>
+<pre><code class="hljs ts"><span class="hljs-built_in">Object</span>.getPrototypeOf(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}).constructor</code></pre><h3 id="always-return-promise">always return Promise</h3>
 <p>It will always return a Promise object, even if we return other things:</p>
-<pre><code class="language-ts">async function task() {
-    return 1;
+<pre><code class="hljs ts"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">task</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 }
-console.log(task())     // Promise { 1 }
-</code></pre>
-<h3 id="await-can-only-get-promiseresolve">await can only get Promise.resolve</h3>
+<span class="hljs-built_in">console</span>.log(task())     <span class="hljs-comment">// Promise { 1 }</span></code></pre><h3 id="await-can-only-get-promiseresolve">await can only get Promise.resolve</h3>
 <p>The <code>await</code> operator is used to wait for a <code>Promise</code>. It can only be used inside an <code>async function</code>. But it can only receive <code>Promise.resolve</code>. For example:</p>
 <p>If the <code>Promise</code> is rejected, the await expression throws the rejected value.</p>
-<pre><code class="language-ts">(async function () {
-    const result = await Promise.resolve(&#39;success&#39;);
-    console.log(result);
-})();   // success
+<pre><code class="hljs ts">(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-string">&#x27;success&#x27;</span>);
+    <span class="hljs-built_in">console</span>.log(result);
+})();   <span class="hljs-comment">// success</span>
 
-(async function () {
-    const result = await Promise.reject(&#39;success&#39;);
-    console.log(result);
-})()    // UnhandledPromiseRejectionWarning: success
-</code></pre>
-<h2 id="conclusion">Conclusion</h2>
+(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-string">&#x27;success&#x27;</span>);
+    <span class="hljs-built_in">console</span>.log(result);
+})()    <span class="hljs-comment">// UnhandledPromiseRejectionWarning: success</span></code></pre><h2 id="conclusion">Conclusion</h2>
 <p>In this way, for me, when I don&#39;t care about the error, I perfer to use <code>throw Error</code>, when I want to process
 error, <code>Promise.reject</code> maybe more useful.</p>
 </article></div></div>

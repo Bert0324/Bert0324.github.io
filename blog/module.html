@@ -43,18 +43,16 @@
 <h2 id="async-module-definition-and-requirejs">Async Module Definition and RequireJS</h2>
 <p>RequireJS是AMD规范的一个实现，最开始接触js的时候我还以为RequireJS是CommonJS的实现, 因为都有个<code>require</code>, 但其实AMD是CommonJS的浏览器变种。和CommonJS不同，AMD是专门为浏览器环境设计的。</p>
 <p>一个典型的使用如下：</p>
-<pre><code class="language-ts">define([&#39;dependency1&#39;, &#39;dependency2&#39;], (dependency1, dependency2) =&gt; {
-    // dependency1 and dependency2 两个模块此时已经被下载并执行完了
+<pre><code class="hljs ts">define([<span class="hljs-string">&#x27;dependency1&#x27;</span>, <span class="hljs-string">&#x27;dependency2&#x27;</span>], <span class="hljs-function">(<span class="hljs-params">dependency1, dependency2</span>) =&gt;</span> {
+    <span class="hljs-comment">// dependency1 and dependency2 两个模块此时已经被下载并执行完了</span>
 });
 
-// 使其贴近CommonJS的一个sugar
-define([&#39;require&#39;, &#39;dependency1&#39;, &#39;dependency2&#39;], (require) =&gt; {
-    // 看起来和CommonJS差不多，但是其实执行时机完全不同
-    const dependency1 = require(&#39;dependency1&#39;);
-    const dependency2 = require(&#39;dependency2&#39;);
-});
-</code></pre>
-<p>通过<code>define</code>函数将模块都加载在闭包中，避免了全局污染，加载时有几个特点：</p>
+<span class="hljs-comment">// 使其贴近CommonJS的一个sugar</span>
+define([<span class="hljs-string">&#x27;require&#x27;</span>, <span class="hljs-string">&#x27;dependency1&#x27;</span>, <span class="hljs-string">&#x27;dependency2&#x27;</span>], <span class="hljs-function">(<span class="hljs-params"><span class="hljs-built_in">require</span></span>) =&gt;</span> {
+    <span class="hljs-comment">// 看起来和CommonJS差不多，但是其实执行时机完全不同</span>
+    <span class="hljs-keyword">const</span> dependency1 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;dependency1&#x27;</span>);
+    <span class="hljs-keyword">const</span> dependency2 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;dependency2&#x27;</span>);
+});</code></pre><p>通过<code>define</code>函数将模块都加载在闭包中，避免了全局污染，加载时有几个特点：</p>
 <ol>
 <li>依赖前置，所有的依赖会被预先在一块声明</li>
 <li>加载完的回调函数会在所有模块被下载完并执行好之后再执行</li>
@@ -63,27 +61,23 @@ define([&#39;require&#39;, &#39;dependency1&#39;, &#39;dependency2&#39;], (requi
 <p>SeaJS是CMD规范的一个实现，算是对AMD规范的一个加强，起源于国内，用的比较多的也是国内。作者是<a href="https://lifesinger.wordpress.com/">玉伯</a>, 语雀就是他团队的作品之一，他有一篇关于<a href="https://github.com/seajs/seajs/issues/588">模块化的文章</a>，深扒了以下模块化的历史，有兴趣的可以了解下。</p>
 <p>显而易见，AMD所有模块都要预先加载执行，对于那些暂时不用的模块，造成了浪费，对于执行时机也很容易造成一些confuse的地方。CMD就是针对此进行了改进。</p>
 <p>CMD一个典型的使用如下：</p>
-<pre><code class="language-ts">define((require, exports, module) =&gt; {
-    // dependency1执行完之后才会执行dependency2
-    const dependency1 = require(&quot;dependency1&quot;);
-    const dependency2 = require(&quot;dependency2&quot;);
-});
-</code></pre>
-<p>和AMD相比，CMD会在解析完主文件的模块之后再都预先下载完所有模块，但是模块的执行，会在其被require之后再被执行。</p>
+<pre><code class="hljs ts">define(<span class="hljs-function">(<span class="hljs-params"><span class="hljs-built_in">require</span>, <span class="hljs-built_in">exports</span>, <span class="hljs-built_in">module</span></span>) =&gt;</span> {
+    <span class="hljs-comment">// dependency1执行完之后才会执行dependency2</span>
+    <span class="hljs-keyword">const</span> dependency1 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dependency1&quot;</span>);
+    <span class="hljs-keyword">const</span> dependency2 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dependency2&quot;</span>);
+});</code></pre><p>和AMD相比，CMD会在解析完主文件的模块之后再都预先下载完所有模块，但是模块的执行，会在其被require之后再被执行。</p>
 <h2 id="universal-module-definition">Universal Module Definition</h2>
 <p>CommonJS和AMD是针对不同平台的，为了让一份代码可以兼容两个平台（其实这需求个人感觉蛮奇怪的），就有了UMD规范。其实实现相当简单，我们可以看一下webpack当把<code>output.libraryTarget</code>设定为umd时输出的代码，完整代码可见<a href="https://github.com/Bert0324/webpack-module-demo/blob/main/dist/library.min.js#L1">这里</a>：</p>
-<pre><code class="language-js">(function webpackUniversalModuleDefinition(root, factory) {
-    if(typeof exports === &#39;object&#39; &amp;&amp; typeof module === &#39;object&#39;)
-        module.exports = factory();
-    else if(typeof define === &#39;function&#39; &amp;&amp; define.amd)
+<pre><code class="hljs js">(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">webpackUniversalModuleDefinition</span>(<span class="hljs-params">root, factory</span>) </span>{
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">exports</span> === <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">module</span> === <span class="hljs-string">&#x27;object&#x27;</span>)
+        <span class="hljs-built_in">module</span>.exports = factory();
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> define === <span class="hljs-string">&#x27;function&#x27;</span> &amp;&amp; define.amd)
         define([], factory);
-    else if(typeof exports === &#39;object&#39;)
-        exports[&quot;webpack-module-demo&quot;] = factory();
-    else
-        root[&quot;webpack-module-demo&quot;] = factory();
-})(window, function(){})
-</code></pre>
-<p>首先会判断以下<code>exports</code>和<code>module</code>是否存在(CommonJS规范是否可用, 或者说是不是node环境), 如果不是，会再检查是不是有amd加载方法，如果还没有，会检查<code>exports</code>这个对象是否存在，如果都没，最后挂在<code>window</code>下面。</p>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">exports</span> === <span class="hljs-string">&#x27;object&#x27;</span>)
+        <span class="hljs-built_in">exports</span>[<span class="hljs-string">&quot;webpack-module-demo&quot;</span>] = factory();
+    <span class="hljs-keyword">else</span>
+        root[<span class="hljs-string">&quot;webpack-module-demo&quot;</span>] = factory();
+})(<span class="hljs-built_in">window</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{})</code></pre><p>首先会判断以下<code>exports</code>和<code>module</code>是否存在(CommonJS规范是否可用, 或者说是不是node环境), 如果不是，会再检查是不是有amd加载方法，如果还没有，会检查<code>exports</code>这个对象是否存在，如果都没，最后挂在<code>window</code>下面。</p>
 <h2 id="es6-module">ES6 Module</h2>
 <p>和CommonJS，AMD，CMD，UMD不同，ES6是JS自己本身的规范，但是鉴于浏览器支持性的不足，现在绝大部分es6 module的代码仍然会被编译成兼容性更好的代码，从这个角度讲，es6 module和前面的这几个规范，又没有本质性的不同。</p>
 <p>es6 module和CommonJS最大的区别包括：</p>
@@ -94,7 +88,7 @@ define([&#39;require&#39;, &#39;dependency1&#39;, &#39;dependency2&#39;], (requi
 <p>说起来其实有点抽象，我们来实际对比一下webpack输入的代码，看一下他们实现上的差异到底是什么。</p>
 <p>在<a href="https://github.com/Bert0324/webpack-module-demo">webpack-module-demo</a>中<code>yarn build</code>，会有es6模块的<a href="https://github.com/Bert0324/webpack-module-demo/blob/main/src/es6/index.ts">源代码</a>和<a href="https://github.com/Bert0324/webpack-module-demo/blob/main/dist/es6.min.js#L96">输出代码</a>， 用CommonJS模块的<a href="https://github.com/Bert0324/webpack-module-demo/blob/main/src/commonJs/index.ts">源代码</a>和<a href="https://github.com/Bert0324/webpack-module-demo/blob/main/dist/commonJS.min.js#L98">输出代码</a>。然后分别<code>yarn serve</code>和<code>MODULE=es6 yarn dev</code>，<code>MODULE=commonJS yarn dev</code>。</p>
 <p>在浏览器端和用node执行的结果一致，可以看到es6中<code>sideEffectValue</code>中的值被改变了，但是commonJS中没有。</p>
-<pre><code class="language-txt">// CommonJS
+<pre><code class="hljs txt">// CommonJS
 static import  // CommonJS执行了未使用的引入模块的上下文
 {}
 1 1
@@ -107,9 +101,7 @@ static import  // CommonJS执行了未使用的引入模块的上下文
 1 1
 1 1
 2 2
-2 2     // sideEffectValue是被改变的结果
-</code></pre>
-<p>看一下webpack编译后的结果，es6编译后的代码是在同一个函数作用域下面的，对于<code>sideEffectValue</code>这个export，引用的地方是直接使用的:</p>
+2 2     // sideEffectValue是被改变的结果</code></pre><p>看一下webpack编译后的结果，es6编译后的代码是在同一个函数作用域下面的，对于<code>sideEffectValue</code>这个export，引用的地方是直接使用的:</p>
  <img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/module_es6_sideeffect.png' width="500px">
 
 <p>但是CommonJS编译后的代码，必须首先挂在一个<code>{}</code>上，然后才能引用。这里的<code>dependency</code>和<code>module.exports</code>是同一个引用地址。</p>

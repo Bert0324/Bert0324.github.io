@@ -28,20 +28,16 @@
 	<div><div><article class="markdown-body"><h1 id="dom-event-proxy">DOM Event Proxy</h1>
 <p>If there is a list including lots of lines, and every line has different events. In this situation, if we bind an event to every lines, it will cost a large number of memory. So, normally, using event proxy to do it. </p>
 <p>For the HTML like below:</p>
-<pre><code class="language-HTML">&lt;ul id=&quot;list&quot;&gt;
-    &lt;li&gt;1&lt;/li&gt;
-    &lt;li&gt;2&lt;/li&gt;
-    &lt;li&gt;3&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-<p>use event proxy:</p>
-<pre><code class="language-JavaScript">document.getElementById(&#39;list&#39;).addEventListener(&#39;click&#39;, e=&gt;{
-    if (e.target.nodeName.toLocaleLowerCase() === &#39;li&#39;){
-        console.log(&#39;the content is: &#39;, e.target.innerHTML);
+<pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre><p>use event proxy:</p>
+<pre><code class="hljs JavaScript"><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;list&#x27;</span>).addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span>{
+    <span class="hljs-keyword">if</span> (e.target.nodeName.toLocaleLowerCase() === <span class="hljs-string">&#x27;li&#x27;</span>){
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;the content is: &#x27;</span>, e.target.innerHTML);
     }
-})
-</code></pre>
-<p>In order to distinguish the element, we can use innerHTML or other things that is distinct for child elements. Except that, if the parent element has its own event, to avoid emit multiple events, we need to use <code>e.stopPropagation()</code> to stop event bubbling or trapping. </p>
+})</code></pre><p>In order to distinguish the element, we can use innerHTML or other things that is distinct for child elements. Except that, if the parent element has its own event, to avoid emit multiple events, we need to use <code>e.stopPropagation()</code> to stop event bubbling or trapping. </p>
 <p>In React, its events will be bind to <code>document</code>  object, which is the enter of all events. The DOM events will first from the top parent child propagates to the target element, after that from the target element propagates back to the top parent element. In React, it will trigger the event when the event is bubbling back to the <code>document</code>. The SyntheticEvent has the same API in W3C standard, so<code> e.preventDefault()</code> or other event functions can be used.</p>
 </article></div></div>
 </body>

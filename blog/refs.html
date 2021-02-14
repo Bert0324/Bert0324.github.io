@@ -30,20 +30,18 @@
 <p>But to be honest, I don&#39;t think use real DOM in React is a good idea, in most of situations, I think we&#39;d better to avoid to use refs.</p>
 <h2 id="what-can-we-get-from-refs">What can we get from refs</h2>
 <p>The refs return instance we got is exactly the same as return from React.render(). First check the code as below:</p>
-<pre><code class="language-JavaScript">class Component extends React.Component{
-    render(){
-        return (
-            &lt;button type=&quot;button&quot;&gt;button2&lt;/button&gt;
+<pre><code class="hljs JavaScript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Component</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>{
+    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span>&gt;</span>button2<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
         )
     }
 }
-const Element = &lt;button type=&quot;button&quot;&gt;button1&lt;/button&gt;;
-const ref_element = ReactDom.render(Element, document.getElementById(&#39;root&#39;));
-const ref_component = ReactDom.render(&lt;Component/&gt;,document.getElementById(&#39;root&#39;));
-console.log(ref_element);
-console.log(ref_component);
-</code></pre>
-<p>So, we can know, if we set ref in DOM element, what we get is DOM element node. When we set ref in React.Component, from ref, we can get the class&#39;s instance. It will be different.</p>
+<span class="hljs-keyword">const</span> Element = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span>&gt;</span>button1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+<span class="hljs-keyword">const</span> ref_element = ReactDom.render(Element, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;root&#x27;</span>));
+<span class="hljs-keyword">const</span> ref_component = ReactDom.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Component</span>/&gt;</span></span>,<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;root&#x27;</span>));
+<span class="hljs-built_in">console</span>.log(ref_element);
+<span class="hljs-built_in">console</span>.log(ref_component);</code></pre><p>So, we can know, if we set ref in DOM element, what we get is DOM element node. When we set ref in React.Component, from ref, we can get the class&#39;s instance. It will be different.</p>
 <h2 id="how-to-use-refs">How to use refs</h2>
 <p>There have been many cases in React official website, use React.createRef(), this.refs is deprecated. And officials highly recommend use callback function in refs.</p>
 <h2 id="dont-use-refs-in-render-function">Don&#39;t use refs in render function</h2>

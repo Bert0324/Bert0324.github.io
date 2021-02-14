@@ -74,55 +74,53 @@
 <p>First of all, regist this Service Worker in main thread.</p>
 <p>Next, in Service Worker script, in <code>install</code> event, define the files that needs to be save in caches, which is a read-only property returns the CacheStorage object associated with the service worker.</p>
 <p>Then, in <code>fetch</code> event, get caches to load instead requesting to server.</p>
-<pre><code class="language-js">//main thread regist
-if (&#39;serviceWorker&#39; in navigator) {
-  navigator.serviceWorker.register(&#39;/sw.js&#39;).then(function(registration) {
-    // Registration was successful
-    console.log(&#39;ServiceWorker registration successful with scope: &#39;,    registration.scope);
-  }).catch(function(err) {
-    // registration failed :(
-    console.log(&#39;ServiceWorker registration failed: &#39;, err);
+<pre><code class="hljs js"><span class="hljs-comment">//main thread regist</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-string">&#x27;serviceWorker&#x27;</span> <span class="hljs-keyword">in</span> navigator) {
+  navigator.serviceWorker.register(<span class="hljs-string">&#x27;/sw.js&#x27;</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">registration</span>) </span>{
+    <span class="hljs-comment">// Registration was successful</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;ServiceWorker registration successful with scope: &#x27;</span>,    registration.scope);
+  }).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+    <span class="hljs-comment">// registration failed :(</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;ServiceWorker registration failed: &#x27;</span>, err);
   });
 }
-//sw.js
-const cacheName = &#39;v1&#39;;
-var assetsToCache = [   //the path of files that needs to be saved in caches
-  &#39;/styles/main.css&#39;,
-  &#39;/script/main.js&#39;
+<span class="hljs-comment">//sw.js</span>
+<span class="hljs-keyword">const</span> cacheName = <span class="hljs-string">&#x27;v1&#x27;</span>;
+<span class="hljs-keyword">var</span> assetsToCache = [   <span class="hljs-comment">//the path of files that needs to be saved in caches</span>
+  <span class="hljs-string">&#x27;/styles/main.css&#x27;</span>,
+  <span class="hljs-string">&#x27;/script/main.js&#x27;</span>
 ];
-self.addEventListener(&#39;install&#39;, function(event) {
+self.addEventListener(<span class="hljs-string">&#x27;install&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>{
   event.waitUntil(
-    caches.open(cacheName).then(function(cache) {
-      return cache.addAll(assetsToCache);   //request files resource and save in caches
-    }).then(function() {
-      return self.skipWaiting();
+    caches.open(cacheName).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">cache</span>) </span>{
+      <span class="hljs-keyword">return</span> cache.addAll(assetsToCache);   <span class="hljs-comment">//request files resource and save in caches</span>
+    }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> self.skipWaiting();
     });
 });
-//intercept GET and check in caches  
-self.addEventListener(&#39;fetch&#39;, function(event) {
-  var requestUrl = new URL(event.request.url);
-  if (requestUrl.origin === location.origin) {
-      if (requestUrl.pathname === &#39;/&#39;) {
+<span class="hljs-comment">//intercept GET and check in caches  </span>
+self.addEventListener(<span class="hljs-string">&#x27;fetch&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>{
+  <span class="hljs-keyword">var</span> requestUrl = <span class="hljs-keyword">new</span> URL(event.request.url);
+  <span class="hljs-keyword">if</span> (requestUrl.origin === location.origin) {
+      <span class="hljs-keyword">if</span> (requestUrl.pathname === <span class="hljs-string">&#x27;/&#x27;</span>) {
       event.respondWith(
-        caches.open(cacheName).then(function(cache) {
-          return fetch(event.request).then(function(networkResponse) {
+        caches.open(cacheName).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">cache</span>) </span>{
+          <span class="hljs-keyword">return</span> fetch(event.request).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">networkResponse</span>) </span>{
             cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          }).catch(function() {
-            return cache.match(event.request);
+            <span class="hljs-keyword">return</span> networkResponse;
+          }).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> cache.match(event.request);
           });
         })
       );
     }
   }
   event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
+    caches.match(event.request).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+      <span class="hljs-keyword">return</span> response || fetch(event.request);
     })
   );
-});
-</code></pre>
-<p>About <code>caches</code> API, see <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/caches">here</a>.</p>
+});</code></pre><p>About <code>caches</code> API, see <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/caches">here</a>.</p>
 <h2 id="some-tips">Some tips</h2>
 <ol>
 <li><p>only <code>GET</code> request can be saved</p>
@@ -140,15 +138,15 @@ self.addEventListener(&#39;fetch&#39;, function(event) {
 In create-react-app, it will be installed automatically. <a href="https://developers.google.com/web/tools/workbox/">workbox</a>.</p>
 <p>If you use it to create React project, there is a file named <code>service-worker.js</code> and <code>precache-manifest.[hash].js</code> in the <code>build</code>, 
 As below:</p>
-<pre><code class="language-js">//import workbox script
-importScripts(&quot;https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js&quot;);
-//import precache-manifest
+<pre><code class="hljs js"><span class="hljs-comment">//import workbox script</span>
+importScripts(<span class="hljs-string">&quot;https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js&quot;</span>);
+<span class="hljs-comment">//import precache-manifest</span>
 importScripts(
-  &quot;/precache-manifest.2cd68ada852c92872b4d0460d6667f6f.js&quot;
+  <span class="hljs-string">&quot;/precache-manifest.2cd68ada852c92872b4d0460d6667f6f.js&quot;</span>
 );
 
-self.addEventListener(&#39;message&#39;, (event) =&gt; {
-  if (event.data &amp;&amp; event.data.type === &#39;SKIP_WAITING&#39;) {
+self.addEventListener(<span class="hljs-string">&#x27;message&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (event.data &amp;&amp; event.data.type === <span class="hljs-string">&#x27;SKIP_WAITING&#x27;</span>) {
     self.skipWaiting();
   }
 });
@@ -156,16 +154,14 @@ self.addEventListener(&#39;message&#39;, (event) =&gt; {
 workbox.core.clientsClaim();
 
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
-//declare the file that needs to be saved in caches
+<span class="hljs-comment">//declare the file that needs to be saved in caches</span>
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL(&quot;/index.html&quot;), {
+workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL(<span class="hljs-string">&quot;/index.html&quot;</span>), {
   
-  blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
-});
-</code></pre>
-<p>And in precache-manifest we can see:</p>
-<pre><code class="language-json">self.__precacheManifest = (self.__precacheManifest || []).concat([
+  <span class="hljs-attr">blacklist</span>: [<span class="hljs-regexp">/^\/_/</span>,<span class="hljs-regexp">/\/[^\/]+\.[^\/]+$/</span>],
+});</code></pre><p>And in precache-manifest we can see:</p>
+<pre><code class="hljs json">self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     &quot;revision&quot;: &quot;1a3b75ef22b2e98cc7c9ebaba56d802b&quot;,
     &quot;url&quot;: &quot;/index.html&quot;
@@ -194,9 +190,7 @@ workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL(&qu
     &quot;revision&quot;: &quot;5ad2e17ec9d2caecd451&quot;,
     &quot;url&quot;: &quot;/static/js/runtime~main.3ac4b0b3.js&quot;
   }
-]);
-</code></pre>
-<p>The <code>url</code> is files&#39; path, and the <code>revision</code> is the files&#39; content hash value, which will be changed if files is changed.
+]);</code></pre><p>The <code>url</code> is files&#39; path, and the <code>revision</code> is the files&#39; content hash value, which will be changed if files is changed.
 In this way, workbox can know whether the file is updated.</p>
 <h2 id="end">End</h2>
 <p>With the development of PWA, I believe Web App is able to be closed to Native App in many respects.</p>

