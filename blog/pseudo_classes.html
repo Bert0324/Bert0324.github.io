@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Bert's Blog</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
+	<link rel="stylesheet/less" type="text/css" href="/blog/style.less" />
+	<script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+	<style>
+		.markdown-body {
+			box-sizing: border-box;
+			min-width: 200px;
+			max-width: 980px;
+			margin: 0 auto;
+			padding: 45px;
+		}
+	
+		@media (max-width: 767px) {
+			.markdown-body {
+				padding: 15px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div><div># Pseudo Classes and Pseudo Elements
+
+CSS introduces the concepts of pseudo-elements and pseudo-classes to permit formatting based on information that lies outside the document tree.
+
+## Pseudo Classes
+
+A pseudo-class filters existing elements when the filter condition is not exist in DOM, such as `hover` and `active`.
+
+### Example: `:hover`
+
+- :hover: Selects links on mouse over
+
+```html
+<div class="test-class">
+  <p>first line</p>
+</div>
+<style>
+.test-class p:hover {
+    color: red;
+}
+</style>
+```
+
+## Pseudo Elements
+
+A pseudo-element is a new fake element when the selected elements is not exist in DOM, such as first character in a `<p>` tag.
+
+### Example: `::before` and `::after`
+
+- ::before: Insert content before every `<p>` element
+- ::after: Insert content after every `<p>` element
+
+```html
+<div class="test-elements">
+  <p>first line</p>
+  <p>second line</p>
+  <p>third line</p>
+</div>
+<style>
+.test-elements p::after {
+    content: " - after";
+}
+.test-elements p::before {
+    content: "before - ";
+}
+</style>
+```
+
+## Reference
+
+- <https://www.w3schools.com/css/css_pseudo_classes.asp>
+- <https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes>
+</div></div>
+</body>
+
+</html>
