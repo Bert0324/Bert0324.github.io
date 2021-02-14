@@ -31,11 +31,11 @@
 <p>Nowadays, We have multiple ways to control it.</p>
 <p>Traditionally, we can control web caching by Http caching. </p>
 <p>The order of a request passing web cache methods is as below:</p>
-<img src="../assets/cache_order.png" width="400"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/cache_order.png' width="400"/>
 
 <h3 id="sw-caching">SW caching</h3>
 <p>Along with emergence of ES6, SW is a newer and more powerful way to do it, if ignoring its compatibility.</p>
-<p>It can proxy whole requests to check whether needs to update by .</p>
+<p>It can proxy whole requests to check whether needs to update by <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/caches">caches</a>, see more in my blog <a href="/blog/service_worker.html">Service Worker</a>.</p>
 <h3 id="http-caching">Http caching</h3>
 <p>Http caching is to use Http headers to control browser resource&#39;s cache. There are some steps how browsers to do it:</p>
 <ol>
@@ -44,7 +44,7 @@
 <p>First, the browser will find in its cache by the file&#39;s name and cache mark.</p>
 <p>If found, browser will directly return the file, if not, browser send a request to the server.</p>
 <p>For example, Chrome will get the cache from the memory or disk like below:</p>
-<img src="../assets/http_cache_chrome.png" width="400"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/http_cache_chrome.png' width="400"/>
 
 <p>There are some headers can be cache mark:</p>
 <ul>
@@ -74,7 +74,7 @@
 <p><code>Last-Modified</code> indicates the last modified time of the resource, the server will send the header with the response.</p>
 <p>And When the next time the client decide to request the resource again, <code>If-Modified-Since</code> will be sent with the request. The value is the same as <code>Last-Modified</code>.</p>
 <p>An example from facebook static resource site:</p>
-<img src="../assets/cache_modified.png" width="600px"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/cache_modified.png' width="600px"/>
 
 <ul>
 <li><code>ETag</code> and <code>If-None-Match</code></li>
@@ -103,7 +103,7 @@ to the provided domain name address of the CDN server.</p>
 <li><p>If the cache is okay through testing, we then switch part of the traffic to CDN server.</p>
 </li>
 </ol>
-<img src="../assets/cdn_steps.jpg" width="600"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/cdn_steps.jpg' width="600"/>
 
 <p>See a reference: <a href="https://blog.csdn.net/xiangzhihong8/article/details/83147542">https://blog.csdn.net/xiangzhihong8/article/details/83147542</a></p>
 <h2 id="local-cache">Local Cache</h2>

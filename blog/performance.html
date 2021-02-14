@@ -27,19 +27,19 @@
 <body>
 	<div><div><article class="markdown-body"><h1 id="web-performance">Web Performance</h1>
 <p>从why, how, what三个纬度去讨论下前端性能监控这件事。</p>
-<img src='../assets/www.png' width='600px' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/www.png' width='600px' />
 
 <h2 id="why">Why</h2>
 <h3 id="全球趋势">全球趋势</h3>
 <p>在讨论之前，我们可以来看一下，一些制约前端性能的因素，在全球的一些情况：</p>
 <h4 id="网速">网速</h4>
-<img src='../assets/global_speed.png' width='600px' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/global_speed.png' width='600px' />
 
 <p>可以看到，mobile端的网速上升的比固定宽带的快很多，但是从绝对值上来说，仍然是很慢的，从很长的一个时间段上来说，mobile端的加载速度，仍然是比起来相对慢的。</p>
 <h4 id="文件大小">文件大小</h4>
-<img src='../assets/file_size.png' width='600px' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/file_size.png' width='600px' />
 
-<img src='../assets/js_size.png' width='600px' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/js_size.png' width='600px' />
 
 <p>从中可以看到，web的静态资源体积是总体一直在上涨的，其中js的上涨速度尤其的快。</p>
 <h4 id="首屏时间">首屏时间</h4>
@@ -65,7 +65,7 @@
 <li><p>一些对于首屏的改进，对用户体验提升明显</p>
 </li>
 </ol>
-<img src='../assets/frame_change.png' width='600px' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/frame_change.png' width='600px' />
 
 <h3 id="衡量的方式">衡量的方式</h3>
 <p>对于不同的页面，我们可以有不同的衡量方式</p>
@@ -77,7 +77,7 @@
 <h3 id="监控什么">监控什么</h3>
 <p>首先我们需要知道应该监控些什么呢？有哪些具体的指标？</p>
 <p>一个页面被打开有很多阶段，这些阶段，既不一定存在，也不一定连续。如下：</p>
-<img src='../assets/stage.png' width='600px' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/stage.png' width='600px' />
 
 <p>Google有<a href="https://web.dev/rail/">RAIL模型</a>和<a href="https://web.dev/user-centric-performance-metrics/#important-metrics-to-measure">Progressive Web Metrics标准</a>去衡量一个页面的表现。从中我们可以提炼出一些关键性的指标。</p>
 <ul>
@@ -119,13 +119,13 @@
 <h3 id="syn-vs-rum">SYN vs RUM</h3>
 <p>从技术方面来讲，前端性能监控主要分为两种方式，一种叫做合成监控（Synthetic Monitoring，SYN），另一种是真实用户监控（Real User Monitoring，RUM）。</p>
 <p>SYN就是在一个模拟场景里，去提交一个需要做性能审计的页面，通过一系列的工具、规则去运行你的页面，提取一些性能指标，得出一个审计报告, 比如Google 的 Lighthouse。优缺点如下：</p>
-<img src='../assets/syn.png' width='600px' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/syn.png' width='600px' />
 
 <p>RUM就是用户在我们的页面上访问，访问之后就会产生各种各样的性能指标，我们在用户访问结束的时候，把这些性能指标上传到我们的日志服务器上，进行数据的提取清洗加工，最后在我们的监控平台上进行展示的一个过程。优缺点如下：</p>
-<img src='../assets/rum.png' width='600px' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/rum.png' width='600px' />
 
 <p>我们来对比一下：</p>
-<img src='../assets/syn_vs_rum.png' width='600px' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/syn_vs_rum.png' width='600px' />
 
 <p>个人认为，RUM是更适合中台前端去做的，能定量分析页面，可定制化添加一些额外功能比如报表和告警，也容易有沉淀。</p>
 <h3 id="量化分析">量化分析</h3>
@@ -183,7 +183,7 @@
 <li>减小对后端服务的压力，避免服务挂掉</li>
 </ol>
 <p>流程如下：</p>
-<img src='../assets/sdk.svg' />
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/sdk.svg' />
 
 <p>前端在调用<code>init</code>只会初始化一个<code>Reporter</code>类，在接下来的调用中，用到了那些collect模块才会去实例化用到的模块。在long poll中收集数据，不为空的话才会批量压缩用Image Beacon上报。</p>
 <p>后端只存disk返回204，然后定时任务逐条处理。</p>

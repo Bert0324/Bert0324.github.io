@@ -32,11 +32,11 @@
 <p>The onion model is a graph-based diagram and conceptual model for describing relationships among levels of a hierarchy, evoking a metaphor of the layered &quot;shells&quot; exposed when an onion (or other concentric assembly of spheroidal objects) is bisected by a plane that intersects the center or the innermost shell.</p>
 <p>The outer layers in the model typically add size and/or complexity, incrementally, around the inner layers they enclose.</p>
 <p>In Koa, it uses multiple layers to process a request as below:</p>
-<img src="../assets/onion_model.png" width="400"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/onion_model.png' width="400"/>
 
 <h2 id="example-the-onion-model-of-nestjs">Example: The Onion Model of NestJS</h2>
 <p>It is like the diagram as below:</p>
-<img src="../assets/nestjs_aop.png" width="400"/>
+<img src='https://raw.githubusercontent.com/Bert0324/code-playground/master/assets/nestjs_aop.png' width="400"/>
 
 <p>The controller is the core module of this onion model, including <code>Module</code>, <code>Service</code>, <code>Controller</code> and so on.</p>
 <p>Before accessing the controller, the request will be processed by various middleware, and after leaving controller, it will also be processed by interceptors.</p>

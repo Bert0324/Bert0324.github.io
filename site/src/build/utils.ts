@@ -10,8 +10,8 @@ export const processMarkdown = (markdown: string) => {
 		minifyHTML(
 			marked(
 				markdown
-				.replace(/\[(.*)\]\((.*)\/([^\/]*)\.md\)/g, (all, $1, $2, $3) => ``)
 				.replace(new RegExp(`(${markdownUrl})(.*)\/([^\.]*)\.md`, 'g'), '/blog/$3.html')
+				.replace(/src\=["|'](.*)[\/]?assets\/([^\"^']*)["|']/g, `src='${remoteResourceUrl}/assets/$2'`)
 			)
 		)
 	}</article>`;
