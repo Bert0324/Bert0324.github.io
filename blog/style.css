@@ -130,3 +130,28 @@ body a {
 .container .post-content .post-container .post-comments {
   margin-top: 80px;
 }
+.markdown-body {
+  max-width: 100% !important;
+}
+@media screen and (max-width: 5120px) {
+  .views-count {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .views-count {
+    position: static;
+    display: none;
+  }
+}
+.reminder {
+  padding: 5px 10px;
+  font-size: 15px;
+  border: 1px solid #e2e2e2;
+  background-color: #ffffc0;
+  border-left: 5px solid #fff000;
+  color: #333;
+  margin-top: 50px;
+}

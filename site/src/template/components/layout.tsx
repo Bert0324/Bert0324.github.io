@@ -7,6 +7,9 @@ export const Container = ({ Content }: { Content: FC  }) => {
 			<SideBar />
 			<div className='post-content'>
 				<Content />
+				<div id='reminder' style={{ display: 'none' }}>
+					Facebook Comments Service is unavailable
+				</div>
 			</div>
 		</div>
 	)

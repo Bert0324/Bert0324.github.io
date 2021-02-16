@@ -36,6 +36,9 @@ export const SideBar = () => {
 					<img className='social-avatar' src='/assets/twitter.png' />
 				</a>
 			</div>
+			<div className='views-count'>
+				<p id="busuanzi_container_site_pv">total views: <span id="busuanzi_value_site_pv"></span></p>
+			</div>
 		</div>
 	);
 }

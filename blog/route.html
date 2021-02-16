@@ -6,8 +6,6 @@
 	<title>Bert's Blog</title>
 	<meta name="keywords" content="blog,javascript,typescript,code,frontend">
 	<meta name="description" content="bert huang's blog">
-	<meta name="google-signin-client_id" content="658771054218-j3l64eveu06e4blmb3k84mdgij8k8q0p.apps.googleusercontent.com">
-	<meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
 	<link rel="icon" href="/assets/favicon.ico"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
@@ -31,9 +29,9 @@
 
 <body>
 	<div>
-		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
+		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div><div class="views-count"><p id="busuanzi_container_site_pv">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
 		<div>
-			<div id="toc"><div class="last-edit"><span>Last Commit: 2021-02-16 15:34:20</span></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#从前端路由讲起">从前端路由讲起</a></li><li><a href="#静态路由 static route">静态路由 static route</a></li><li><a href="#路由守卫 route guard">路由守卫 route guard</a></li><li><a href="#路由缓存 keep alive">路由缓存 keep alive</a></li><li><a href="#预加载 prefetch">预加载 prefetch</a></li><li><a href="#转场动画 transition animation">转场动画 transition animation</a></li><li><a href="#react-routers">react-routers</a></li></ul></div></div>
+			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-16 15:34:20</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#从前端路由讲起">从前端路由讲起</a></li><li><a href="#静态路由 static route">静态路由 static route</a></li><li><a href="#路由守卫 route guard">路由守卫 route guard</a></li><li><a href="#路由缓存 keep alive">路由缓存 keep alive</a></li><li><a href="#预加载 prefetch">预加载 prefetch</a></li><li><a href="#转场动画 transition animation">转场动画 transition animation</a></li><li><a href="#react-routers">react-routers</a></li></ul></div></div>
 			<div>
 			<h1 id='react中的路由'>
 				React中的路由
@@ -73,11 +71,19 @@
 		<p>本文中的代码实现和功能，都可以在<a href="https://github.com/Bert0324/react-routers"><code>react-routers</code></a>这个库中找到，欢迎pr。</p>
 </div>
 		</div>
-	</article></div></div></div></div>
+	</article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div>
 	</div>
 </body>
 
 <script>
+	const checkFacebookAvailable = () => new Promise((resolve, reject) => {
+		const i = new Image();
+		i.src = 'https://www.facebook.com/images/facebook.png';
+		i.onerror = e => reject(e);
+		i.onload = () => resolve();
+		i.style.display = 'none';
+		body.append(i);
+	});
 	const body = document.getElementsByClassName('markdown-body')[0];
 	const initComments = () => {
 		if (![
@@ -88,15 +94,23 @@
 			'/blog/essay.html',
 			'/blog/about.html'
 		].includes(window.location.pathname)) {
-			const root = document.createElement('div');
-			root.id = 'fb-root';
-			root.className = 'post-comments';
-			const comments = document.createElement('div');
-			comments.className = 'fb-comments';
-			comments['data-href'] = window.location.href;
-			comments['data-numposts'] = '5';
-			root.appendChild(comments);
-			body.appendChild(root);
+			checkFacebookAvailable().then(() => {
+				const root = document.createElement('div');
+				root.id = 'fb-root';
+				root.className = 'post-comments';
+				const comments = document.createElement('div');
+				comments.className = 'fb-comments';
+				comments.setAttribute('data-href', window.location.href);
+				comments.setAttribute('data-numposts', '5');
+				comments.setAttribute('data-width', '100%');
+				root.appendChild(comments);
+				body.appendChild(root);
+			}).catch((e) => {
+				const reminder = document.createElement('div');
+				reminder.className = 'reminder';
+				reminder.innerText = 'Facebook Comments Service is unavailable';
+				body.appendChild(reminder);
+			});
 		}
 	};
 	const changeComments = () => {
@@ -112,47 +126,7 @@
 </script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script>
-
-<!-- Load the JavaScript API client and Sign-in library. -->
-<script src="https://apis.google.com/js/client:platform.js"></script>
-<script>
-	// Replace with your view ID.
-	const viewId = 'G-0SEZ9KRGY7';
-	// Query the API and print the results to the page.
-	function queryReports() {
-	  gapi.client.request({
-		path: '/v4/reports:batchGet',
-		root: 'https://analyticsreporting.googleapis.com/',
-		method: 'POST',
-		body: {
-		  reportRequests: [
-			{
-			  viewId,
-			  dateRanges: [
-				{
-				  startDate: '7daysAgo',
-				  endDate: 'today'
-				}
-			  ],
-			  metrics: [
-				{
-				  expression: 'ga:sessions'
-				}
-			  ]
-			}
-		  ]
-		}
-	  }).then(displayResults, console.error.bind(console));
-	}
-	function displayResults(response) {
-		console.log(response)
-  }
-	setTimeout(() => {
-		queryReports();
-	}, 2000);
-</script>
-
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script>
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}

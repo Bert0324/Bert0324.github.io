@@ -9,13 +9,15 @@ Welcome to visit my [blog](https://bert0324.github.io).
 - [About Code](/code/code.md)
 
 ## Leetcode刷题笔记
+
 - [Leetcode](/leetcode/leetcode.md)
 
 ## 一些随笔
 
 - [Essay](/essay/essay.md)
 
-## TODO
+## Powered By
 
-1. toc multiple layer
-2. count visit
+- Static Resource Service: [Github Repo](https://github.com/Bert0324/Bert0324.github.io)
+- Comments Service: [Facebook Comments](https://developers.facebook.com/docs/plugins/comments)
+- Views Count: [不蒜子](https://busuanzi.ibruce.info/)

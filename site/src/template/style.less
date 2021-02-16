@@ -138,3 +138,30 @@ body {
 
 	}
 }
+
+.markdown-body {
+	max-width: 100% !important;
+}
+
+.views-count {
+	@media screen and (max-width: @max-pc-width) {
+		position: fixed;
+		bottom: 10px;
+		left: 10px;
+	}
+
+	@media screen and (max-width: @max-phone-width) {
+		position: static;
+		display: none;
+	}
+}
+
+.reminder {
+	padding: 5px 10px;
+    font-size: 15px;
+    border: 1px solid #e2e2e2;
+    background-color: #ffffc0;
+    border-left: 5px solid #fff000;
+    color: #333;
+	margin-top: 50px;
+}
