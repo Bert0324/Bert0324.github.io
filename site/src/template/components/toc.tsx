@@ -3,8 +3,6 @@ import { IToc } from '../../build/utils';
 
 export const TOC = ({ data }: { data: IToc[] }) => {
 
-	console.log(JSON.stringify(data))
-
 	return (
 		<div id='toc'>
 			<div id='toc-body'>

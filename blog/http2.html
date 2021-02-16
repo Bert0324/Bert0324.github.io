@@ -4,6 +4,9 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
+	<meta name="keywords" content="blog,javascript,typescript,code,frontend">
+	<meta name="description" content="bert huang's blog">
+	<link rel="icon" href="/assets/favicon.ico"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
 	<link rel="stylesheet" href="/blog/style.css" />
@@ -25,28 +28,30 @@
 </head>
 
 <body>
-	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+	<div>
+		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
 		<div>
-			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#header compression">header compression</a></li><li><a href="#multiplexing">multiplexing</a></li><li><a href="#server push">server push</a></li></ul></div></div>
+			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#main new features">main new features</a></li><li><a href="#use wireshark to capture package">use wireshark to capture package</a></li></ul></div></div>
 			<div>
 			<h1 id='http2'>
 				Http2
 			</h1>
 		
-			<h2 id='header compression'>
-				header compression
+			<h2 id='main new features'>
+				Main New Features
 			</h2>
-		<p>In Http1.1, the header is plain text, of course, it is more easy for people to read, but it will cost lots of space when the header is large. Even more, SSL will change the header as binary, which means it is actually necessary to show as plain text. So in Http2, the header becomes index with a static table. It will make each request smaller.</p>
-
-			<h2 id='multiplexing'>
-				multiplexing
-			</h2>
-		<p>In Http1.1, the transmission is parallel, therefore next file has to wait to be transferred until the last transmission is finished, which obviously waste current bandwidth. In Http2, it will transfer multiple files mixed in one connection. Each frame has its id, so the client is able to joint it to a full message.</p>
-
-			<h2 id='server push'>
-				server push
-			</h2>
-		<p>Traditionally, when the client request index.html, server can only send index.html. But in Http2, the server knows if the client load index.html, some resources, such as css or JS file will be requested, server can initiatively send these. For example, in Nginx:</p>
+		<ol>
+<li>header compression</li>
+</ol>
+<p>In Http1.1, the header is plain text, of course, it is more easy for people to read, but it will cost lots of space when the header is large. Even more, SSL will change the header as binary, which means it is actually necessary to show as plain text. So in Http2, the header becomes index with a static table. It will make each request smaller.</p>
+<ol start="2">
+<li>multiplexing</li>
+</ol>
+<p>In Http1.1, the transmission is parallel, therefore next file has to wait to be transferred until the last transmission is finished, which obviously waste current bandwidth. In Http2, it will transfer multiple files mixed in one connection. Each frame has its id, so the client is able to joint it to a full message.</p>
+<ol start="3">
+<li>server push</li>
+</ol>
+<p>Traditionally, when the client request index.html, server can only send index.html. But in Http2, the server knows if the client load index.html, some resources, such as css or JS file will be requested, server can initiatively send these. For example, in Nginx:</p>
 <pre><code class="language-nginx"><span class="hljs-attribute">location</span> / {
     <span class="hljs-attribute">root</span>   /usr/share/nginx/html;
     <span class="hljs-attribute">index</span>  index.html index.htm;
@@ -54,9 +59,42 @@
     <span class="hljs-attribute">http2_push</span> /app.js;
 }
 </code></pre>
-</div>
+
+			<h2 id='use wireshark to capture package'>
+				use Wireshark to capture package
+			</h2>
 		</div>
-	</article></div></div></div>
+		</div>
+	</article></div></div></div></div>
+	</div>
 </body>
+
+<script>
+	const body = document.getElementsByClassName('markdown-body')[0];
+	const initComments = () => {
+		if (!['/blog/leetcode.html', '/blog/index.html', '/blog/about.html'].includes(window.location.pathname)) {
+			const root = document.createElement('div');
+			root.id = 'fb-root';
+			root.className = 'post-comments';
+			const comments = document.createElement('div');
+			comments.className = 'fb-comments';
+			comments['data-href'] = window.location.href;
+			comments['data-numposts'] = '5';
+			root.appendChild(comments);
+			body.appendChild(root);
+		}
+	};
+	const changeComments = () => {
+		const title = body.getElementsByTagName('h1')[0];
+		if (title) {
+			document.title = title.innerText;
+		}
+	};
+	if (body) {
+		changeComments();
+		initComments();
+	}
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script>
 
 </html>

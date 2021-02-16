@@ -8,14 +8,23 @@ body {
 body a {
   text-decoration: none;
 }
-#toc {
-  float: right;
-  background: white;
-  padding: 10px 10px 10px 50px;
+@media screen and (max-width: 2000px) {
+  #toc {
+    float: right;
+    background: white;
+    padding: 10px 10px 10px 50px;
+  }
+}
+@media screen and (max-width: 640px) {
+  #toc {
+    float: none;
+    background: white;
+    padding: 0;
+  }
 }
 #toc #toc-body {
   border: 1px solid #e2e2e2;
-  padding: 10px;
+  padding: 10px 20px 10px 10px;
 }
 #toc #toc-body p {
   border-bottom: 1px solid #e2e2e2;
@@ -23,9 +32,19 @@ body a {
 .container {
   background: white;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   display: flex;
-  flex-direction: row;
+}
+@media screen and (max-width: 2000px) {
+  .container {
+    flex-direction: row;
+  }
+}
+@media screen and (max-width: 640px) {
+  .container {
+    flex-direction: column;
+  }
 }
 .container .side-bar {
   flex: 1;
@@ -36,6 +55,7 @@ body a {
   justify-content: center;
   align-items: center;
   color: white;
+  max-height: 100vh;
 }
 .container .side-bar nav li {
   margin: 10px 0;
@@ -58,13 +78,20 @@ body a {
 }
 .container .side-bar #social .social-avatar {
   width: 30px;
-  height: fit-content;
+  height: 30px;
   border-radius: 50%;
   background-color: white;
-  margin: 0 10px;
+  margin: 20px 10px;
 }
 .container .post-content {
   flex: 4;
-  height: 100%;
+  height: 100vh;
   overflow: scroll;
+}
+.container .post-content .post-container {
+  display: flex;
+  flex-direction: column;
+}
+.container .post-content .post-container .post-comments {
+  margin-top: 80px;
 }

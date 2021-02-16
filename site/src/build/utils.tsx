@@ -55,14 +55,14 @@ export const processMarkdown = (markdown: string, createToc?: boolean) => {
 	}</article>`;
 };
 
-export const generateHTMLFiles = (index: string, about: string) => {
+export const generateHTMLFiles = (markdown: string, key: string) => {
 	const ret: IFileContent[] = [];
 	const map: any = {};
-	const content = processMarkdown(index.replace(/\[(.*)\]\((.*)\/([^\/]*)\.md\)/g, (all, $1, $2, key) => {
+	const content = processMarkdown(markdown.replace(/\[(.*)\]\((.*)\/([^\/]*)\.md\)/g, (all, $1, $2, key) => {
 		if (key) {
 			ret.push({
 				key,
-				content: ''
+				content: '',
 			});
 			map[key] = `${$2}/${key}.md`;
 			return `[${$1}](/blog/${key}.html)`;
@@ -79,12 +79,8 @@ export const generateHTMLFiles = (index: string, about: string) => {
 	return [
 		...ret, 
 		{
-			key: 'index',
+			key,
 			content
 		},
-		{
-			key: 'about',
-			content: processMarkdown(about)
-		}
 	];
 }

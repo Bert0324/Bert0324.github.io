@@ -9,7 +9,16 @@ export const SideBar = () => {
 			<nav style={{ width: '80%' }}>
 				<ul>
 					<li>
-						<a href='/blog/index.html'>Catalog</a>
+						<a href='/blog/index.html'>Index</a>
+					</li>
+					<li>
+						<a href='/blog/code.html'>Code</a>
+					</li>
+					<li>
+						<a href='/blog/leetcode.html'>LeetCode</a>
+					</li>
+					<li>
+						<a href='/blog/essay.html'>Essay</a>
 					</li>
 					<li>
 						<a href='/blog/about.html'>About</a>
@@ -19,6 +28,12 @@ export const SideBar = () => {
 			<div id='social'>
 				<a href='https://github.com/Bert0324'>
 					<img className='social-avatar' src='https://github.githubassets.com/favicons/favicon.png' />
+				</a>
+				<a href='https://www.facebook.com/people/Yuchen-Huang/100005315205237'>
+					<img className='social-avatar' src='/assets/facebook.png' />
+				</a>
+				<a href='https://twitter.com/BertHuang5'>
+					<img className='social-avatar' src='/assets/twitter.png' />
 				</a>
 			</div>
 		</div>

@@ -4,6 +4,9 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bert's Blog</title>
+	<meta name="keywords" content="blog,javascript,typescript,code,frontend">
+	<meta name="description" content="bert huang's blog">
+	<link rel="icon" href="/assets/favicon.ico"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
 	<link rel="stylesheet" href="/blog/style.css" />
@@ -25,7 +28,8 @@
 </head>
 
 <body>
-	<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Catalog</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a></div></div><div class="post-content"><div><article class="markdown-body">
+	<div>
+		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav style="width:80%"><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
 		<div>
 			<div id="toc"><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#__proto__ and prototype">__proto__ and prototype</a></li><li><a href="#instanceof and object.isprototypeof">instanceof and object.isprototypeof</a></li><li><a href="#constructor">constructor</a></li><li><a href="#combination inheritance">combination inheritance</a></li><li><a href="#class">class</a></li><li><a href="#reference">reference</a></li></ul></div></div>
 			<div>
@@ -140,7 +144,36 @@ Man.prototype.showGender = <span class="hljs-function"><span class="hljs-keyword
 </ul>
 </div>
 		</div>
-	</article></div></div></div>
+	</article></div></div></div></div>
+	</div>
 </body>
+
+<script>
+	const body = document.getElementsByClassName('markdown-body')[0];
+	const initComments = () => {
+		if (!['/blog/leetcode.html', '/blog/index.html', '/blog/about.html'].includes(window.location.pathname)) {
+			const root = document.createElement('div');
+			root.id = 'fb-root';
+			root.className = 'post-comments';
+			const comments = document.createElement('div');
+			comments.className = 'fb-comments';
+			comments['data-href'] = window.location.href;
+			comments['data-numposts'] = '5';
+			root.appendChild(comments);
+			body.appendChild(root);
+		}
+	};
+	const changeComments = () => {
+		const title = body.getElementsByTagName('h1')[0];
+		if (title) {
+			document.title = title.innerText;
+		}
+	};
+	if (body) {
+		changeComments();
+		initComments();
+	}
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script>
 
 </html>

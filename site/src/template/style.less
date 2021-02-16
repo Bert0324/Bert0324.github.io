@@ -10,12 +10,21 @@ body {
 }
 
 #toc {
-	float: right;
-	background: white;
-	padding: 10px 10px 10px 50px;
+	@media screen and (max-width: 2000px) {
+		float: right;
+		background: white;
+		padding: 10px 10px 10px 50px;
+	}
+
+	@media screen and (max-width: 640px) {
+		float: none;
+		background: white;
+		padding: 0;
+	}
+
 	#toc-body {
 		border: 1px solid #e2e2e2;
-		padding: 10px;
+		padding: 10px 20px 10px 10px;
 		p {
 			border-bottom: 1px solid #e2e2e2;
 		}
@@ -25,9 +34,16 @@ body {
 .container {
 	background: white;
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
+	height: fit-content;
 	display: flex;
-	flex-direction: row;
+	@media screen and (max-width: 2000px) {
+		flex-direction: row;
+	}
+
+	@media screen and (max-width: 640px) {
+		flex-direction: column;
+	}
 
 	.side-bar {
 		flex: 1;
@@ -38,6 +54,7 @@ body {
 		justify-content: center;
 		align-items: center;
 		color: white;
+		max-height: 100vh;
 
 		nav {
 			li {
@@ -64,10 +81,10 @@ body {
 			align-items: center;
 			.social-avatar {
 				width: 30px;
-				height: fit-content;
+				height: 30px;
 				border-radius: 50%;
 				background-color: white;
-				margin: 0 10px;
+				margin: 20px 10px;
 			}
 		}
 
@@ -75,7 +92,18 @@ body {
 
 	.post-content {
 		flex: 4;
-		height: 100%;
+		height: 100vh;
 		overflow: scroll;
+
+		.post-container {
+			display: flex;
+			flex-direction: column;
+
+			.post-comments {
+				margin-top: 80px;
+			}
+		}
+
+
 	}
 }

@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
-        "Versionheader"
-    ]
+        "Versionheader",
+        "Wireshark"
+    ],
+    "git.ignoreLimitWarning": true
 }
