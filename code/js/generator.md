@@ -1,3 +1,5 @@
+# Generator
+
 ## Basic usage
 
 Compared to normal Function, generator function must has a `*`, and has its special 
