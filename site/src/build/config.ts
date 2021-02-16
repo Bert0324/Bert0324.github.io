@@ -1,10 +1,12 @@
+import isWindows from 'is-windows';
 import { resolve } from 'path';
 
 const rootPath = resolve('./');
 export const projectRootPath = (() => {
-	const arr = rootPath.split('/');
+	const separator = isWindows() ? '\\' : '/';
+	const arr = rootPath.split(separator);
 	arr.pop();
-	return arr.join('/');
+	return arr.join(separator);
 })();
 export const indexTemplatePath = `${rootPath}/src/template/index.html`;
 export const documentsPath = `${rootPath}/documents`;

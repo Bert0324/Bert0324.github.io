@@ -2,7 +2,6 @@ import React from 'react';
 import { setOptions, Renderer } from 'marked';
 import { readFileSync, existsSync } from 'fs';
 import { highlight, getLanguage } from 'highlight.js';
-import { Repository, Revwalk } from 'nodegit';
 import { markdownUrl, projectRootPath, remoteResourceUrl } from './config';
 import { IFileContent } from './fetchFile';
 import { renderToStaticMarkup } from 'react-dom/server';
