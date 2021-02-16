@@ -43,7 +43,7 @@ body {
 .container {
 	background: white;
 	width: 100%;
-	min-height: 100vh;
+	min-height: fit-content;
 	height: fit-content;
 	display: flex;
 	@media screen and (max-width: @max-pc-width) {
@@ -116,7 +116,14 @@ body {
 	.post-content {
 		flex: 4;
 		height: 100vh;
-		overflow: scroll;
+
+		@media screen and (max-width: @max-pc-width) {
+			overflow: scroll;
+		}
+	
+		@media screen and (max-width: @max-phone-width) {
+			overflow: hidden;
+		}
 
 		.post-container {
 			display: flex;

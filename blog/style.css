@@ -37,7 +37,7 @@ body a {
 .container {
   background: white;
   width: 100%;
-  min-height: 100vh;
+  min-height: fit-content;
   height: fit-content;
   display: flex;
 }
@@ -111,7 +111,16 @@ body a {
 .container .post-content {
   flex: 4;
   height: 100vh;
-  overflow: scroll;
+}
+@media screen and (max-width: 2000px) {
+  .container .post-content {
+    overflow: scroll;
+  }
+}
+@media screen and (max-width: 640px) {
+  .container .post-content {
+    overflow: hidden;
+  }
 }
 .container .post-content .post-container {
   display: flex;
