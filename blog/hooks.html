@@ -31,7 +31,7 @@
 	<div>
 		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
 		<div>
-			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:03:16</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#definition">definition</a></li><li><a href="#motivation">motivation</a></li><li><a href="#reuse code with state">reuse code with state</a></li><li><a href="#hooks examples">hooks examples</a></li><li><a href="#usestate">usestate</a></li><li><a href="#usereducer">usereducer</a></li><li><a href="#useeffect">useeffect</a></li><li><a href="#uselayouteffect">uselayouteffect</a></li><li><a href="#usecontext">usecontext</a></li><li><a href="#useref">useref</a></li><li><a href="#usememo">usememo</a></li><li><a href="#usecallback">usecallback</a></li><li><a href="#reference">reference</a></li></ul></div></div>
+			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:18:48</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#definition">definition</a></li><li><a href="#motivation">motivation</a></li><li><a href="#reuse code with state">reuse code with state</a></li><li><a href="#hooks examples">hooks examples</a></li><li><a href="#usestate">usestate</a></li><li><a href="#usereducer">usereducer</a></li><li><a href="#useeffect">useeffect</a></li><li><a href="#uselayouteffect">uselayouteffect</a></li><li><a href="#usecontext">usecontext</a></li><li><a href="#useref">useref</a></li><li><a href="#usememo">usememo</a></li><li><a href="#usecallback">usecallback</a></li><li><a href="#reference">reference</a></li></ul></div></div>
 			<div>
 			<h1 id='hooks'>
 				Hooks
@@ -318,6 +318,7 @@ is the result of an expensive computation:</p>
 		i.onload = () => resolve();
 		i.style.display = 'none';
 		body.append(i);
+		setTimeout(() => reject(), 5000);
 	});
 	const body = document.getElementsByClassName('markdown-body')[0];
 	const initComments = () => {
@@ -340,7 +341,7 @@ is the result of an expensive computation:</p>
 				comments.setAttribute('data-width', '100%');
 				root.appendChild(comments);
 				body.appendChild(root);
-			}).catch((e) => {
+			}).catch(() => {
 				const reminder = document.createElement('div');
 				reminder.className = 'reminder';
 				reminder.innerText = 'Facebook Comments Service is unavailable';

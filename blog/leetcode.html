@@ -69,6 +69,7 @@
 		i.onload = () => resolve();
 		i.style.display = 'none';
 		body.append(i);
+		setTimeout(() => reject(), 5000);
 	});
 	const body = document.getElementsByClassName('markdown-body')[0];
 	const initComments = () => {
@@ -91,7 +92,7 @@
 				comments.setAttribute('data-width', '100%');
 				root.appendChild(comments);
 				body.appendChild(root);
-			}).catch((e) => {
+			}).catch(() => {
 				const reminder = document.createElement('div');
 				reminder.className = 'reminder';
 				reminder.innerText = 'Facebook Comments Service is unavailable';

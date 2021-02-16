@@ -31,7 +31,7 @@
 	<div>
 		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
 		<div>
-			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:03:16</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#features">features</a></li><li><a href="#帧">帧</a></li><li><a href="#心跳">心跳</a></li><li><a href="#请求头">请求头</a></li><li><a href="#nestjs对ws的接入">nestjs对ws的接入</a></li><li><a href="#部署">部署</a></li><li><a href="#保持粘性会话">保持粘性会话</a></li><li><a href="#多进程广播事件">多进程广播事件</a></li><li><a href="#reference">reference</a></li></ul></div></div>
+			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:18:48</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#features">features</a></li><li><a href="#帧">帧</a></li><li><a href="#心跳">心跳</a></li><li><a href="#请求头">请求头</a></li><li><a href="#nestjs对ws的接入">nestjs对ws的接入</a></li><li><a href="#部署">部署</a></li><li><a href="#保持粘性会话">保持粘性会话</a></li><li><a href="#多进程广播事件">多进程广播事件</a></li><li><a href="#reference">reference</a></li></ul></div></div>
 			<div>
 			<h1 id='websocket'>
 				WebSocket
@@ -203,6 +203,7 @@ subscriber.subscribe(<span class="hljs-string">&quot;a channel&quot;</span>);
 		i.onload = () => resolve();
 		i.style.display = 'none';
 		body.append(i);
+		setTimeout(() => reject(), 5000);
 	});
 	const body = document.getElementsByClassName('markdown-body')[0];
 	const initComments = () => {
@@ -225,7 +226,7 @@ subscriber.subscribe(<span class="hljs-string">&quot;a channel&quot;</span>);
 				comments.setAttribute('data-width', '100%');
 				root.appendChild(comments);
 				body.appendChild(root);
-			}).catch((e) => {
+			}).catch(() => {
 				const reminder = document.createElement('div');
 				reminder.className = 'reminder';
 				reminder.innerText = 'Facebook Comments Service is unavailable';
