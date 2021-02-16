@@ -97,7 +97,14 @@
 <script>
 	const body = document.getElementsByClassName('markdown-body')[0];
 	const initComments = () => {
-		if (!['/blog/leetcode.html', '/blog/index.html', '/blog/about.html'].includes(window.location.pathname)) {
+		if (![
+			'/',
+			'/blog/index.html', 
+			'/blog/code.html', 
+			'/blog/leetcode.html', 
+			'/blog/essay.html',
+			'/blog/about.html'
+		].includes(window.location.pathname)) {
 			const root = document.createElement('div');
 			root.id = 'fb-root';
 			root.className = 'post-comments';
