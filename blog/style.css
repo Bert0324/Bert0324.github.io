@@ -8,7 +8,7 @@ body {
 body a {
   text-decoration: none;
 }
-@media screen and (max-width: 2000px) {
+@media screen and (max-width: 5120px) {
   #toc {
     float: right;
     background: white;
@@ -41,7 +41,7 @@ body a {
   height: fit-content;
   display: flex;
 }
-@media screen and (max-width: 2000px) {
+@media screen and (max-width: 5120px) {
   .container {
     flex-direction: row;
   }
@@ -62,7 +62,7 @@ body a {
   color: white;
   max-height: 100vh;
 }
-@media screen and (max-width: 2000px) {
+@media screen and (max-width: 5120px) {
   .container .side-bar nav {
     width: 80%;
   }
@@ -75,7 +75,7 @@ body a {
 .container .side-bar nav li {
   margin: 10px;
 }
-@media screen and (max-width: 2000px) {
+@media screen and (max-width: 5120px) {
   .container .side-bar nav li {
     float: none;
   }
@@ -111,7 +111,7 @@ body a {
 .container .post-content {
   flex: 4;
 }
-@media screen and (max-width: 2000px) {
+@media screen and (max-width: 5120px) {
   .container .post-content {
     overflow: scroll;
     height: 100vh;
