@@ -37,7 +37,7 @@ export const SideBar = () => {
 				</a>
 			</div>
 			<div className='views-count'>
-				<p id="busuanzi_container_site_pv">total views: <span id="busuanzi_value_site_pv"></span></p>
+				<p id="busuanzi_container_site_pv" style={{ display: 'inline' }}>total views: <span id="busuanzi_value_site_pv"></span></p>
 			</div>
 		</div>
 	);
