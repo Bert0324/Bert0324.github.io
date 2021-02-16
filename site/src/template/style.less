@@ -115,14 +115,15 @@ body {
 
 	.post-content {
 		flex: 4;
-		height: 100vh;
 
 		@media screen and (max-width: @max-pc-width) {
 			overflow: scroll;
+			height: 100vh;
 		}
 	
 		@media screen and (max-width: @max-phone-width) {
 			overflow: hidden;
+			height: fit-content;
 		}
 
 		.post-container {

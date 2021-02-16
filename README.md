@@ -18,3 +18,4 @@ Welcome to visit my [blog](https://bert0324.github.io).
 ## TODO
 
 1. toc multiple layer
+2. count visit
