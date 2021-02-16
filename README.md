@@ -17,5 +17,4 @@ Welcome to visit my [blog](https://bert0324.github.io).
 
 ## TODO
 
-1. last edit time
-2. toc multiple layer
+1. toc multiple layer

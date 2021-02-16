@@ -6,7 +6,7 @@ export const SideBar = () => {
 			<img className='avatar' src='/assets/avatar.jpeg' />
 			<h1>Bert Huang</h1>
 			<p>一位兴趣广泛的前端程序员</p>
-			<nav style={{ width: '80%' }}>
+			<nav>
 				<ul>
 					<li>
 						<a href='/blog/index.html'>Index</a>

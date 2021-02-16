@@ -7,7 +7,7 @@ export interface IFileContent {
 	content: string;
 };
 
-export const readFileContent = (): IFileContent[] => {
+export const readFileContent = async (): Promise<IFileContent[]> => {
 
 	const index = readFileSync(`${projectRootPath}/README.md`, 'utf-8');
 	const about = readFileSync(`${documentsPath}/about.md`, 'utf-8');
@@ -18,11 +18,11 @@ export const readFileContent = (): IFileContent[] => {
 	return [
 		{
 			key: 'about',
-			content: processMarkdown(about),
+			content: await processMarkdown(about),
 		},
-		...generateHTMLFiles(index, 'index'),
-		...generateHTMLFiles(code, 'code'), 
-		...generateHTMLFiles(leetcode, 'leetcode'),
-		...generateHTMLFiles(essay, 'essay'),
+		...await generateHTMLFiles(index, 'index'),
+		...await generateHTMLFiles(code, 'code'), 
+		...await generateHTMLFiles(leetcode, 'leetcode'),
+		...await generateHTMLFiles(essay, 'essay'),
 	];
 };

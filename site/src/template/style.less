@@ -1,3 +1,6 @@
+@max-pc-width: 2000px;
+@max-phone-width: 640px;
+
 body {
 	background: #ddd;
 	margin: 0;
@@ -10,16 +13,22 @@ body {
 }
 
 #toc {
-	@media screen and (max-width: 2000px) {
+	@media screen and (max-width: @max-pc-width) {
 		float: right;
 		background: white;
 		padding: 10px 10px 10px 50px;
 	}
 
-	@media screen and (max-width: 640px) {
+	@media screen and (max-width: @max-phone-width) {
 		float: none;
 		background: white;
 		padding: 0;
+	}
+
+	.last-edit {
+		color: #555;
+		font-size: .9em;
+		margin-bottom: 15px;
 	}
 
 	#toc-body {
@@ -37,11 +46,11 @@ body {
 	min-height: 100vh;
 	height: fit-content;
 	display: flex;
-	@media screen and (max-width: 2000px) {
+	@media screen and (max-width: @max-pc-width) {
 		flex-direction: row;
 	}
 
-	@media screen and (max-width: 640px) {
+	@media screen and (max-width: @max-phone-width) {
 		flex-direction: column;
 	}
 
@@ -57,8 +66,22 @@ body {
 		max-height: 100vh;
 
 		nav {
+			@media screen and (max-width: @max-pc-width) {
+				width: 80%;
+			}
+		
+			@media screen and (max-width: @max-phone-width) {
+				width: 100%;
+			}
 			li {
-				margin: 10px 0;
+				@media screen and (max-width: @max-pc-width) {
+					float: none;
+				}
+			
+				@media screen and (max-width: @max-phone-width) {
+					float: left;
+				}
+				margin: 10px;
 			}
 		}
 

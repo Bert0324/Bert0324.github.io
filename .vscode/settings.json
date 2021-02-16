@@ -1,7 +1,10 @@
 {
     "cSpell.words": [
+        "Revwalk",
         "Versionheader",
-        "Wireshark"
+        "Wireshark",
+        "gitlog",
+        "nodegit"
     ],
     "git.ignoreLimitWarning": true
 }

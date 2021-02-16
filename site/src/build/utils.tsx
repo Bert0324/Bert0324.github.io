@@ -2,10 +2,12 @@ import React from 'react';
 import { setOptions, Renderer } from 'marked';
 import { readFileSync, existsSync } from 'fs';
 import { highlight, getLanguage } from 'highlight.js';
+import { Repository, Revwalk } from 'nodegit';
 import { markdownUrl, projectRootPath, remoteResourceUrl } from './config';
 import { IFileContent } from './fetchFile';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { TOC } from '../template/components/toc';
+import { getFileHistory } from './gitHistory';
 
 export interface IToc {
 	text: string;
@@ -14,7 +16,11 @@ export interface IToc {
 
 export const minifyHTML = (html: string) => html;
 
-const markToHTML = (markdown: string, createToc?: boolean) => {
+const getLastCommitTime = async (filePath: string) => {
+	return getFileHistory(filePath);
+};
+
+const markToHTML = async (markdown: string, filePath?: string) => {
 	const renderer = new Renderer();
 	const toc: IToc[] = [];
 	renderer.heading = function(text, level, raw) {
@@ -36,29 +42,29 @@ const markToHTML = (markdown: string, createToc?: boolean) => {
 	
 	return `
 		<div>
-			${createToc ? renderToStaticMarkup(<TOC data={toc} />) : ''}
+			${!!filePath ? renderToStaticMarkup(<TOC data={toc} time={await getLastCommitTime(filePath)} />) : ''}
 			<div>${html}</div>
 		</div>
 	`;
 };
 
-export const processMarkdown = (markdown: string, createToc?: boolean) => {	
+export const processMarkdown = async (markdown: string, filePath?: string) => {	
 	return `<article class="markdown-body">${
 		minifyHTML(
-			markToHTML(
+			await markToHTML(
 				markdown
 				.replace(new RegExp(`(${markdownUrl})(.*)\/([^\.]*)\.md`, 'g'), '/blog/$3.html')
 				.replace(/src\=["|'](.*)[\/]?assets\/([^\"^']*)["|']/g, `src='${remoteResourceUrl}/assets/$2'`),
-				createToc
+				filePath
 			)
 		)
 	}</article>`;
 };
 
-export const generateHTMLFiles = (markdown: string, key: string) => {
+export const generateHTMLFiles = async (markdown: string, key: string) => {
 	const ret: IFileContent[] = [];
 	const map: any = {};
-	const content = processMarkdown(markdown.replace(/\[(.*)\]\((.*)\/([^\/]*)\.md\)/g, (all, $1, $2, key) => {
+	const content = await processMarkdown(markdown.replace(/\[(.*)\]\((.*)\/([^\/]*)\.md\)/g, (all, $1, $2, key) => {
 		if (key) {
 			ret.push({
 				key,
@@ -69,13 +75,16 @@ export const generateHTMLFiles = (markdown: string, key: string) => {
 		}
 		return '';
 	}));
-	ret.forEach((item => {
-		if (item.content) return item;
-		if (existsSync(`${projectRootPath}${map[item.key]}`)) {
-			item.content = processMarkdown(readFileSync(`${projectRootPath}${map[item.key]}`, 'utf-8'), true);
-		}
-		return item;
-	}))
+	await Promise.all(
+		ret.map((async item => {
+			if (item.content) return item;
+			if (existsSync(`${projectRootPath}${map[item.key]}`)) {
+				const filePath = `${projectRootPath}${map[item.key]}`;
+				item.content = await processMarkdown(readFileSync(filePath, 'utf-8'), filePath);
+			}
+			return item;
+		}))
+	);
 	return [
 		...ret, 
 		{
