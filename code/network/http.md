@@ -4,7 +4,7 @@ TCP/IP protocol can provide a reliable link between two computers, if packet get
 
 How TCP/IP guarantee its reliability of transmission? The key point is to .
 
-### Connection Establishment
+## Connection Establishment
 
 The setup steps make sure both of them can receive and send data to each other.
 
@@ -14,7 +14,7 @@ The setup steps make sure both of them can receive and send data to each other.
 
 3. the client sends an ACK back to the server. In this step, the server knows the client can receive data it sent.
 
-### Connection Termination
+## Connection Termination
 
 The termination uses a four-way handshake, with each side of the connection terminating independently.
 

@@ -1,5 +1,5 @@
 body {
-  background: #ddd;
+  background: white;
   margin: 0;
   font-size: 14px;
   font-family: Roboto, Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK", "WenQuanYi Micro Hei", sans-serif;
@@ -11,14 +11,12 @@ body a {
 @media screen and (max-width: 5120px) {
   #toc {
     float: right;
-    background: white;
     padding: 10px 10px 10px 50px;
   }
 }
 @media screen and (max-width: 640px) {
   #toc {
     float: none;
-    background: white;
     padding: 0;
   }
 }
@@ -35,7 +33,7 @@ body a {
   border-bottom: 1px solid #e2e2e2;
 }
 .container {
-  background: white;
+  background: transparent;
   width: 100%;
   min-height: fit-content;
   height: fit-content;
@@ -102,8 +100,8 @@ body a {
   align-items: center;
 }
 .container .side-bar #social .social-avatar {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background-color: white;
   margin: 20px 10px;
@@ -132,6 +130,7 @@ body a {
 }
 .markdown-body {
   max-width: 100% !important;
+  background: transparent !important;
 }
 @media screen and (max-width: 5120px) {
   .views-count {
