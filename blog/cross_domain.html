@@ -1,50 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Bert's Blog</title>
-	<meta name="keywords" content="blog,javascript,typescript,code,frontend">
-	<meta name="description" content="bert huang's blog">
-	<link rel="icon" href="/assets/favicon.ico"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
-	<link rel="stylesheet" href="/blog/style.css" />
-	<style>
-		.markdown-body {
-			box-sizing: border-box;
-			min-width: 200px;
-			max-width: 980px;
-			margin: 0 auto;
-			padding: 45px;
-		}
-	
-		@media (max-width: 767px) {
-			.markdown-body {
-				padding: 15px;
-			}
-		}
-	</style>
-</head>
-
-<body>
-	<div>
-		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
-		<div>
-			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:18:48</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#html tags">html tags</a></li><li><a href="#jsonp">jsonp</a></li><li><a href="#the server enables cross-domain request (node.js):">the server enables cross-domain request (node.js):</a></li><li><a href="#http options">http options</a></li></ul></div></div>
-			<div><p>When a web client want to request resources from a cross-domain server, normally, I will use 3 ways as below in different situation:</p>
-
-			<h2 id='html tags'>
-				HTML tags
-			</h2>
-		<p>such as <code>&lt;img src=&#39;&#39;&gt;&lt;link href=&#39;&#39;&gt;&lt;script src=&#39;&#39;&gt; </code>, these tags will not restricted by browsers&#39; cross-domain policy. From my experience, it is very useful when you need an external server&#39;s API to record hit in our own website, and some of parameters can be saved in the attribute&#39;s URL.</p>
-
-			<h2 id='jsonp'>
-				JSONP
-			</h2>
-		<p>If we want to get data from other site, and the server has designed JSONP API for us, we can use it. The principle is that <code>&lt;script&gt;</code> is not limited by cross-domain policy, so the server can write data in the script and send it to client. For example:</p>
-<p>Client side:</p>
-<pre><code class="language-JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jsonp</span>(<span class="hljs-params">url, callback</span>) </span>{
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"><style>.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}@media (max-width:767px){.markdown-body{padding:15px}}</style></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 12:52:32</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#html%20tags">html tags</a></li><li><a href="#jsonp">jsonp</a></li><li><a href="#the%20server%20enables%20cross-domain%20request%20%28node.js%29%3A">the server enables cross-domain request (node.js):</a></li><li><a href="#http%20options">http options</a></li></ul></div></div><div><p>When a web client want to request resources from a cross-domain server, normally, I will use 3 ways as below in different situation:</p><h2 id="html%20tags">HTML tags</h2><p>such as <code>&lt;img src=&#39;&#39;&gt;&lt;link href=&#39;&#39;&gt;&lt;script src=&#39;&#39;&gt;</code>, these tags will not restricted by browsers&#39; cross-domain policy. From my experience, it is very useful when you need an external server&#39;s API to record hit in our own website, and some of parameters can be saved in the attribute&#39;s URL.</p><h2 id="jsonp">JSONP</h2><p>If we want to get data from other site, and the server has designed JSONP API for us, we can use it. The principle is that <code>&lt;script&gt;</code> is not limited by cross-domain policy, so the server can write data in the script and send it to client. For example:</p><p>Client side:</p><pre><code class="language-JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jsonp</span>(<span class="hljs-params">url, callback</span>) </span>{
     <span class="hljs-built_in">window</span>.callback = callback;
     <span class="hljs-keyword">let</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;script&#x27;</span>);
     script.setAttribute(<span class="hljs-string">&quot;type&quot;</span>,<span class="hljs-string">&quot;text/javascript&quot;</span>);
@@ -56,17 +10,10 @@ jsonp(<span class="hljs-string">&quot;http://localhost:9093/jsonp&quot;</span>, 
     <span class="hljs-comment">//do something to the data got from the server</span>
 
 });
-</code></pre>
-<p>Server side (Node.js):</p>
-<pre><code class="language-JavaScript"><span class="hljs-keyword">let</span> data = {<span class="hljs-attr">a</span>:<span class="hljs-number">1</span>,<span class="hljs-attr">b</span>:<span class="hljs-number">2</span>};   <span class="hljs-comment">//this data will be sent to the client</span>
+</code></pre><p>Server side (Node.js):</p><pre><code class="language-JavaScript"><span class="hljs-keyword">let</span> data = {<span class="hljs-attr">a</span>:<span class="hljs-number">1</span>,<span class="hljs-attr">b</span>:<span class="hljs-number">2</span>};   <span class="hljs-comment">//this data will be sent to the client</span>
 res.writeHead(<span class="hljs-number">200</span>, {<span class="hljs-string">&quot;Content-Type&quot;</span>:<span class="hljs-string">&quot;application/javascript&quot;</span>};
 res.end(<span class="hljs-string">`window.callback(<span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(data)}</span>)`</span>);
-</code></pre>
-
-			<h2 id='the server enables cross-domain request (node.js):'>
-				the server enables cross-domain request (Node.js):
-			</h2>
-		<pre><code class="language-JavaScript">res.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="hljs-string">&quot;*&quot;</span>);
+</code></pre><h2 id="the%20server%20enables%20cross-domain%20request%20%28node.js%29%3A">the server enables cross-domain request (Node.js):</h2><pre><code class="language-JavaScript">res.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="hljs-string">&quot;*&quot;</span>);
 res.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Headers&quot;</span>,
     <span class="hljs-string">&quot;Access-Control-Allow-Headers, &quot;</span> +
     <span class="hljs-string">&quot;Origin,Accept, &quot;</span> +
@@ -75,78 +22,4 @@ res.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Headers&quot;
     <span class="hljs-string">&quot;Access-Control-Request-Method, &quot;</span> +
     <span class="hljs-string">&quot;Access-Control-Request-Headers&quot;</span>);
 res.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Methods&quot;</span>,<span class="hljs-string">&quot;POST,GET,OPTIONS&quot;</span>);
-</code></pre>
-
-			<h3 id='http options'>
-				Http Options
-			</h3>
-		<p>When a page is sending an AJAX request to a cross domain URL, it will send an OPTIONS request to the 
-server to check whether support cross domain request, if allowed, it will return <code>204 No Content</code>, if not, it will return 
-<code>405 Not Allowed</code>.</p>
-</div>
-		</div>
-	</article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div>
-	</div>
-</body>
-
-<script>
-	const checkFacebookAvailable = () => new Promise((resolve, reject) => {
-		const i = new Image();
-		i.src = 'https://www.facebook.com/images/facebook.png';
-		i.onerror = e => reject(e);
-		i.onload = () => resolve();
-		i.style.display = 'none';
-		body.append(i);
-		setTimeout(() => reject(), 5000);
-	});
-	const body = document.getElementsByClassName('markdown-body')[0];
-	const initComments = () => {
-		if (![
-			'/',
-			'/blog/index.html', 
-			'/blog/code.html', 
-			'/blog/leetcode.html', 
-			'/blog/essay.html',
-			'/blog/about.html'
-		].includes(window.location.pathname)) {
-			checkFacebookAvailable().then(() => {
-				const root = document.createElement('div');
-				root.id = 'fb-root';
-				root.className = 'post-comments';
-				const comments = document.createElement('div');
-				comments.className = 'fb-comments';
-				comments.setAttribute('data-href', window.location.href);
-				comments.setAttribute('data-numposts', '5');
-				comments.setAttribute('data-width', '100%');
-				root.appendChild(comments);
-				body.appendChild(root);
-			}).catch(() => {
-				const reminder = document.createElement('div');
-				reminder.className = 'reminder';
-				reminder.innerText = 'Facebook Comments Service is unavailable';
-				body.appendChild(reminder);
-			});
-		}
-	};
-	const changeComments = () => {
-		const title = body.getElementsByTagName('h1')[0];
-		if (title) {
-			document.title = title.innerText;
-		}
-	};
-	if (body) {
-		changeComments();
-		initComments();
-	}
-</script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-  
-	gtag('config', 'G-0SEZ9KRGY7');
-  </script>
-</html>
+</code></pre><h3 id="http%20options">Http Options</h3><p>When a page is sending an AJAX request to a cross domain URL, it will send an OPTIONS request to the server to check whether support cross domain request, if allowed, it will return <code>204 No Content</code>, if not, it will return <code>405 Not Allowed</code>.</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script>const checkFacebookAvailable=()=>new Promise((e,t)=>{const o=new Image;o.src="https://www.facebook.com/images/facebook.png",o.onerror=e=>t(e),o.onload=()=>e(),o.style.display="none",body.append(o),setTimeout(()=>t(),5e3)}),body=document.getElementsByClassName("markdown-body")[0],initComments=()=>{["/","/blog/index.html","/blog/code.html","/blog/leetcode.html","/blog/essay.html","/blog/about.html"].includes(window.location.pathname)||checkFacebookAvailable().then(()=>{const e=document.createElement("div");e.id="fb-root",e.className="post-comments";const t=document.createElement("div");t.className="fb-comments",t.setAttribute("data-href",window.location.href),t.setAttribute("data-numposts","5"),t.setAttribute("data-width","100%"),e.appendChild(t),body.appendChild(e)}).catch(()=>{const e=document.createElement("div");e.className="reminder",e.innerText="Facebook Comments Service is unavailable",body.appendChild(e)})},changeComments=()=>{var e=body.getElementsByTagName("h1")[0];e&&(document.title=e.innerText)};body&&(changeComments(),initComments())</script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0SEZ9KRGY7")</script></html>

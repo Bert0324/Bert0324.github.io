@@ -1,81 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Bert's Blog</title>
-	<meta name="keywords" content="blog,javascript,typescript,code,frontend">
-	<meta name="description" content="bert huang's blog">
-	<link rel="icon" href="/assets/favicon.ico"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
-	<link rel="stylesheet" href="/blog/style.css" />
-	<style>
-		.markdown-body {
-			box-sizing: border-box;
-			min-width: 200px;
-			max-width: 980px;
-			margin: 0 auto;
-			padding: 45px;
-		}
-	
-		@media (max-width: 767px) {
-			.markdown-body {
-				padding: 15px;
-			}
-		}
-	</style>
-</head>
-
-<body>
-	<div>
-		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
-		<div>
-			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:18:48</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#definition">definition</a></li><li><a href="#motivation">motivation</a></li><li><a href="#reuse code with state">reuse code with state</a></li><li><a href="#hooks examples">hooks examples</a></li><li><a href="#usestate">usestate</a></li><li><a href="#usereducer">usereducer</a></li><li><a href="#useeffect">useeffect</a></li><li><a href="#uselayouteffect">uselayouteffect</a></li><li><a href="#usecontext">usecontext</a></li><li><a href="#useref">useref</a></li><li><a href="#usememo">usememo</a></li><li><a href="#usecallback">usecallback</a></li><li><a href="#reference">reference</a></li></ul></div></div>
-			<div>
-			<h1 id='hooks'>
-				Hooks
-			</h1>
-		
-			<h2 id='definition'>
-				Definition
-			</h2>
-		<ul>
-<li>Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.</li>
-</ul>
-<p>And now it has 10 official Hooks, including:</p>
-<blockquote>
-<p>Basic Hooks</p>
-</blockquote>
-<ul>
-<li>useState</li>
-<li>useEffect</li>
-<li>useContext</li>
-</ul>
-<blockquote>
-<p>Additional Hooks</p>
-</blockquote>
-<ul>
-<li>useReducer</li>
-<li>useCallback</li>
-<li>useMemo</li>
-<li>useRef</li>
-<li>useImperativeHandle</li>
-<li>useLayoutEffect</li>
-<li>useDebugValue</li>
-</ul>
-<p>Basic hooks is more important and frequently-used.</p>
-
-			<h2 id='motivation'>
-				Motivation
-			</h2>
-		<p>Before using Hooks, the first thing I want to figure out is that which kind of pain spots Hooks can solve?</p>
-
-			<h3 id='reuse code with state'>
-				Reuse code with state
-			</h3>
-		<p>If there are a range of reusable behavior to a component, I may use HOC with render props. Such as below:</p>
-<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HOC</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>{
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"><style>.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}@media (max-width:767px){.markdown-body{padding:15px}}</style></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 12:52:31</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#definition">definition</a></li><li><a href="#motivation">motivation</a></li><li><a href="#reuse%20code%20with%20state">reuse code with state</a></li><li><a href="#hooks%20examples">hooks examples</a></li><li><a href="#usestate">usestate</a></li><li><a href="#usereducer">usereducer</a></li><li><a href="#useeffect">useeffect</a></li><li><a href="#uselayouteffect">uselayouteffect</a></li><li><a href="#usecontext">usecontext</a></li><li><a href="#useref">useref</a></li><li><a href="#usememo">usememo</a></li><li><a href="#usecallback">usecallback</a></li><li><a href="#reference">reference</a></li></ul></div></div><div><h1 id="hooks">Hooks</h1><h2 id="definition">Definition</h2><ul><li>Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.</li></ul><p>And now it has 10 official Hooks, including:</p><blockquote><p>Basic Hooks</p></blockquote><ul><li>useState</li><li>useEffect</li><li>useContext</li></ul><blockquote><p>Additional Hooks</p></blockquote><ul><li>useReducer</li><li>useCallback</li><li>useMemo</li><li>useRef</li><li>useImperativeHandle</li><li>useLayoutEffect</li><li>useDebugValue</li></ul><p>Basic hooks is more important and frequently-used.</p><h2 id="motivation">Motivation</h2><p>Before using Hooks, the first thing I want to figure out is that which kind of pain spots Hooks can solve?</p><h3 id="reuse%20code%20with%20state">Reuse code with state</h3><p>If there are a range of reusable behavior to a component, I may use HOC with render props. Such as below:</p><pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HOC</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>{
  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">props</span>)</span> {
     <span class="hljs-built_in">super</span>(props);
     <span class="hljs-built_in">this</span>.state = {
@@ -97,13 +20,7 @@
     )
   }
 }
-</code></pre>
-<p>Obviously, HOC will change the components structure, and lead to &quot;wrapper hell&quot;. It means components surrounded by layers of providers, consumers, higher-order components, render props, and other abstractions, which can make filter them out in DevTools
-difficult.</p>
-<img src="https://i.redd.it/pdvkpgjq6vo11.jpg" width="600">
-
-<p>But if we can use React Hooks, it makes more simple:</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> sharingValue = <span class="hljs-function">() =&gt;</span> {
+</code></pre><p>Obviously, HOC will change the components structure, and lead to &quot;wrapper hell&quot;. It means components surrounded by layers of providers, consumers, higher-order components, render props, and other abstractions, which can make filter them out in DevTools difficult.</p><img src="https://i.redd.it/pdvkpgjq6vo11.jpg" width="600"><p>But if we can use React Hooks, it makes more simple:</p><pre><code class="language-js"><span class="hljs-keyword">const</span> sharingValue = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> [sharingValue, changeSharingValue] = useState(initialSharingValue);
   <span class="hljs-keyword">return</span> sharingValue;
 };
@@ -117,21 +34,7 @@ difficult.</p>
   <span class="hljs-keyword">const</span> sharingValue = sharingValue();
   <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{sharingValue}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
 }
-</code></pre>
-<p>Via Hooks, it is more easy to share common functions without impacting components structure.</p>
-
-			<h2 id='hooks examples'>
-				Hooks Examples
-			</h2>
-		
-			<h3 id='usestate'>
-				useState
-			</h3>
-		<ul>
-<li>Returns a state value, and a function to update it. <code>const [state, setState] = useState(initialState);</code></li>
-</ul>
-<p>Base on <code>useState</code> to update a component:</p>
-<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Example</span>(<span class="hljs-params"></span>) </span>{
+</code></pre><p>Via Hooks, it is more easy to share common functions without impacting components structure.</p><h2 id="hooks%20examples">Hooks Examples</h2><h3 id="usestate">useState</h3><ul><li>Returns a state value, and a function to update it. <code>const [state, setState] = useState(initialState);</code></li></ul><p>Base on <code>useState</code> to update a component:</p><pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Example</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
 
   <span class="hljs-keyword">return</span> (
@@ -141,23 +44,11 @@ difficult.</p>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   );
 }
-</code></pre>
-<p>Except specific value, <code>useState</code> can accept a function which will be executed only on the initial render if the initial state
-is the result of an expensive computation:</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> [state, setState] = useState(<span class="hljs-function">() =&gt;</span> {
+</code></pre><p>Except specific value, <code>useState</code> can accept a function which will be executed only on the initial render if the initial state is the result of an expensive computation:</p><pre><code class="language-js"><span class="hljs-keyword">const</span> [state, setState] = useState(<span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> initialState = someExpensiveComputation(props);
   <span class="hljs-keyword">return</span> initialState;
 });
-</code></pre>
-
-			<h3 id='usereducer'>
-				useReducer
-			</h3>
-		<ul>
-<li>An alternative to useState. <code>const [state, dispatch] = useReducer(reducer, initialArg, init);</code></li>
-</ul>
-<p>Like redux, useReducer can rreturn a state and function to dispatch event, as below:</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> handleReducer = <span class="hljs-function">() =&gt;</span> {
+</code></pre><h3 id="usereducer">useReducer</h3><ul><li>An alternative to useState. <code>const [state, dispatch] = useReducer(reducer, initialArg, init);</code></li></ul><p>Like redux, useReducer can rreturn a state and function to dispatch event, as below:</p><pre><code class="language-js"><span class="hljs-keyword">const</span> handleReducer = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> initialState = { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> };
   <span class="hljs-keyword">const</span> [state, dispatch] = useReducer(<span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> {
     <span class="hljs-keyword">switch</span> (action.type) {
@@ -185,54 +76,19 @@ is the result of an expensive computation:</p>
     <span class="hljs-tag">&lt;/&gt;</span></span>
   );
 }
-</code></pre>
-
-			<h2 id='useeffect'>
-				useEffect
-			</h2>
-		<ul>
-<li>Accepts a function that contains imperative, possibly effectful code. <code>useEffect(didUpdate);</code></li>
-</ul>
-<p>Mutations, subscriptions, timers, logging, and other side effects are not allowed inside the main body of a function component (referred to as React’s render phase). Doing so will lead to confusing bugs and inconsistencies in the UI.</p>
-<p>Instead, use useEffect. The function passed to useEffect will run after the render is committed to the screen. Think of effects as an escape hatch from React’s purely functional world into the imperative world.</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> changeDocumentTitle = useEffect(<span class="hljs-function">() =&gt;</span> {
+</code></pre><h2 id="useeffect">useEffect</h2><ul><li>Accepts a function that contains imperative, possibly effectful code. <code>useEffect(didUpdate);</code></li></ul><p>Mutations, subscriptions, timers, logging, and other side effects are not allowed inside the main body of a function component (referred to as React’s render phase). Doing so will lead to confusing bugs and inconsistencies in the UI.</p><p>Instead, use useEffect. The function passed to useEffect will run after the render is committed to the screen. Think of effects as an escape hatch from React’s purely functional world into the imperative world.</p><pre><code class="language-js"><span class="hljs-keyword">const</span> changeDocumentTitle = useEffect(<span class="hljs-function">() =&gt;</span> {
   <span class="hljs-built_in">document</span>.title = <span class="hljs-string">&quot;Changed in useEffect&quot;</span>;
 });
-</code></pre>
-<p>By default, effects run after every completed render like <code>componentDidMount</code>, <code>componentDidUpdate</code> and <code>componentWillUnmount</code>. But we can choose to fire them only when certain values have changed by second parameter: </p>
-<ul>
-<li>Now the subscription will only be recreated when props.source changes.</li>
-</ul>
-<p>which can be used to fired a callback only when first rendering to slove infinite render in MobX.</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> changeDocumentTitle = useEffect(<span class="hljs-function">() =&gt;</span> {
+</code></pre><p>By default, effects run after every completed render like <code>componentDidMount</code>, <code>componentDidUpdate</code> and <code>componentWillUnmount</code>. But we can choose to fire them only when certain values have changed by second parameter:</p><ul><li>Now the subscription will only be recreated when props.source changes.</li></ul><p>which can be used to fired a callback only when first rendering to slove infinite render in MobX.</p><pre><code class="language-js"><span class="hljs-keyword">const</span> changeDocumentTitle = useEffect(<span class="hljs-function">() =&gt;</span> {
   <span class="hljs-built_in">document</span>.title = <span class="hljs-string">&quot;Changed in useEffect&quot;</span>;
 }, [someValue]);
-</code></pre>
-<p>In addition, the function returned in useEffect callback will be trigger after rendering, as clean-up function.</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> changeDocumentTitle = useEffect(<span class="hljs-function">() =&gt;</span> {
+</code></pre><p>In addition, the function returned in useEffect callback will be trigger after rendering, as clean-up function.</p><pre><code class="language-js"><span class="hljs-keyword">const</span> changeDocumentTitle = useEffect(<span class="hljs-function">() =&gt;</span> {
   <span class="hljs-built_in">document</span>.title = <span class="hljs-string">&quot;Changed in useEffect&quot;</span>;
   <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;useEffect rerendered&quot;</span>);
   };
 }, [someValue]);
-</code></pre>
-
-			<h3 id='uselayouteffect'>
-				useLayoutEffect
-			</h3>
-		<p>The signature is identical to useEffect, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside useLayoutEffect will be flushed synchronously, before the browser has a chance to paint.</p>
-<p>The point is that useLayoutEffect&#39;s time point is before useEffect during DOM render life cycle.</p>
-
-			<h2 id='usecontext'>
-				UseContext
-			</h2>
-		<ul>
-<li>Accepts a context object (the value returned from React.createContext) and returns the current context value for that context. <code>const value = useContext(MyContext);</code></li>
-</ul>
-<p>The current context value is determined by the value prop of the nearest &lt;MyContext.Provider&gt; above the calling component in the tree.</p>
-<p>When the nearest &lt;MyContext.Provider&gt; above the component updates, this Hook will trigger a rerender with the latest context value passed to that MyContext provider.</p>
-<p>There is a example for passing values cross components:</p>
-<pre><code class="language-js"><span class="hljs-comment">// parent.js</span>
+</code></pre><h3 id="uselayouteffect">useLayoutEffect</h3><p>The signature is identical to useEffect, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside useLayoutEffect will be flushed synchronously, before the browser has a chance to paint.</p><p>The point is that useLayoutEffect&#39;s time point is before useEffect during DOM render life cycle.</p><h2 id="usecontext">UseContext</h2><ul><li>Accepts a context object (the value returned from React.createContext) and returns the current context value for that context. <code>const value = useContext(MyContext);</code></li></ul><p>The current context value is determined by the value prop of the nearest &lt;MyContext.Provider&gt; above the calling component in the tree.</p><p>When the nearest &lt;MyContext.Provider&gt; above the component updates, this Hook will trigger a rerender with the latest context value passed to that MyContext provider.</p><p>There is a example for passing values cross components:</p><pre><code class="language-js"><span class="hljs-comment">// parent.js</span>
 <span class="hljs-keyword">import</span> { Child } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./child&#x27;</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> MyContext = React.createContext();
@@ -256,16 +112,7 @@ is the result of an expensive computation:</p>
     <span class="hljs-tag">&lt;/&gt;</span></span>
   )
 }
-</code></pre>
-
-			<h2 id='useref'>
-				useRef
-			</h2>
-		<ul>
-<li>useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component. <code>const refContainer = useRef(initialValue);</code></li>
-</ul>
-<p>Essentially, useRef is like a “box” that can hold a mutable value in its .current property, like bolow:</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> handleFoucsOnClick = <span class="hljs-function">() =&gt;</span> {
+</code></pre><h2 id="useref">useRef</h2><ul><li>useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component. <code>const refContainer = useRef(initialValue);</code></li></ul><p>Essentially, useRef is like a “box” that can hold a mutable value in its .current property, like bolow:</p><pre><code class="language-js"><span class="hljs-keyword">const</span> handleFoucsOnClick = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> ele = useRef(<span class="hljs-literal">null</span>);
   <span class="hljs-keyword">return</span> {
     ele,
@@ -279,95 +126,4 @@ is the result of an expensive computation:</p>
   <span class="hljs-keyword">const</span> { ele, handleClick } = handleFoucsOnClick();
   <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{ele}</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
 }
-</code></pre>
-
-			<h2 id='usememo'>
-				useMemo
-			</h2>
-		<ul>
-<li>Returns a memoized value. <code>const memoizedValue = useMemo(() =&gt; computeExpensiveValue(a, b), [a, b]);</code></li>
-</ul>
-<p>Pass a “create” function and an array of dependencies. useMemo will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.\</p>
-
-			<h3 id='usecallback'>
-				useCallback
-			</h3>
-		<ul>
-<li>Returns a memoized callback. <code>const memoizedCallback = useCallback(() =&gt; {doSomething(a, b);},[a, b],);</code></li>
-</ul>
-<p>Like useMemo, when the dependencies has changed, the callback will be triggered.</p>
-<p>This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. shouldComponentUpdate).</p>
-<p>If useMemo and useCallback&#39;s second argument is an empty array, the value or function will be <strong>memoized once and always returned</strong>.</p>
-<p>If the second argument is omitted, the value will never be memoized, and the useCallback and the useMemo doesn&#39;t do anything.</p>
-
-			<h2 id='reference'>
-				Reference
-			</h2>
-		<p>There is a <a href="https://github.com/facebook/react/blob/5f06576f51ece88d846d01abd2ddd575827c6127/packages/react-reconciler/src/ReactFiberHooks.js">source code</a> of React Hooks for reference.</p>
-</div>
-		</div>
-	</article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div>
-	</div>
-</body>
-
-<script>
-	const checkFacebookAvailable = () => new Promise((resolve, reject) => {
-		const i = new Image();
-		i.src = 'https://www.facebook.com/images/facebook.png';
-		i.onerror = e => reject(e);
-		i.onload = () => resolve();
-		i.style.display = 'none';
-		body.append(i);
-		setTimeout(() => reject(), 5000);
-	});
-	const body = document.getElementsByClassName('markdown-body')[0];
-	const initComments = () => {
-		if (![
-			'/',
-			'/blog/index.html', 
-			'/blog/code.html', 
-			'/blog/leetcode.html', 
-			'/blog/essay.html',
-			'/blog/about.html'
-		].includes(window.location.pathname)) {
-			checkFacebookAvailable().then(() => {
-				const root = document.createElement('div');
-				root.id = 'fb-root';
-				root.className = 'post-comments';
-				const comments = document.createElement('div');
-				comments.className = 'fb-comments';
-				comments.setAttribute('data-href', window.location.href);
-				comments.setAttribute('data-numposts', '5');
-				comments.setAttribute('data-width', '100%');
-				root.appendChild(comments);
-				body.appendChild(root);
-			}).catch(() => {
-				const reminder = document.createElement('div');
-				reminder.className = 'reminder';
-				reminder.innerText = 'Facebook Comments Service is unavailable';
-				body.appendChild(reminder);
-			});
-		}
-	};
-	const changeComments = () => {
-		const title = body.getElementsByTagName('h1')[0];
-		if (title) {
-			document.title = title.innerText;
-		}
-	};
-	if (body) {
-		changeComments();
-		initComments();
-	}
-</script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-  
-	gtag('config', 'G-0SEZ9KRGY7');
-  </script>
-</html>
+</code></pre><h2 id="usememo">useMemo</h2><ul><li>Returns a memoized value. <code>const memoizedValue = useMemo(() =&gt; computeExpensiveValue(a, b), [a, b]);</code></li></ul><p>Pass a “create” function and an array of dependencies. useMemo will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.\</p><h3 id="usecallback">useCallback</h3><ul><li>Returns a memoized callback. <code>const memoizedCallback = useCallback(() =&gt; {doSomething(a, b);},[a, b],);</code></li></ul><p>Like useMemo, when the dependencies has changed, the callback will be triggered.</p><p>This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. shouldComponentUpdate).</p><p>If useMemo and useCallback&#39;s second argument is an empty array, the value or function will be <strong>memoized once and always returned</strong>.</p><p>If the second argument is omitted, the value will never be memoized, and the useCallback and the useMemo doesn&#39;t do anything.</p><h2 id="reference">Reference</h2><p>There is a <a href="https://github.com/facebook/react/blob/5f06576f51ece88d846d01abd2ddd575827c6127/packages/react-reconciler/src/ReactFiberHooks.js">source code</a> of React Hooks for reference.</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script>const checkFacebookAvailable=()=>new Promise((e,t)=>{const o=new Image;o.src="https://www.facebook.com/images/facebook.png",o.onerror=e=>t(e),o.onload=()=>e(),o.style.display="none",body.append(o),setTimeout(()=>t(),5e3)}),body=document.getElementsByClassName("markdown-body")[0],initComments=()=>{["/","/blog/index.html","/blog/code.html","/blog/leetcode.html","/blog/essay.html","/blog/about.html"].includes(window.location.pathname)||checkFacebookAvailable().then(()=>{const e=document.createElement("div");e.id="fb-root",e.className="post-comments";const t=document.createElement("div");t.className="fb-comments",t.setAttribute("data-href",window.location.href),t.setAttribute("data-numposts","5"),t.setAttribute("data-width","100%"),e.appendChild(t),body.appendChild(e)}).catch(()=>{const e=document.createElement("div");e.className="reminder",e.innerText="Facebook Comments Service is unavailable",body.appendChild(e)})},changeComments=()=>{var e=body.getElementsByTagName("h1")[0];e&&(document.title=e.innerText)};body&&(changeComments(),initComments())</script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0SEZ9KRGY7")</script></html>

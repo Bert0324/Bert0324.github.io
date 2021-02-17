@@ -21,3 +21,9 @@ Welcome to visit my [blog](https://bert0324.github.io).
 - Static Resource Service: [Github Repo](https://github.com/Bert0324/Bert0324.github.io)
 - Comments Service: [Facebook Comments](https://developers.facebook.com/docs/plugins/comments)
 - Views Count: [不蒜子](https://busuanzi.ibruce.info/)
+
+## TODO
+
+1. toc
+3. background
+4. commit time

@@ -12,7 +12,7 @@ export const TOC = ({ data, time }: { data: IToc[], time: Date }) => {
 			<div id='toc-body'>
 				<p><strong>Table of Content</strong></p>
 				<ul>
-					{data.filter(({ level }) => level > 1).map(item => <li key={item.text}><a href={`#${item.text}`}>{item.text}</a></li>)}
+					{data.filter(({ level }) => level > 1).map(item => <li key={item.text}><a href={`#${escape(item.text)}`}>{item.text}</a></li>)}
 				</ul>
 			</div>
 		</div>

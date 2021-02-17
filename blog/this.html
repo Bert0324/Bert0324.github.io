@@ -1,48 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Bert's Blog</title>
-	<meta name="keywords" content="blog,javascript,typescript,code,frontend">
-	<meta name="description" content="bert huang's blog">
-	<link rel="icon" href="/assets/favicon.ico"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
-	<link rel="stylesheet" href="/blog/style.css" />
-	<style>
-		.markdown-body {
-			box-sizing: border-box;
-			min-width: 200px;
-			max-width: 980px;
-			margin: 0 auto;
-			padding: 45px;
-		}
-	
-		@media (max-width: 767px) {
-			.markdown-body {
-				padding: 15px;
-			}
-		}
-	</style>
-</head>
-
-<body>
-	<div>
-		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
-		<div>
-			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:18:48</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#runtime binding">runtime binding</a></li><li><a href="#apply, call and bind">apply, call and bind</a></li><li><a href="#new a class in js">new a class in js</a></li><li><a href="#precedence of this keyword bindings">precedence of this keyword bindings</a></li><li><a href="#reference">reference</a></li></ul></div></div>
-			<div>
-			<h1 id='this'>
-				<code>this</code>
-			</h1>
-		<p>In most cases, the value of <code>this</code> is determined by how a function is called (runtime binding). It can&#39;t be set by assignment during execution, and it may be different each time the function is called.</p>
-
-			<h2 id='runtime binding'>
-				Runtime binding
-			</h2>
-		<p>There is a demo:</p>
-<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"><style>.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}@media (max-width:767px){.markdown-body{padding:15px}}</style></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 12:52:31</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#runtime%20binding">runtime binding</a></li><li><a href="#apply%2C%20call%20and%20bind">apply, call and bind</a></li><li><a href="#new%20a%20class%20in%20js">new a class in js</a></li><li><a href="#precedence%20of%20this%20keyword%20bindings">precedence of this keyword bindings</a></li><li><a href="#reference">reference</a></li></ul></div></div><div><h1 id="this"><code>this</code></h1><p>In most cases, the value of <code>this</code> is determined by how a function is called (runtime binding). It can&#39;t be set by assignment during execution, and it may be different each time the function is called.</p><h2 id="runtime%20binding">Runtime binding</h2><p>There is a demo:</p><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);
 }
 
@@ -53,37 +9,14 @@
 bike();           <span class="hljs-comment">// &quot;Ninja&quot;</span>
 obj1.bike();      <span class="hljs-comment">// &quot;Pulsar&quot;</span>
 obj2.bike();      <span class="hljs-comment">// &quot;Gixxer&quot;</span>
-</code></pre>
-
-			<h2 id='apply, call and bind'>
-				<code>apply</code>, <code>call</code> and <code>bind</code>
-			</h2>
-		<p>These three functions are able to change <code>this</code> value in a function when it calls them.</p>
-<ol>
-<li><code>bind</code> will change <code>this</code> but not run the function. A function can only be bind once.</li>
-<li><code>call</code> will change <code>this</code> and run it.</li>
-<li><code>apply</code> will change <code>this</code>, and params will be passed as an array.</li>
-</ol>
-<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">a, b</span>) </span>{
+</code></pre><h2 id="apply%2C%20call%20and%20bind"><code>apply</code>, <code>call</code> and <code>bind</code></h2><p>These three functions are able to change <code>this</code> value in a function when it calls them.</p><ol><li><code>bind</code> will change <code>this</code> but not run the function. A function can only be bind once.</li><li><code>call</code> will change <code>this</code> and run it.</li><li><code>apply</code> will change <code>this</code>, and params will be passed as an array.</li></ol><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">a, b</span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>, a, b);
 }
 
 <span class="hljs-keyword">const</span> bindFn = fn.bind({});
 fn.call({}, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
 fn.apply({}, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]);
-</code></pre>
-
-			<h2 id='new a class in js'>
-				<code>new</code> a <code>Class</code> in JS
-			</h2>
-		<p>The new keyword in front of any function turns the function call into constructor call and below things occurred when new keyword put in front of function:</p>
-<ol>
-<li>A brand new empty object gets created</li>
-<li>new empty object gets linked to prototype property of that function</li>
-<li>same new empty object gets bound as this keyword for execution context of that function call</li>
-<li>if that function does not return anything then it implicit returns this object.</li>
-</ol>
-<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
+</code></pre><h2 id="new%20a%20class%20in%20js"><code>new</code> a <code>Class</code> in JS</h2><p>The new keyword in front of any function turns the function call into constructor call and below things occurred when new keyword put in front of function:</p><ol><li>A brand new empty object gets created</li><li>new empty object gets linked to prototype property of that function</li><li>same new empty object gets bound as this keyword for execution context of that function call</li><li>if that function does not return anything then it implicit returns this object.</li></ol><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bike</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">var</span> name = <span class="hljs-string">&quot;Ninja&quot;</span>;
   <span class="hljs-built_in">this</span>.maker = <span class="hljs-string">&quot;Kawasaki&quot;</span>;
   <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name + <span class="hljs-string">&quot; &quot;</span> + maker);  <span class="hljs-comment">// undefined Bajaj</span>
@@ -94,89 +27,4 @@ fn.apply({}, [<span class="hljs-number">1</span>, <span class="hljs-number">2</s
 
 obj = <span class="hljs-keyword">new</span> bike();
 <span class="hljs-built_in">console</span>.log(obj.maker);                  <span class="hljs-comment">// &quot;Kawasaki&quot;</span>
-</code></pre>
-
-			<h2 id='precedence of this keyword bindings'>
-				Precedence of <code>this</code> keyword bindings
-			</h2>
-		<ol>
-<li>First it checks whether the function is called with new keyword.</li>
-<li>Second it checks whether the function is called with call() or apply() method means explicit binding.</li>
-<li>Third it checks if the function called via context object (implicit binding).</li>
-<li>Default global object (undefined in case of strict mode).</li>
-</ol>
-
-			<h2 id='reference'>
-				Reference
-			</h2>
-		<ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this</a></li>
-<li><a href="https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c">https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c</a></li>
-</ul>
-</div>
-		</div>
-	</article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div>
-	</div>
-</body>
-
-<script>
-	const checkFacebookAvailable = () => new Promise((resolve, reject) => {
-		const i = new Image();
-		i.src = 'https://www.facebook.com/images/facebook.png';
-		i.onerror = e => reject(e);
-		i.onload = () => resolve();
-		i.style.display = 'none';
-		body.append(i);
-		setTimeout(() => reject(), 5000);
-	});
-	const body = document.getElementsByClassName('markdown-body')[0];
-	const initComments = () => {
-		if (![
-			'/',
-			'/blog/index.html', 
-			'/blog/code.html', 
-			'/blog/leetcode.html', 
-			'/blog/essay.html',
-			'/blog/about.html'
-		].includes(window.location.pathname)) {
-			checkFacebookAvailable().then(() => {
-				const root = document.createElement('div');
-				root.id = 'fb-root';
-				root.className = 'post-comments';
-				const comments = document.createElement('div');
-				comments.className = 'fb-comments';
-				comments.setAttribute('data-href', window.location.href);
-				comments.setAttribute('data-numposts', '5');
-				comments.setAttribute('data-width', '100%');
-				root.appendChild(comments);
-				body.appendChild(root);
-			}).catch(() => {
-				const reminder = document.createElement('div');
-				reminder.className = 'reminder';
-				reminder.innerText = 'Facebook Comments Service is unavailable';
-				body.appendChild(reminder);
-			});
-		}
-	};
-	const changeComments = () => {
-		const title = body.getElementsByTagName('h1')[0];
-		if (title) {
-			document.title = title.innerText;
-		}
-	};
-	if (body) {
-		changeComments();
-		initComments();
-	}
-</script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-  
-	gtag('config', 'G-0SEZ9KRGY7');
-  </script>
-</html>
+</code></pre><h2 id="precedence%20of%20this%20keyword%20bindings">Precedence of <code>this</code> keyword bindings</h2><ol><li>First it checks whether the function is called with new keyword.</li><li>Second it checks whether the function is called with call() or apply() method means explicit binding.</li><li>Third it checks if the function called via context object (implicit binding).</li><li>Default global object (undefined in case of strict mode).</li></ol><h2 id="reference">Reference</h2><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this</a></li><li><a href="https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c">https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c</a></li></ul></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script>const checkFacebookAvailable=()=>new Promise((e,t)=>{const o=new Image;o.src="https://www.facebook.com/images/facebook.png",o.onerror=e=>t(e),o.onload=()=>e(),o.style.display="none",body.append(o),setTimeout(()=>t(),5e3)}),body=document.getElementsByClassName("markdown-body")[0],initComments=()=>{["/","/blog/index.html","/blog/code.html","/blog/leetcode.html","/blog/essay.html","/blog/about.html"].includes(window.location.pathname)||checkFacebookAvailable().then(()=>{const e=document.createElement("div");e.id="fb-root",e.className="post-comments";const t=document.createElement("div");t.className="fb-comments",t.setAttribute("data-href",window.location.href),t.setAttribute("data-numposts","5"),t.setAttribute("data-width","100%"),e.appendChild(t),body.appendChild(e)}).catch(()=>{const e=document.createElement("div");e.className="reminder",e.innerText="Facebook Comments Service is unavailable",body.appendChild(e)})},changeComments=()=>{var e=body.getElementsByTagName("h1")[0];e&&(document.title=e.innerText)};body&&(changeComments(),initComments())</script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0SEZ9KRGY7")</script></html>

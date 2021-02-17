@@ -2,6 +2,7 @@ import React from 'react';
 import { setOptions, Renderer } from 'marked';
 import { readFileSync, existsSync } from 'fs';
 import { highlight, getLanguage } from 'highlight.js';
+import { minify } from 'html-minifier';
 import { markdownUrl, projectRootPath, remoteResourceUrl } from './config';
 import { IFileContent } from './fetchFile';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -13,7 +14,11 @@ export interface IToc {
 	level: number;
 }
 
-export const minifyHTML = (html: string) => html;
+export const minifyHTML = (html: string) => minify(html, {
+	minifyCSS: true,
+	minifyJS: true,
+	collapseWhitespace: true
+});
 
 const getLastCommitTime = async (filePath: string) => {
 	return getFileHistory(filePath);
@@ -26,7 +31,7 @@ const markToHTML = async (markdown: string, filePath?: string) => {
 		const id = this.options.headerPrefix + raw.toLowerCase().replace(/[^\w\\u4e00-\\u9fa5]]+/g, '-');
 		toc.push({ text: id, level });
 		return `
-			<h${level} id='${id}'>
+			<h${level} id='${escape(id)}'>
 				${text}
 			</h${level}>
 		`;
@@ -49,13 +54,11 @@ const markToHTML = async (markdown: string, filePath?: string) => {
 
 export const processMarkdown = async (markdown: string, filePath?: string) => {	
 	return `<article class="markdown-body">${
-		minifyHTML(
-			await markToHTML(
-				markdown
-				.replace(new RegExp(`(${markdownUrl})(.*)\/([^\.]*)\.md`, 'g'), '/blog/$3.html')
-				.replace(/src\=["|'](.*)[\/]?assets\/([^\"^']*)["|']/g, `src='${remoteResourceUrl}/assets/$2'`),
-				filePath
-			)
+		await markToHTML(
+			markdown
+			.replace(new RegExp(`(${markdownUrl})(.*)\/([^\.]*)\.md`, 'g'), '/blog/$3.html')
+			.replace(/src\=["|'](.*)[\/]?assets\/([^\"^']*)["|']/g, `src='${remoteResourceUrl}/assets/$2'`),
+			filePath
 		)
 	}</article>`;
 };

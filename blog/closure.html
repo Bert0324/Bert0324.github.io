@@ -1,48 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Bert's Blog</title>
-	<meta name="keywords" content="blog,javascript,typescript,code,frontend">
-	<meta name="description" content="bert huang's blog">
-	<link rel="icon" href="/assets/favicon.ico"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
-	<link rel="stylesheet" href="/blog/style.css" />
-	<style>
-		.markdown-body {
-			box-sizing: border-box;
-			min-width: 200px;
-			max-width: 980px;
-			margin: 0 auto;
-			padding: 45px;
-		}
-	
-		@media (max-width: 767px) {
-			.markdown-body {
-				padding: 15px;
-			}
-		}
-	</style>
-</head>
-
-<body>
-	<div>
-		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
-		<div>
-			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:18:48</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#js action scope">js action scope</a></li><li><a href="#temporal dead zone">temporal dead zone</a></li><li><a href="#access data in closure">access data in closure</a></li></ul></div></div>
-			<div>
-			<h1 id='closure'>
-				Closure
-			</h1>
-		
-			<h2 id='js action scope'>
-				JS action scope
-			</h2>
-		<p>Compared to other language, in JS, lower action scope can directly visit higher action scope&#39;s variables.
-For example:</p>
-<pre><code class="language-js"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>;
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"><style>.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}@media (max-width:767px){.markdown-body{padding:15px}}</style></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 12:52:31</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#js%20action%20scope">js action scope</a></li><li><a href="#temporal%20dead%20zone">temporal dead zone</a></li><li><a href="#access%20data%20in%20closure">access data in closure</a></li></ul></div></div><div><h1 id="closure">Closure</h1><h2 id="js%20action%20scope">JS action scope</h2><p>Compared to other language, in JS, lower action scope can directly visit higher action scope&#39;s variables. For example:</p><pre><code class="language-js"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>;
 (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{
   <span class="hljs-built_in">console</span>.log(a);   <span class="hljs-comment">//1</span>
 })();
@@ -54,26 +10,12 @@ For example:</p>
 })();
 
 <span class="hljs-built_in">console</span>.log(a);     <span class="hljs-comment">//1</span>
-</code></pre>
-
-			<h3 id='temporal dead zone'>
-				Temporal dead zone
-			</h3>
-		<p>In addition, in ES6, for <code>let</code>, there is a new feature named temporal dead zone, which means we can&#39;t use variables before we have declared it. In last example, we can change to:</p>
-<pre><code class="language-js"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>;
+</code></pre><h3 id="temporal%20dead%20zone">Temporal dead zone</h3><p>In addition, in ES6, for <code>let</code>, there is a new feature named temporal dead zone, which means we can&#39;t use variables before we have declared it. In last example, we can change to:</p><pre><code class="language-js"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>;
 (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{
   <span class="hljs-built_in">console</span>.log(a);   <span class="hljs-comment">//throw Error: a is not defined</span>
   <span class="hljs-keyword">let</span> a = <span class="hljs-number">2</span>;
 })();
-</code></pre>
-
-			<h2 id='access data in closure'>
-				Access Data in Closure
-			</h2>
-		<p>As we can see, in last example, lower action scope is able to visit higher action scope&#39;s variables, but how can higher action scope visit lower action scope?</p>
-<p>In JS, once function finished and GC found its variables were not refer in other places， reference count equaled 0, the variable&#39;s memory address would be recycled, so user cannot get this variables&#39; value any more.</p>
-<p>Therefore, closure offers a way to keep temporary variables, an example as below:</p>
-<pre><code class="language-js"><span class="hljs-keyword">let</span> closure = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{
+</code></pre><h2 id="access%20data%20in%20closure">Access Data in Closure</h2><p>As we can see, in last example, lower action scope is able to visit higher action scope&#39;s variables, but how can higher action scope visit lower action scope?</p><p>In JS, once function finished and GC found its variables were not refer in other places， reference count equaled 0, the variable&#39;s memory address would be recycled, so user cannot get this variables&#39; value any more.</p><p>Therefore, closure offers a way to keep temporary variables, an example as below:</p><pre><code class="language-js"><span class="hljs-keyword">let</span> closure = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>;  
     <span class="hljs-keyword">let</span> keep = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
         <span class="hljs-built_in">console</span>.log(a);
@@ -82,72 +24,4 @@ For example:</p>
     <span class="hljs-keyword">return</span> keep;
 })();
 closure();  <span class="hljs-comment">//2</span>
-</code></pre>
-<p>Now we can visit the variable&#39;s memory address in the higher action scope.</p>
-</div>
-		</div>
-	</article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div>
-	</div>
-</body>
-
-<script>
-	const checkFacebookAvailable = () => new Promise((resolve, reject) => {
-		const i = new Image();
-		i.src = 'https://www.facebook.com/images/facebook.png';
-		i.onerror = e => reject(e);
-		i.onload = () => resolve();
-		i.style.display = 'none';
-		body.append(i);
-		setTimeout(() => reject(), 5000);
-	});
-	const body = document.getElementsByClassName('markdown-body')[0];
-	const initComments = () => {
-		if (![
-			'/',
-			'/blog/index.html', 
-			'/blog/code.html', 
-			'/blog/leetcode.html', 
-			'/blog/essay.html',
-			'/blog/about.html'
-		].includes(window.location.pathname)) {
-			checkFacebookAvailable().then(() => {
-				const root = document.createElement('div');
-				root.id = 'fb-root';
-				root.className = 'post-comments';
-				const comments = document.createElement('div');
-				comments.className = 'fb-comments';
-				comments.setAttribute('data-href', window.location.href);
-				comments.setAttribute('data-numposts', '5');
-				comments.setAttribute('data-width', '100%');
-				root.appendChild(comments);
-				body.appendChild(root);
-			}).catch(() => {
-				const reminder = document.createElement('div');
-				reminder.className = 'reminder';
-				reminder.innerText = 'Facebook Comments Service is unavailable';
-				body.appendChild(reminder);
-			});
-		}
-	};
-	const changeComments = () => {
-		const title = body.getElementsByTagName('h1')[0];
-		if (title) {
-			document.title = title.innerText;
-		}
-	};
-	if (body) {
-		changeComments();
-		initComments();
-	}
-</script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-  
-	gtag('config', 'G-0SEZ9KRGY7');
-  </script>
-</html>
+</code></pre><p>Now we can visit the variable&#39;s memory address in the higher action scope.</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script>const checkFacebookAvailable=()=>new Promise((e,t)=>{const o=new Image;o.src="https://www.facebook.com/images/facebook.png",o.onerror=e=>t(e),o.onload=()=>e(),o.style.display="none",body.append(o),setTimeout(()=>t(),5e3)}),body=document.getElementsByClassName("markdown-body")[0],initComments=()=>{["/","/blog/index.html","/blog/code.html","/blog/leetcode.html","/blog/essay.html","/blog/about.html"].includes(window.location.pathname)||checkFacebookAvailable().then(()=>{const e=document.createElement("div");e.id="fb-root",e.className="post-comments";const t=document.createElement("div");t.className="fb-comments",t.setAttribute("data-href",window.location.href),t.setAttribute("data-numposts","5"),t.setAttribute("data-width","100%"),e.appendChild(t),body.appendChild(e)}).catch(()=>{const e=document.createElement("div");e.className="reminder",e.innerText="Facebook Comments Service is unavailable",body.appendChild(e)})},changeComments=()=>{var e=body.getElementsByTagName("h1")[0];e&&(document.title=e.innerText)};body&&(changeComments(),initComments())</script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0SEZ9KRGY7")</script></html>

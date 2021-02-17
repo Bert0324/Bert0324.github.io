@@ -1,78 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Bert's Blog</title>
-	<meta name="keywords" content="blog,javascript,typescript,code,frontend">
-	<meta name="description" content="bert huang's blog">
-	<link rel="icon" href="/assets/favicon.ico"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous" />	
-	<link rel="stylesheet" href="/blog/style.css" />
-	<style>
-		.markdown-body {
-			box-sizing: border-box;
-			min-width: 200px;
-			max-width: 980px;
-			margin: 0 auto;
-			padding: 45px;
-		}
-	
-		@media (max-width: 767px) {
-			.markdown-body {
-				padding: 15px;
-			}
-		}
-	</style>
-</head>
-
-<body>
-	<div>
-		<div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"/><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"/></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"/></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"/></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body">
-		<div>
-			<div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 00:18:48</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#what is buffer">what is buffer</a></li><li><a href="#what is stream">what is stream</a></li><li><a href="#buffer and stream in node.js">buffer and stream in node.js</a></li><li><a href="#buffer api">buffer api</a></li><li><a href="#use buffer in node.js">use buffer in node.js</a></li><li><a href="#stream">stream</a></li><li><a href="#reference">reference</a></li></ul></div></div>
-			<div>
-			<h1 id='stream and buffer'>
-				Stream and Buffer
-			</h1>
-		
-			<h2 id='what is buffer'>
-				What is Buffer
-			</h2>
-		<p>From the definition from <a href="https://en.wikipedia.org/wiki/Data_buffer">Data Buffer</a>, we can see, data buffer is a real
-physical storage medium.</p>
-<p>A majority of buffers are implemented in software, which typically use the faster RAM to store temporary data, due to the
-<strong>much faster access</strong> time compared with hard disk drives.</p>
-<p>The main purpose including:</p>
-<ol>
-<li><p>Interconnecting two digital circuits operating at different rates</p>
-</li>
-<li><p>Holding data for later use,</p>
-</li>
-<li><p>Allowing timing corrections to be made on a data stream,</p>
-</li>
-<li><p>Collecting binary data bits into groups that can then be operated on as a unit,</p>
-</li>
-<li><p>Delaying the transit time of a signal in order to allow other operations to occur.</p>
-</li>
-</ol>
-
-			<h2 id='what is stream'>
-				What is Stream
-			</h2>
-		<p>Apprarently, if we can understand the meaning of existence of Buffer, it&#39;s easier to understand Stream.</p>
-<p>a data stream is a sequence of digitally encoded coherent signals (packets of data or data packets) used to transmit or receive information that is in the process of being transmitted.</p>
-<p>If a file is too big and we cannot read it (load it to memory at one time), the data will be saved to Buffer area first, and then, via Stream, we can read the data in order.</p>
-
-			<h2 id='buffer and stream in node.js'>
-				Buffer and Stream in Node.js
-			</h2>
-		
-			<h3 id='buffer api'>
-				Buffer API
-			</h3>
-		<pre><code class="language-js"><span class="hljs-comment">// create Buffer</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"><style>.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}@media (max-width:767px){.markdown-body{padding:15px}}</style></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_pv" style="display:inline">total views: <span id="busuanzi_value_site_pv"></span></p></div></div><div class="post-content"><div class="post-container"><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2021-02-17 12:52:31</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#what%20is%20buffer">what is buffer</a></li><li><a href="#what%20is%20stream">what is stream</a></li><li><a href="#buffer%20and%20stream%20in%20node.js">buffer and stream in node.js</a></li><li><a href="#buffer%20api">buffer api</a></li><li><a href="#use%20buffer%20in%20node.js">use buffer in node.js</a></li><li><a href="#stream">stream</a></li><li><a href="#reference">reference</a></li></ul></div></div><div><h1 id="stream%20and%20buffer">Stream and Buffer</h1><h2 id="what%20is%20buffer">What is Buffer</h2><p>From the definition from <a href="https://en.wikipedia.org/wiki/Data_buffer">Data Buffer</a>, we can see, data buffer is a real physical storage medium.</p><p>A majority of buffers are implemented in software, which typically use the faster RAM to store temporary data, due to the <strong>much faster access</strong> time compared with hard disk drives.</p><p>The main purpose including:</p><ol><li><p>Interconnecting two digital circuits operating at different rates</p></li><li><p>Holding data for later use,</p></li><li><p>Allowing timing corrections to be made on a data stream,</p></li><li><p>Collecting binary data bits into groups that can then be operated on as a unit,</p></li><li><p>Delaying the transit time of a signal in order to allow other operations to occur.</p></li></ol><h2 id="what%20is%20stream">What is Stream</h2><p>Apprarently, if we can understand the meaning of existence of Buffer, it&#39;s easier to understand Stream.</p><p>a data stream is a sequence of digitally encoded coherent signals (packets of data or data packets) used to transmit or receive information that is in the process of being transmitted.</p><p>If a file is too big and we cannot read it (load it to memory at one time), the data will be saved to Buffer area first, and then, via Stream, we can read the data in order.</p><h2 id="buffer%20and%20stream%20in%20node.js">Buffer and Stream in Node.js</h2><h3 id="buffer%20api">Buffer API</h3><pre><code class="language-js"><span class="hljs-comment">// create Buffer</span>
 <span class="hljs-keyword">const</span> buf1 = Buffer.alloc(size, value); <span class="hljs-comment">// return a hexadecimal byte</span>
 <span class="hljs-comment">// create Buffer from String</span>
 <span class="hljs-keyword">const</span> buf2 = Buffer.from(<span class="hljs-string">&quot;hello&quot;</span>); <span class="hljs-comment">// &lt;Buffer 68 65 6c 6c 6f&gt;</span>
@@ -80,42 +6,19 @@ physical storage medium.</p>
 <span class="hljs-comment">// String to Buffer</span>
 buf2.toString(); <span class="hljs-comment">// directlt return the string content: &#x27;hello&#x27;</span>
 buf2.toString(<span class="hljs-string">&quot;hex&quot;</span>); <span class="hljs-comment">// return a hexadecimal string: &#x27;68656c6c6f&#x27;</span>
-</code></pre>
-<p><a href="https://nodejs.org/dist/latest-v12.x/docs/api/buffer.html#buffer_buffer">Tips</a>: Instances of the Buffer class are similar to arrays of integers from 0 to 255 (other integers are coerced to this range by &amp; 255 operation) but correspond to fixed-sized, raw memory allocations outside the V8 heap. The size of the Buffer is established when it is created and cannot be changed.</p>
-
-			<h3 id='use buffer in node.js'>
-				Use Buffer in Node.js
-			</h3>
-		<p>In Node.js Stream, we don&#39;t need to directly operate Buffer as Node.js has package it in Stream class like as below:</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> inputStream = fs.createReadStream(<span class="hljs-string">&quot;input.txt&quot;</span>);
+</code></pre><p><a href="https://nodejs.org/dist/latest-v12.x/docs/api/buffer.html#buffer_buffer">Tips</a>: Instances of the Buffer class are similar to arrays of integers from 0 to 255 (other integers are coerced to this range by &amp; 255 operation) but correspond to fixed-sized, raw memory allocations outside the V8 heap. The size of the Buffer is established when it is created and cannot be changed.</p><h3 id="use%20buffer%20in%20node.js">Use Buffer in Node.js</h3><p>In Node.js Stream, we don&#39;t need to directly operate Buffer as Node.js has package it in Stream class like as below:</p><pre><code class="language-js"><span class="hljs-keyword">const</span> inputStream = fs.createReadStream(<span class="hljs-string">&quot;input.txt&quot;</span>);
 <span class="hljs-keyword">const</span> outputStream = fs.createWriteStream(<span class="hljs-string">&quot;output.txt&quot;</span>);
 inputStream.pipe(outputStream);
-</code></pre>
-<p>In <code>crypto</code>, buffer can be used to be filled by bytes.</p>
-<p>Besides, in Http server, using Buffer to transfer data is more efficient than String:</p>
-<pre><code class="language-js">res.end(Buffer.from(<span class="hljs-string">&quot;{a:1}&quot;</span>));
+</code></pre><p>In <code>crypto</code>, buffer can be used to be filled by bytes.</p><p>Besides, in Http server, using Buffer to transfer data is more efficient than String:</p><pre><code class="language-js">res.end(Buffer.from(<span class="hljs-string">&quot;{a:1}&quot;</span>));
 res.end(<span class="hljs-string">&quot;{a:1}&quot;</span>);
-</code></pre>
-
-			<h3 id='stream'>
-				Stream
-			</h3>
-		<p>Streams can be readable, writable, or both. All streams are instances of <a href="https://nodejs.org/dist/latest-v12.x/docs/api/events.html#events_class_eventemitter">EventEmitter</a>, indluding Writable, Readable, Duplex and Transform.</p>
-<ol>
-<li>createWriteStream</li>
-</ol>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> writeS = fs.createWriteStream(<span class="hljs-string">&quot;output.txt&quot;</span>);
+</code></pre><h3 id="stream">Stream</h3><p>Streams can be readable, writable, or both. All streams are instances of <a href="https://nodejs.org/dist/latest-v12.x/docs/api/events.html#events_class_eventemitter">EventEmitter</a>, indluding Writable, Readable, Duplex and Transform.</p><ol><li>createWriteStream</li></ol><pre><code class="language-js"><span class="hljs-keyword">const</span> writeS = fs.createWriteStream(<span class="hljs-string">&quot;output.txt&quot;</span>);
 writeS.once(<span class="hljs-string">&quot;open&quot;</span>, <span class="hljs-function"><span class="hljs-params">fd</span> =&gt;</span> {
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) {
     writeS.write(<span class="hljs-string">`<span class="hljs-subst">${i}</span>\n`</span>);
   }
   writeS.end();
 });
-</code></pre>
-<ol start="2">
-<li>createReadStream</li>
-</ol>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> readS = fs.createReadStream(<span class="hljs-string">&quot;output.txt&quot;</span>);
+</code></pre><ol start="2"><li>createReadStream</li></ol><pre><code class="language-js"><span class="hljs-keyword">const</span> readS = fs.createReadStream(<span class="hljs-string">&quot;output.txt&quot;</span>);
 <span class="hljs-keyword">let</span> content = <span class="hljs-string">&quot;&quot;</span>;
 readS.on(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-function"><span class="hljs-params">chunk</span> =&gt;</span> {
   content += chunk;
@@ -125,90 +28,9 @@ readS.on(<span class="hljs-string">&quot;end&quot;</span>, <span class="hljs-fun
     <span class="hljs-built_in">console</span>.log(content);
   }
 });
-</code></pre>
-<p>In addition, <code>pipe</code> event can be used to access stream, in order to such as compress files:</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+</code></pre><p>In addition, <code>pipe</code> event can be used to access stream, in order to such as compress files:</p><pre><code class="language-js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
 <span class="hljs-keyword">const</span> r = fs.createReadStream(<span class="hljs-string">&quot;file.txt&quot;</span>);
 <span class="hljs-keyword">const</span> z = zlib.createGzip();
 <span class="hljs-keyword">const</span> w = fs.createWriteStream(<span class="hljs-string">&quot;file.txt.gz&quot;</span>);
 r.pipe(z).pipe(w);
-</code></pre>
-<ol start="3">
-<li><p>Duplex streams are streams that implement both the Readable and Writable interfaces.</p>
-</li>
-<li><p>Transform streams are Duplex streams where the output is in some way related to the input. Like all Duplex streams, Transform streams implement both the Readable and Writable interfaces.</p>
-</li>
-</ol>
-<p>When operating large size files, obviously, <code>Stream</code> is the better choice compared with <code>fs.readFile</code>.</p>
-
-			<h2 id='reference'>
-				Reference
-			</h2>
-		<p>More official information can be seen at <a href="https://nodejs.org/dist/latest-v12.x/docs/api/stream.html">document</a>.</p>
-</div>
-		</div>
-	</article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div>
-	</div>
-</body>
-
-<script>
-	const checkFacebookAvailable = () => new Promise((resolve, reject) => {
-		const i = new Image();
-		i.src = 'https://www.facebook.com/images/facebook.png';
-		i.onerror = e => reject(e);
-		i.onload = () => resolve();
-		i.style.display = 'none';
-		body.append(i);
-		setTimeout(() => reject(), 5000);
-	});
-	const body = document.getElementsByClassName('markdown-body')[0];
-	const initComments = () => {
-		if (![
-			'/',
-			'/blog/index.html', 
-			'/blog/code.html', 
-			'/blog/leetcode.html', 
-			'/blog/essay.html',
-			'/blog/about.html'
-		].includes(window.location.pathname)) {
-			checkFacebookAvailable().then(() => {
-				const root = document.createElement('div');
-				root.id = 'fb-root';
-				root.className = 'post-comments';
-				const comments = document.createElement('div');
-				comments.className = 'fb-comments';
-				comments.setAttribute('data-href', window.location.href);
-				comments.setAttribute('data-numposts', '5');
-				comments.setAttribute('data-width', '100%');
-				root.appendChild(comments);
-				body.appendChild(root);
-			}).catch(() => {
-				const reminder = document.createElement('div');
-				reminder.className = 'reminder';
-				reminder.innerText = 'Facebook Comments Service is unavailable';
-				body.appendChild(reminder);
-			});
-		}
-	};
-	const changeComments = () => {
-		const title = body.getElementsByTagName('h1')[0];
-		if (title) {
-			document.title = title.innerText;
-		}
-	};
-	if (body) {
-		changeComments();
-		initComments();
-	}
-</script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-  
-	gtag('config', 'G-0SEZ9KRGY7');
-  </script>
-</html>
+</code></pre><ol start="3"><li><p>Duplex streams are streams that implement both the Readable and Writable interfaces.</p></li><li><p>Transform streams are Duplex streams where the output is in some way related to the input. Like all Duplex streams, Transform streams implement both the Readable and Writable interfaces.</p></li></ol><p>When operating large size files, obviously, <code>Stream</code> is the better choice compared with <code>fs.readFile</code>.</p><h2 id="reference">Reference</h2><p>More official information can be seen at <a href="https://nodejs.org/dist/latest-v12.x/docs/api/stream.html">document</a>.</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script>const checkFacebookAvailable=()=>new Promise((e,t)=>{const o=new Image;o.src="https://www.facebook.com/images/facebook.png",o.onerror=e=>t(e),o.onload=()=>e(),o.style.display="none",body.append(o),setTimeout(()=>t(),5e3)}),body=document.getElementsByClassName("markdown-body")[0],initComments=()=>{["/","/blog/index.html","/blog/code.html","/blog/leetcode.html","/blog/essay.html","/blog/about.html"].includes(window.location.pathname)||checkFacebookAvailable().then(()=>{const e=document.createElement("div");e.id="fb-root",e.className="post-comments";const t=document.createElement("div");t.className="fb-comments",t.setAttribute("data-href",window.location.href),t.setAttribute("data-numposts","5"),t.setAttribute("data-width","100%"),e.appendChild(t),body.appendChild(e)}).catch(()=>{const e=document.createElement("div");e.className="reminder",e.innerText="Facebook Comments Service is unavailable",body.appendChild(e)})},changeComments=()=>{var e=body.getElementsByTagName("h1")[0];e&&(document.title=e.innerText)};body&&(changeComments(),initComments())</script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0SEZ9KRGY7")</script></html>
