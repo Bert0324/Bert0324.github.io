@@ -4,6 +4,7 @@
         "Versionheader",
         "Wireshark",
         "gitlog",
+        "leetcode",
         "nodegit"
     ],
     "git.ignoreLimitWarning": true

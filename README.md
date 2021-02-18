@@ -6,15 +6,15 @@ Welcome to visit my [blog](https://bert0324.github.io).
 
 ### 关于写代码
 
-- [About Code](/code/code.md)
+- [About Code](/documents/code/code.md)
 
 ## Leetcode刷题笔记
 
-- [Leetcode](/leetcode/leetcode.md)
+- [Leetcode](/documents/leetcode/leetcode.md)
 
 ## 一些随笔
 
-- [Essay](/essay/essay.md)
+- [Essay](/documents/essay/essay.md)
 
 ## Powered By
 

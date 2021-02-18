@@ -14,7 +14,7 @@ export const projectRootPath = (() => {
 	return arr.join(separator);
 })();
 export const indexTemplatePath = `${rootPath}/src/template/index.html`;
-export const documentsPath = `${rootPath}/documents`;
+export const documentsPath = `${projectRootPath}/documents`;
 export const distFolderPath = `${projectRootPath}/blog`;
 export const markdownUrl = 'https://github.com/Bert0324/code-playground/blob/master';
 export const remoteResourceUrl = 'https://raw.githubusercontent.com/Bert0324/code-playground/master';
@@ -31,14 +31,14 @@ export const seriesPages: IConfig[] = [
 	},
 	{
 		key: 'code',
-		path:`${projectRootPath}/code/code.md`
+		path:`${documentsPath}/code/code.md`
 	},
 	{
 		key: 'leetcode',
-		path: `${projectRootPath}/leetcode/leetcode.md`
+		path: `${documentsPath}/leetcode/leetcode.md`
 	},
 	{
 		key: 'essay',
-		path: `${projectRootPath}/essay/essay.md`
+		path: `${documentsPath}/essay/essay.md`
 	},
 ];

@@ -40,6 +40,22 @@ As we can see, a Https connection is based on Http connection, the key point it 
 
 3. The certificate contains the domain name and/or ip address of the web server. Browser confirms with the certificate authority that the address listed in the certificate is the one to which it has an open connection.
 
+## Measure TLS time by `curl`
+
+When using SSR, the shell as below:
+
+```shell
+curl -w "TCP handshake: %{time_connect}, SSL handshake: %{time_appconnect}\n" -I --socks5 127.0.0.1:1086 https://www.google.com
+```
+
+## use Wireshark to capture TLS connection
+
+1. export `SSLKEYLOGFILE`
+
+- <https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Key_Log_Format>
+
+2. append `SSLKEYLOGFILE` path to Wireshark
+
 ## Reference
 
 - <https://www.ibm.com/support/knowledgecenter/en/SSZHJ2_9.1.0/securing/topics/sslauth.html>
