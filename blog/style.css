@@ -129,8 +129,17 @@ body a {
   margin-top: 80px;
 }
 .markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
   max-width: 100% !important;
   background: transparent !important;
+  margin: 0 auto;
+  padding: 45px;
+}
+@media (max-width: 640px) {
+  .markdown-body {
+    padding: 15px;
+  }
 }
 @media screen and (max-width: 5120px) {
   .views-count {
