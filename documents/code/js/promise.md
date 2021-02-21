@@ -2,9 +2,11 @@
 
 `Promise` is a powerful alternative way to replace callback in JS. Compared to callback, `Promise` provides a better way to write coherent codes.
 
+See its standard from [Promise/A+](https://promisesaplus.com/).
+
 ## How to use
 
-First of all, let's see its definition:
+First of all, let's see its TS definition:
 
 ```ts
 /**
@@ -229,44 +231,14 @@ Promise.parallelByRecursion = (tasks: Promise<unknown>[]) => new Promise((resolv
 
 `async` and `await` it a better solution to replace `then`. Writing asynchronize codes with synchronize sequence.
 
-### What is async function
+If you use JS bundler, like [Babel](https://babeljs.io/), [esbuild](https://github.com/evanw/esbuild) or [swc](https://github.com/swc-project/swc), `async` and `await` will be transferred to `Generator`, refer to this [article](/documents/code/js/generator.md).
 
-Actually, `async function` will return an `AsyncFunction` object, which can be created as below (notice: it is not a global variable):
+With native `async` and `await`, `async function` will return an `AsyncFunction` object, which can be created as below (notice: it is not a global variable):
 
 ```ts
 Object.getPrototypeOf(async function(){}).constructor
 ```
 
-### always return Promise
+## Reference
 
-It will always return a Promise object, even if we return other things:
-
-```ts
-async function task() {
-    return 1;
-}
-console.log(task())     // Promise { 1 }
-```
-
-### await can only get Promise.resolve
-
-The `await` operator is used to wait for a `Promise`. It can only be used inside an `async function`. But it can only receive `Promise.resolve`. For example:
-
-If the `Promise` is rejected, the await expression throws the rejected value.
-
-```ts
-(async function () {
-    const result = await Promise.resolve('success');
-    console.log(result);
-})();   // success
-
-(async function () {
-    const result = await Promise.reject('success');
-    console.log(result);
-})()    // UnhandledPromiseRejectionWarning: success
-```
-
-## Conclusion
-
-In this way, for me, when I don't care about the error, I perfer to use `throw Error`, when I want to process
-error, `Promise.reject` maybe more useful.
+- <https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide>
