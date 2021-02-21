@@ -16,16 +16,18 @@ The sequence is like:
 
 Microtasks includes `Promise`, `queueMicrotask`, `MutationObserver` and `process.nextTick` on Node.js.
 
+MarcoTasks includes `setTimeout`, `setInterval`, `requestAnimationFrame`.
+
 There is a typical codes to show it:
 
 ```ts
-setTimeout(_ => console.log(4));
+setTimeout(() => console.log(4));
 
 new Promise(resolve => {
-  resolve()
-  console.log(1)
-}).then(_ => {
-  console.log(3)
+  resolve();
+  console.log(1);
+}).then(() => {
+  console.log(3);
 });
 
 console.log(2);
@@ -43,7 +45,7 @@ It drives all of the windows sharing a similar origin.
 
 ### Worker event loop
 
- It includes all forms of workers, such as web worker, shared workers and service workers. Workers are kept in one or more agents that are separate from the "main" code; the browser may use a single event loop for all of the workers of a given type or may use multiple event loops to handle them.
+It includes all forms of workers, such as web worker, shared workers and service workers. Workers are kept in one or more agents that are separate from the "main" code; the browser may use a single event loop for all of the workers of a given type or may use multiple event loops to handle them.
 
 ### Worklet Event Loop
 
@@ -65,6 +67,8 @@ There is only one thread and that is the thread Event loop runs on. Event loop w
 - **poll**: retrieve new I/O events; execute I/O related callbacks (almost all with the exception of close callbacks, the ones scheduled by timers, and setImmediate()); node will block here when appropriate.
 - **check**: setImmediate() callbacks are invoked here.
 - **close callbacks**: some close callbacks, e.g. socket.on('close', ...).
+
+When each time switching phase, the event loop will clear whole microtasks in the loop.
 
 ### Poll
 
@@ -89,6 +93,5 @@ Once the poll queue is empty the event loop will check for timers whose time thr
 
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop>
 - <https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth>
-- <https://javascript.info/microtask-queue>
 - <https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/>
 - <https://stackoverflow.com/questions/47724811/why-setimmediate-execute-before-fs-readfile-in-nodejs-event-loops-works>

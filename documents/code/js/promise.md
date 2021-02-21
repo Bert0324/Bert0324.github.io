@@ -68,88 +68,79 @@ For me, the key point to understand Promise's then and catch is the event-loop. 
 
 There is a simple example I wrote:
 
-```ts
-class MyPromise<T>{
-
+```js
+class MyPromise {
     static statusList = {
-        pending:Symbol('pending'),
-        resolved:Symbol('resolved'),
-        rejected:Symbol('rejected')
-    } as const;
-
-    private status = MyPromise.statusList.pending;
-    private value: T = undefined;      // the container for transferring return value
-    private thenList: Function[] = [];          //the container saving the callback in then
-    private onCatch: Function | undefined = undefined;    //the container saving the catch function
-
-    constructor(action: (resolve: Function, reject?: Function) => void) {
-        // start filling thenList and onCatch
+        pending: Symbol("pending"),
+        resolved: Symbol("resolved"),
+        rejected: Symbol("rejected"),
+    };
+  
+    static resolve = (p) => {
+        if (p instanceof MyPromise) return p;
+        return new MyPromise((resolve) => resolve(p));
+    };
+  
+    static reject = (p) => {
+        if (p instanceof MyPromise) return p;
+        return new MyPromise((_, reject) => reject(p));
+    };
+  
+    status = MyPromise.statusList.pending;
+    thenList = [];
+    onCatch = undefined;
+  
+    constructor(action) {
         action(this.resolve.bind(this), this.reject?.bind?.(this));
     }
-
+  
     then(cb) {
         this.thenList.push(cb);
         return this;
     }
-
+  
     catch(cb) {
         this.onCatch = cb;
         return this;
     }
-
+  
     resolve(value) {
-        this.status = MyPromise.statusList.resolved;
-        this.value = value;
-        for (let i=0;i<this.thenList.length;i++){
-            this.status = MyPromise.statusList.pending;
-            try{
-                this.value = this.thenList[i](this.value);
-                this.status = MyPromise.statusList.resolved;
-                if (this.value instanceof MyPromise) {
-                    //if it's new Promise, change the target Promise
-                    this.value.thenList = this.thenList.splice(i+1);
-                    break;
-                }
-            } catch (e) {
-                if (this.onCatch){
-                    this.onCatch(e);
+        queueMicrotask(() => {
+            const task = this.thenList.shift().bind(this);
+            if (task) {
+                MyPromise.resolve(task(value))
+                .then(this.resolve.bind(this))
+                .catch((e) => {
                     this.status = MyPromise.statusList.rejected;
-                } else {
-                    throw new Error(e.toString());
-                }
+                    if (this.onCatch) this.onCatch(e);
+                    else throw e;
+                });
+            } else {
+                this.status = MyPromise.statusList.resolved;
             }
-        }
+        });
+        return this;
     }
-
+  
     reject(value) {
-        this.status = MyPromise.statusList.rejected;
-        this.value = value;
-        if (this.onCatch){
-            this.onCatch(this.value);
-        } else {
-            throw new Error(this.value.toString());
-        }
+      this.status = MyPromise.statusList.rejected;
+      if (this.onCatch) this.onCatch(value);
+      else throw new Error(value);
+      return this;
     }
-};
-
-new MyPromise((resolve, reject) => {
-    require('request')("http://www.npmjs.com", (err, res, body)=>{
-        if (!err && res.statusCode === 200){
-            resolve(res.statusCode);
-        } else {
-            reject(err);
-        }
-    })
-}).then(data=>{
-    console.log(data);
-    return 1;
-})
-    .then(data=>{
-        console.log(data);
-    })
-    .catch(err=>{
-    console.log(err);
-});
+  }
+  
+var task = () =>
+    new MyPromise((resolve) => {
+        setTimeout(() => {
+        resolve(1);
+        }, 1000);
+    }).then((v) => {
+        console.log(v);
+        return v + 1;
+    });
+task().then((v) => console.log(v));
+  
 ```
 
 ## `Promise.all`, `Promise.race`, `Promise.finally` and `Promise.parallel`
