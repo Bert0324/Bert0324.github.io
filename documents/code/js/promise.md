@@ -2,9 +2,11 @@
 
 `Promise` is a powerful alternative way to replace callback in JS. Compared to callback, `Promise` provides a better way to write coherent codes.
 
+See its standard from [Promise/A+](https://promisesaplus.com/).
+
 ## How to use
 
-First of all, let's see its definition:
+First of all, let's see its TS definition:
 
 ```ts
 /**
@@ -66,88 +68,79 @@ For me, the key point to understand Promise's then and catch is the event-loop. 
 
 There is a simple example I wrote:
 
-```ts
-class MyPromise<T>{
-
+```js
+class MyPromise {
     static statusList = {
-        pending:Symbol('pending'),
-        resolved:Symbol('resolved'),
-        rejected:Symbol('rejected')
-    } as const;
-
-    private status = MyPromise.statusList.pending;
-    private value: T = undefined;      // the container for transferring return value
-    private thenList: Function[] = [];          //the container saving the callback in then
-    private onCatch: Function | undefined = undefined;    //the container saving the catch function
-
-    constructor(action: (resolve: Function, reject?: Function) => void) {
-        // start filling thenList and onCatch
+        pending: Symbol("pending"),
+        resolved: Symbol("resolved"),
+        rejected: Symbol("rejected"),
+    };
+  
+    static resolve = (p) => {
+        if (p instanceof MyPromise) return p;
+        return new MyPromise((resolve) => resolve(p));
+    };
+  
+    static reject = (p) => {
+        if (p instanceof MyPromise) return p;
+        return new MyPromise((_, reject) => reject(p));
+    };
+  
+    status = MyPromise.statusList.pending;
+    thenList = [];
+    onCatch = undefined;
+  
+    constructor(action) {
         action(this.resolve.bind(this), this.reject?.bind?.(this));
     }
-
+  
     then(cb) {
         this.thenList.push(cb);
         return this;
     }
-
+  
     catch(cb) {
         this.onCatch = cb;
         return this;
     }
-
+  
     resolve(value) {
-        this.status = MyPromise.statusList.resolved;
-        this.value = value;
-        for (let i=0;i<this.thenList.length;i++){
-            this.status = MyPromise.statusList.pending;
-            try{
-                this.value = this.thenList[i](this.value);
-                this.status = MyPromise.statusList.resolved;
-                if (this.value instanceof MyPromise) {
-                    //if it's new Promise, change the target Promise
-                    this.value.thenList = this.thenList.splice(i+1);
-                    break;
-                }
-            } catch (e) {
-                if (this.onCatch){
-                    this.onCatch(e);
+        queueMicrotask(() => {
+            const task = this.thenList.shift().bind(this);
+            if (task) {
+                MyPromise.resolve(task(value))
+                .then(this.resolve.bind(this))
+                .catch((e) => {
                     this.status = MyPromise.statusList.rejected;
-                } else {
-                    throw new Error(e.toString());
-                }
+                    if (this.onCatch) this.onCatch(e);
+                    else throw e;
+                });
+            } else {
+                this.status = MyPromise.statusList.resolved;
             }
-        }
+        });
+        return this;
     }
-
+  
     reject(value) {
-        this.status = MyPromise.statusList.rejected;
-        this.value = value;
-        if (this.onCatch){
-            this.onCatch(this.value);
-        } else {
-            throw new Error(this.value.toString());
-        }
+      this.status = MyPromise.statusList.rejected;
+      if (this.onCatch) this.onCatch(value);
+      else throw new Error(value);
+      return this;
     }
-};
-
-new MyPromise((resolve, reject) => {
-    require('request')("http://www.npmjs.com", (err, res, body)=>{
-        if (!err && res.statusCode === 200){
-            resolve(res.statusCode);
-        } else {
-            reject(err);
-        }
-    })
-}).then(data=>{
-    console.log(data);
-    return 1;
-})
-    .then(data=>{
-        console.log(data);
-    })
-    .catch(err=>{
-    console.log(err);
-});
+  }
+  
+var task = () =>
+    new MyPromise((resolve) => {
+        setTimeout(() => {
+        resolve(1);
+        }, 1000);
+    }).then((v) => {
+        console.log(v);
+        return v + 1;
+    });
+task().then((v) => console.log(v));
+  
 ```
 
 ## `Promise.all`, `Promise.race`, `Promise.finally` and `Promise.parallel`
@@ -229,44 +222,14 @@ Promise.parallelByRecursion = (tasks: Promise<unknown>[]) => new Promise((resolv
 
 `async` and `await` it a better solution to replace `then`. Writing asynchronize codes with synchronize sequence.
 
-### What is async function
+If you use JS bundler, like [Babel](https://babeljs.io/), [esbuild](https://github.com/evanw/esbuild) or [swc](https://github.com/swc-project/swc), `async` and `await` will be transferred to `Generator`, refer to this [article](/documents/code/js/generator.md).
 
-Actually, `async function` will return an `AsyncFunction` object, which can be created as below (notice: it is not a global variable):
+With native `async` and `await`, `async function` will return an `AsyncFunction` object, which can be created as below (notice: it is not a global variable):
 
 ```ts
 Object.getPrototypeOf(async function(){}).constructor
 ```
 
-### always return Promise
+## Reference
 
-It will always return a Promise object, even if we return other things:
-
-```ts
-async function task() {
-    return 1;
-}
-console.log(task())     // Promise { 1 }
-```
-
-### await can only get Promise.resolve
-
-The `await` operator is used to wait for a `Promise`. It can only be used inside an `async function`. But it can only receive `Promise.resolve`. For example:
-
-If the `Promise` is rejected, the await expression throws the rejected value.
-
-```ts
-(async function () {
-    const result = await Promise.resolve('success');
-    console.log(result);
-})();   // success
-
-(async function () {
-    const result = await Promise.reject('success');
-    console.log(result);
-})()    // UnhandledPromiseRejectionWarning: success
-```
-
-## Conclusion
-
-In this way, for me, when I don't care about the error, I perfer to use `throw Error`, when I want to process
-error, `Promise.reject` maybe more useful.
+- <https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide>

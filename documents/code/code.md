@@ -1,4 +1,4 @@
-# My Coding Playground
+# Coding Playground
 
 The place I can organize my thoughts and review knowledge.
 
