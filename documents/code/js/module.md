@@ -85,6 +85,12 @@ CommonJS和AMD是针对不同平台的，为了让一份代码可以兼容两个
 
 ## ES6 Module
 
+先来看一下MDN对于`import`关键字的解释，只能在`type="module"`的`script`中使用，或者在`import()`函数体中。
+
+在这个[例子](https://github.com/Bert0324/webpack-module-demo/blob/main/esm/index.html)中，多个文件引入`esm.js`这个模块，只会被加载一次。而且和`webpack`打包后的结果有一个区别，原生esm引入`default`是会有一个实际对象的。
+
+在`PerformanceResourceTiming`里，esm引入的模块，`initiatorType`是`other`, 不知道是什么原因，值得注意一下。
+
 和CommonJS，AMD，CMD，UMD不同，ES6是JS自己本身的规范，但是鉴于浏览器支持性的不足，现在绝大部分es6 module的代码仍然会被编译成兼容性更好的代码，从这个角度讲，es6 module和前面的这几个规范，又没有本质性的不同。
 
 es6 module和CommonJS最大的区别包括：
@@ -148,3 +154,4 @@ CommonJS其实加载的是一个对象，这个对象只有在脚本运行时才
 - <http://huangxuan.me/2015/07/09/js-module-7day/>
 - <https://github.com/seajs/seajs/issues/588>
 - <http://www.ecma-international.org/ecma-262/6.0/#sec-imports>
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import>
