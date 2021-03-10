@@ -11,7 +11,7 @@ The place I can organize my thoughts and review knowledge.
 - [Number](/documents/code/js/number.md)
 - [For Loop](/documents/code/js/for_loop.md)
 - [Closure](/documents/code/js/closure.md)
-- [Promise](/documents/code/js/promise.md)
+- [`Promise`](/documents/code/js/promise.md)
 - [Generator](/documents/code/js/generator.md)
 - [Event Loop](/documents/code/js/event_loop.md)
 - [Module](/documents/code/js/module.md)
@@ -29,7 +29,7 @@ The place I can organize my thoughts and review knowledge.
 - [WebAssembly](/documents/code/web/wasm.md)
 <!-- - [WebRTC]() -->
 - [Browser Rendering](/documents/code/web/browser_render.md)
-- [requestAnimationFrame](/documents/code/web/requestAnimationFrame.md)
+- [`requestAnimationFrame`](/documents/code/web/requestAnimationFrame.md)
 - [Service Worker](/documents/code/web/service_worker.md)
 
 ### CSS
@@ -56,18 +56,14 @@ The place I can organize my thoughts and review knowledge.
 - [Object Proxy](/documents/code/js/object_proxy.md)
 - [Life Cycle](/documents/code/vue/life_cycle.md)
 
-### Practice
-
-- [Deep copy and Shallow copy](/documents/code/js/object_copy.md)
-- [slice, substr and substring](/documents/code/practical/string_process.md)
-- [Flat an Array](/documents/code/practical/flat_array.md)
-- [Throttle and debounce](/documents/code/practical/debounce_throttle.md)
-- [Cross Domain](/documents/code/practical/cross_domain.md)
-- [Memory Leak](/documents/code/practical/memory_leak.md)
-- [Common Linux Commands](/documents/code/practical/linux_commands.md)
-
 ### Other
 
+- [Deep copy and Shallow copy](/documents/code/js/object_copy.md)
+- [Flat an Array](/documents/code/practical/flat_array.md)
+- [Throttle and debounce](/documents/code/practical/debounce_throttle.md)
+- [CORS](/documents/code/practical/cross_domain.md)
+- [Memory Leak](/documents/code/practical/memory_leak.md)
+- [Webpack Optimization](/documents/code/practical/webpack_optimization.md)
 - [Issue a npm package](/documents/code/other/npm_issue.md)
 - [Redux](/documents/code/other/redux.md)
 - [RxJS](/documents/code/other/rxjs.md)
@@ -93,8 +89,8 @@ The place I can organize my thoughts and review knowledge.
 
 ### OS
 
-<!-- - [Process VS thread]() -->
 - [Socket](/documents/code/os/socket.md)
+- [Common Linux Commands](/documents/code/practical/linux_commands.md)
 
 ### Design Patterns
 
