@@ -10,6 +10,9 @@ body {
 body a {
   text-decoration: none;
 }
+body::selection {
+  background: #e0efe2;
+}
 @media screen and (max-width: 5120px) {
   #toc {
     float: right;
