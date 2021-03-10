@@ -25,6 +25,7 @@ The place I can organize my thoughts and review knowledge.
 - [Web Frontend Performance](/documents/code/web/performance.md)
 - [Web Content Negotiation](/documents/code/web/content_negotiation.md)
 - [Web Worker](/documents/code/web/web_worker.md)
+- [Web Event](/documents/code/web/web_event.md)
 - [WebAssembly](/documents/code/web/wasm.md)
 <!-- - [WebRTC]() -->
 - [Browser Rendering](/documents/code/web/browser_render.md)
@@ -61,7 +62,6 @@ The place I can organize my thoughts and review knowledge.
 - [slice, substr and substring](/documents/code/practical/string_process.md)
 - [Flat an Array](/documents/code/practical/flat_array.md)
 - [Throttle and debounce](/documents/code/practical/debounce_throttle.md)
-- [Event Proxy](/documents/code/practical/events_proxy.md)
 - [Cross Domain](/documents/code/practical/cross_domain.md)
 - [Memory Leak](/documents/code/practical/memory_leak.md)
 
