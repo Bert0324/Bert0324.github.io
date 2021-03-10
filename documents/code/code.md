@@ -38,23 +38,16 @@ The place I can organize my thoughts and review knowledge.
 - [Pseudo Classes](/documents/code/css/pseudo_classes.md)
 <!-- - [GPU Acceleration]() -->
 
-### React
+### Framework
 
-- [Refs](/documents/code/react/refs.md)
-- [Reconciliation](/documents/code/react/diff.md)
-<!-- - [Fiber](/code/react/fiber.md) -->
-- [Life Cycle](/documents/code/react/life_cycle.md)
-- [Hooks](/documents/code/react/hooks.md)
-- [Suspense with lazy](/documents/code/react/lazy_load.md)
-- [Single page SSR](/documents/code/react/ssr.md)
-<!-- - [Isomorphic](/documents/code/react/isomorphic.md) -->
-- [Route](/documents/code/react/route.md)
-
-### Vue
-
-- [Template Syntax](/documents/code/vue/template_syntax.md)
-- [Object Proxy](/documents/code/js/object_proxy.md)
-- [Life Cycle](/documents/code/vue/life_cycle.md)
+- [React: Reconciliation](/documents/code/react/diff.md)
+- [React: Isomorphic](/documents/code/react/isomorphic.md)
+- [React: Route](/documents/code/react/route.md)
+- [React: Event](/documents/code/react/event.md)
+- [React: Hooks](/documents/code/react/hooks.md)
+- [Vue: Template Syntax](/documents/code/vue/template_syntax.md)
+- [Vue: Object Proxy](/documents/code/js/object_proxy.md)
+- [Vue: Life Cycle](/documents/code/vue/life_cycle.md)
 
 ### Other
 
