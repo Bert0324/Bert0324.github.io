@@ -64,6 +64,7 @@ The place I can organize my thoughts and review knowledge.
 - [Event Proxy](/documents/code/practical/events_proxy.md)
 - [Cross Domain](/documents/code/practical/cross_domain.md)
 - [Memory Leak](/documents/code/practical/memory_leak.md)
+- [Common Linux Commands](/documents/code/practical/linux_commands.md)
 
 ### Other
 
