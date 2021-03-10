@@ -56,7 +56,7 @@ The place I can organize my thoughts and review knowledge.
 - [Throttle and debounce](/documents/code/practical/debounce_throttle.md)
 - [CORS](/documents/code/practical/cross_domain.md)
 - [Memory Leak](/documents/code/practical/memory_leak.md)
-- [Webpack Optimization](/documents/code/practical/webpack_optimization.md)
+- [Webpack Optimization](/documents/code/other/webpack_optimization.md)
 - [Issue a npm package](/documents/code/other/npm_issue.md)
 - [Redux](/documents/code/other/redux.md)
 - [RxJS](/documents/code/other/rxjs.md)
