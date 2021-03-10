@@ -2,7 +2,7 @@
 
 ## Event Flow
 
-<img src="./../../../assets/dom_events_model.svg" />
+<img src="./../../../assets/dom_events_model.svg" width="400" />
 
 > Capture => Target => Bubbling
 
@@ -13,11 +13,11 @@
 
 ## Register Handler
 
-- `addEventListener`
+### `addEventListener`
 
 > Definitely, it is the recommended way.
 
-- HTML attribute
+### HTML attribute
 
 ```html
 <button onclick="alert('Hello world!')">
@@ -25,7 +25,7 @@
 
 > This method should be avoided! It inflates the markup, and makes it less readable. Concerns of content/structure and behavior are not well-separated, making a bug harder to find.
 
-- DOM element properties
+### DOM element properties
 
 ```js
 // Assuming myButton is a button element
@@ -36,29 +36,29 @@ myButton.onclick = function(event){alert('Hello world')}
 
 ## Event Target
 
-- `target`
+### `target`
 
 it is a reference to the object onto which the event was dispatched.
 
-- `currentTarget`
+### `currentTarget`
 
 It identifies the current target for the event.
 
-- `this`
+### `this`
 
 If it is not the anonymous function, it identifies the current target for the event.
 
 ## Event Methods
 
-- `stopPropagation`
+### `stopPropagation`
 
 prevents further propagation of the current event in the **capturing and bubbling** phases.
 
-- `stopImmediatePropagation`
+### `stopImmediatePropagation`
 
 It prevents other listeners of the same event from being called.
 
-- `preventDefault`
+### `preventDefault`
 
 its default action should not be taken as it normally would be.
 
