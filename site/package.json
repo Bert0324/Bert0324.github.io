@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "preview": "http-server .",
-    "build": "ts-node ./src/build/index.ts && lessc ./src/template/style.less ../blog/style.css && cp ../blog/index.html ../index.html"
+    "minify": "uglifyjs --compress --mangle -o ../blog/index.js ./src/template/index.js",
+    "build": "ts-node ./src/build/index.ts && lessc ./src/template/style.less ../blog/style.css && cp ../blog/index.html ../index.html && yarn minify"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
@@ -33,6 +34,8 @@
     "@types/node-fetch": "^2.5.8",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
-    "@types/rimraf": "^3.0.0"
+    "@types/rimraf": "^3.0.0",
+    "@types/uglify-js": "^3.13.0",
+    "uglify-js": "^3.13.0"
   }
 }
