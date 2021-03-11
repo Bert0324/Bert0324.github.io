@@ -8,7 +8,7 @@
 
 - **Bundle**: Produced from a number of distinct modules, bundles contain the final versions of source files that have already undergone the loading and compilation process.
 
-<img src='../assets/webpack_bundle_chunks.png' width="500px">
+<img src='../../../assets/webpack_bundle_chunks.png' width="500px">
 
 ## Optimize Building Speed
 
