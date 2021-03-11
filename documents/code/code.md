@@ -29,7 +29,7 @@ The place I can organize my thoughts and review knowledge.
 - [WebAssembly](/documents/code/web/wasm.md)
 <!-- - [WebRTC]() -->
 - [Browser Rendering](/documents/code/web/browser_render.md)
-- [requestAnimationFrame](/documents/code/web/requestAnimationFrame.md)
+- [`requestAnimationFrame`](/documents/code/web/requestAnimationFrame.md)
 - [Service Worker](/documents/code/web/service_worker.md)
 
 ### CSS
