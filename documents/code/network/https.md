@@ -16,7 +16,7 @@ As the client uses public key to encrypt message, and the server uses private ke
 
 A Https handshake includes 5 steps as below:
 
-<img src="../assets/ssl_handshake.jpg" width="400"/>
+<img src="../../../assets/ssl_handshake.jpg" width="400"/>
 
 1. The client sends a request to the server for a secure session. The server responds by sending its X.509 digital certificate to the client.
 
@@ -29,6 +29,10 @@ A Https handshake includes 5 steps as below:
 5. The client and server now both know the symmetric key and can use the SSL encryption process to encrypt and decrypt the information contained in the client request and the server response.
 
 So in fact, Https use this symmetric key to encrypt and decrypt data both in the client and the server. As symmetric encryption which is used through the rest is faster and more efficient with large amounts of data transfer. The keys are smaller which is generally why it's faster, but it's algorithm is also easier to process.
+
+The handshake is as below:
+
+<img src='../../../assets/tls_handshake.png' width='400' />
 
 ## Certificate Validation
 
@@ -55,6 +59,10 @@ curl -w "TCP handshake: %{time_connect}, SSL handshake: %{time_appconnect}\n" -I
 - <https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Key_Log_Format>
 
 2. append `SSLKEYLOGFILE` path to Wireshark
+
+As below:
+
+
 
 ## Reference
 

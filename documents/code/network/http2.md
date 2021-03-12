@@ -13,6 +13,8 @@ server {
 
 ## Main New Features
 
+See a [Demo by Akamai](https://http2.akamai.com/demo).
+
 ### header compression
 
 In Http1.1, the header is plain text, of course, it is more easy for people to read, but it will cost lots of space when the header is large.
@@ -24,6 +26,16 @@ Even more, SSL will change the header as binary, which means it is actually nece
 In Http1.1, the transmission is parallel, therefore next file has to wait to be transferred until the last transmission is finished if `connection: keep-alive`, which obviously waste current bandwidth.
 
 In Http2, it will transfer multiple files mixed in one connection. Each frame has its id, so the client is able to joint it to a full message.
+
+See the differences between them:
+
+http1.1:
+
+<img src='../../../assets/http1_requests.png' width='400' />
+
+http2:
+
+<img src='../../../assets/http2_requests.png' width='400' />
 
 ### server push
 
@@ -41,8 +53,6 @@ location / {
     http2_push /app.js;
 }
 ```
-
-## use Wireshark to capture package
 
 ## Reference
 

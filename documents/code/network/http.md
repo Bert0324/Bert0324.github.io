@@ -40,6 +40,8 @@ HTTP requests, and responses, share similar structure and are composed of:
 
 4. An optional body containing data associated with the request (like content of an HTML form), or the document associated with a response. The presence of the body and its size is specified by the start-line and HTTP headers.
 
+## Captured TCP package by Wireshark
+
 ## Reference
 
 - <https://topic.alibabacloud.com/a/tcp-three-time-font-colorredhandshakefont-and-four-times-wave-break_8_8_20230829.html>
