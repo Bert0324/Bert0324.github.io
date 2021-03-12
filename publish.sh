@@ -12,4 +12,3 @@ wait
 echo git push
 git push
 wait
-
