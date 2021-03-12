@@ -9,7 +9,7 @@ createSecureServer({
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Access-Control-Allow-Methods","GET");
         res.setHeader('Access-Control-Expose-Headers', 'Location');
-        res.setHeader('Location', 'https://www.qxwz.com');
+        res.setHeader('Location', 'https://www.google.com');
         res.setHeader('Content-Type', 'text/html');
         res.writeHead(302);
     }

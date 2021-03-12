@@ -4,7 +4,7 @@
   "scripts": {
     "cert": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem",
     "server": "nodemon -e ts -w ./server/server.ts -x ts-node ./server/server.ts",
-    "static": "http-server  ./static -S -C ./server/cert.pem -K ./server/key.pem -o",
+    "static": "http-server  ./static -S -C ./server/cert.pem -K ./server/key.pem",
     "dev": "yarn server && yarn static"
   },
   "devDependencies": {
