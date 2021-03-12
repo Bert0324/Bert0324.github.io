@@ -61,6 +61,12 @@ The server response headers must include `Access-Control-Allow-Credentials: true
 
 > Notice: When making credentialed requests to a different domain, third-party cookie policies will still apply. The policy is always enforced independent of any setup on the server and the client, as described in this chapter.
 
+## Headers
+
+When cors, the client can not access all http response headers, except it's [CORS-safelisted response header](https://developer.mozilla.org/en-US/docs/Glossary/CORS-safelisted_response_header).
+
+For example, if want to redirect and append `location` to response headers, we should append `Access-Control-Expose-Headers: location` first.
+
 ## Reference
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>

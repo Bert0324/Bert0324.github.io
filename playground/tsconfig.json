@@ -1,0 +1,36 @@
+{
+    "include": ["server/**/*"],
+    "exclude": ["node_modules"],
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "lib": [] /* 根据实际，可自行补充 */,
+        "declaration": false /* 如果是开发三方包，需要开启 */,
+        "sourceMap": true,
+        "rootDir": "./server",
+        "removeComments": false,
+        /*类型检查*/
+        "strict": true,
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": false,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "noUnusedLocals": true,
+        "noImplicitReturns": true,
+        /*模块查找*/
+        "moduleResolution": "node",
+        "baseUrl": "./server",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        /*实验选项*/
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        /*其他选项*/
+        "preserveConstEnums": true,
+        "forceConsistentCasingInFileNames": true
+    }
+}
