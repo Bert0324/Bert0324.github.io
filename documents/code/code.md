@@ -71,6 +71,7 @@ The place I can organize my thoughts and review knowledge.
 - [Sorting](/documents/code/algorithm/common_sort.md)
 - [Hash](/documents/code/algorithm/common_hash.md)
 - [Dynamic Programming](/documents/code/algorithm/dp.md)
+- [Tail Recursion](/documents/code/algorithm/tail_recursion.md)
 
 ### Network
 

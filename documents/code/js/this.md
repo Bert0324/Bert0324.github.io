@@ -68,6 +68,21 @@ console.log(obj.maker);                  // "Kawasaki"
 3. Third it checks if the function called via context object (implicit binding).
 4. Default global object (undefined in case of strict mode).
 
+## Strict mode
+
+under `use strict;`, global `this` won't point to `window`, instead, it points to `undefined`.
+
+```ts
+(function() {
+    'use strict';
+    console.log(this); // undefined
+})();
+
+(function() {
+    console.log(this); // window
+})();
+```
+
 ## Reference
 
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this>
