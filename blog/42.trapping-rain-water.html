@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2021-03-28 13:40:03</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#%u66B4%u529B%u6CD5">暴力法</a></li><li><a href="#%u52A8%u6001%u89C4%u5212">动态规划</a></li><li><a href="#%u53CC%u6307%u9488">双指针</a></li><li><a href="#%u603B%u7ED3">总结</a></li></ul></div></div><div><h1 id="42.%20trapping%20rain%20water">42. Trapping Rain Water</h1><p>source: <a href="https://leetcode.com/problems/trapping-rain-water/">https://leetcode.com/problems/trapping-rain-water/</a></p><h2 id="question">Question</h2><p>Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.</p><h2 id="%u66B4%u529B%u6CD5">暴力法</h2><p>这一道题有几个最基础的概念：</p><ul><li>某个index能接的雨水数量是其与，左右最大值之间的最小值，的差值。</li><li>最左和最右的位置肯定是接不住的</li></ul><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">trap</span>(<span class="hljs-params">height: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">let</span> ret = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> size = height.length;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; size - <span class="hljs-number">1</span>; i++) {
+        <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i; j &gt;= <span class="hljs-number">0</span>; j--) {
+            left = <span class="hljs-built_in">Math</span>.max(left, height[j]);
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i; j &lt; size; j++) {
+            right = <span class="hljs-built_in">Math</span>.max(right, height[j]);
+        }
+        ret += <span class="hljs-built_in">Math</span>.min(left, right) - height[i];
+    }
+    <span class="hljs-keyword">return</span> ret;
+};
+</code></pre><p>但是这个版本的最大问题在于有许多的重复计算，每次左右的最大值都要从头算起。时间复杂度为O(n2), 空间复杂度为O(1).</p><p>从这个版本出发，所有优化都是围绕着如何最大利用已有计算结果。</p><h2 id="%u52A8%u6001%u89C4%u5212">动态规划</h2><p>既然是利用已有计算结果，很明显，dp就浮现在脑海之中。</p><p>思路是：</p><ol><li>计算从左开始的最大值数组</li><li>计算从右开始的最大值数组</li><li>然后再迭代计算其差值</li></ol><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">trap</span>(<span class="hljs-params">height: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">const</span> size = height.length;
+    <span class="hljs-keyword">if</span> (!size) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> leftMax = <span class="hljs-built_in">Array</span>(size).fill(<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">const</span> rightMax = <span class="hljs-built_in">Array</span>(size).fill(<span class="hljs-number">0</span>);
+    leftMax[<span class="hljs-number">0</span>] = height[<span class="hljs-number">0</span>];
+    rightMax[size - <span class="hljs-number">1</span>] = height[size - <span class="hljs-number">1</span>];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; size; i++) {
+        leftMax[i] = <span class="hljs-built_in">Math</span>.max(leftMax[i - <span class="hljs-number">1</span>], height[i]);
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = size - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+        rightMax[i] = <span class="hljs-built_in">Math</span>.max(rightMax[i + <span class="hljs-number">1</span>], height[i]);
+    }
+    <span class="hljs-keyword">return</span> leftMax.reduce(<span class="hljs-function">(<span class="hljs-params">acc, crr, i</span>) =&gt;</span> {
+        acc += <span class="hljs-built_in">Math</span>.min(crr, rightMax[i]) - height[i];
+        <span class="hljs-keyword">return</span> acc;
+    }, <span class="hljs-number">0</span>);
+};
+</code></pre><p>理论上，在这个方案中，是没有重复计算了的，时间复杂度O(n).</p><p>但是因为需要数组存储最大值，所以空间也是O(n).</p><h2 id="%u53CC%u6307%u9488">双指针</h2><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">trap</span>(<span class="hljs-params">height: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> right = height.length - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">let</span> ret = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> leftMax = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> rightMax = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (left &lt; right) {
+        <span class="hljs-keyword">if</span> (height[left] &lt; height[right]) {
+            height[left] &gt;= leftMax ? (leftMax = height[left]) : ret += (leftMax - height[left]);
+            ++left;
+        }
+        <span class="hljs-keyword">else</span> {
+            height[right] &gt;= rightMax ? (rightMax = height[right]) : ret += (rightMax - height[right]);
+            --right;
+        }
+    }
+    <span class="hljs-keyword">return</span> ret;
+};
+</code></pre><p>时间复杂度O(n), 空间复杂度O(1).</p><h2 id="%u603B%u7ED3">总结</h2><p>先总结基础规律，然后先给出暴力算法，再一步步的寻找优化途径。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/blog/index.js"></script></html>
