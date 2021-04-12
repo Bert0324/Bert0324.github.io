@@ -16,9 +16,9 @@
         "strictFunctionTypes": true,
         "strictBindCallApply": true,
         "strictPropertyInitialization": false,
-        "noImplicitThis": true,
+        "noImplicitThis": false,
         "alwaysStrict": true,
-        "noUnusedLocals": true,
+        "noUnusedLocals": false,
         "noImplicitReturns": true,
         /*模块查找*/
         "moduleResolution": "node",
@@ -31,6 +31,6 @@
         "experimentalDecorators": true,
         /*其他选项*/
         "preserveConstEnums": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
     }
 }

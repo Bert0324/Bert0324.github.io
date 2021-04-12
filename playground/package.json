@@ -2,15 +2,15 @@
   "name": "playground",
   "version": "1.0.0",
   "scripts": {
-    "cert": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem",
-    "server": "nodemon -e ts -w ./server/server.ts -x ts-node ./server/server.ts",
-    "static": "http-server  ./static -S -C ./server/cert.pem -K ./server/key.pem",
-    "dev": "yarn server && yarn static"
+    "dev": "nodemon -e ts -w ./server -x ts-node ./server/index.ts"
   },
   "devDependencies": {
-    "@types/node": "^14.14.33",
-    "http-server": "^0.12.3",
+    "@types/node": "^14.14.37",
+    "@types/ws": "^7.4.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "ws": "^7.4.4"
   }
 }

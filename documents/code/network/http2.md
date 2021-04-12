@@ -54,6 +54,12 @@ location / {
 }
 ```
 
+## With TLS
+
+Currently, we can say all Http2 in browsers **must** over TLS, as right now, no browser support Http2 without TLS.
+
+See reason in [here](https://stackoverflow.com/questions/46788904/why-do-web-browsers-not-support-h2c-http-2-without-tls).
+
 ## Reference
 
 - <https://developers.google.com/web/fundamentals/performance/http2>
