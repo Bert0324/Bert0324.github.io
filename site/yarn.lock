@@ -309,6 +309,11 @@ errno@^0.1.1:
   dependencies:
     prr "~1.0.1"
 
+flexsearch@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/flexsearch/-/flexsearch-0.7.1.tgz#9bba80582193e2bbeef73fdeee578acddb7fe31f"
+  integrity sha512-+nuTYgqWMA8JawcReboPniMuvy0ClxqU66oMh4YzNiQQrbzH6VdJZMF/kzAEPnpL64FiZfbGRixv+cz5YponhA==
+
 form-data@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/form-data/download/form-data-3.0.0.tgz?cache=0&sync_timestamp=1573027040291&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fform-data%2Fdownload%2Fform-data-3.0.0.tgz#31b7e39c85f1355b7139ee0c647cf0de7f83c682"
@@ -617,6 +622,11 @@ relateurl@^0.2.7:
   version "0.2.7"
   resolved "https://registry.npm.taobao.org/relateurl/download/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
+
+remove-markdown@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/remove-markdown/-/remove-markdown-0.3.0.tgz#5e4b667493a93579728f3d52ecc1db9ca505dc98"
+  integrity sha1-XktmdJOpNXlyjz1S7MHbnKUF3Jg=
 
 rimraf@^3.0.2:
   version "3.0.2"

@@ -3,6 +3,7 @@ import { setOptions, Renderer } from 'marked';
 import { readFileSync, existsSync } from 'fs';
 import { highlight, getLanguage } from 'highlight.js';
 import { minify } from 'html-minifier';
+import removeMd from 'remove-markdown';
 import { markdownUrl, projectRootPath, remoteResourceUrl } from './config';
 import { IFileContent } from './fetchFile';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -52,7 +53,14 @@ const markToHTML = async (markdown: string, filePath?: string) => {
 	`;
 };
 
-export const processMarkdown = async (markdown: string, filePath?: string) => {	
+export const searchJson: Record<string, any> = {};
+export const processMarkdown = async (markdown: string, filePath?: string, key?: string) => {
+	const content = removeMd(markdown);
+	const fileKey = `${key || 'index'}.html`;
+	searchJson[fileKey] = {
+		content,
+		title: content.match(/^(.*)[\n]/)?.[1] || ''
+	};
 	return `<article class="markdown-body">${
 		await markToHTML(
 			markdown
@@ -65,9 +73,11 @@ export const processMarkdown = async (markdown: string, filePath?: string) => {
 
 export const generateHTMLFiles = async (markdown: string, key: string) => {
 	const ret: IFileContent[] = [];
-	const map: any = {};
+	const map: Record<string, any> = {};
+	let fileKey= '';
 	const content = await processMarkdown(markdown.replace(/\[(.*)\]\((.*)\/([^\/]*)\.md\)/g, (all, $1, $2, key) => {
 		if (key) {
+			fileKey = key;
 			ret.push({
 				key,
 				content: '',
@@ -76,13 +86,14 @@ export const generateHTMLFiles = async (markdown: string, key: string) => {
 			return `[${$1}](/blog/${key}.html)`;
 		}
 		return '';
-	}));
+	}), undefined, fileKey);
 	await Promise.all(
 		ret.map((async item => {
 			if (item.content) return item;
 			if (existsSync(`${projectRootPath}${map[item.key]}`)) {
 				const filePath = `${projectRootPath}${map[item.key]}`;
-				item.content = await processMarkdown(readFileSync(filePath, 'utf-8'), filePath);
+				const text = readFileSync(filePath, 'utf-8');
+				item.content = await processMarkdown(text, filePath, item.key);
 			}
 			return item;
 		}))

@@ -3,10 +3,10 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { sync } from 'rimraf';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { template } from 'lodash';
-import { indexTemplatePath, distFolderPath } from './config';
+import { indexTemplatePath, distFolderPath, searchPath } from './config';
 import Template from '../template/postTemplate';
 import { IFileContent } from "./fetchFile";
-import { minifyHTML } from './utils';
+import { minifyHTML, searchJson } from './utils';
 
 const recreateFolder = (path: string) => {
 	if (existsSync(path)) sync(path);
@@ -26,4 +26,6 @@ export const writeTemplate = async (contents: IFileContent[]) => {
 			minifyHTML(inject({ content: renderToStaticMarkup(<Template content={content.content} />) }))
 		);
 	}));
+
+	writeFileSync(searchPath, JSON.stringify(searchJson));
 };

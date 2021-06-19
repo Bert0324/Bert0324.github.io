@@ -16,6 +16,7 @@ export const projectRootPath = (() => {
 export const indexTemplatePath = `${rootPath}/src/template/index.html`;
 export const documentsPath = `${projectRootPath}/documents`;
 export const distFolderPath = `${projectRootPath}/blog`;
+export const searchPath = `${projectRootPath}/blog/search.json`;
 export const markdownUrl = 'https://github.com/Bert0324/code-playground/blob/master';
 export const remoteResourceUrl = 'https://raw.githubusercontent.com/Bert0324/code-playground/master';
 export const singlePage: IConfig[] = [

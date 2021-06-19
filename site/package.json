@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
+    "flexsearch": "^0.7.1",
     "gitlog": "^4.0.4",
     "highlight.js": "^10.6.0",
     "html-minifier": "^4.0.0",
@@ -36,6 +37,7 @@
     "@types/react-dom": "^17.0.1",
     "@types/rimraf": "^3.0.0",
     "@types/uglify-js": "^3.13.0",
+    "remove-markdown": "^0.3.0",
     "uglify-js": "^3.13.0"
   }
 }
