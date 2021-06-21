@@ -214,8 +214,10 @@ input.addEventListener("click", async () => {
       }, [])
     );
     document.querySelector(".search-input").addEventListener("blur", () => {
-      dropdown.style.display = "none";
-      document.querySelector(".search-dropdown").style.overflowX = "";
+      setTimeout(() => {
+        // dropdown.style.display = "none";
+        // document.querySelector(".search-dropdown").style.overflowX = "";
+      }, 100);
     });
     dropdown.addEventListener("mouseover", chooseCb);
     searchFunc = (s) => {

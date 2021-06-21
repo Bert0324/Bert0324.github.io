@@ -220,7 +220,7 @@ body::selection {
 			display: flex;
 			flex-direction: column;
 			width: fit-content;
-			min-width: 100%;
+			width: 100%;
 			align-items: flex-start;
 			justify-content: center;
 		}
@@ -240,10 +240,18 @@ body::selection {
 			.search-dropdown-content {
 				font-size: 20px;
 				color: gray;
+				flex: 4;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
 			}
 			.search-dropdown-title {
 				font-size: 12px;
 				color: black;
+				flex: 1;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
 			}
 		}
 	}
