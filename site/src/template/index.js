@@ -173,15 +173,24 @@ const mainTask = () => {
         node.style.backgroundColor = "#ecebeb";
       }
     };
-    searchButton.addEventListener('click', () => {
+    searchButton.addEventListener("click", async () => {
       input.style.opacity = '1';
+      input.style.visibility = 'visible';
+      searchButton.style.opacity = '0';
+      searchButton.style.visibility = 'hidden';
       setTimeout(() => {
-        input.style.visibility = 'visible';
-      }, 1000);
-      searchButton.style.display = 'none';
-    });
-    input.addEventListener("click", async () => {
+        input.focus();
+      }, 500);
       if (!searchFunc && !loading) {
+        input.addEventListener("blur", () => {
+          setTimeout(() => {
+            document.querySelector(".search-dropdown").style.overflowX = "";
+            searchButton.style.opacity = '1';
+            searchButton.style.visibility = 'visible';
+            input.style.opacity = '0';
+            input.style.visibility = 'hidden';
+          }, 100);
+        });
         loading = true;
         const searchContent = JSON.parse(
           await (await fetch("/blog/search.json")).text()
@@ -224,17 +233,6 @@ const mainTask = () => {
             return acc;
           }, [])
         );
-        input.addEventListener("blur", () => {
-          setTimeout(() => {
-            searchButton.style.display = 'none';
-            dropdown.style.display = "none";
-            document.querySelector(".search-dropdown").style.overflowX = "";
-            input.style.opacity = '0';
-            setTimeout(() => {
-              input.style.visibility = 'hidden';
-            }, 1000);
-          }, 100);
-        });
         dropdown.addEventListener("mouseover", chooseCb);
         searchFunc = (s) => {
           const ret = [...eIndex.search(s), ...cIndex.search(s)];

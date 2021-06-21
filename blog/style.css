@@ -175,6 +175,9 @@ body::selection {
 }
 @media screen and (max-width: 5120px) {
   .search-field .search-input {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 500ms ease;
     width: 40vw;
     height: 30px;
   }
@@ -245,4 +248,27 @@ body::selection {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+@font-face {
+  font-family: icons;
+  src: url(/assets/font_823612_7cz7sb6mqai.eot);
+  src: url(/assets/font_823612_7cz7sb6mqai.woff2) format("woff2"), url(/assets/font_823612_7cz7sb6mqai.woff) format("woff"), url(/assets/font_823612_7cz7sb6mqai.ttf) format("truetype"), url(/assets/font_823612_7cz7sb6mqai.svg) format("svg");
+}
+.icon-font {
+  font-family: icons !important;
+}
+.search-button {
+  height: 30px;
+  width: 50px;
+  background-color: #0089FF;
+  border-color: antiquewhite;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  display: inherit;
+  opacity: 1;
+  transition: all 500ms ease;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }

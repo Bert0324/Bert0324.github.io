@@ -186,7 +186,7 @@ body::selection {
 		.search-input {
 			visibility: hidden;
 			opacity: 0;
-			transition: all 500ms ease 0s;
+			transition: all 500ms ease;
 			width: 40vw;
 			height: 30px;
 		}
@@ -280,4 +280,10 @@ body::selection {
 	border-radius: 10px;
 	color: white;
 	font-size: 16px;
+	display: inherit;
+	opacity: 1;
+	transition: all 500ms ease;
+	position: absolute;
+	right: 20px;
+	top: 20px;
 }
