@@ -215,8 +215,8 @@ input.addEventListener("click", async () => {
     );
     document.querySelector(".search-input").addEventListener("blur", () => {
       setTimeout(() => {
-        // dropdown.style.display = "none";
-        // document.querySelector(".search-dropdown").style.overflowX = "";
+        dropdown.style.display = "none";
+        document.querySelector(".search-dropdown").style.overflowX = "";
       }, 100);
     });
     dropdown.addEventListener("mouseover", chooseCb);
