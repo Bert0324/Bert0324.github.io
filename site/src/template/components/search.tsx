@@ -9,6 +9,7 @@ export const SearchBar = () => {
                     <div className="dropdown-container" />
                 </div>
             </div>
+            <button className='icon-font search-button'></button>
 		</div>
 	);
 };

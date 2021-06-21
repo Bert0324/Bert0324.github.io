@@ -156,6 +156,7 @@ const mainTask = () => {
     const separator = "---";
     let searchFunc;
     const input = document.querySelector(".search-input");
+    const searchButton = document.querySelector('.search-button');
     const dropdown = document.querySelector(".dropdown-container");
     const findDropdownCell = (node) => {
       if (Array.from(node.classList).includes("search-dropdown-cell-container"))
@@ -172,6 +173,13 @@ const mainTask = () => {
         node.style.backgroundColor = "#ecebeb";
       }
     };
+    searchButton.addEventListener('click', () => {
+      input.style.opacity = '1';
+      setTimeout(() => {
+        input.style.visibility = 'visible';
+      }, 1000);
+      searchButton.style.display = 'none';
+    });
     input.addEventListener("click", async () => {
       if (!searchFunc && !loading) {
         loading = true;
@@ -216,10 +224,15 @@ const mainTask = () => {
             return acc;
           }, [])
         );
-        document.querySelector(".search-input").addEventListener("blur", () => {
+        input.addEventListener("blur", () => {
           setTimeout(() => {
+            searchButton.style.display = 'none';
             dropdown.style.display = "none";
             document.querySelector(".search-dropdown").style.overflowX = "";
+            input.style.opacity = '0';
+            setTimeout(() => {
+              input.style.visibility = 'hidden';
+            }, 1000);
           }, 100);
         });
         dropdown.addEventListener("mouseover", chooseCb);
