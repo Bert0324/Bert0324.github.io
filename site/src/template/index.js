@@ -1,4 +1,5 @@
 const mainTask = () => {
+  const highlightKey = "highlight";
   const setUtils = () => {
     const debounce = (fn, delay) => {
       let task = null;
@@ -153,7 +154,6 @@ const mainTask = () => {
   const setSearch = () => {
     let loading = false;
     const separator = "---";
-    const highlightKey = "highlight";
     let searchFunc;
     const input = document.querySelector(".search-input");
     const dropdown = document.querySelector(".dropdown-container");
