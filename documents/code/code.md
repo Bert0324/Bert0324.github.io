@@ -15,6 +15,7 @@ The place I can organize my thoughts and review knowledge.
 - [Generator](/documents/code/js/generator.md)
 - [Event Loop](/documents/code/js/event_loop.md)
 - [Module](/documents/code/js/module.md)
+- [Node Debug](/documents/code/js/node_debugger.md)
 - [Stream and Buffer](/documents/code/js/stream_buffer.md)
 
 ### Browser
