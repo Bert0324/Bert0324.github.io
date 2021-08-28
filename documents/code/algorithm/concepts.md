@@ -10,7 +10,7 @@ For different algorithms, with the growth of the amount of input data, the incre
 
 The chart as below illustrates their growth rate:
 
-<img src="../assets/time_complexity_growth.png" width="400"/>
+<img src="../../../assets/time_complexity_growth.png" width="400"/>
 
 As we can see, `O(n!)` and `O(2^n)`'s growth rate is rapid to such a degree that in practical scenario, we can't accept an algorithm in these time complexity.
 
