@@ -48,6 +48,7 @@ The place I can organize my thoughts and review knowledge.
 - [Vue: Template Syntax](/documents/code/vue/template_syntax.md)
 - [Vue: Object Proxy](/documents/code/js/object_proxy.md)
 - [Vue: Life Cycle](/documents/code/vue/life_cycle.md)
+- [Lerna & Yarn: MonoRepo](/documents/code/other/monorepo.md)
 
 ### Other
 
@@ -62,6 +63,7 @@ The place I can organize my thoughts and review knowledge.
 - [RxJS](/documents/code/other/rxjs.md)
 - [React Native Bridges](/documents/code/other/rn_bridges.md)
 - [TS Utility Types](/documents/code/other/utility_types.md)
+- [Cross-Platform Framework for Mini Program](/documents/code/other/mini_program.md)
 
 ## Common
 
@@ -89,6 +91,7 @@ The place I can organize my thoughts and review knowledge.
 
 - [Socket](/documents/code/os/socket.md)
 - [Common Linux Commands](/documents/code/practical/linux_commands.md)
+- [Text Encoding Standards](/documents/code/os/string_encoding.md)
 
 ### Design Patterns
 
