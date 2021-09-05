@@ -1,3 +1,3 @@
 #! /usr/bin/env bash
 
-ts-node ./playground/node/$1
+ts-node --project ./playground/node/tsconfig.json ./playground/node/$1
