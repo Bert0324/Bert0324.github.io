@@ -16,6 +16,7 @@ The place I can organize my thoughts and review knowledge.
 - [Event Loop](/documents/code/js/event_loop.md)
 - [Module](/documents/code/js/module.md)
 - [Node Debug](/documents/code/js/node_debugger.md)
+- [Node Package Manager](/documents/code/js/package_manager.md)
 - [Stream and Buffer](/documents/code/js/stream_buffer.md)
 
 ### Browser
