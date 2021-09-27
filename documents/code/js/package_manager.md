@@ -138,6 +138,12 @@ a => b
 
 比较相似的是, yarn的workspace也是用symlink去统一依赖的, 可以看[此yarn源码](https://github.com/yarnpkg/yarn/blob/3119382885ea373d3c13d6a846de743eca8c914b/src/package-linker.js). 还有cnpm, 也是用类似的方案.
 
+### When using pnpm
+
+特别值得一提的是, pnpm的这种方式, 如果依赖的包写法不规范, 隐式依赖了一些包, 会导致依赖查询不到而报错. 那么就只能用npm/yarn去安装, 或者为pnpm cli加上[`--shamefully-hoist`](https://pnpm.io/npmrc#dependency-hoisting-settings).
+
+此外, symlink的方式会导致一些IDE索引很久, 占用cpu, 在此特别推荐vscode作为配合.
+
 ## Thinking
 
 时至今日, node都已经可以用`corepack`去指定包管理工具了, npm的地位已经不那么官方了. 如果node可以有更好的包管理方案, 意味着更小的包体积, 更简单的tree shaking逻辑, 那么对基于js开发的前后端的开发体验和用户体验, 都会有很大的提升.
