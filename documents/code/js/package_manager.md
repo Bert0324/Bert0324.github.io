@@ -136,6 +136,8 @@ a => b
 
 所以本质上, pnpm和npm/yarn是没有区别的, 也是会flat后放在`.pnpm`中, 但是他多做的一点是把文件通过symlink串联起来.
 
+比较相似的是, yarn的workspace也是用symlink去统一依赖的, 可以看[此yarn源码](https://github.com/yarnpkg/yarn/blob/3119382885ea373d3c13d6a846de743eca8c914b/src/package-linker.js). 还有cnpm, 也是用类似的方案.
+
 ## Thinking
 
 时至今日, node都已经可以用`corepack`去指定包管理工具了, npm的地位已经不那么官方了. 如果node可以有更好的包管理方案, 意味着更小的包体积, 更简单的tree shaking逻辑, 那么对基于js开发的前后端的开发体验和用户体验, 都会有很大的提升.
