@@ -49,7 +49,5 @@ I typed an url in the browser and pressing enter. After the page was loaded, I c
 
 ## Reference
 
-- <https://topic.alibabacloud.com/a/tcp-three-time-font-colorredhandshakefont-and-four-times-wave-break_8_8_20230829.html>
-- <https://www.vskills.in/certification/tutorial/information-technology/basic-network-support-professional/tcp-connection-establish-and-terminate/>
-- <https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages>
-- <https://www.techrepublic.com/article/exploring-the-anatomy-of-a-data-packet/>
+- MDN: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages>
+- 峰哥关于tcp的博客: <http://www.ruanyifeng.com/blog/2017/06/tcp-protocol.html>

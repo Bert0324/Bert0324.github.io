@@ -49,7 +49,6 @@ The place I can organize my thoughts and review knowledge.
 - [Vue: Template Syntax](/documents/code/vue/template_syntax.md)
 - [Vue: Object Proxy](/documents/code/js/object_proxy.md)
 - [Vue: Life Cycle](/documents/code/vue/life_cycle.md)
-- [Lerna & Yarn: MonoRepo](/documents/code/other/monorepo.md)
 
 ### Other
 
