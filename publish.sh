@@ -3,6 +3,7 @@
 echo building
 yarn --cwd ./site/package.json build
 wait
+cd ..
 echo git add
 git add .
 wait
