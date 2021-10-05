@@ -1,12 +1,14 @@
 {
     "cSpell.words": [
-        "Revwalk",
-        "Symlink",
-        "Versionheader",
-        "Wireshark",
+        "flexsearch",
         "gitlog",
         "leetcode",
-        "nodegit"
+        "nodegit",
+        "Revwalk",
+        "Symlink",
+        "uglifyjs",
+        "Versionheader",
+        "Wireshark"
     ],
     "git.ignoreLimitWarning": true
 }

@@ -8,8 +8,9 @@
       "type": "lldb",
       "request": "launch",
       "name": "Debug",
+      "preLaunchTask": "buildRust",
       "program": "${workspaceFolder}/playground/rust/target/debug/rust",
-      "args": [],
+      "args": ["102"],
       "cwd": "${workspaceFolder}"
     }
   ]

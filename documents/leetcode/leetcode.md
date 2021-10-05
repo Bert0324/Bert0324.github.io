@@ -6,6 +6,9 @@
 
 ## Binary Tree
 
+- [297. Serialize And Deserialize Binary Tree](/documents/leetcode/297.serialize-and-deserialize-binary-tree.md)
+- [Traverse Binary Tree Collection: 102,297](/documents/leetcode/binary-tree-traverse-collection.md)
+
 ## Dynamic Programming
 
 - [42. Trapping Rain Water](/documents/leetcode/42.trapping-rain-water.md)
