@@ -6,8 +6,7 @@
 
 ## Binary Tree
 
-- [297. Serialize And Deserialize Binary Tree](/documents/leetcode/297.serialize-and-deserialize-binary-tree.md)
-- [Traverse Binary Tree Collection: 102,297](/documents/leetcode/binary-tree-traverse-collection.md)
+- [Traverse Binary Tree Collection: 297, 105, 102, 107, 144, 103, 987, 94, 145](/documents/leetcode/binary-tree-traverse-collection.md)
 
 ## Dynamic Programming
 

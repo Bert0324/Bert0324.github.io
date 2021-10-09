@@ -14,15 +14,17 @@
 
 DFS写出来的代码总是比BFS的短很多，这也是为什么我一直觉得DFS比BFS简单的原因。
 
-不过其实，两者的本质都是要依托于数据结构。DFS使用了栈的数据结构，在一条树的线路上入栈到底，然后出栈计算，然后继续入栈。而刚好对于大部分的编程语言而言，
+不过其实，两者的本质都是要依托于数据结构。DFS使用了栈的数据结构，在一条树的线路上入栈到底，然后出栈计算，然后继续入栈。而刚好对于大部分的编程语言而言，函数调用即是以栈的形式。
+
+时间复杂度O(n), 空间复杂度O(n). 首先，每个节点都要被遍历一次，内存开销主要是函数栈的开销，平均情况下为 O(log n)，最坏情况下树呈现链状，为 O(n).
 
 ```rs
-fn dfs<F: FnOnce(i32)>(root: Option<Rc<RefCell<TreeNode>>>, cb: F) {
-    if let Some(n) = root {
+fn dfs<F: FnMut(i32)>(_root: Option<Rc<RefCell<TreeNode<i32>>>>, cb: &mut F) {
+    if let Some(n) = _root {
         let node = n.borrow();
         cb(node.val);
-        dfs(node.left.clone());
-        dfs(node.right.clone());
+        dfs(node.left.clone(), cb);
+        dfs(node.right.clone(), cb);
     }
 }
 ```
@@ -31,8 +33,10 @@ fn dfs<F: FnOnce(i32)>(root: Option<Rc<RefCell<TreeNode>>>, cb: F) {
 
 BFS使用了队列的数据结构。每一次的节点都会在被遍历的同时，把自己的子节点推入队列，根据队列FIFO的特点，会在本层的节点都完成之后，再进行下一层的节点，所以可以以层的顺序去遍历。
 
+时间复杂度O(n), 空间复杂度O(n).
+
 ```rs
-fn bfs<F: FnOnce(i32)>(root: Option<Rc<RefCell<TreeNode>>>, cb: F) {
+fn bfs<F: FnMut(i32)>(root: Option<Rc<RefCell<TreeNode>>>, cb: &mut F) {
     use std::collections::VecDeque;
     if root.is_none() {
         return;
@@ -54,6 +58,8 @@ fn bfs<F: FnOnce(i32)>(root: Option<Rc<RefCell<TreeNode>>>, cb: F) {
 ```
 
 ## BST Serialization
+
+### from tree level order
 
 No.297, source: <https://leetcode.com/problems/serialize-and-deserialize-binary-tree/>
 
@@ -148,13 +154,20 @@ impl Codec {
 }
 ```
 
+### from preorder and inorder
+
+No.105, source: <https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/>
+
 ## Traverse Order
 
 ### tree level order
 
-source: <https://leetcode.com/problems/binary-tree-level-order-traversal/>
+No.102, source: <https://leetcode.com/problems/binary-tree-level-order-traversal/>
+No.107, source: <https://leetcode.com/problems/binary-tree-level-order-traversal-ii/>
 
 二叉树的层次遍历，其实和构建二叉树是一样的，而且更简单。dfs和bfs都可以，但是感觉用bfs会更加自然。
+
+如果是从bottom开始，只要reverse一下从top开始的结果就可以。
 
 ```rs
 pub fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
@@ -190,20 +203,47 @@ pub fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
 }
 ```
 
-### tree level order from bottom
-
-source: <https://leetcode.com/problems/binary-tree-level-order-traversal-ii/>
-
 ### preorder
 
-source: <https://leetcode.com/problems/binary-tree-preorder-traversal/>
+No.144, source: <https://leetcode.com/problems/binary-tree-preorder-traversal/>
+
+栈符合前序遍历的要求，先进后出，深度到底。
+
+值得一提的是，如果不用函数栈，即递归的形式，那么可以自己构造栈，把右节点先入栈，左边一口气到底：
+
+```rs
+pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+  let mut ret = vec![];
+  let mut stack = vec![root];
+  while let Some(node) = stack.pop() {
+    if let Some(n) = node {
+      let borrow_node = n.borrow_mut();
+      ret.push(borrow_node.val);
+      stack.push(borrow_node.right.clone());
+      stack.push(borrow_node.left.clone());
+    }
+  }
+  return ret;
+}
+```
 
 ### inorde
 
-source: <https://leetcode.com/problems/binary-tree-inorder-traversal/>
+No.94, source: <https://leetcode.com/problems/binary-tree-inorder-traversal/>
+
+```rs
+```
 
 ### postorder
 
-source: <https://leetcode.com/problems/binary-tree-postorder-traversal/>
+No. 145, source: <https://leetcode.com/problems/binary-tree-postorder-traversal/>
+
+### zigzag level order
+
+No.103, source: <https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/>
+
+### vertical order
+
+No. 987, source: <https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/>
 
 ## 总结

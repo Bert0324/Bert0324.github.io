@@ -1,7 +1,10 @@
 use std::env;
 mod tree_builder;
 mod l_1;
+mod l_94;
 mod l_102;
+mod l_107;
+mod l_144;
 mod l_297;
 
 fn main() {
@@ -10,7 +13,10 @@ fn main() {
     println!("Start No.{}", module_name);
     match module_name {
         "1" => println!("ret: {:?}", l_1::run()),
+        "94" => println!("ret: {:?}", l_94::run()),
         "102" => println!("ret: {:?}", l_102::run()),
+        "107" => println!("ret: {:?}", l_107::run()),
+        "144" => println!("ret: {:?}", l_144::run()),
         "297" => println!("ret: {:?}", l_297::run()),
         _ => println!("no matched module: {:?}", module_name),
     }
