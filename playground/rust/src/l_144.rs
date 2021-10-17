@@ -4,10 +4,10 @@ use super::tree_builder::*;
 pub fn preorder_traversal_recursive(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Vec<i32> {
   fn dfs<F: FnMut(i32)>(_root: Option<Rc<RefCell<TreeNode<i32>>>>, cb: &mut F) {
     if let Some(n) = _root {
-        let node = n.borrow();
-        cb(node.val);
-        dfs(node.left.clone(), cb);
-        dfs(node.right.clone(), cb);
+      let node = n.borrow();
+      cb(node.val);
+      dfs(node.left.clone(), cb);
+      dfs(node.right.clone(), cb);
     }
   }
   let mut ret = vec![];
@@ -29,7 +29,7 @@ pub fn preorder_traversal_traverse(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> 
       stack.push(borrow_node.left.clone());
     }
   }
-  return ret;
+  ret
 }
 
 pub fn run() -> Vec<i32> {

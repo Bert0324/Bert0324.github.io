@@ -10,7 +10,9 @@
       "name": "Debug",
       "preLaunchTask": "buildRust",
       "program": "${workspaceFolder}/playground/rust/target/debug/rust",
-      "args": ["94"],
+      "args": [
+        "94"
+      ],
       "cwd": "${workspaceFolder}"
     }
   ]

@@ -4,12 +4,11 @@ static NULL: &str = "x";
 static SEPARATOR: &str = ",";
 use std::collections::VecDeque;
 struct Codec {}
-/** 
+/**
  * `&self` means the method takes an immutable reference.
  * If you need a mutable reference, change it to `&mut self` instead.
  */
 impl Codec {
-    
     fn new() -> Self {
         Self {}
     }
@@ -46,19 +45,21 @@ impl Codec {
 
         return ret.join(SEPARATOR);
     }
-	
     fn deserialize(&self, data: String) -> Option<Rc<RefCell<TreeNode<i32>>>> {
         if data == "" {
             return None;
         }
 
         let list: Vec<&str> = data.split(SEPARATOR).collect();
-        let nodes: Vec<Option<Rc<RefCell<TreeNode<i32>>>>> = list.iter().map(|item| {
-            if *item == NULL {
-                return None;
-            }
-            return TreeNode::new_node(item.parse::<i32>().unwrap());
-        }).collect();
+        let nodes: Vec<Option<Rc<RefCell<TreeNode<i32>>>>> = list
+            .iter()
+            .map(|item| {
+                if *item == NULL {
+                    return None;
+                }
+                return TreeNode::new_node(item.parse::<i32>().unwrap());
+            })
+            .collect();
         let mut queue = VecDeque::<usize>::new();
         queue.push_back(0);
 
@@ -75,7 +76,7 @@ impl Codec {
                         borrow_unwrapped_node.right = nodes[cursor + 1].clone();
                         queue.push_back(cursor + 1);
                     }
-                 }
+                }
             }
             cursor += 2;
         }

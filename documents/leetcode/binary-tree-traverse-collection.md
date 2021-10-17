@@ -207,9 +207,11 @@ pub fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
 
 No.144, source: <https://leetcode.com/problems/binary-tree-preorder-traversal/>
 
+preorder: 根在前，从左往右，一棵树的根永远在左子树前面，左子树又永远在右子树前面 
+
 栈符合前序遍历的要求，先进后出，深度到底。
 
-值得一提的是，如果不用函数栈，即递归的形式，那么可以自己构造栈，把右节点先入栈，左边一口气到底：
+值得一提的是，如果不用函数栈，即递归的形式，那么可以自己构造栈，把右节点先入栈，左边一口气到底, 个人感觉虽然比递归代码量大，但是更加的直观。
 
 ```rs
 pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
@@ -231,12 +233,72 @@ pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
 
 No.94, source: <https://leetcode.com/problems/binary-tree-inorder-traversal/>
 
+inorder: 根在中，从左往右，一棵树的左子树永远在根前面，根永远在右子树前面.
+
+递归实现比较简单，比较难的是用自己用栈结构实现。
+
+思路是对于**一个节点**而言，要先把所有的左节点都入栈，然后在出栈的过程中，收集值然后再把右节点入栈。
+
 ```rs
+pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+  let mut ret = vec![];
+  let mut stack = vec![];
+  let mut current_root_wrap = root;
+
+  while current_root_wrap.is_some() || !stack.is_empty() {
+    while let Some(node) = current_root_wrap {
+      current_root_wrap = node.borrow().left.clone();
+      stack.push(node);
+    }
+    if let Some(node) = stack.pop() {
+      ret.push(node.borrow().val);
+      current_root_wrap = node.borrow().right.clone();
+    }
+  }
+
+  return ret;
+}
 ```
 
 ### postorder
 
 No. 145, source: <https://leetcode.com/problems/binary-tree-postorder-traversal/>
+
+postorder: 根在后，从左往右，一棵树的左子树永远在右子树前面，右子树永远在根前面.
+
+值得一提的是，前序稍微改一下然后reverse，就是后序：
+
+```txt
+前序：中 -> 左 -> 右
+稍微改一下前序顺序: 中 -> 右 -> 左
+然后翻转: 左 -> 右 -> 中
+```
+
+用栈结构实现是前中后最难的：左节点一撸到底，然后去检查右节点，每个节点处理完就值为空，当右节点也不存在时，就可以把此时的节点值推入。
+
+```rs
+pub fn postorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    let mut ret = vec![];
+    let mut stack = vec![];
+    let mut current_root_wrap = root;
+
+    while current_root_wrap.is_some() || !stack.is_empty() {
+        while let Some(node) = current_root_wrap {
+            current_root_wrap = node.borrow_mut().left.take();
+            stack.push(node);
+        }
+        if let Some(node) = stack.pop() {
+            if node.borrow().right.is_some() {
+                current_root_wrap = node.borrow_mut().right.take();
+                stack.push(node);
+            } else {
+                ret.push(node.borrow().val);
+            }
+        }
+    }
+    ret
+}
+```
 
 ### zigzag level order
 
