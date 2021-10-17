@@ -304,8 +304,18 @@ pub fn postorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
 
 No.103, source: <https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/>
 
+其实是层序遍历的变种，只要每行改变一下左右节点推入顺序即可。
+
+```rs
+```
+
 ### vertical order
 
 No. 987, source: <https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/>
+
+可以先用层序遍历，记录下各节点坐标，然后进行数组遍历。
+
+```rs
+```
 
 ## 总结

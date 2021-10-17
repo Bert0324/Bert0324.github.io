@@ -58,5 +58,5 @@ pub fn postorder_traversal_traverse(root: Option<Rc<RefCell<TreeNode<i32>>>>) ->
 
 pub fn run() -> Vec<i32> {
     let data = TreeNode::<i32>::deserialize("3,9,20,x,x,15,7".to_string());
-    return postorder_traversal_traverse(data);
+    postorder_traversal_traverse(data)
 }

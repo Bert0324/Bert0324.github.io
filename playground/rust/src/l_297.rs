@@ -43,7 +43,7 @@ impl Codec {
             }
         }
 
-        return ret.join(SEPARATOR);
+        ret.join(SEPARATOR)
     }
     fn deserialize(&self, data: String) -> Option<Rc<RefCell<TreeNode<i32>>>> {
         if data == "" {
@@ -80,7 +80,7 @@ impl Codec {
             }
             cursor += 2;
         }
-        return nodes[0].clone();
+        nodes[0].clone()
     }
 }
 
@@ -88,13 +88,13 @@ impl<T> TreeNode<T> {
     #[allow(dead_code)]
     pub fn serialize(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> String {
         let obj = Codec::new();
-        return obj.serialize(root);
+        obj.serialize(root)
     }
 
     #[allow(dead_code)]
     pub fn deserialize(data: String) -> Option<Rc<RefCell<TreeNode<i32>>>> {
         let obj = Codec::new();
-        return obj.deserialize(data);
+        obj.deserialize(data)
     }
 }
 
@@ -102,6 +102,5 @@ pub fn run() -> String {
     let source = String::from("1,2,3,x,x,4,5,x,x,x,x,1,2,2,3");
     let obj = Codec::new();
     let data = obj.deserialize(source);
-    println!("{:?}", data);
-    return obj.serialize(data);
+    obj.serialize(data)
 }

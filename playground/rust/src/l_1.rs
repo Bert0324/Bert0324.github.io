@@ -38,7 +38,7 @@ fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
             Some(i) => return [(*i) as i32, index1 as i32].to_vec(),
             None => {
                 kv.insert(*value, index1);
-            },
+            }
         }
     }
     [].to_vec()
@@ -47,5 +47,5 @@ fn two_sum_hashmap(nums: Vec<i32>, target: i32) -> Vec<i32> {
 pub fn run() -> Vec<i32> {
     let nums = [3, 2, 4].to_vec();
     let target = 6;
-    return two_sum_hashmap(nums, target);
+    two_sum_hashmap(nums, target)
 }

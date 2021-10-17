@@ -21,7 +21,7 @@ pub fn level_order_dfs(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Vec<Vec<i32>
         }
     }
     dfs(root, 0, &mut ret);
-    return ret;
+    ret
 }
 
 #[allow(dead_code)]
@@ -32,7 +32,6 @@ pub fn level_order_bfs(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Vec<Vec<i32>
     if root.is_none() {
         return ret;
     }
- 
     let mut queue = VecDeque::<Option<Rc<RefCell<TreeNode<i32>>>>>::new();
     queue.push_front(root);
     while !queue.is_empty() {
@@ -44,7 +43,7 @@ pub fn level_order_bfs(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Vec<Vec<i32>
             if let Some(node) = queue.pop_front() {
                 if let Some(unwrapped_node) = node {
                     let borrow_unwrapped_node = unwrapped_node.borrow();
-                    level_arr.push(borrow_unwrapped_node.val); 
+                    level_arr.push(borrow_unwrapped_node.val);
                     queue.push_back(borrow_unwrapped_node.left.clone());
                     queue.push_back(borrow_unwrapped_node.right.clone());
                 }
@@ -54,10 +53,10 @@ pub fn level_order_bfs(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Vec<Vec<i32>
             ret.push(level_arr);
         }
     }
-    return ret;
+    ret
 }
 
 pub fn run() -> Vec<Vec<i32>> {
     let data = TreeNode::<i32>::deserialize("1,2,3,x,x,4,5".to_string());
-    return level_order_dfs(data);
+    level_order_dfs(data)
 }
