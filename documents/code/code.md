@@ -18,6 +18,7 @@ The place I can organize my thoughts and review knowledge.
 - [Node Debug](/documents/code/js/node_debugger.md)
 - [Node Package Manager](/documents/code/js/package_manager.md)
 - [Stream and Buffer](/documents/code/js/stream_buffer.md)
+- [Utility Functions](/documents/code/js/utility_functions.md)
 
 ### Browser
 
@@ -92,6 +93,7 @@ The place I can organize my thoughts and review knowledge.
 - [Socket](/documents/code/os/socket.md)
 - [Common Linux Commands](/documents/code/practical/linux_commands.md)
 - [Text Encoding Standards](/documents/code/os/string_encoding.md)
+- [inode](/documents/code/os/inode.md)
 
 ### Design Patterns
 

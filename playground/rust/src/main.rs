@@ -5,6 +5,7 @@ mod l_103;
 mod l_107;
 mod l_144;
 mod l_145;
+mod l_146;
 mod l_297;
 mod l_94;
 mod l_987;
@@ -23,6 +24,7 @@ fn main() {
         "107" => println!("ret: {:?}", l_107::run()),
         "144" => println!("ret: {:?}", l_144::run()),
         "145" => println!("ret: {:?}", l_145::run()),
+        "146" => println!("ret: {:?}", l_146::run()),
         "297" => println!("ret: {:?}", l_297::run()),
         "987" => println!("ret: {:?}", l_987::run()),
         _ => println!("no matched module: {:?}", module_name),

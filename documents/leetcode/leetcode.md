@@ -2,6 +2,7 @@
 
 ## Linked List
 
+- [146. LRU Cache](/documents/leetcode/146.lru_cache.md)
 - [206. Reverse Linked List](/documents/leetcode/206.reverse-linked-list.md)
 
 ## Binary Tree
