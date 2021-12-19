@@ -11,7 +11,7 @@
       "preLaunchTask": "buildRust",
       "program": "${workspaceFolder}/playground/rust/target/debug/rust",
       "args": [
-        "94"
+        "146"
       ],
       "cwd": "${workspaceFolder}"
     }

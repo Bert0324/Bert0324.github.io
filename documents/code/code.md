@@ -20,6 +20,10 @@ The place I can organize my thoughts and review knowledge.
 - [Stream and Buffer](/documents/code/js/stream_buffer.md)
 - [Utility Functions](/documents/code/js/utility_functions.md)
 
+### Rust
+
+- [Smart Points](/documents/code/rust/smart_points.md)
+
 ### Browser
 
 - [Web request](/documents/code/web/request.md)
