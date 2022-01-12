@@ -8,7 +8,6 @@
 
 坚持写作是一件很不易的事情，如果你认为我的文章对你有帮助，欢迎将本站推荐给你的小伙伴！
 
-
 ## 联系我
 
 > If you would like to right a wrong or are interested in me, welcome to contact me.
