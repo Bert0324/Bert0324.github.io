@@ -350,9 +350,52 @@ pub fn zigzag_level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> 
 
 No. 987, source: <https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/>
 
-可以先用层序遍历，记录下各节点坐标，然后进行数组遍历。
+记录下各节点坐标，然后进行数组遍历，算出结果。这题的特性，用dfs去做会更加的简便。
 
 ```rs
+    let mut node_coordinate: Vec<(i32, i32, i32)> = Vec::new();
+    let mut ans: Vec<Vec<i32>> = Vec::new();
+    let mut last_col = i32::MIN;
+
+    fn dfs(
+        root: Option<Rc<RefCell<TreeNode<i32>>>>,
+        (row, col): (i32, i32),
+        node_coordinate: &mut Vec<(i32, i32, i32)>,
+    ) {
+        let left = root.as_ref().unwrap().borrow_mut().left.take();
+        let right = root.as_ref().unwrap().borrow_mut().right.take();
+        let value = root.as_ref().unwrap().borrow().val;
+
+        node_coordinate.push((row, col, value));
+        if left.is_some() {
+            dfs(left, (row + 1, col - 1), node_coordinate);
+        }
+        if right.is_some() {
+            dfs(right, (row + 1, col + 1), node_coordinate);
+        }
+    }
+    dfs(root, (0, 0), &mut node_coordinate);
+    node_coordinate.sort_unstable_by(|a, b| {
+        if a.1 != b.1 {
+            a.1.cmp(&b.1)
+        } else if a.0 != b.0 {
+            a.0.cmp(&b.0)
+        } else {
+            a.2.cmp(&b.2)
+        }
+    });
+
+    for (_row, col, val) in node_coordinate {
+        if last_col != col {
+            ans.push(Vec::new());
+            last_col = col;
+        }
+        ans.last_mut().unwrap().push(val);
+    }
+
+    ans
 ```
 
 ## 总结
+
+

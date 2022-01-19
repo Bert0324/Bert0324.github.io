@@ -11,39 +11,24 @@
  * @return {number[][]}
  */
 var verticalTraversal = function(root) {
-    const ret = [];
-    if (!root) return ret;
-    const queue = [root];
-    while (queue.filter(Boolean).length) {
-        const arr = [];
-        const num = queue.length;
-        let i = 0;
-        while (i < num) {
-            i += 1;
-            const node = queue.pop();
-            arr.push(node?.val);
-            queue.unshift(node?.left);
-            queue.unshift(node?.right);
-        }
-        ret.push(arr);
-    }
+    if (!root) return [];
     const matrix = {};
-    ret.forEach((arr, y) => {
-        const start = y ? 2 ** (y - 1) : 0;
-        arr.forEach((val, index) => {
-            if (val) {
-                const x = -start + index;
-                if (!matrix[x]) matrix[x] = {};
-                matrix[x][y] = val;
-            }
-        });
-    });
-    const v = [];
+    const dfs = (node, y, x) => {
+        if (node) {
+            if (!matrix[x]) matrix[x] = {};
+            if (!matrix[x][y]) matrix[x][y] = [];
+            matrix[x][y].push(node.val);
+            dfs(node.left, y + 1, x - 1);
+            dfs(node.right, y + 1, x + 1);
+        }
+    };
+    dfs(root, 0, 0);
+    const ret = [];
     Object.keys(matrix).sort((a,b) => a - b).forEach(x => {
-        v.push(Object.keys(matrix[x]).sort((a,b) => a - b).reduce((acc, y) => {
-            acc.push(matrix[x][y]);
+        ret.push(Object.keys(matrix[x]).sort((a,b) => a - b).reduce((acc, y) => {
+            matrix[x][y].sort((a,b) => a - b).forEach(item => acc.push(item));
             return acc;
-        }, []).sort((a,b) => a - b));
+        }, []));
     });
-    return v;
+    return ret;
 };
