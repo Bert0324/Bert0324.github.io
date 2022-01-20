@@ -9,6 +9,7 @@
 ## Binary Tree
 
 - [Traverse Binary Tree Collection: 297, 105, 102, 103, 107, 144, 103, 987, 94, 145](/documents/leetcode/binary-tree-traverse-collection.md)
+- [98. Validate Binary Search Tree](/documents/leetcode/98.validate-binary-search-tree.md)
 
 ## Dynamic Programming
 

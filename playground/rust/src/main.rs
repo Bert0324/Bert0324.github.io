@@ -8,6 +8,7 @@ mod l_145;
 mod l_146;
 mod l_297;
 mod l_94;
+mod l_98;
 mod l_987;
 mod tree_builder;
 mod utils;
@@ -19,6 +20,7 @@ fn main() {
     match module_name {
         "1" => println!("ret: {:?}", l_1::run()),
         "94" => println!("ret: {:?}", l_94::run()),
+        "98" => println!("ret: {:?}", l_98::run()),
         "102" => println!("ret: {:?}", l_102::run()),
         "103" => println!("ret: {:?}", l_103::run()),
         "107" => println!("ret: {:?}", l_107::run()),

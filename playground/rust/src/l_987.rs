@@ -24,6 +24,7 @@ pub fn vertical_traversal(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Vec<Vec<i
         }
     }
     dfs(root, (0, 0), &mut node_coordinate);
+
     node_coordinate.sort_unstable_by(|a, b| {
         if a.1 != b.1 {
             a.1.cmp(&b.1)
@@ -34,7 +35,7 @@ pub fn vertical_traversal(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Vec<Vec<i
         }
     });
 
-    for (_row, col, val) in node_coordinate {
+    for (_, col, val) in node_coordinate {
         if last_col != col {
             ans.push(Vec::new());
             last_col = col;
