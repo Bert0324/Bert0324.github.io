@@ -7,13 +7,13 @@ pub fn vertical_traversal(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Vec<Vec<i
     let mut last_col = i32::MIN;
 
     fn dfs(
-        root: Option<Rc<RefCell<TreeNode<i32>>>>,
+        node: Option<Rc<RefCell<TreeNode<i32>>>>,
         (row, col): (i32, i32),
         node_coordinate: &mut Vec<(i32, i32, i32)>,
     ) {
-        let left = root.as_ref().unwrap().borrow_mut().left.take();
-        let right = root.as_ref().unwrap().borrow_mut().right.take();
-        let value = root.as_ref().unwrap().borrow().val;
+        let left = node.as_ref().unwrap().borrow_mut().left.take();
+        let right = node.as_ref().unwrap().borrow_mut().right.take();
+        let value = node.as_ref().unwrap().borrow().val;
 
         node_coordinate.push((row, col, value));
         if left.is_some() {

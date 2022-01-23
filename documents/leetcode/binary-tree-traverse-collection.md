@@ -154,10 +154,6 @@ impl Codec {
 }
 ```
 
-### from preorder and inorder
-
-No.105, source: <https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/>
-
 ## Traverse Order
 
 ### tree level order

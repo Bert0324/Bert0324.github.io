@@ -10,6 +10,10 @@
 
 - [Traverse Binary Tree Collection: 297, 105, 102, 103, 107, 144, 103, 987, 94, 145](/documents/leetcode/binary-tree-traverse-collection.md)
 - [98. Validate Binary Search Tree](/documents/leetcode/98.validate-binary-search-tree.md)
+- [105. Construct Binary Tree from Preorder and Inorder Traversal](/documents/leetcode/105.construct-binary-tree-from-preorder-and-inorder-traversal.md)
+- [116&117. Populating Next Right Pointers in Each Node I && II](/documents/leetcode/116&117.populating-next-right-pointers-in-each-node.md)
+- [236. Lowest Common Ancestor of a Binary Tree](/documents/leetcode/236.lowest-common-ancestor-of-a-binary-tree.md)  
+- [1448. Count Good Nodes in Binary Tree](/documents/leetcode/1448.count-good-nodes-in-binary-tree.md)
 
 ## Dynamic Programming
 
@@ -22,4 +26,5 @@
 
 - [1. Two Sum](/documents/leetcode/1.two-sum.md)
 - [54. Spiral Matrix](/documents/leetcode/54.spiral-matrix.md)
+- [200. Number of Islands](/documents/leetcode/200.number-of-islands.md)
 - [415. Add Strings & 43. Multiply Strings](/documents/leetcode/415.add-strings.md)
