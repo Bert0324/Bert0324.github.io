@@ -16,7 +16,18 @@ function TreeNode(val, left, right) {
  * @param {number[]} inorder
  * @return {TreeNode}
  */
- var buildTree = function(preorder, inorder) {
+var buildTree = function(preorder, inorder) {
     if (!preorder.length) return null;
-    
+    const build = (i1, i2, i3, i4) => {
+        if (i1 > i2) return null;
+        const rootVal = preorder[i1];
+        const index = inorder.findIndex((v, i) => i >= i3 && v === rootVal);
+        const leftSize = index - i3;
+        const root = new TreeNode(rootVal);
+        root.left = build(i1 + 1, i1 + leftSize, i3, index - 1);
+        root.right = build(i1 + leftSize + 1, i2, index + 1, i4);
+        return root;
+    };
+    const index = preorder.length - 1;
+    return build(0, index, 0, index);
 };
