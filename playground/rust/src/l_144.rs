@@ -22,11 +22,11 @@ pub fn preorder_traversal_traverse(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> 
   let mut ret = vec![];
   let mut stack = vec![root];
   while let Some(node) = stack.pop() {
-    if let Some(n) = node {
-      let borrow_node = n.borrow_mut();
-      ret.push(borrow_node.val);
-      stack.push(borrow_node.right.clone());
-      stack.push(borrow_node.left.clone());
+    if let Some(node) = node {
+      let mut node = node.borrow_mut();
+      ret.push(node.val);
+      stack.push(node.right.take());
+      stack.push(node.left.take());
     }
   }
   ret
