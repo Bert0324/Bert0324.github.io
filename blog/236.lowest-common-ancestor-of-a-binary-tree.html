@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-01-23 22:57:37</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#%u521D%u60F3%u6CD5">初想法</a></li><li><a href="#%u6539%u8FDB">改进</a></li><li><a href="#%u5E76%u67E5%u96C6">并查集</a></li><li><a href="#%u603B%u7ED3">总结</a></li></ul></div></div><div><h1 id="236.%20lowest%20common%20ancestor%20of%20a%20binary%20tree">236. Lowest Common Ancestor of a Binary Tree</h1><p>source: <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/</a></p><h2 id="question">Question</h2><p>Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.</p><p>According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”</p><h2 id="%u521D%u60F3%u6CD5">初想法</h2><p>第一想法是每个节点都持有一个不同引用地址的数组，这个数组含有此节点的所有父节点。</p><p>这个想法的问题是每次递归都要新建一个数组，空间复杂度O(n2), 导致会OOM.</p><pre><code class="language-javascript"> <span class="hljs-keyword">var</span> lowestCommonAncestor = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root, p, q</span>) </span>{
+    <span class="hljs-keyword">let</span> pParents;
+    <span class="hljs-keyword">let</span> qParents;
+    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">node, list, parents</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (node) {
+            list.push(node);
+            parents.push(node);
+            <span class="hljs-keyword">if</span> (node === p) pParents = parents;
+            <span class="hljs-keyword">if</span> (node === q) qParents = parents;
+            <span class="hljs-keyword">if</span> (list.includes(p) &amp;&amp; list.includes(q)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+            }
+            <span class="hljs-keyword">return</span> dfs(node.left, list, [...parents]) || dfs(node.right, list, [...parents]);
+        }
+    };
+    <span class="hljs-keyword">return</span> dfs(root, [], []);
+};
+</code></pre><h2 id="%u6539%u8FDB">改进</h2><p>分别从左右节点找目标子节点：</p><ul><li>如果两个子节点都找到了，那么自身肯定是他们的公共父节点</li><li>如果只找到了一边的节点，说明两个目标子节点都在这一边，直接选取自身作为公共父节点</li></ul><pre><code class="language-js"><span class="hljs-keyword">var</span> lowestCommonAncestor = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root, p, q</span>) </span>{
+    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!node || node === p || node === q) <span class="hljs-keyword">return</span> node;
+        <span class="hljs-keyword">const</span> left = dfs(node.left);
+        <span class="hljs-keyword">const</span> right = dfs(node.right);
+        <span class="hljs-keyword">return</span> left &amp;&amp; right ? node : left || right;
+    };
+    <span class="hljs-keyword">return</span> dfs(root);
+};
+</code></pre><pre><code class="language-rs"><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">lowest_common_ancestor</span></span>(
+    root: <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;,
+    p: <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;,
+    q: <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;,
+) -&gt; <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">dfs</span></span>(
+        node: <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;,
+        p_val: <span class="hljs-built_in">i32</span>,
+        q_val: <span class="hljs-built_in">i32</span>,
+    ) -&gt; <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt; {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(x) = node {
+            <span class="hljs-keyword">if</span> x.borrow().val == p_val || x.borrow().val == q_val {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">Some</span>(Rc::clone(&amp;x));
+            }
+            <span class="hljs-keyword">let</span> left = dfs(x.borrow_mut().left.take(), p_val, q_val);
+            <span class="hljs-keyword">let</span> right = dfs(x.borrow_mut().right.take(), p_val, q_val);
+            <span class="hljs-keyword">if</span> left.is_none() {
+                right
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> right.is_none() {
+                left
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-literal">Some</span>(Rc::clone(&amp;x))
+            }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-literal">None</span>
+        }
+    }
+    dfs(root, p.unwrap().borrow().val, q.unwrap().borrow().val)
+}
+</code></pre><h2 id="%u5E76%u67E5%u96C6">并查集</h2><pre><code class="language-js">
+</code></pre><h2 id="%u603B%u7ED3">总结</h2><p>这题其实并不难，第一反应用dfs也是没问题的，但是对于如何确定公共子节点block住了。</p><p>每道bst的题目除了通用的search部分，也要抓住他们核心的逻辑实现部分。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>

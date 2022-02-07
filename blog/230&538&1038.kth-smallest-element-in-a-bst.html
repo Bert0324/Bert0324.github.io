@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-01-26 23:09:54</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#230.%20kth%20smallest%20element%20in%20a%20bst">230. kth smallest element in a bst</a></li><ul><li><a href="#question">question</a></li><li><a href="#%u601D%u8DEF">思路</a></li></ul><li><a href="#538.%20convert%20bst%20to%20greater%20tree">538. convert bst to greater tree</a></li><ul><li><a href="#question">question</a></li><li><a href="#%u601D%u8DEF">思路</a></li></ul><li><a href="#1038.%20binary%20search%20tree%20to%20greater%20sum%20tree">1038. binary search tree to greater sum tree</a></li><ul><li><a href="#question">question</a></li><li><a href="#%u601D%u8DEF">思路</a></li></ul><li><a href="#%u603B%u7ED3">总结</a></li></ul></div></div><div><h1 id="bst%20inorder%20traverse">BST inorder traverse</h1><p>对于一个BST，参考98题给出的定义：</p><ul><li>节点的左子树只包含<strong>小于</strong>当前节点的数。</li><li>节点的右子树只包含<strong>大于</strong>当前节点的数。</li><li>所有左子树和右子树自身必须也是二叉搜索树</li></ul><p>直接基于 BST 的数据结构有 AVL 树，红黑树等等，拥有了自平衡性质，可以提供 logN 级别的增删查改效率；还有 B+ 树，线段树等结构都是基于 BST 的思想来设计的。</p><p>从做算法题的角度来看 BST，除了它的定义，还有一个重要的性质：BST 的中序遍历结果是有序的（升序）。</p><p>中序遍历一个bst的基本范式如下：</p><pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">traverse</span>(<span class="hljs-params">root</span>) </span>{
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+    traverse(root.left);
+    <span class="hljs-comment">// do something</span>
+    callback(root.val);
+    traverse(root.right);
+}
+</code></pre><p>典型的题目如下：</p><h2 id="230.%20kth%20smallest%20element%20in%20a%20bst">230. Kth Smallest Element in a BST</h2><p>source: <a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/">https://leetcode.com/problems/kth-smallest-element-in-a-bst/</a></p><h3 id="question">Question</h3><p>Given the root of a binary search tree, and an integer k, return the kth smallest value (1-indexed) of all the values of the nodes in the tree.</p><h3 id="%u601D%u8DEF">思路</h3><p>中序遍历, 然后数组找出index=k-1的元素。</p><pre><code class="language-rs"><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">kth_smallest</span></span>(root: <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;, k: <span class="hljs-built_in">i32</span>) -&gt; <span class="hljs-built_in">i32</span> {
+    <span class="hljs-keyword">if</span> root.is_none() {
+        <span class="hljs-keyword">return</span> k;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">dfs</span></span>(root: <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&lt;<span class="hljs-built_in">i32</span>&gt;&gt;&gt;&gt;, ret: &amp;<span class="hljs-keyword">mut</span> <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">i32</span>&gt;) {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(root) = root {
+            <span class="hljs-keyword">let</span> left = root.borrow_mut().left.take();
+            <span class="hljs-keyword">let</span> right = root.borrow_mut().right.take();
+            dfs(left, ret);
+            ret.push(root.borrow().val);
+            dfs(right, ret);
+        }
+    }
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> list = <span class="hljs-built_in">vec!</span>[];
+    dfs(root, &amp;<span class="hljs-keyword">mut</span> list);
+    *list.get(k <span class="hljs-keyword">as</span> <span class="hljs-built_in">usize</span> - <span class="hljs-number">1</span>).unwrap()
+}
+</code></pre><h2 id="538.%20convert%20bst%20to%20greater%20tree">538. Convert BST to Greater Tree</h2><p>source: <a href="https://leetcode.com/problems/convert-bst-to-greater-tree/">https://leetcode.com/problems/convert-bst-to-greater-tree/</a></p><h3 id="question">Question</h3><p>Given the root of a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus the sum of all keys greater than the original key in BST.</p><h3 id="%u601D%u8DEF">思路</h3><p>中序遍历后等于排序，列表里推入node，然后把node的值改为累加值</p><pre><code class="language-rs"><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">convert_bst</span></span>(root: <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;) -&gt; <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt; {
+    <span class="hljs-keyword">if</span> root.is_none() {
+        <span class="hljs-keyword">return</span> root;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">dfs</span></span>(root: &amp;<span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;, ret: &amp;<span class="hljs-keyword">mut</span> <span class="hljs-built_in">Vec</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;) {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(root) = root {
+            <span class="hljs-keyword">let</span> left = root.borrow_mut().left.clone();
+            <span class="hljs-keyword">let</span> right = root.borrow_mut().right.clone();
+            dfs(&amp;left, ret);
+            ret.push(root.clone());
+            dfs(&amp;right, ret);
+        }
+    }
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> list = <span class="hljs-built_in">vec!</span>[];
+    dfs(&amp;root, &amp;<span class="hljs-keyword">mut</span> list);
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> acc = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(node) = list.pop() {
+        <span class="hljs-keyword">let</span> val = node.borrow_mut().val;
+        node.borrow_mut().val = acc + val;
+        acc += val;
+    }
+    root
+}
+</code></pre><h2 id="1038.%20binary%20search%20tree%20to%20greater%20sum%20tree">1038. Binary Search Tree to Greater Sum Tree</h2><p>source: <a href="https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/">https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/</a></p><h3 id="question">Question</h3><p>Given the root of a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus the sum of all keys greater than the original key in BST.</p><h3 id="%u601D%u8DEF">思路</h3><p>还是根据BST的中序遍历是从小到大的顺序，替换掉val值。</p><pre><code class="language-rs"><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">bst_to_gst</span></span>(root: <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;) -&gt; <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt; {
+    <span class="hljs-keyword">if</span> root.is_none() {
+        <span class="hljs-keyword">return</span> root;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">dfs</span></span>(root: &amp;<span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;, ret: &amp;<span class="hljs-keyword">mut</span> <span class="hljs-built_in">Vec</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;) {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(root) = root {
+            <span class="hljs-keyword">let</span> left = root.borrow_mut().left.clone();
+            <span class="hljs-keyword">let</span> right = root.borrow_mut().right.clone();
+            dfs(&amp;left, ret);
+            ret.push(root.clone());
+            dfs(&amp;right, ret);
+        }
+    }
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> list = <span class="hljs-built_in">vec!</span>[];
+    dfs(&amp;root, &amp;<span class="hljs-keyword">mut</span> list);
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> sum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(node) = list.pop() {
+        <span class="hljs-keyword">let</span> val = node.borrow_mut().val;
+        sum += val;
+        node.borrow_mut().val = sum;
+    }
+    root
+}
+</code></pre><h2 id="%u603B%u7ED3">总结</h2><p>BST的中序是很有用且很特殊的性质，很多题目基于此，熟练掌握他的中序遍历及其应用。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>

@@ -1,6 +1,6 @@
 use super::tree_builder::*;
 
-static NULL: &str = "x";
+static NULL: &str = "null";
 static SEPARATOR: &str = ",";
 use std::collections::VecDeque;
 struct Codec {}

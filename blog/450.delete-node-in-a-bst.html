@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-01-26 23:09:54</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#%u601D%u8DEF">思路</a></li><li><a href="#end">end</a></li></ul></div></div><div><h1 id="450.%20delete%20node%20in%20a%20bst">450. Delete Node in a BST</h1><p>source: <a href="https://leetcode.com/problems/add-strings/">https://leetcode.com/problems/add-strings/</a></p><h2 id="question">Question</h2><p>Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.</p><p>Basically, the deletion can be divided into two stages:</p><p>Search for a node to remove. If the node is found, delete the node.</p><h2 id="%u601D%u8DEF">思路</h2><p>这道题拿到手上之后，我的第一反应是去用traverse的模版去做，类似：</p><pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">traverse</span>(<span class="hljs-params">root</span>) </span>{
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+    traverse(root.left);
+    <span class="hljs-comment">// do something</span>
+    callback(root.val);
+    traverse(root.right);
+}
+</code></pre><p>这么做其实也是可以做出来的，但是会更加的复杂，因为要去考虑父节点和子节点之间的关系。更好的办法是去用修改的bst模版去做：</p><pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">operate</span>(<span class="hljs-params">root</span>) </span>{
+  <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  root.left = operate(root.left);
+  root.right = operate(root.right);
+  <span class="hljs-keyword">return</span> root;
+}
+</code></pre><p>这种范式是有返回值的，优点是可以仅考虑本节点的情况。</p><p>本题中，对于本节点的操作有这么几种可能性：</p><ol><li>恰好是末端节点，两个子节点都为空，直接删掉就行</li><li>只有一个非空子节点。如果是左节点，用左节点中的最大节点替换；如果是右节点，用右节点中的最小节点替换</li><li>有两个非空子节点，用只有一个非空子节点其中的一种情况来处理即可</li></ol><pre><code class="language-rs"><span class="hljs-keyword">use</span> std::rc::Rc;
+<span class="hljs-keyword">use</span> std::cell::RefCell;
+<span class="hljs-keyword">impl</span> Solution {
+  <span class="hljs-comment">/**
+   * 找到本节点下的最左节点
+   * - 在BST下即为最小节点
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">node_min</span></span>(root: &amp;<span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;) -&gt; <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt; {
+      <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> left = root.clone();
+      <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> stop = <span class="hljs-literal">false</span>;
+      <span class="hljs-keyword">while</span> !stop {
+          <span class="hljs-comment">// 这里有个前提，传进来的root一定不为空</span>
+          <span class="hljs-keyword">let</span> l = left.clone().unwrap().borrow_mut().left.clone();
+          <span class="hljs-keyword">if</span> l.is_some() {
+              left = l;
+          } <span class="hljs-keyword">else</span> {
+              stop = <span class="hljs-literal">true</span>;
+          }
+      }
+      left.clone()
+  }
+
+  <span class="hljs-comment">/**
+   * 找到本节点下的最右节点
+   * - 在BST下即为最大节点
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">node_max</span></span>(root: &amp;<span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;) -&gt; <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt; {
+      <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> right = root.clone();
+      <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> stop = <span class="hljs-literal">false</span>;
+      <span class="hljs-keyword">while</span> !stop {
+          <span class="hljs-comment">// 这里有个前提，传进来的root一定不为空</span>
+          <span class="hljs-keyword">let</span> r = right.clone().unwrap().borrow_mut().right.clone();
+          <span class="hljs-keyword">if</span> r.is_some() {
+              right = r;
+          } <span class="hljs-keyword">else</span> {
+              stop = <span class="hljs-literal">true</span>;
+          }
+      }
+      right.clone()
+  }
+
+  <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">delete_node</span></span>(root: <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt;, key: <span class="hljs-built_in">i32</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;Rc&lt;RefCell&lt;TreeNode&gt;&gt;&gt; {
+      <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(n) = root.clone() {
+          <span class="hljs-keyword">let</span> left = n.borrow_mut().left.clone();
+          <span class="hljs-keyword">let</span> right = n.borrow_mut().right.clone();
+          <span class="hljs-keyword">let</span> val = n.borrow().val;
+          <span class="hljs-comment">// 如果为目标节点</span>
+          <span class="hljs-keyword">if</span> val == key {
+              <span class="hljs-comment">// 恰好是末端节点，两个子节点都为空，直接删掉就行</span>
+              <span class="hljs-keyword">if</span> left.is_none() &amp;&amp; right.is_none() {
+                  <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>;
+              <span class="hljs-comment">// 有右节点，用右节点中的最小节点替换</span>
+              } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> right.is_some() {
+                  <span class="hljs-comment">// 找出右节点中的最小节点值。此处右节点一定不为空</span>
+                  <span class="hljs-keyword">let</span> min_val = Self::node_min(&amp;right).unwrap().borrow().val;
+                  <span class="hljs-comment">// 把本节点的值替换掉</span>
+                  n.borrow_mut().val = min_val;
+                  <span class="hljs-comment">// 删去右节点中的最小节点</span>
+                  n.borrow_mut().right = Self::delete_node(right, min_val);
+              <span class="hljs-comment">// 有左节点，用左节点中的最大节点替换</span>
+              } <span class="hljs-keyword">else</span> {
+                  <span class="hljs-comment">// 找出左节点中的最大节点值。此处左节点一定不为空</span>
+                  <span class="hljs-keyword">let</span> max_val = Self::node_max(&amp;left).unwrap().borrow().val;
+                  <span class="hljs-comment">// 把本节点的值替换掉</span>
+                  n.borrow_mut().val = max_val;
+                  <span class="hljs-comment">// 删去左节点中的最大节点</span>
+                  n.borrow_mut().left = Self::delete_node(left, max_val);
+              }
+          <span class="hljs-comment">// 比目标节点值大，目标节点在左节点处</span>
+          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> val &gt; key {
+              n.borrow_mut().left = Self::delete_node(left, key);
+          <span class="hljs-comment">// 比目标节点值小，目标节点在右节点处</span>
+          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> val &lt; key {
+              n.borrow_mut().right = Self::delete_node(right, key);
+          }
+          <span class="hljs-comment">// 返回当前节点</span>
+          <span class="hljs-keyword">return</span> root.clone();
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>;
+  }
+}
+</code></pre><h2 id="end">End</h2><p>这一道题比预想的要不好做一点，可能是没有掌握操作节点的一点诀窍，仍然用了遍历的思路去做。</p><p>对于不同的问题，要用不同的范式去做。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>
