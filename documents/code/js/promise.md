@@ -154,6 +154,13 @@ Notice, `race` and `all` both will run the whole asynchronize task, the only dif
 Their implements are as below:
 
 ```ts
+const task = (delay: number, fail?: boolean) => new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (!fail) resolve(delay);
+      else reject(delay);
+    }, delay);
+});
+
 Promise.myRace = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
     tasks.forEach(async task => {
         try {
@@ -187,7 +194,7 @@ Promise.prototype.myFinally = function(cb) {
     )
 };
 
-Promise.parallelByReduce = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
+Promise.parallelByReduce = (tasks: Promise<unknown>[]) => new Promise(async (resolve, reject) => {
     try {
         resolve(await tasks.reduce(async (acc, crr) => {
             acc = await acc;
@@ -199,7 +206,7 @@ Promise.parallelByReduce = (tasks: Promise<unknown>[]) => new Promise((resolve, 
     }
 });
 
-Promise.parallelByRecursion = (tasks: Promise<unknown>[]) => new Promise((resolve, reject) => {
+Promise.parallelByRecursion = (tasks: Promise<unknown>[]) => new Promise(async (resolve, reject) => {
     const res = [];
     const iter = async () => {
         if (tasks.length > 0) {
@@ -215,6 +222,26 @@ Promise.parallelByRecursion = (tasks: Promise<unknown>[]) => new Promise((resolv
     } catch (e) {
         reject(e);
     }
+});
+
+Promise.some = (tasks: Promise<unknown>[], count: number) => new Promise((resolve, reject) => {
+  const ret = [];
+  if (!count || !tasks.length) return resolve(ret);
+  const errors = [];
+  tasks.forEach(async task => {
+    try {
+      const data = await task;
+      if (ret.length + 1 === count) {
+        ret.push(data);
+        resolve(ret);
+      }
+    } catch (e) {
+      if (errors.length + 1 > tasks.length - count) {
+        errors.push(e);
+        reject(errors);
+      }
+    }
+  });
 });
 ```
 
