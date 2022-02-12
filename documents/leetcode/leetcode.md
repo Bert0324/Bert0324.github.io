@@ -48,6 +48,10 @@
 
 - [15. 3Sum](/documents/leetcode/15.3sum.md)
 
+## Backtracking
+
+- [46. Permutations](/documents/leetcode/46.permutations.md)
+
 ## Others
 
 - [1. Two Sum](/documents/leetcode/1.two-sum.md)

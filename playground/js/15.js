@@ -58,22 +58,21 @@ var threeSum = function (nums) {
 var threeSum = function (nums) {
   const ret = [];
   nums.sort((a, b) => a - b);
-  for (let i1 = 0; i1 < nums.length; i1++) {
-    const a = nums[i1];
-    let p1 = i1 + 1;
+  for (let i = 0; i < nums.length; i++) {
+    let p1 = i + 1;
     let p2 = nums.length - 1;
     while (p1 < p2) {
-      const b = nums[p1];
-      for (let i2 = p1 + 1; i2 <= p2; i2++) {
-        const c = nums[i2];
-        if (a + b + c === 0) {
-          const v = [a, b, c].sort((a, b) => a - b).join(",");
-          if (!ret.includes(v)) ret.push(v);
-          p2 = i2 - 1;
-          break;
-        }
+      const v = nums[i] + nums[p1] + nums[p2];
+      if (v > 0) {
+        p2--;
+      } else if (v < 0) {
+        p1++;
+      } else {
+        const s = `${[nums[i], nums[p1], nums[p2]]}`;
+        if (!ret.includes(s)) ret.push(s);
+        p1++;
+        p2--;
       }
-      p1 += 1;
     }
   }
   return ret.map((v) => v.split(","));
@@ -87,20 +86,19 @@ var threeSum = function (nums) {
 var threeSum = function (nums) {
   const ret = [];
   nums.sort((a, b) => a - b);
-  for (let i1 = 0; i1 < nums.length; i1++) {
-    const a = nums[i1];
-    if (a > 0) return ret;
-    if (i1 > 0 && a === nums[i1 - 1]) continue;
-    let p1 = i1 + 1;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > 0) return ret;
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
+    let p1 = i + 1;
     let p2 = nums.length - 1;
     while (p1 < p2) {
-      const v = a + nums[p1] + nums[p2];
+      const v = nums[i] + nums[p1] + nums[p2];
       if (v > 0) {
         p2 -= 1;
       } else if (v < 0) {
         p1 += 1;
       } else {
-        ret.push([a, nums[p1], nums[p2]]);
+        ret.push([nums[i], nums[p1], nums[p2]]);
         while (p1 < p2 && nums[p1] === nums[p1 + 1]) p1 += 1;
         while (p1 < p2 && nums[p2] === nums[p2 - 1]) p2 -= 1;
         p1 += 1;
@@ -110,3 +108,4 @@ var threeSum = function (nums) {
   }
   return ret;
 };
+
