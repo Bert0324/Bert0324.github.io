@@ -58,7 +58,6 @@ var minWindow = function (s, t) {
   return s.slice(l, r + 1);
 };
 
-
 /**
  * 双指针-滑动窗口-优化
  * @param {string} s

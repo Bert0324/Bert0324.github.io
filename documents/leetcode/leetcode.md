@@ -2,6 +2,7 @@
 
 ## Linked List
 
+- [2. Add Two Numbers](/documents/leetcode/2.add-two-numbers.md)
 - [25. Reverse Nodes in k-Group](/documents/leetcode/25.reverse-nodes-in-k-group.md)
 - [138. Copy List with Random Pointer](/documents/leetcode/138.copy_list_with_random_pointer.md)
 - [146. LRU Cache](/documents/leetcode/146.lru_cache.md)
@@ -46,15 +47,20 @@
 
 ## Two Pointers
 
+- [3. Longest Substring Without Repeating Characters](/documents/leetcode/3.longest-substring-without-repeating-characters.md)
 - [15. 3Sum](/documents/leetcode/15.3sum.md)
+- [76. Minimum Window Substring](/documents/leetcode/76.minimum-window-substring.md)
 
 ## Backtracking
 
+- [22. Generate Parentheses](/documents/leetcode/22.generate-parentheses.md)
 - [46. Permutations](/documents/leetcode/46.permutations.md)
 
 ## Others
 
 - [1. Two Sum](/documents/leetcode/1.two-sum.md)
+- [5. Longest Palindromic Substring](/documents/leetcode/5.longest-palindromic-substring.md)
+- [7. Reverse Integer](/documents/leetcode/7.reverse-integer.md)
 - [54. Spiral Matrix](/documents/leetcode/54.spiral-matrix.md)
 - [200. Number of Islands](/documents/leetcode/200.number-of-islands.md)
 - [415. Add Strings & 43. Multiply Strings](/documents/leetcode/415.add-strings.md)

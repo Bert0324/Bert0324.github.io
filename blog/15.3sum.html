@@ -17,4 +17,26 @@
   }
   <span class="hljs-keyword">return</span> ret.map(<span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> v.split(<span class="hljs-string">&quot;,&quot;</span>));
 };
-</code></pre><h2 id="%u4F18%u5316%u601D%u8DEF">优化思路</h2><p>由于三个元素是不重复的，可以得到一个不等式：</p><ul><li>a &lt;= b &lt;= c</li></ul><h2 id="%u603B%u7ED3">总结</h2></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>
+</code></pre><h2 id="%u4F18%u5316%u601D%u8DEF">优化思路</h2><p>由于三个元素是不重复的，可以得到一个不等式：</p><ul><li>a &lt;= b &lt;= c</li></ul><p>且有多个loop, 很容易想到用左右指针的思路去做优化。</p><pre><code class="language-js"><span class="hljs-keyword">var</span> threeSum = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>{
+  <span class="hljs-keyword">const</span> ret = [];
+  nums.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) {
+    <span class="hljs-keyword">let</span> p1 = i + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">let</span> p2 = nums.length - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (p1 &lt; p2) {
+      <span class="hljs-keyword">const</span> v = nums[i] + nums[p1] + nums[p2];
+      <span class="hljs-keyword">if</span> (v &gt; <span class="hljs-number">0</span>) {
+        p2--;
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (v &lt; <span class="hljs-number">0</span>) {
+        p1++;
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">const</span> s = <span class="hljs-string">`<span class="hljs-subst">${[nums[i], nums[p1], nums[p2]]}</span>`</span>;
+        <span class="hljs-keyword">if</span> (!ret.includes(s)) ret.push(s);
+        p1++;
+        p2--;
+      }
+    }
+  }
+  <span class="hljs-keyword">return</span> ret.map(<span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> v.split(<span class="hljs-string">&quot;,&quot;</span>));
+};
+</code></pre><h2 id="%u603B%u7ED3">总结</h2><p>对于排序数组，多个loop，可以忘双指针这个思路去优化。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>
