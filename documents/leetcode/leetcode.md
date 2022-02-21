@@ -3,6 +3,7 @@
 ## Linked List
 
 - [2. Add Two Numbers](/documents/leetcode/2.add-two-numbers.md)
+- [21. Merge Two Sorted Lists](/documents/leetcode/21.merge-two-sorted-lists.md)
 - [25. Reverse Nodes in k-Group](/documents/leetcode/25.reverse-nodes-in-k-group.md)
 - [138. Copy List with Random Pointer](/documents/leetcode/138.copy_list_with_random_pointer.md)
 - [146. LRU Cache](/documents/leetcode/146.lru_cache.md)
@@ -38,7 +39,6 @@
 
 ## Divide And Conquer Method
 
-- [4. Median of Two Sorted Arrays](/documents/leetcode/4.median-of-two-sorted-arrays.md)
 - [347. Top K Frequent Elements](/documents/leetcode/347.top-k-frequent-elements.md)
 
 ## Graphics
@@ -48,6 +48,7 @@
 ## Two Pointers
 
 - [3. Longest Substring Without Repeating Characters](/documents/leetcode/3.longest-substring-without-repeating-characters.md)
+- [11. Container With Most Water](/documents/leetcode/11.container-with-most-water.md)
 - [15. 3Sum](/documents/leetcode/15.3sum.md)
 - [76. Minimum Window Substring](/documents/leetcode/76.minimum-window-substring.md)
 
@@ -56,11 +57,17 @@
 - [22. Generate Parentheses](/documents/leetcode/22.generate-parentheses.md)
 - [46. Permutations](/documents/leetcode/46.permutations.md)
 
+## Binary Search
+
+- [4. Median of Two Sorted Arrays](/documents/leetcode/4.median-of-two-sorted-arrays.md)
+
 ## Others
 
 - [1. Two Sum](/documents/leetcode/1.two-sum.md)
 - [5. Longest Palindromic Substring](/documents/leetcode/5.longest-palindromic-substring.md)
 - [7. Reverse Integer](/documents/leetcode/7.reverse-integer.md)
+- [20. Valid Parentheses](/documents/leetcode/20.valid-parentheses.md)
 - [54. Spiral Matrix](/documents/leetcode/54.spiral-matrix.md)
 - [200. Number of Islands](/documents/leetcode/200.number-of-islands.md)
 - [415. Add Strings & 43. Multiply Strings](/documents/leetcode/415.add-strings.md)
+- [440. K-th Smallest in Lexicographical Order](/documents/leetcode/440.k-th-smallest-in-lexicographical-order.md)
