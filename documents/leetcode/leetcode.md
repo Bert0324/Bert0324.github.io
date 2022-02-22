@@ -60,6 +60,7 @@
 ## Binary Search
 
 - [4. Median of Two Sorted Arrays](/documents/leetcode/4.median-of-two-sorted-arrays.md)
+- [33. Search in Rotated Sorted Array](/documents/leetcode/33.search-in-rotated-sorted-array.md)
 
 ## Others
 
