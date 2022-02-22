@@ -236,3 +236,42 @@ export class TaskService {
   }
 }
 ```
+
+## setTimeout
+
+```ts
+/**
+ * 计时
+ * @param cb timer: 计时次数
+ * @param interval 计时间隔
+ * @returns [start, stop]
+ */
+export const withTimeChange = (cb: (timer: number) => void, interval = 1000) => {
+  let timer = 0;
+  let handler: number | undefined;
+  let fn: ((last?: number | undefined) => number) | undefined = (last?: number) =>
+    requestAnimationFrame((t) => {
+      if (!last || t - last > interval) {
+        if (last) timer += ((t - last) / interval) >> 0;
+        else timer += 1;
+        try {
+          cb(timer);
+        } catch (e) {
+          console.log('callback error in withTimeChange:', e);
+        }
+        handler = fn?.(t);
+      } else {
+        handler = fn?.(last);
+      }
+    });
+  return [
+    () => {
+      handler = fn?.();
+    },
+    () => {
+      if (handler !== undefined) cancelAnimationFrame(handler);
+      fn = undefined;
+    },
+  ] as const;
+};
+```

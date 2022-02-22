@@ -59,7 +59,7 @@ The place I can organize my thoughts and review knowledge.
 ### Other
 
 - [Deep copy and Shallow copy](/documents/code/js/object_copy.md)
-- [Flat an Array](/documents/code/practical/flat_array.md)
+- [Array Functions](/documents/code/practical/flat_array.md)
 - [Throttle and debounce](/documents/code/practical/debounce_throttle.md)
 - [CORS](/documents/code/practical/cross_domain.md)
 - [Memory Leak](/documents/code/practical/memory_leak.md)
