@@ -3,7 +3,7 @@
  * @param {number[]} nums2
  * @return {number}
  */
-var findMedianSortedArrays = function (nums1, nums2) {
+ var findMedianSortedArrays = function (nums1, nums2) {
   /**
    * 找到两个sorted arrays的排序为k的元素
    */
@@ -29,9 +29,10 @@ var findMedianSortedArrays = function (nums1, nums2) {
       let newIndex2 = Math.min(index2 + half - 1, len2 - 1); // 同上
 
       if (nums1[newIndex1] <= nums2[newIndex2]) {
-        // * 开始抛弃部分序列，更新K值，抛弃的长度为newIndex1 - index1 + 1，对应end-start+1
+        // 开始抛弃部分序列，更新K值，抛弃的长度为newIndex1 - index1 + 1，对应end-start+1
         k -= newIndex1 - index1 + 1;
-        index1 = newIndex1 + 1; // * 更新抛弃过的序列的下标
+        // 更新抛弃过的序列的下标
+        index1 = newIndex1 + 1; 
       } else {
         // 同上
         k -= newIndex2 - index2 + 1;
@@ -40,12 +41,11 @@ var findMedianSortedArrays = function (nums1, nums2) {
     }
   };
   const totalLength = nums1.length + nums2.length;
-  const medianLeft = (totalLength - 1) >> 1;
-  const medianRight = totalLength >> 1;
+  const median = totalLength >> 1;
   // * 核心思路为, 用二分找到从小到大第K个数
-  if (medianLeft === medianRight) {
-    return getKthElement(medianLeft + 1);
+  if (totalLength % 2 === 1) {
+    return getKthElement(median + 1);
   } else {
-    return (getKthElement(medianLeft + 1) + getKthElement(medianRight + 1)) / 2;
+    return (getKthElement(median) + getKthElement(median + 1)) / 2;
   }
 };
