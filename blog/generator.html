@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-02-22 00:19:33</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#basic%20usage">basic usage</a></li><li><a href="#async%20and%20await">async and await</a></li></ul></div></div><div><h1 id="generator">Generator</h1><h2 id="basic%20usage">Basic usage</h2><p>Compared to normal Function, generator function must has a <code>*</code>, and has its special property: <code>next</code>.</p><p>Like in Python, <code>yield</code> means to relinquish the control. It makes the function is possible to stop, and restart by the controller.</p><p>There is a simple example:</p><pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params">arr</span>) </span>{
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-02-22 19:59:32</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#basic%20usage">basic usage</a></li><li><a href="#async%20and%20await">async and await</a></li></ul></div></div><div><h1 id="generator">Generator</h1><h2 id="basic%20usage">Basic usage</h2><p>Compared to normal Function, generator function must has a <code>*</code>, and has its special property: <code>next</code>.</p><p>Like in Python, <code>yield</code> means to relinquish the control. It makes the function is possible to stop, and restart by the controller.</p><p>There is a simple example:</p><pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params">arr</span>) </span>{
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> arr){
       <span class="hljs-keyword">yield</span> i;
   }
@@ -37,105 +37,51 @@ it.next(<span class="hljs-number">1</span>);  <span class="hljs-comment">//</spa
 it.next(<span class="hljs-number">2</span>);  <span class="hljs-comment">//result is defined</span>
 it.next(<span class="hljs-number">3</span>);  <span class="hljs-comment">//result is defined</span>
 it.next(<span class="hljs-number">4</span>);  <span class="hljs-comment">//result is defined</span>
-</code></pre><h2 id="async%20and%20await">async and await</h2><p>Firstly, let&#39;s see how babel to transfer it, see in <a href="https://babeljs.io/repl#?babili=false&amp;browsers=&amp;build=&amp;builtIns=false&amp;spec=false&amp;loose=false&amp;code_lz=G4QwTgBALiDODWEC8EAUAHEBzApgSiQD4BvAKAgojBygFcwA7CBnAdwgAUwB7AWwEtYOVCOqxuAG2A4ANFRwArHAGMoeZIQhlKOiBJoQAHgAtIKFuwAaAWQAyACShR0AJRwBHWjlhRUeANzkuhQmYAB03Og4DKgA5ADiAKIAKrFyAAbGTuiwAFwA9PnU7mJh_Az5IOj8-bRCYLAA_Ji4SAAkxC04AL7pclBgXgFBwaERDNQgACYAnj4gUCrGIAy4yBAAZrQMqvzcMXjawbr8G2hjk7MAyjCLyEgoACyHI8fBp-emYfN0sPcoACYAAxAl5vcGUAYzI4Q2HycRSYQAKSuAHkAHJhTANYQXbzofZCZI4QxqYZwt7dCDKBbKYxofBaV4U47UJSqVD4ZksiDdbkQqk4CRCJk83RslS-MY_Op4fngvlwxXHbqBN7S6JTVAMWgSCTkyjdPDDVWkM1wGY7TbbXb7aBweCwPyiyj6KDw3VQACM6xArBA_HdMAQqC9Boobo9EigAN9_sD9pDAPD1MJkhwYQk3CwqDEnrDasoyjT-kz2dz3k9ycCfKAA&amp;debug=false&amp;forceAllTransforms=false&amp;shippedProposals=false&amp;circleciRepo=&amp;evaluate=false&amp;fileSize=false&amp;timeTravel=false&amp;sourceType=module&amp;lineWrap=true&amp;presets=es2017%2Creact%2Cstage-2&amp;prettier=false&amp;targets=&amp;version=7.5.5&amp;externalPlugins=">here</a>:</p><pre><code class="language-js"><span class="hljs-comment">//origin</span>
-<span class="hljs-keyword">var</span> task = <span class="hljs-function">(<span class="hljs-params">page</span>)=&gt;</span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
-        <span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
-        xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">`https://reqres.in/api/users?page=<span class="hljs-subst">${page}</span>`</span>, <span class="hljs-literal">true</span>);
-        xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-            <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">4</span>){
-                <span class="hljs-keyword">if</span> (xhr.status === <span class="hljs-number">200</span>){
-                    <span class="hljs-keyword">try</span>{
-                        resolve(<span class="hljs-built_in">JSON</span>.parse(xhr.responseText));
-                    } <span class="hljs-keyword">catch</span> (e) {
-                        reject(e)
-                    }
-                } <span class="hljs-keyword">else</span> {
-                    reject(xhr.status)
-                }
-            }
-        };
-        xhr.send(<span class="hljs-literal">null</span>);
-    }));
-};
-
-
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tasks</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">let</span> result1 = <span class="hljs-keyword">await</span> task(<span class="hljs-number">1</span>);
-    <span class="hljs-keyword">let</span> result2 = <span class="hljs-keyword">await</span> task(<span class="hljs-number">2</span>);
-    <span class="hljs-built_in">console</span>.log(result1);
-    <span class="hljs-built_in">console</span>.log(result2);
+</code></pre><h2 id="async%20and%20await">async and await</h2><p>Firstly, let&#39;s see how typescript to transfer it, see in <a href="https://www.typescriptlang.org/play?target=2#code/MYewdgzgLgBATgVzDAvDAhhAnmYMAUAlKgHwwDeAsAFAwYDu6AlrAOTTpxSsDcNdoSLHSoGzNgDMmYJhAAWAUwAmvfvAVQEcZOj7UAvkA">here</a> which is based on ES5:</p><pre><code class="language-js"><span class="hljs-comment">//origin</span>
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">await</span> <span class="hljs-string">&#x27;start&#x27;</span>;
+  <span class="hljs-keyword">const</span> a = <span class="hljs-keyword">await</span> <span class="hljs-string">&#x27;finished&#x27;</span>;
+  <span class="hljs-keyword">return</span> a;
 }
 
-
-<span class="hljs-comment">//babel transfer</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asyncGeneratorStep</span>(<span class="hljs-params">gen, resolve, reject, _next, _throw, key, arg</span>) </span>{
-    <span class="hljs-keyword">try</span> { 
-        <span class="hljs-keyword">var</span> info = gen[key](arg); 
-        <span class="hljs-keyword">var</span> value = info.value; 
-    } <span class="hljs-keyword">catch</span> (error) { 
-        reject(error); 
-        <span class="hljs-keyword">return</span>; 
-    } 
-    <span class="hljs-keyword">if</span> (info.done) { 
-        resolve(value); 
-    } <span class="hljs-keyword">else</span> { 
-        <span class="hljs-built_in">Promise</span>.resolve(value).then(_next, _throw); 
-    } 
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_asyncToGenerator</span>(<span class="hljs-params">fn</span>) </span>{ 
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-        <span class="hljs-keyword">var</span> self = <span class="hljs-built_in">this</span>, 
-            args = <span class="hljs-built_in">arguments</span>; 
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>{ 
-            <span class="hljs-keyword">var</span> gen = fn.apply(self, args); 
-            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_next</span>(<span class="hljs-params">value</span>) </span>{ 
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, <span class="hljs-string">&quot;next&quot;</span>, value); 
-            } 
-            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_throw</span>(<span class="hljs-params">err</span>) </span>{ 
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, <span class="hljs-string">&quot;throw&quot;</span>, err); 
-            } 
-            _next(<span class="hljs-literal">undefined</span>); 
+<span class="hljs-comment">// transfer. remove some irrelevant codes</span>
+<span class="hljs-keyword">var</span> __awaiter = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">generator</span>) </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">adopt</span>(<span class="hljs-params">value</span>) </span>{
+    <span class="hljs-keyword">return</span> value <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>
+      ? value
+      : <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve</span>) </span>{
+          resolve(value);
         });
-    }; 
-}
-
-<span class="hljs-keyword">var</span> task = <span class="hljs-function"><span class="hljs-params">page</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
-    <span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
-    xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">`https://reqres.in/api/users?page=<span class="hljs-subst">${page}</span>`</span>, <span class="hljs-literal">true</span>);
-    xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-      <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">4</span>) {
-        <span class="hljs-keyword">if</span> (xhr.status === <span class="hljs-number">200</span>) {
-          <span class="hljs-keyword">try</span> {
-            resolve(<span class="hljs-built_in">JSON</span>.parse(xhr.responseText));
-          } <span class="hljs-keyword">catch</span> (e) {
-            reject(e);
-          }
-        } <span class="hljs-keyword">else</span> {
-          reject(xhr.status);
-        }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fulfilled</span>(<span class="hljs-params">value</span>) </span>{
+      <span class="hljs-keyword">try</span> {
+        step(generator.next(value));
+      } <span class="hljs-keyword">catch</span> (e) {
+        reject(e);
       }
-    };
-
-    xhr.send(<span class="hljs-literal">null</span>);
+    }
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rejected</span>(<span class="hljs-params">value</span>) </span>{
+      <span class="hljs-keyword">try</span> {
+        step(generator[<span class="hljs-string">&quot;throw&quot;</span>](value));
+      } <span class="hljs-keyword">catch</span> (e) {
+        reject(e);
+      }
+    }
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step</span>(<span class="hljs-params">result</span>) </span>{
+      result.done
+        ? resolve(result.value)
+        : adopt(result.value).then(fulfilled, rejected);
+    }
+    step((generator = generator()).next());
   });
 };
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tasks</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> _tasks.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>);
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tasks</span>(<span class="hljs-params"></span>) </span>{
-  _tasks = _asyncToGenerator(<span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">let</span> result1 = <span class="hljs-keyword">yield</span> task(<span class="hljs-number">1</span>);
-    <span class="hljs-keyword">let</span> result2 = <span class="hljs-keyword">yield</span> task(<span class="hljs-number">2</span>);
-    <span class="hljs-built_in">console</span>.log(result1);
-    <span class="hljs-built_in">console</span>.log(result2);
+<span class="hljs-keyword">const</span> run = <span class="hljs-function">() =&gt;</span>
+  __awaiter(<span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;start&quot;</span>;
+    <span class="hljs-keyword">const</span> a = <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;finished&quot;</span>;
+    <span class="hljs-keyword">return</span> a;
   });
-  <span class="hljs-keyword">return</span> _tasks.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>);
-}
 </code></pre><p>As we can see, babel use generator + <code>Promise</code> to transfer <code>aysnc</code> + <code>await</code>, as <code>yield</code> can wait until the <code>Promise</code> finished.</p><p>There is a more simple function, but the principle is the same:</p><pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params">task, pages</span>) </span>{
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> page <span class="hljs-keyword">of</span> pages){
         <span class="hljs-keyword">yield</span> task(page);
@@ -153,4 +99,28 @@ it.next(<span class="hljs-number">4</span>);  <span class="hljs-comment">//resul
         <span class="hljs-keyword">break</span>;
     }
 }
-</code></pre></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>
+</code></pre><p>In Addition, if we want to transfer async/await to compatible with ES3, the compiler will add a <code>generator</code> help function.</p><p>See a demo:</p><pre><code class="language-js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">0</span>);
+    r();
+  });
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">await</span> test();
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);
+}
+
+run();
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> {
+  r();
+}).then(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);
+}).then(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">3</span>);
+}).then(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">4</span>);
+})
+
+<span class="hljs-comment">// 0 2 3 1 4</span>
+</code></pre><p>There will be two promises when <code>await test()</code>!.</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>

@@ -67,112 +67,58 @@ it.next(4);  //result is defined
 
 ## async and await
 
-Firstly, let's see how babel to transfer it, see in [here](https://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=G4QwTgBALiDODWEC8EAUAHEBzApgSiQD4BvAKAgojBygFcwA7CBnAdwgAUwB7AWwEtYOVCOqxuAG2A4ANFRwArHAGMoeZIQhlKOiBJoQAHgAtIKFuwAaAWQAyACShR0AJRwBHWjlhRUeANzkuhQmYAB03Og4DKgA5ADiAKIAKrFyAAbGTuiwAFwA9PnU7mJh_Az5IOj8-bRCYLAA_Ji4SAAkxC04AL7pclBgXgFBwaERDNQgACYAnj4gUCrGIAy4yBAAZrQMqvzcMXjawbr8G2hjk7MAyjCLyEgoACyHI8fBp-emYfN0sPcoACYAAxAl5vcGUAYzI4Q2HycRSYQAKSuAHkAHJhTANYQXbzofZCZI4QxqYZwt7dCDKBbKYxofBaV4U47UJSqVD4ZksiDdbkQqk4CRCJk83RslS-MY_Op4fngvlwxXHbqBN7S6JTVAMWgSCTkyjdPDDVWkM1wGY7TbbXb7aBweCwPyiyj6KDw3VQACM6xArBA_HdMAQqC9Boobo9EigAN9_sD9pDAPD1MJkhwYQk3CwqDEnrDasoyjT-kz2dz3k9ycCfKAA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2017%2Creact%2Cstage-2&prettier=false&targets=&version=7.5.5&externalPlugins=):
+Firstly, let's see how typescript to transfer it, see in [here](https://www.typescriptlang.org/play?target=2#code/MYewdgzgLgBATgVzDAvDAhhAnmYMAUAlKgHwwDeAsAFAwYDu6AlrAOTTpxSsDcNdoSLHSoGzNgDMmYJhAAWAUwAmvfvAVQEcZOj7UAvkA) which is based on ES5:
 
 ```js
 //origin
-var task = (page)=>{
-    return new Promise(((resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', `https://reqres.in/api/users?page=${page}`, true);
-        xhr.onreadystatechange = function(){
-            if (xhr.readyState === 4){
-                if (xhr.status === 200){
-                    try{
-                        resolve(JSON.parse(xhr.responseText));
-                    } catch (e) {
-                        reject(e)
-                    }
-                } else {
-                    reject(xhr.status)
-                }
-            }
-        };
-        xhr.send(null);
-    }));
-};
-
-
-async function tasks() {
-    let result1 = await task(1);
-    let result2 = await task(2);
-    console.log(result1);
-    console.log(result2);
+const run = async () => {
+  await 'start';
+  const a = await 'finished';
+  return a;
 }
 
-
-//babel transfer
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-    try { 
-        var info = gen[key](arg); 
-        var value = info.value; 
-    } catch (error) { 
-        reject(error); 
-        return; 
-    } 
-    if (info.done) { 
-        resolve(value); 
-    } else { 
-        Promise.resolve(value).then(_next, _throw); 
-    } 
-}
-
-function _asyncToGenerator(fn) { 
-    return function () {
-        var self = this, 
-            args = arguments; 
-        return new Promise(function (resolve, reject) { 
-            var gen = fn.apply(self, args); 
-            function _next(value) { 
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); 
-            } 
-            function _throw(err) { 
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); 
-            } 
-            _next(undefined); 
+// transfer. remove some irrelevant codes
+var __awaiter = function (generator) {
+  function adopt(value) {
+    return value instanceof Promise
+      ? value
+      : new Promise(function (resolve) {
+          resolve(value);
         });
-    }; 
-}
-
-var task = page => {
-  return new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://reqres.in/api/users?page=${page}`, true);
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          try {
-            resolve(JSON.parse(xhr.responseText));
-          } catch (e) {
-            reject(e);
-          }
-        } else {
-          reject(xhr.status);
-        }
+  }
+  return new Promise(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
       }
-    };
-
-    xhr.send(null);
+    }
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function step(result) {
+      result.done
+        ? resolve(result.value)
+        : adopt(result.value).then(fulfilled, rejected);
+    }
+    step((generator = generator()).next());
   });
 };
-
-function tasks() {
-  return _tasks.apply(this, arguments);
-}
-
-function _tasks() {
-  _tasks = _asyncToGenerator(function* () {
-    let result1 = yield task(1);
-    let result2 = yield task(2);
-    console.log(result1);
-    console.log(result2);
+const run = () =>
+  __awaiter(function* () {
+    yield "start";
+    const a = yield "finished";
+    return a;
   });
-  return _tasks.apply(this, arguments);
-}
 ```
 
 As we can see, babel use generator + `Promise` to transfer `aysnc` + `await`,
-as `yield` can wait until the `Promise` finished. 
+as `yield` can wait until the `Promise` finished.
 
 There is a more simple function, but the principle is the same:
 
@@ -196,3 +142,35 @@ while (true){
 }
 ```
 
+In Addition, if we want to transfer async/await to compatible with ES3, the compiler will add a `generator` help function.
+
+See a demo:
+
+```js
+async function test() {
+  return new Promise((r) => {
+    console.log(0);
+    r();
+  });
+}
+
+async function run() {
+  await test();
+  console.log(1);
+}
+
+run();
+new Promise((r) => {
+  r();
+}).then(() => {
+  console.log(2);
+}).then(() => {
+  console.log(3);
+}).then(() => {
+  console.log(4);
+})
+
+// 0 2 3 1 4
+```
+
+There will be two promises when `await test()`!.
