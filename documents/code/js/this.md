@@ -47,18 +47,17 @@ The new keyword in front of any function turns the function call into constructo
 3. same new empty object gets bound as this keyword for execution context of that function call
 4. if that function does not return anything then it implicit returns this object.
 
-```ts
-function bike() {
-  var name = "Ninja";
-  this.maker = "Kawasaki";
-  console.log(this.name + " " + maker);  // undefined Bajaj
+The code is as below:
+
+```js
+function _new(obj, ...rest){
+  // 1 and 2
+  const newObj = Object.create(obj.prototype);
+  // 3
+  const result = obj.apply(newObj, rest);
+  // 4
+  return typeof result === 'object' ? result : newObj;
 }
-
-var name = "Pulsar";
-var maker = "Bajaj";
-
-obj = new bike();
-console.log(obj.maker);                  // "Kawasaki"
 ```
 
 ## Precedence of `this` keyword bindings
@@ -72,7 +71,7 @@ console.log(obj.maker);                  // "Kawasaki"
 
 under `use strict;`, global `this` won't point to `window`, instead, it points to `undefined`.
 
-```ts
+```js
 (function() {
     'use strict';
     console.log(this); // undefined
@@ -83,7 +82,21 @@ under `use strict;`, global `this` won't point to `window`, instead, it points t
 })();
 ```
 
+And strict mode not allows global variable mistypeVariable exists.
+
+```js
+(function() {
+    'use strict';
+    a = 1; // Uncaught ReferenceError: a is not defined
+})();
+
+(function() {
+    a = 1; // window.a = 1;
+})();
+```
+
 ## Reference
 
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this>
 - <https://codeburst.io/all-about-this-and-new-keywords-in-javascript-38039f71780c>
+- MDN Strict mode: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode>
