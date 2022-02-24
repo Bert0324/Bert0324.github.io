@@ -60,6 +60,16 @@ function _new(obj, ...rest){
 }
 ```
 
+## Write a `bind`
+
+```js
+Function.prototype.myBind = function(...args) {
+	const thisObj = args.shift();
+	const self = this;
+	return () => self.apply(thisObj, args);
+}
+```
+
 ## Precedence of `this` keyword bindings
 
 1. First it checks whether the function is called with new keyword.
