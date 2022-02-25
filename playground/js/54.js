@@ -1,21 +1,3 @@
-# 54. Spiral Matrix
-
-source: <https://leetcode.com/problems/spiral-matrix/>
-
-## Question
-
-Given an m x n matrix, return all elements of the matrix in spiral order.
-
-## 思路
-
-这题的思路其实很直接，就是改变方向：
-
-- 方向顺序是：right => down => left => up
-- 排除已经遍历过的行列
-
-稍微注意的是，matrix的取数据是`matrix[y][x]`.
-
-```js
 /**
  * @param {number[][]} matrix
  * @return {number[]}
@@ -81,8 +63,3 @@ var spiralOrder = function (matrix) {
   }
   return ret;
 };
-```
-
-## End
-
-做题目要有耐心，做复杂的题目要注意细节。

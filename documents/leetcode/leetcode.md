@@ -70,6 +70,7 @@
 - [20. Valid Parentheses](/documents/leetcode/20.valid-parentheses.md)
 - [31. Next Permutation](/documents/leetcode/31.next-permutation.md)
 - [54. Spiral Matrix](/documents/leetcode/54.spiral-matrix.md)
+- [56. Merge Intervals](/documents/leetcode/56.merge-intervals.md)
 - [200. Number of Islands](/documents/leetcode/200.number-of-islands.md)
 - [415. Add Strings & 43. Multiply Strings](/documents/leetcode/415.add-strings.md)
 - [440. K-th Smallest in Lexicographical Order](/documents/leetcode/440.k-th-smallest-in-lexicographical-order.md)
