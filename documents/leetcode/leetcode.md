@@ -34,8 +34,10 @@
 
 ## Dynamic Programming
 
+- [5. Longest Palindromic Substring](/documents/leetcode/5.longest-palindromic-substring.md)
 - [42. Trapping Rain Water](/documents/leetcode/42.trapping-rain-water.md)
 - [70. Climbing Stairs](/documents/leetcode/70.climbing-stairs.md)
+- [121. Best Time to Buy and Sell Stock](/documents/leetcode/121.best-time-to-buy-and-sell-stock.md)
 
 ## Divide And Conquer Method
 
@@ -65,7 +67,6 @@
 ## Others
 
 - [1. Two Sum](/documents/leetcode/1.two-sum.md)
-- [5. Longest Palindromic Substring](/documents/leetcode/5.longest-palindromic-substring.md)
 - [7. Reverse Integer](/documents/leetcode/7.reverse-integer.md)
 - [20. Valid Parentheses](/documents/leetcode/20.valid-parentheses.md)
 - [31. Next Permutation](/documents/leetcode/31.next-permutation.md)
