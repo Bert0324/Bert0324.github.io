@@ -4,6 +4,7 @@
 
 - [2. Add Two Numbers](/documents/leetcode/2.add-two-numbers.md)
 - [21. Merge Two Sorted Lists](/documents/leetcode/21.merge-two-sorted-lists.md)
+- [23. Merge k Sorted Lists](/documents/leetcode/23.merge-k-sorted-lists.md)
 - [25. Reverse Nodes in k-Group](/documents/leetcode/25.reverse-nodes-in-k-group.md)
 - [138. Copy List with Random Pointer](/documents/leetcode/138.copy_list_with_random_pointer.md)
 - [146. LRU Cache](/documents/leetcode/146.lru_cache.md)

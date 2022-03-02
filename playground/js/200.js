@@ -1,18 +1,3 @@
-# 200. Number of Islands
-
-source: <https://leetcode.com/problems/number-of-islands/>
-
-## Question
-
-Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
-
-An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
-
-## dfs
-
-这题比较直接的想法就是dfs，把已统计的点沉没。
-
-```js
 /**
  * @param {character[][]} grid
  * @return {number}
@@ -44,10 +29,3 @@ var numIslands = function (grid) {
 	}
 	return ret;
 };
-```
-
-## bfs
-
-## 并查集
-
-## 总结

@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-02-26 13:51:23</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#%u987A%u5E8F%u5408%u5E76">顺序合并</a></li><li><a href="#%u5206%u6CBB%u6CD5">分治法</a></li><li><a href="#%u603B%u7ED3">总结</a></li></ul></div></div><div><h1 id="23.%20merge%20k%20sorted%20lists">23. Merge k Sorted Lists</h1><p>source: <a href="https://leetcode.com/problems/merge-k-sorted-lists/">https://leetcode.com/problems/merge-k-sorted-lists/</a></p><h2 id="question">Question</h2><p>You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.</p><p>Merge all the linked-lists into one sorted linked-list and return it.</p><h2 id="%u987A%u5E8F%u5408%u5E76">顺序合并</h2><p>这题看上去是21题的加强版，其实的确是。</p><p>用21题的思路去做，只不过把两个节点改成一个数组。</p><pre><code class="language-js"><span class="hljs-keyword">var</span> mergeKLists = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">lists</span>) </span>{
+  <span class="hljs-keyword">const</span> dummy = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> nodes = [...lists].filter(<span class="hljs-built_in">Boolean</span>);
+  <span class="hljs-keyword">let</span> crr = dummy;
+  <span class="hljs-keyword">while</span> (nodes.length) {
+    <span class="hljs-keyword">let</span> minIndex = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nodes.length; i++) {
+      <span class="hljs-keyword">if</span> (nodes[i].val &lt; nodes[minIndex].val) minIndex = i;
+    }
+    crr.next = nodes[minIndex];
+    crr = nodes[minIndex];
+    <span class="hljs-keyword">if</span> (nodes[minIndex].next !== <span class="hljs-literal">null</span>) {
+      nodes[minIndex] = nodes[minIndex].next;
+    } <span class="hljs-keyword">else</span> {
+      nodes.splice(minIndex, <span class="hljs-number">1</span>);
+    }
+  }
+  <span class="hljs-keyword">return</span> dummy.next;
+};
+</code></pre><h2 id="%u5206%u6CBB%u6CD5">分治法</h2><p>输入的k个排序链表，可以分成两部分，前k/2个链表和后k/2个链表，如果将这前k/2个链表和后k/2个链表分别合并成两个排序的链表，再将两个排序的链表合并，那么所有链表都合并了。</p><pre><code class="language-js"><span class="hljs-keyword">var</span> mergeKLists = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">lists</span>) </span>{
+  <span class="hljs-keyword">const</span> arr = lists.filter(<span class="hljs-built_in">Boolean</span>);
+  <span class="hljs-keyword">if</span> (!arr.length) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  <span class="hljs-comment">// 21题解法</span>
+  <span class="hljs-keyword">const</span> mergeTwoLists = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">list1, list2</span>) </span>{
+    <span class="hljs-keyword">const</span> dummy = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">let</span> crr1 = list1;
+    <span class="hljs-keyword">let</span> crr2 = list2;
+    <span class="hljs-keyword">let</span> crr = dummy;
+    <span class="hljs-keyword">while</span> (crr1 || crr2) {
+      <span class="hljs-keyword">if</span> (
+        (crr1?.val === <span class="hljs-literal">undefined</span> ? <span class="hljs-literal">Infinity</span> : crr1.val) &lt;=
+        (crr2?.val === <span class="hljs-literal">undefined</span> ? <span class="hljs-literal">Infinity</span> : crr2.val)
+      ) {
+        crr.next = crr1;
+        crr = crr1;
+        crr1 = crr1.next;
+      } <span class="hljs-keyword">else</span> {
+        crr.next = crr2;
+        crr = crr2;
+        crr2 = crr2.next;
+      }
+    }
+    <span class="hljs-keyword">return</span> dummy.next;
+  };
+  <span class="hljs-keyword">const</span> merge = <span class="hljs-function">(<span class="hljs-params">start, end</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (start + <span class="hljs-number">1</span> == end) <span class="hljs-keyword">return</span> arr[start];
+    <span class="hljs-keyword">const</span> mid = (start + end) &gt;&gt; <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> mergeTwoLists(merge(start, mid), merge(mid, end));
+  };
+  <span class="hljs-keyword">return</span> merge(<span class="hljs-number">0</span>, arr.length);
+};
+</code></pre><h2 id="%u603B%u7ED3">总结</h2></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>
