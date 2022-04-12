@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-03-06 10:46:15</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#scenario">scenario</a></li><li><a href="#basic">basic</a></li><li><a href="#search%20a%20target">search a target</a></li><li><a href="#search%20left%20boundary">search left boundary</a></li><li><a href="#search%20right%20boundary">search right boundary</a></li><li><a href="#reference">reference</a></li></ul></div></div><div><h1 id="binary%20search">Binary Search</h1><h2 id="scenario">Scenario</h2><p>对于是有序数组，且时间复杂度要求为O(logn)，且要求是找出某个数的位置/边界的问题，可以优先想到BS的解法。</p><p>同时有些题目可能没有那么直观，如果是要求计算最大值/最小值(相当于去计算边界)，也可以考虑到BS。</p><h2 id="basic">Basic</h2><p>对于一个基本的BS，有以下这么一个框架，不同的题目可以去微调。</p><pre><code class="language-js"><span class="hljs-keyword">const</span> binarySearch = <span class="hljs-function">(<span class="hljs-params">nums, target</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!nums.length) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> right = nums.length - <span class="hljs-number">1</span>;
+    <span class="hljs-comment">// &lt;= 保证 [n, n]这个区间是被考虑进去的</span>
+    <span class="hljs-keyword">while</span> (left &lt;= right) {
+        <span class="hljs-keyword">const</span> mid = ~~((left + right) / <span class="hljs-number">2</span>);
+        <span class="hljs-keyword">if</span> (nums[mid] === target) <span class="hljs-keyword">return</span> ...
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] &lt; target) ...
+        <span class="hljs-keyword">else</span> right = ...
+    }
+    <span class="hljs-keyword">return</span> ...
+};
+</code></pre><h2 id="search%20a%20target">Search A Target</h2><p>这是最简单的一种情况, 当找到了target就直接返回。</p><pre><code class="language-js"><span class="hljs-keyword">const</span> binarySearchTarget = <span class="hljs-function">(<span class="hljs-params">nums, target</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!nums.length) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> right = nums.length - <span class="hljs-number">1</span>;
+    <span class="hljs-comment">// &lt;= 保证 [n, n]这个区间是被考虑进去的</span>
+    <span class="hljs-keyword">while</span> (left &lt;= right) {
+        <span class="hljs-keyword">const</span> mid = ~~((left + right) / <span class="hljs-number">2</span>);
+        <span class="hljs-keyword">if</span> (nums[mid] === target) <span class="hljs-keyword">return</span> mid;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] &lt; target) left = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> right = mid - <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+};
+</code></pre><h2 id="search%20left%20boundary">Search Left Boundary</h2><p>这是去寻找左侧边界，与直接找到target不同的是，当找到了target的位置时，仍然要继续去寻找其可能的左边界。</p><p>对于<code>left</code>的含义，可以直观的理解为: <code>nums</code>中小于<code>target</code>的值有多少个，有以下两种不存在的可能：</p><ul><li>存在0个，此时<code>left</code>为0，既可能nums[0]是结果，也可能结果不存在</li><li>存在nums.length个，结果不存在</li></ul><pre><code class="language-js"><span class="hljs-keyword">const</span> binarySearchLeftBoundary = <span class="hljs-function">(<span class="hljs-params">nums, target</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!nums.length) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> right = nums.length - <span class="hljs-number">1</span>;
+    <span class="hljs-comment">// &lt;= 保证 [n, n]这个区间是被考虑进去的</span>
+    <span class="hljs-keyword">while</span> (left &lt;= right) {
+        <span class="hljs-keyword">const</span> mid = ~~((left + right) / <span class="hljs-number">2</span>);
+        <span class="hljs-comment">// 如果找到target，继续寻找其可能的左边界</span>
+        <span class="hljs-keyword">if</span> (nums[mid] === target) right = mid - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] &lt; target) left = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> right = mid - <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">if</span> (nums[left] !== target) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> left;
+};
+</code></pre><h2 id="search%20right%20boundary">Search Right Boundary</h2><p>与寻找左边界类似。</p><pre><code class="language-js"><span class="hljs-keyword">const</span> binarySearchRightBoundary = <span class="hljs-function">(<span class="hljs-params">nums, target</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!nums.length) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> right = nums.length - <span class="hljs-number">1</span>;
+    <span class="hljs-comment">// &lt;= 保证 [n, n]这个区间是被考虑进去的</span>
+    <span class="hljs-keyword">while</span> (left &lt;= right) {
+        <span class="hljs-keyword">const</span> mid = ~~((left + right) / <span class="hljs-number">2</span>);
+        <span class="hljs-comment">// 如果找到target，继续寻找其可能的右边界</span>
+        <span class="hljs-keyword">if</span> (nums[mid] === target) left = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] &lt; target) left = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> right = mid - <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">if</span> (nums[right] !== target) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> right;
+};
+</code></pre><h2 id="reference">Reference</h2><ul><li><a href="https://mp.weixin.qq.com/s/M1KfTfNlu4OCK8i9PSAmug">https://mp.weixin.qq.com/s/M1KfTfNlu4OCK8i9PSAmug</a></li><li><a href="https://mp.weixin.qq.com/s/EjL65QmfX20xhhd-wKlgSg">https://mp.weixin.qq.com/s/EjL65QmfX20xhhd-wKlgSg</a></li></ul></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-03-06 10:46:15</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#%u66B4%u529B%u6CD5">暴力法</a></li><li><a href="#%u4E8C%u5206%u67E5%u627E">二分查找</a></li><li><a href="#end">end</a></li></ul></div></div><div><h1 id="1011.%20capacity%20to%20ship%20packages%20within%20d%20days">1011. Capacity To Ship Packages Within D Days</h1><p>source: <a href="https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/">https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/</a></p><h2 id="question">Question</h2><p>A conveyor belt has packages that must be shipped from one port to another within days days.</p><p>The ith package on the conveyor belt has a weight of weights[i]. Each day, we load the ship with packages on the conveyor belt (in the order given by weights). We may not load more weight than the maximum weight capacity of the ship.</p><p>Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within days days.</p><h2 id="%u66B4%u529B%u6CD5">暴力法</h2><p>先算出在本载荷的情况下，需要多少天，然后慢慢相加，找出最小值。</p><pre><code class="language-js"><span class="hljs-comment">/**
+ * 暴力法
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[]}</span> <span class="hljs-variable">weights</span></span>
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">days</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> shipWithinDays = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">weights, days</span>) </span>{
+    <span class="hljs-keyword">const</span> getDays = <span class="hljs-function">(<span class="hljs-params">weights, payload</span>) =&gt;</span> {
+        <span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">let</span> leftPayload = payload;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; weights.length; i++) {
+            <span class="hljs-keyword">const</span> crrLeftPayload = leftPayload - weights[i];
+            <span class="hljs-comment">// 运力不足</span>
+            <span class="hljs-keyword">if</span> (crrLeftPayload &lt; <span class="hljs-number">0</span>) {
+                total += <span class="hljs-number">1</span>;
+                leftPayload = payload - weights[i];
+            } <span class="hljs-keyword">else</span> {
+                leftPayload = crrLeftPayload;
+            }
+        }
+        total += <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">return</span> total;
+    };
+    <span class="hljs-comment">// 载荷不能小于最大重量</span>
+    <span class="hljs-keyword">let</span> payload = <span class="hljs-built_in">Math</span>.max(...weights);
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-keyword">const</span> total = getDays(weights, payload);
+        <span class="hljs-keyword">if</span> (total &lt;= days) <span class="hljs-keyword">return</span> payload;
+        payload += <span class="hljs-number">1</span>;
+    }
+};
+</code></pre><h2 id="%u4E8C%u5206%u67E5%u627E">二分查找</h2><p>对于有序数组寻找边界，很容易想到二分查找边界。</p><p>比较值得注意的是最大值的取值：是一次性把所有货物都运走的方式，即days的最小值是1的情况。</p><pre><code class="language-js"><span class="hljs-comment">/**
+ * 二分查找
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[]}</span> <span class="hljs-variable">weights</span></span>
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">days</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> shipWithinDays = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">weights, days</span>) </span>{
+    <span class="hljs-keyword">const</span> getDays = <span class="hljs-function">(<span class="hljs-params">weights, payload</span>) =&gt;</span> {
+        <span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">let</span> leftPayload = payload;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; weights.length; i++) {
+            <span class="hljs-keyword">const</span> crrLeftPayload = leftPayload - weights[i];
+            <span class="hljs-comment">// 运力不足</span>
+            <span class="hljs-keyword">if</span> (crrLeftPayload &lt; <span class="hljs-number">0</span>) {
+                total += <span class="hljs-number">1</span>;
+                leftPayload = payload - weights[i];
+            } <span class="hljs-keyword">else</span> {
+                leftPayload = crrLeftPayload;
+            }
+        }
+        total += <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">return</span> total;
+    };
+    <span class="hljs-keyword">let</span> left = <span class="hljs-built_in">Math</span>.max(...weights);
+    <span class="hljs-keyword">let</span> right = <span class="hljs-number">5</span> * (<span class="hljs-number">10</span> ** <span class="hljs-number">4</span>) * <span class="hljs-number">500</span>;
+    <span class="hljs-keyword">while</span> (left &lt;= right) {
+        <span class="hljs-keyword">const</span> mid = ~~((left + right) / <span class="hljs-number">2</span>);
+        <span class="hljs-keyword">const</span> total = getDays(weights, mid);
+        <span class="hljs-keyword">if</span> (total === days) right = mid - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (total &gt; days) left = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> right = mid - <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> left;
+};
+</code></pre><h2 id="end">End</h2><p>先找出暴力法，然后优化出二分查找。</p><p>对于用二分查找寻找边界的方法应该非常熟悉。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>

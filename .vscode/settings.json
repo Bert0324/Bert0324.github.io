@@ -2,14 +2,15 @@
     "cSpell.words": [
         "flexsearch",
         "gitlog",
+        "koko",
         "leetcode",
+        "nlogn",
         "nodegit",
         "Revwalk",
         "Symlink",
         "uglifyjs",
         "Versionheader",
-        "Wireshark",
-        "nlogn"
+        "Wireshark"
     ],
     "git.ignoreLimitWarning": true
 }

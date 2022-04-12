@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-03-06 10:46:15</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#%u601D%u8DEF">思路</a></li><li><a href="#%u4E2D%u6587">中文</a></li><li><a href="#%u603B%u7ED3">总结</a></li></ul></div></div><div><h1 id="integer-to-english-words">integer-to-english-words</h1><p>source: <a href="https://leetcode.com/problems/integer-to-english-words/">https://leetcode.com/problems/integer-to-english-words/</a></p><h2 id="question">Question</h2><p>Convert a non-negative integer num to its English words representation.</p><p>Example 1:</p><p>Input: num = 123 Output: &quot;One Hundred Twenty Three&quot; Example 2:</p><p>Input: num = 12345 Output: &quot;Twelve Thousand Three Hundred Forty Five&quot; Example 3:</p><p>Input: num = 1234567 Output: &quot;One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven&quot;</p><h2 id="%u601D%u8DEF">思路</h2><p>首先要找出数字之间的规律：</p><ul><li>英文中数字要以三位为间隔分开，每位有一个单位。</li><li>三位之内有自己的规则</li><li>注意都是0的情况</li><li>最大单位在十亿</li></ul><pre><code class="language-js"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">num</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{string}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> numberToWords = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>{
+    <span class="hljs-keyword">if</span> (num === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Zero&#x27;</span>;
+    <span class="hljs-comment">// 2**31- 1, 最多到2 Billion +</span>
+    <span class="hljs-keyword">const</span> units = [<span class="hljs-string">&#x27;Thousand&#x27;</span>, <span class="hljs-string">&#x27;Million&#x27;</span>, <span class="hljs-string">&#x27;Billion&#x27;</span>];
+    <span class="hljs-comment">// 数字对应规则</span>
+    <span class="hljs-keyword">const</span> numUnits = {
+        <span class="hljs-string">&#x27;0&#x27;</span>: <span class="hljs-string">&#x27;&#x27;</span>,
+        <span class="hljs-string">&#x27;1&#x27;</span>: <span class="hljs-string">&#x27;One&#x27;</span>,
+        <span class="hljs-string">&#x27;2&#x27;</span>: <span class="hljs-string">&#x27;Two&#x27;</span>,
+        <span class="hljs-string">&#x27;3&#x27;</span>: <span class="hljs-string">&#x27;Three&#x27;</span>,
+        <span class="hljs-string">&#x27;4&#x27;</span>: <span class="hljs-string">&#x27;Four&#x27;</span>,
+        <span class="hljs-string">&#x27;5&#x27;</span>: <span class="hljs-string">&#x27;Five&#x27;</span>,
+        <span class="hljs-string">&#x27;6&#x27;</span>: <span class="hljs-string">&#x27;Six&#x27;</span>,
+        <span class="hljs-string">&#x27;7&#x27;</span>: <span class="hljs-string">&#x27;Seven&#x27;</span>,
+        <span class="hljs-string">&#x27;8&#x27;</span>: <span class="hljs-string">&#x27;Eight&#x27;</span>,
+        <span class="hljs-string">&#x27;9&#x27;</span>: <span class="hljs-string">&#x27;Nine&#x27;</span>,
+        <span class="hljs-string">&#x27;10&#x27;</span>: <span class="hljs-string">&#x27;Ten&#x27;</span>,
+        <span class="hljs-string">&#x27;11&#x27;</span>: <span class="hljs-string">&#x27;Eleven&#x27;</span>,
+        <span class="hljs-string">&#x27;12&#x27;</span>: <span class="hljs-string">&#x27;Twelve&#x27;</span>,
+        <span class="hljs-string">&#x27;13&#x27;</span>: <span class="hljs-string">&#x27;Thirteen&#x27;</span>,
+        <span class="hljs-string">&#x27;14&#x27;</span>: <span class="hljs-string">&#x27;Fourteen&#x27;</span>,
+        <span class="hljs-string">&#x27;15&#x27;</span>: <span class="hljs-string">&#x27;Fifteen&#x27;</span>,
+        <span class="hljs-string">&#x27;16&#x27;</span>: <span class="hljs-string">&#x27;Sixteen&#x27;</span>,
+        <span class="hljs-string">&#x27;17&#x27;</span>: <span class="hljs-string">&#x27;Seventeen&#x27;</span>,
+        <span class="hljs-string">&#x27;18&#x27;</span>: <span class="hljs-string">&#x27;Eighteen&#x27;</span>,
+        <span class="hljs-string">&#x27;19&#x27;</span>: <span class="hljs-string">&#x27;Nineteen&#x27;</span>,
+        <span class="hljs-string">&#x27;20&#x27;</span>: <span class="hljs-string">&#x27;Twenty&#x27;</span>,
+        <span class="hljs-string">&#x27;30&#x27;</span>: <span class="hljs-string">&#x27;Thirty&#x27;</span>,
+        <span class="hljs-string">&#x27;40&#x27;</span>: <span class="hljs-string">&#x27;Forty&#x27;</span>,
+        <span class="hljs-string">&#x27;50&#x27;</span>: <span class="hljs-string">&#x27;Fifty&#x27;</span>,
+        <span class="hljs-string">&#x27;60&#x27;</span>: <span class="hljs-string">&#x27;Sixty&#x27;</span>,
+        <span class="hljs-string">&#x27;70&#x27;</span>: <span class="hljs-string">&#x27;Seventy&#x27;</span>,
+        <span class="hljs-string">&#x27;80&#x27;</span>: <span class="hljs-string">&#x27;Eighty&#x27;</span>,
+        <span class="hljs-string">&#x27;90&#x27;</span>: <span class="hljs-string">&#x27;Ninety&#x27;</span>,
+        <span class="hljs-string">&#x27;100&#x27;</span>: <span class="hljs-string">&#x27;Hundred&#x27;</span>,
+    };
+    <span class="hljs-comment">// 解析两位数字</span>
+    <span class="hljs-keyword">const</span> doubleDigitToText = <span class="hljs-function">(<span class="hljs-params">doubleDigit</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> n = <span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-built_in">Number</span>(doubleDigit)}</span>`</span>;
+        <span class="hljs-keyword">if</span> (numUnits[n] !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> numUnits[n];
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${numUnits[<span class="hljs-string">`<span class="hljs-subst">${n[<span class="hljs-number">0</span>]}</span>0`</span>]}</span> <span class="hljs-subst">${numUnits[<span class="hljs-string">`<span class="hljs-subst">${n[<span class="hljs-number">1</span>]}</span>`</span>]}</span>`</span>;
+    };
+    <span class="hljs-comment">// 解析三位数字</span>
+    <span class="hljs-keyword">const</span> threeDigitToText = <span class="hljs-function">(<span class="hljs-params">threeDigit</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> n = <span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-built_in">Number</span>(threeDigit)}</span>`</span>;
+        <span class="hljs-keyword">if</span> (n.length !== <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> doubleDigitToText(n);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${numUnits[n[<span class="hljs-number">0</span>]]}</span> <span class="hljs-subst">${numUnits[<span class="hljs-string">&#x27;100&#x27;</span>]}</span> <span class="hljs-subst">${doubleDigitToText(<span class="hljs-string">`<span class="hljs-subst">${n[<span class="hljs-number">1</span>]}</span><span class="hljs-subst">${n[<span class="hljs-number">2</span>]}</span>`</span>)}</span>`</span>
+    };
+    <span class="hljs-comment">// 将数字按3位拆分</span>
+    <span class="hljs-keyword">const</span> groups = <span class="hljs-string">`<span class="hljs-subst">${num}</span>`</span>.replace(<span class="hljs-regexp">/(\d)(?=(\d{3})+(?!\d))/g</span>, <span class="hljs-string">&quot;$1,&quot;</span>).split(<span class="hljs-string">&#x27;,&#x27;</span>);
+    <span class="hljs-keyword">return</span> groups.reverse().reduce(<span class="hljs-function">(<span class="hljs-params">acc, crr, index</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> ret = threeDigitToText(crr);
+        <span class="hljs-comment">// 如果是有效数字，才能带上单位</span>
+        <span class="hljs-keyword">const</span> unit = ret ? units[index - <span class="hljs-number">1</span>] || <span class="hljs-string">&#x27;&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${ret}</span> <span class="hljs-subst">${unit}</span> <span class="hljs-subst">${acc}</span>`</span>;
+    }, <span class="hljs-string">&#x27;&#x27;</span>).split(<span class="hljs-string">&#x27; &#x27;</span>).filter(<span class="hljs-built_in">Boolean</span>).join(<span class="hljs-string">&#x27; &#x27;</span>);
+</code></pre><h2 id="%u4E2D%u6587">中文</h2><p>这一题有一个国内变种，就是去整数转换中文, 中文数字更加有规律，应该是比英文简单的：</p><pre><code class="language-js"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">num</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{string}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> numberToWords = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>{
+    <span class="hljs-keyword">if</span> (num === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;零&#x27;</span>;
+    <span class="hljs-keyword">const</span> units = [<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;万&#x27;</span>, <span class="hljs-string">&#x27;亿&#x27;</span>];
+    <span class="hljs-keyword">const</span> innerUnits = [<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;十&#x27;</span>, <span class="hljs-string">&#x27;百&#x27;</span>, <span class="hljs-string">&#x27;千&#x27;</span>];
+    <span class="hljs-keyword">const</span> numUnits = {
+        <span class="hljs-string">&#x27;0&#x27;</span>: <span class="hljs-string">&#x27;&#x27;</span>,
+        <span class="hljs-string">&#x27;1&#x27;</span>: <span class="hljs-string">&#x27;一&#x27;</span>,
+        <span class="hljs-string">&#x27;2&#x27;</span>: <span class="hljs-string">&#x27;二&#x27;</span>,
+        <span class="hljs-string">&#x27;3&#x27;</span>: <span class="hljs-string">&#x27;三&#x27;</span>,
+        <span class="hljs-string">&#x27;4&#x27;</span>: <span class="hljs-string">&#x27;四&#x27;</span>,
+        <span class="hljs-string">&#x27;5&#x27;</span>: <span class="hljs-string">&#x27;五&#x27;</span>,
+        <span class="hljs-string">&#x27;6&#x27;</span>: <span class="hljs-string">&#x27;六&#x27;</span>,
+        <span class="hljs-string">&#x27;7&#x27;</span>: <span class="hljs-string">&#x27;七&#x27;</span>,
+        <span class="hljs-string">&#x27;8&#x27;</span>: <span class="hljs-string">&#x27;八&#x27;</span>,
+        <span class="hljs-string">&#x27;9&#x27;</span>: <span class="hljs-string">&#x27;九&#x27;</span>,
+    };
+    <span class="hljs-keyword">const</span> fourDigitToText = <span class="hljs-function">(<span class="hljs-params">digit</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> text = <span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-built_in">Number</span>(digit)}</span>`</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(text).reverse().map(<span class="hljs-function">(<span class="hljs-params">n, index</span>) =&gt;</span> {
+            <span class="hljs-keyword">const</span> v = numUnits[n];
+            <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${v}</span><span class="hljs-subst">${v ? innerUnits[index] : <span class="hljs-string">&#x27;&#x27;</span>}</span>`</span>;
+        }).reverse().join(<span class="hljs-string">&#x27;&#x27;</span>);
+    };
+    <span class="hljs-keyword">const</span> groups = <span class="hljs-string">`<span class="hljs-subst">${num}</span>`</span>.replace(<span class="hljs-regexp">/(\d)(?=(\d{4})+(?!\d))/g</span>, <span class="hljs-string">&quot;$1,&quot;</span>).split(<span class="hljs-string">&#x27;,&#x27;</span>);
+    <span class="hljs-keyword">return</span> groups.reverse().reduce(<span class="hljs-function">(<span class="hljs-params">acc, crr, index</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> text = fourDigitToText(crr);
+        <span class="hljs-keyword">const</span> unit = text ? units[index] || <span class="hljs-string">&#x27;&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${text}</span><span class="hljs-subst">${unit}</span><span class="hljs-subst">${acc}</span>`</span>;
+    }, <span class="hljs-string">&#x27;&#x27;</span>).split(<span class="hljs-string">&#x27; &#x27;</span>).filter(<span class="hljs-built_in">Boolean</span>).join(<span class="hljs-string">&#x27; &#x27;</span>);
+};
+</code></pre><h2 id="%u603B%u7ED3">总结</h2><p>注意总结规律，同时掌握好正则，对字符串的处理经常可以省很大的力气。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>

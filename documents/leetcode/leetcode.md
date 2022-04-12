@@ -58,7 +58,11 @@
 - [3. Longest Substring Without Repeating Characters](/documents/leetcode/3.longest-substring-without-repeating-characters.md)
 - [11. Container With Most Water](/documents/leetcode/11.container-with-most-water.md)
 - [15. 3Sum](/documents/leetcode/15.3sum.md)
+- [75. Sort Colors](/documents/leetcode/75.sort-colors.md)
 - [76. Minimum Window Substring](/documents/leetcode/76.minimum-window-substring.md)
+- [88. Merge Sorted Array](/documents/leetcode/88.merge-sorted-array.md)
+- [151. Reverse Words in a String](/documents/leetcode/151.reverse-words-in-a-string.md)
+- [253. Meeting Rooms II](/documents/leetcode/253.meeting-rooms-ii.md)
 
 ## Backtracking
 
@@ -67,8 +71,13 @@
 
 ## Binary Search
 
+- [Binary Search Collection](/documents/leetcode/binary-search-collection.md)
 - [4. Median of Two Sorted Arrays](/documents/leetcode/4.median-of-two-sorted-arrays.md)
 - [33. Search in Rotated Sorted Array](/documents/leetcode/33.search-in-rotated-sorted-array.md)
+- [240. Search a 2D Matrix II](/documents/leetcode/240.search-a-2d-matrix-ii.md)
+- [410. Split Array Largest Sum](/documents/leetcode/410.split-array-largest-sum.md)
+- [875. Koko Eating Bananas](/documents/leetcode/875.koko-eating-bananas.md)
+- [1011. Capacity To Ship Packages Within D Days](/documents/leetcode/1011.capacity-to-ship-packages-within-d-days.md)
 
 ## Others
 
@@ -76,8 +85,11 @@
 - [7. Reverse Integer](/documents/leetcode/7.reverse-integer.md)
 - [20. Valid Parentheses](/documents/leetcode/20.valid-parentheses.md)
 - [31. Next Permutation](/documents/leetcode/31.next-permutation.md)
+- [48. Rotate Image](/documents/leetcode/48.rotate-image.md)
+- [49. Group Anagrams](/documents/leetcode/49.group-anagrams.md)
 - [54. Spiral Matrix](/documents/leetcode/54.spiral-matrix.md)
 - [56. Merge Intervals](/documents/leetcode/56.merge-intervals.md)
 - [200. Number of Islands](/documents/leetcode/200.number-of-islands.md)
+- [273. Integer to English Words](/documents/leetcode/273.integer-to-english-words.md)
 - [415. Add Strings & 43. Multiply Strings](/documents/leetcode/415.add-strings.md)
 - [440. K-th Smallest in Lexicographical Order](/documents/leetcode/440.k-th-smallest-in-lexicographical-order.md)
