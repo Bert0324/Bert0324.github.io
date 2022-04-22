@@ -39,8 +39,15 @@
 
 - [5. Longest Palindromic Substring](/documents/leetcode/5.longest-palindromic-substring.md)
 - [42. Trapping Rain Water](/documents/leetcode/42.trapping-rain-water.md)
+- [53. Maximum Subarray](/documents/leetcode/53.maximum-subarray.md)
 - [70. Climbing Stairs](/documents/leetcode/70.climbing-stairs.md)
+- [72. Edit Distance](/documents/leetcode/72.edit-distance.md)
 - [121. Best Time to Buy and Sell Stock](/documents/leetcode/121.best-time-to-buy-and-sell-stock.md)
+- [300. Longest Increasing Subsequence](/documents/leetcode/300.longest-increasing-subsequence.md)
+- [322. Coin Change](/documents/leetcode/322.coin-change.md)
+- [583. Delete Operation for Two Strings](/documents/leetcode/583.delete-operation-for-two-strings.md)
+- [931. Minimum Falling Path Sum](/documents/leetcode/931.minimum-falling-path-sum.md)
+- [1143. Longest Common Subsequence](/documents/leetcode/1143.longest-common-subsequence.md)
 
 ## Divide And Conquer Method
 
@@ -68,6 +75,7 @@
 
 - [22. Generate Parentheses](/documents/leetcode/22.generate-parentheses.md)
 - [46. Permutations](/documents/leetcode/46.permutations.md)
+- [79. Permutations](/documents/leetcode/79.word-search.md)
 
 ## Binary Search
 
