@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-04-22 21:25:30</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#%u66B4%u529B%u6CD5">暴力法</a></li><li><a href="#dp">dp</a></li><li><a href="#%u603B%u7ED3">总结</a></li></ul></div></div><div><h1 id="931.%20minimum%20falling%20path%20sum">931. Minimum Falling Path Sum</h1><p>source: <a href="https://leetcode.com/problems/minimum-falling-path-sum/">https://leetcode.com/problems/minimum-falling-path-sum/</a></p><h2 id="question">Question</h2><p>Given an n x n array of integers matrix, return the minimum sum of any falling path through matrix.</p><p>A falling path starts at any element in the first row and chooses the element in the next row that is either directly below or diagonally left/right. Specifically, the next element from position (row, col) will be (row + 1, col - 1), (row + 1, col), or (row + 1, col + 1).</p><h2 id="%u66B4%u529B%u6CD5">暴力法</h2><p>拆分成重叠的子问题：</p><ul><li>本次的最优解=选取上一行的三个点的最优解的最小值</li></ul><p>同时增加备忘录，对迭代树剪枝。</p><pre><code class="language-ts"><span class="hljs-comment">/**
+ * 暴力递归+备忘录
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[][]}</span> <span class="hljs-variable">matrix</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> minFallingPathSum = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">matrix</span>) </span>{
+    <span class="hljs-keyword">const</span> lastLinePositionArr = [[-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], [-<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>], [-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>]];
+    <span class="hljs-keyword">const</span> cache = {};
+    <span class="hljs-keyword">const</span> find = <span class="hljs-function">(<span class="hljs-params">[y, x]</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> v = matrix[y][x];
+        <span class="hljs-keyword">if</span> (v === <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (y === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> v;
+        <span class="hljs-keyword">let</span> ret = <span class="hljs-literal">Infinity</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; lastLinePositionArr.length; i++) {
+            <span class="hljs-keyword">const</span> lastY = y + lastLinePositionArr[i][<span class="hljs-number">0</span>];
+            <span class="hljs-keyword">const</span> lastX = x + lastLinePositionArr[i][<span class="hljs-number">1</span>];
+            <span class="hljs-keyword">const</span> key = <span class="hljs-string">`<span class="hljs-subst">${[lastY, lastX]}</span>`</span>;
+            <span class="hljs-keyword">if</span> (cache[key] === <span class="hljs-literal">undefined</span>) cache[key] = find([lastY, lastX]);
+            <span class="hljs-keyword">if</span> (cache[key] !== <span class="hljs-literal">null</span>) ret = <span class="hljs-built_in">Math</span>.min(cache[key] + v, ret);
+        }
+        <span class="hljs-keyword">return</span> ret;
+    };
+    <span class="hljs-keyword">let</span> ret = <span class="hljs-literal">Infinity</span>;
+    <span class="hljs-keyword">const</span> y = matrix.length - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> x = <span class="hljs-number">0</span>; x &lt; matrix[<span class="hljs-number">0</span>].length; x++) ret = <span class="hljs-built_in">Math</span>.min(find([y, x]), ret);
+    <span class="hljs-keyword">return</span> ret;
+};
+</code></pre><h2 id="dp">dp</h2><p>既然是重叠子问题，很明显也可以用dp来解。</p><p>先明确一下dp时的定义：</p><ul><li>明确状态：转移的状态应该是点位<code>[y,x]</code></li><li>确定dp数组定义：<code>dp[n]</code>代表当前行为<code>n</code>的最优解数组</li><li>明确选择：从上一行的三个点位中选择相加最小的点位</li><li>明确base case：目标行为0时，返回当前值</li></ul><pre><code class="language-js"><span class="hljs-comment">/**
+ * dp
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[][]}</span> <span class="hljs-variable">matrix</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> minFallingPathSum = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">matrix</span>) </span>{
+    <span class="hljs-keyword">const</span> lastLinePositionArr = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>];
+    <span class="hljs-keyword">const</span> dp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(matrix.length);
+    dp[<span class="hljs-number">0</span>] = [...matrix[<span class="hljs-number">0</span>]];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; matrix.length; i++) {
+        dp[i] = [...matrix[i]].map(<span class="hljs-function">(<span class="hljs-params">v, index</span>) =&gt;</span> {
+            <span class="hljs-keyword">let</span> ret = <span class="hljs-literal">Infinity</span>;
+            lastLinePositionArr.forEach(<span class="hljs-function"><span class="hljs-params">last</span> =&gt;</span> {
+                <span class="hljs-keyword">const</span> x = last + index;
+                <span class="hljs-keyword">if</span> (dp[i - <span class="hljs-number">1</span>]?.[x] !== <span class="hljs-literal">undefined</span>) ret = <span class="hljs-built_in">Math</span>.min(dp[i - <span class="hljs-number">1</span>][x], ret);
+            });
+            <span class="hljs-keyword">return</span> ret + v;
+        });
+    }
+    <span class="hljs-keyword">return</span> dp[matrix.length - <span class="hljs-number">1</span>].sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b)[<span class="hljs-number">0</span>];
+};
+</code></pre><h2 id="%u603B%u7ED3">总结</h2><p>只要能整理出子问题，和如果转移子问题，那么dp类的题目就会很简单。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>
