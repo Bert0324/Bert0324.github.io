@@ -1,10 +1,6 @@
-# Bridge Module
-
-TODO
+# JSBridge
 
 ## What is JSBridge
-
-## Native Module in RN
 
 ## Reference
 

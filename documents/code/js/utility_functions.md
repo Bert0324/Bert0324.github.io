@@ -275,3 +275,123 @@ export const withTimeChange = (cb: (timer: number) => void, interval = 1000) => 
   ] as const;
 };
 ```
+
+## Priority Queue
+
+```ts
+class PriorityQueue<T = any> {
+    private data: T[];
+    private sortFn = (a: T, b: T) => a > b;
+
+    /**
+     * @param data data source
+     * @param sortFn compare value
+     */
+    constructor(params?: {
+        data?: T[];
+        sortFn?: (a: T, b: T) => boolean
+    }) {
+        const { data, sortFn } = params || {};
+        if (sortFn) this.sortFn = sortFn;
+        this.data = data || [];
+        this.buildHeap();
+    }
+
+    /**
+     * rebuild the max-heap
+     */
+    private buildHeap() {
+        // start from the first parent node
+        for (let i = Math.floor(this.data.length / 2) - 1; i >= 0; i--) this.heapify(this.data.length, i);
+    }
+
+    /**
+     * swap value
+     * @param i1 index 1
+     * @param i2 index 2 
+     */
+    private swap(i1: number, i2: number) {
+        const v = this.data[i1];
+        this.data[i1] = this.data[i2];
+        this.data[i2] = v;
+    }
+
+    /**
+     * To heapify a subtree rooted with node i
+     * @param n within Array length
+     * @param i node index
+     */
+    private heapify(n: number, i: number) {
+        const l = 2 * i + 1;
+        const r = l + 1;
+        let largest = i;
+        if (l < n && this.sortFn(this.data[l], this.data[largest])) largest = l;
+        if (r < n && this.sortFn(this.data[r], this.data[largest])) largest = r;
+        if (largest !== i) {
+            this.swap(i, largest);
+            // Recursively heapify the affected sub-tree
+            this.heapify(n, largest);
+        }
+    }
+
+    /**
+     * up an node
+     * @param index 
+     */
+    private up(index: number) {
+        while (index !== 0) {
+            const parentIndex = Math.floor(index / 2) - 1;
+            if (!this.sortFn(this.data[index], this.data[parentIndex])) break;
+            this.heapify(this.data.length, parentIndex);
+            index = parentIndex;
+        }
+    }
+
+    /**
+     * add a new value to the queue
+     * @param v 
+     */
+    add(v: T) {
+        this.data.push(v);
+        this.up(this.data.length - 1)
+    }
+
+    /**
+     * peek and remove the first value
+     * @returns 
+     */
+    peek() {
+        const v = this.data.shift();
+        this.heapify(this.data.length, 0);
+        return v;
+    }
+
+    /**
+     * remove a specific value
+     * @param target 
+     */
+    remove(target: T) {
+        const index = this.data.findIndex(v => v === target);
+        if (index > -1) {
+            this.data.splice(index, 1);
+            this.buildHeap();
+        }
+    }
+
+    /**
+     * iterate the queue
+     * @param args 
+     */
+    forEach(...args: Parameters<typeof this.data.forEach>) {
+        this.data.forEach(...args);
+    }
+
+    /**
+     * get the queue's length
+     * @returns 
+     */
+    size() {
+        return this.data.length;
+    }
+}
+```

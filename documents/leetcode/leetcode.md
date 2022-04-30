@@ -38,6 +38,7 @@
 ## Dynamic Programming
 
 - [5. Longest Palindromic Substring](/documents/leetcode/5.longest-palindromic-substring.md)
+- [10. Regular Expression Matching](/documents/leetcode/10.regular-expression-matching.md)
 - [42. Trapping Rain Water](/documents/leetcode/42.trapping-rain-water.md)
 - [53. Maximum Subarray](/documents/leetcode/53.maximum-subarray.md)
 - [70. Climbing Stairs](/documents/leetcode/70.climbing-stairs.md)
@@ -46,6 +47,7 @@
 - [300. Longest Increasing Subsequence](/documents/leetcode/300.longest-increasing-subsequence.md)
 - [322. Coin Change](/documents/leetcode/322.coin-change.md)
 - [583. Delete Operation for Two Strings](/documents/leetcode/583.delete-operation-for-two-strings.md)
+- [712. Minimum ASCII Delete Sum for Two Strings](/documents/leetcode/712.minimum-ascii-delete-sum-for-two-strings.md)
 - [931. Minimum Falling Path Sum](/documents/leetcode/931.minimum-falling-path-sum.md)
 - [1143. Longest Common Subsequence](/documents/leetcode/1143.longest-common-subsequence.md)
 
@@ -59,6 +61,7 @@
 
 - [147. Insertion Sort List]()
 - [148. Sort List]()
+- [215. Kth Largest Element in an Array](/documents/leetcode/215.kth-largest-element-in-an-array.md)
 
 ## Two Pointers
 

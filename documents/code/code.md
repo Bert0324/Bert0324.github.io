@@ -67,7 +67,7 @@ The place I can organize my thoughts and review knowledge.
 - [Issue a npm package](/documents/code/other/npm_issue.md)
 - [Redux](/documents/code/other/redux.md)
 - [RxJS](/documents/code/other/rxjs.md)
-- [React Native Bridges](/documents/code/other/rn_bridges.md)
+- [JSBridges](/documents/code/other/js_bridges.md)
 - [TS Utility Types](/documents/code/other/utility_types.md)
 - [Cross-Platform Framework for Mini Program](/documents/code/other/mini_program.md)
 
