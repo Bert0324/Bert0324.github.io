@@ -16,6 +16,10 @@ Welcome to visit my [blog](https://bert0324.github.io).
 
 - [Essay](/documents/essay/essay.md)
 
+## English Learning
+
+- [IELTS](/documents/ielts/ielts.md)
+
 ## Powered By
 
 - Static Resource Service: [Github Repo](https://github.com/Bert0324/Bert0324.github.io)

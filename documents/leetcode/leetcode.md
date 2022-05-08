@@ -62,6 +62,7 @@
 - [147. Insertion Sort List]()
 - [148. Sort List]()
 - [215. Kth Largest Element in an Array](/documents/leetcode/215.kth-largest-element-in-an-array.md)
+- [973. K Closest Points to Origin](/documents/leetcode/973.k-closest-points-to-origin.md)
 
 ## Two Pointers
 
