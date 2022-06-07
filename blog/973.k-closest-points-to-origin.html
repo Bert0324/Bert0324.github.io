@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2022-05-08 21:42:29</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#%u601D%u8DEF">思路</a></li><li><a href="#%u5806%u6392%u5E8F">堆排序</a></li><li><a href="#end">end</a></li></ul></div></div><div><h1 id="973.%20k%20closest%20points%20to%20origin">973. K Closest Points to Origin</h1><p>source: <a href="https://leetcode.com/problems/k-closest-points-to-origin/">https://leetcode.com/problems/k-closest-points-to-origin/</a></p><h2 id="question">Question</h2><p>Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane and an integer k, return the k closest points to the origin (0, 0).</p><p>The distance between two points on the X-Y plane is the Euclidean distance (i.e., √(x1 - x2)2 + (y1 - y2)2).</p><p>You may return the answer in any order. The answer is guaranteed to be unique (except for the order that it is in).</p><h2 id="%u601D%u8DEF">思路</h2><p>这题的主要思路还是去微调排序算法，在排到K的时候，就返回。</p><h2 id="%u5806%u6392%u5E8F">堆排序</h2><p>先从无子节点遍历，自底向上创建Max Heap。</p><p>然后一个个把根节点，which is the maximum, 置换下去，同时缩小heapify的范围。</p><pre><code class="language-js"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[][]}</span> <span class="hljs-variable">points</span></span>
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">k</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number[][]}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> kClosest = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">points, k</span>) </span>{
+    <span class="hljs-keyword">const</span> indexes = points.map(<span class="hljs-function">(<span class="hljs-params">_, i</span>) =&gt;</span> i);
+    <span class="hljs-keyword">const</span> cache = {};
+    <span class="hljs-keyword">const</span> getLength = <span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> [x, y] = points[indexes[i]];
+        <span class="hljs-keyword">if</span> (cache[indexes[i]] === <span class="hljs-literal">undefined</span>) cache[indexes[i]] = x ** <span class="hljs-number">2</span> + y ** <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">return</span> cache[indexes[i]];
+    }
+    <span class="hljs-keyword">const</span> swap = <span class="hljs-function">(<span class="hljs-params">i1, i2</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> v = indexes[i1];
+        indexes[i1] = indexes[i2];
+        indexes[i2] = v;
+    };
+    <span class="hljs-keyword">const</span> heapify = <span class="hljs-function">(<span class="hljs-params">n, i</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> l = i * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">const</span> r = l + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">let</span> smallest = i;
+        <span class="hljs-keyword">if</span> (l &lt; n &amp;&amp; getLength(l) &lt; getLength(smallest)) smallest = l;
+        <span class="hljs-keyword">if</span> (r &lt; n &amp;&amp; getLength(r) &lt; getLength(smallest)) smallest = r;
+        <span class="hljs-keyword">if</span> (smallest !== i) {
+            swap(i, smallest);
+            heapify(n, smallest);
+        }
+    };
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-built_in">Math</span>.floor(points.length / <span class="hljs-number">2</span>) - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) heapify(points.length, i);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = points.length - <span class="hljs-number">1</span>; i &gt;= points.length - k; i--) {
+        swap(<span class="hljs-number">0</span>, i);
+        heapify(i, <span class="hljs-number">0</span>);
+    }
+
+    <span class="hljs-keyword">return</span> indexes.slice(points.length - k, points.length).map(<span class="hljs-function"><span class="hljs-params">i</span> =&gt;</span> points[i]);
+};
+</code></pre><h2 id="end">End</h2><p>其实这题就是考排序算法，就是换了一种方式。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>
