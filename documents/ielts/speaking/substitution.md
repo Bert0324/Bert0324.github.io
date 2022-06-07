@@ -53,7 +53,7 @@
 ## I must/have to
 
 - I'm required to
-- It's my duty/communication/responsibility/obligation/liability 
+- It's my duty/communication/responsibility/obligation/liability
 - I should/ought to
 - We are bound to/are supposed to/are meant to
 - We are committed to

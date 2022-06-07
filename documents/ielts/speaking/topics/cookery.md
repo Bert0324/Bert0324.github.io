@@ -7,9 +7,13 @@
 - Do you prefer eating at home or in the restaurant?
 - What are the differences between Chinese and foreign food?
 
-## Vocabulary
+## Thinking
 
--  
+- Shanghai was lock down
+- in quarantine
+- has became a necessary survival life skill
+- in the period of gaining muscle
+- control calories of the food
 
 ## Phrases
 
@@ -21,3 +25,8 @@
 - instant noodles
 - be occupied with
 - time consuming and labor consuming 
+- covid19 pandemic
+- quarantines
+- soy sauce
+- build up my chest
+- chicken beast

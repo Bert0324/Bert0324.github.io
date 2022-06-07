@@ -1,0 +1,98 @@
+# Prediction
+
+## P2
+
+- volcano
+- pond
+- city council
+- endangered
+- endangered
+- undervalued
+- porter
+- leaflet
+- routinely
+- accompany with
+- impose stress
+- punctuality
+- apply money
+- approved
+- picnic
+- the exhibition of Motors
+- concert hall
+- hot air ballon
+- latest model
+- main hall
+- bonus cheque
+- corridor
+- film studio
+- portrait
+- adjust to the environment
+- endure
+- realization
+- squirrel
+- invasion of exotic species
+- snatch
+- mouse/mice
+- fitting room
+- squash court
+- body flexibility
+- lower limbs
+- colleagues
+- touching heart
+- native animals
+- senior
+- bird feeder
+- baked food
+- lean meat
+- romantic
+- roof
+- choir
+- gold medal
+- do charity
+- make a living
+- committee room
+- reference/a recommendation letter
+- curriculum vitae/C.V.
+- own car
+- intrigue curiosity
+- certificate for
+- flamingo
+- swans
+- woodland/farmland
+- consultant
+- mechanist
+- hostel
+- reading materials
+- spare
+- ultraviolet ray
+- main information desk
+- trousers
+- luggage claim
+- customs check
+- election
+- frost
+- plentiful
+- absorb water
+- garage door
+- lack of publicity
+- renovation
+- multimedia
+
+## P3
+
+- diminishing
+- physical problems
+- revise aims
+- superior
+- retail outlet
+- executive
+- get into contact with
+- methodology
+- avoid disturbance
+- view on
+- analytical thinking
+- suitability
+- syllabus
+- celebrities
+- explanation
+- a general discussion
