@@ -1,5 +1,11 @@
 # Prediction
 
+## P1
+
+- name badge
+- window dressing
+- minibus
+
 ## P2
 
 - volcano
@@ -96,3 +102,78 @@
 - celebrities
 - explanation
 - a general discussion
+- card catalogs
+- printed list
+- photocopy
+- vouchers
+- microfilm
+- multimedia
+- reference materials
+- headlines
+- loyalty
+- consolidation
+- respondents/subjects
+- folk
+- influential
+- straightforward/simple
+- plots
+- originate from
+- envy about
+- amuse
+- underfunded
+- cash machine
+- natural ability
+- as a whole
+- free thought
+- critically
+- quarrels
+- liberal arts
+- marine life
+- italics
+- satellite
+- enquiry desk
+- variation
+- religious
+- biased
+- proficiency
+- objectives
+- archaeology
+- fabric/cloth
+- misinterpret
+
+## P4
+
+- originality
+- timber
+- digestive problems
+- sweetener
+- claws
+- fragile
+- critical
+- diamonds
+- obesity
+- reduction
+- perception
+- clerks
+- ozone layer
+- nitrogen
+- pesticide
+- moisture
+- Romans
+- oxygen
+- nursery
+- cables
+- scarce
+- disposal
+- sheep
+- cattle
+- irrigation
+- immigrants
+- coastal
+- politics
+- damp
+- mould
+- tires
+- Germany
+- life span
+- bonus
