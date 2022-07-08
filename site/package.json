@@ -17,7 +17,7 @@
     "lodash": "^4.17.20",
     "lodash-es": "^4.17.20",
     "marked": "^2.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "node-fetch": "^2.6.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
