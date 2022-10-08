@@ -5,13 +5,39 @@
 - name badge
 - window dressing
 - minibus
+- astronomy
+- eyesight
+- juniors
+- top shelf
+- garage
+- petrol
+- silver-color
+- post letter
+- top mount
+- cheque/check
+- customer
+- palace
+- theoretical
+- regional
+- canteen
+- furniture
+- gardening
+- senior
+- horror movie
+- helicopter
+- towel
+- diving
+- moderate
+- radio station
+- donations
+- candles
+- discount
 
 ## P2
 
 - volcano
 - pond
 - city council
-- endangered
 - endangered
 - undervalued
 - porter
@@ -131,7 +157,7 @@
 - marine life
 - italics
 - satellite
-- enquiry desk
+- enquiry desk/reception
 - variation
 - religious
 - biased

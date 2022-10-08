@@ -5,7 +5,7 @@
 - What is your daily study routine?
     - a night owl
     - feel sleepy by day
-    - but perk up at night and could study late into the evening
+    - but perk up at night and can study late into the evening
 - Have you ever changed your routine?
     - had changed study time to fit my energy rhythm
     - difficult to focus attention by day
