@@ -85,3 +85,77 @@ class LRUCache {
 * var param_1 = obj.get(key)
 * obj.put(key,value)
 */
+
+
+interface LinkNode {
+  next?: LinkNode;
+  last?: LinkNode;
+  value?: number;
+  key?: number;
+}
+
+class LRUCache {
+  private capacity: number;
+  private data: Record<number, LinkNode>;
+  private dummyHead: LinkNode;
+  private dummyTail: LinkNode;
+  private size = 0;
+
+  constructor(capacity: number) {
+    this.capacity = capacity;
+    this.dummyHead = {};
+    this.dummyTail = {};
+    this.dummyHead.next = this.dummyTail;
+    this.dummyTail.last = this.dummyHead;
+    this.data = {};
+  }
+
+  private addToHead(node: LinkNode) {
+    const first = this.dummyHead.next;
+    node.next = first;
+    node.last = this.dummyHead;
+    this.dummyHead.next = node;
+    first.last = node;
+    this.size += 1;
+  }
+
+  private remove(node: LinkNode) {
+    node.last.next = node.next;
+    node.next.last = node.last;
+    this.size -= 1;
+  }
+
+  private moveToHead(node: LinkNode) {
+    this.remove(node);
+    this.addToHead(node);
+  }
+
+  private removeTail() {
+    const last = this.dummyTail.last;
+    this.remove(last);
+    return last;
+  }
+
+  get(key: number): number {
+    const node = this.data[key];
+    if (!node) return -1;
+    this.moveToHead(node);
+    return node.value;
+  }
+
+  put(key: number, value: number): void {
+    const node = this.data[key];
+    if (node) {
+      node.value = value;
+      this.moveToHead(node);
+    } else {
+      const newNode = { value, key };
+      this.data[key] = newNode;
+      this.addToHead(newNode);
+      if (this.size > this.capacity) {
+        const removed = this.removeTail();
+        this.data[removed.key] = undefined;
+      }
+    }
+  }
+}
