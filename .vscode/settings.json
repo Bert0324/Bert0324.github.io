@@ -13,5 +13,12 @@
         "Versionheader",
         "Wireshark"
     ],
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "rust-analyzer.linkedProjects": [
+        "/home/bert/workspace/Bert0324.github.io/playground/rust/Cargo.toml"
+    ],
+    "lldb.showDisassembly": "auto",
+    "lldb.dereferencePointers": false,
+    "lldb.consoleMode": "commands",
+    "lldb.displayFormat": "auto"
 }

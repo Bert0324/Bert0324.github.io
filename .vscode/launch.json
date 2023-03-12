@@ -7,7 +7,7 @@
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug",
+      "name": "Rust Debug",
       "preLaunchTask": "buildRust",
       "program": "${workspaceFolder}/playground/rust/target/debug/rust",
       "args": [
