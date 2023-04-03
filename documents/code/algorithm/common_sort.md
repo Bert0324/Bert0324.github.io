@@ -67,7 +67,7 @@ Normally, its time complexity is n(nlogn). In worst situation that the first sel
 
 Heap sort is a comparison-based sorting technique based on Binary Heap data structure. It is similar to selection sort where we first find the minimum element and place the minimum element at the beginning. We repeat the same process for the remaining elements.
 
-The process of reshaping a binary tree into a Heap data structure is known as ‘heapify’. A binary tree is a tree data structure that has two child nodes at max. If a node’s children nodes are ‘heapified’, then only ‘heapify’ process can be applied over that node. A heap should always be a complete binary tree. 
+The process of reshaping a binary tree into a Heap data structure is known as 'heapify'. A binary tree is a tree data structure that has two child nodes at max. If a node’s children nodes are 'heapified', then only ‘heapify’ process can be applied over that node. A heap should always be a complete binary tree.
 
 Starting from a complete binary tree, we can modify it to become a Max-Heap by running a function called ‘heapify’ on all the non-leaf elements of the heap. i.e. ‘heapify’ uses recursion.
 
