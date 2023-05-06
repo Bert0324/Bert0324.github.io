@@ -443,10 +443,10 @@ less@^4.1.1:
     needle "^2.5.2"
     source-map "~0.6.0"
 
-lodash-es@^4.17.20:
-  version "4.17.20"
-  resolved "https://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.20.tgz?cache=0&sync_timestamp=1608444902178&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash-es%2Fdownload%2Flodash-es-4.17.20.tgz#29f6332eefc60e849f869c264bc71126ad61e8f7"
-  integrity sha1-KfYzLu/GDoSfhpwmS8cRJq1h6Pc=
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash@^4.17.20:
   version "4.17.20"
