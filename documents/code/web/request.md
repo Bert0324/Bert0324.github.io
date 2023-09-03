@@ -87,26 +87,20 @@ It will send plain content as text, such as using XML to transfer data.
 ## Set Max Number of Concurrency
 
 ```ts
-const request = async (urls: string[], maxNumber: number, callback: Function) => {
-    const data = {
-        queue: [...urls],
-        count: 0,
-    };
-    const handler = async () => {
-        switch (true) {
-            case data.queue.length === 0:
-                callback();
-                break;
-            case data.count < maxNumber:
-                data.count++;
-                await fetch(data.queue.shift());
-                data.count--;
-                break;
-            default:
-                handler();
-        }
-    };
-    await handler();
+const request = async (tasks: (() => Promise<any>)[], maxNumber: number) => {
+  const ret = [...tasks];
+  const _tasks = [...tasks];
+  const handler = async () => {
+    if (_tasks.length) {
+      const task = _tasks.shift();
+      const res = await task!();
+      const i = ret.findIndex(v => v === task);
+      ret[i] = res;
+      await handler();
+    }
+  };
+  await Promise.all(Array(maxNumber).fill(handler).map(h => h()));
+  return ret;
 };
 ```
 
