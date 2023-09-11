@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2023-09-03 21:16:41</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#%u601D%u8003%u8FC7%u7A0B">思考过程</a></li><li><a href="#%u66B4%u529B%u6CD5">暴力法</a></li><li><a href="#%u5907%u5FD8%u5F55">备忘录</a></li><li><a href="#%u52A8%u6001%u89C4%u5212">动态规划</a></li><li><a href="#end">end</a></li></ul></div></div><div><h1 id="1049.%20last%20stone%20weight%20ii">1049. Last Stone Weight II</h1><p>source: <a href="https://leetcode.com/problems/last-stone-weight-ii/">https://leetcode.com/problems/last-stone-weight-ii/</a></p><h2 id="question">Question</h2><p>You are given an array of integers stones where stones[i] is the weight of the ith stone.</p><p>We are playing a game with the stones. On each turn, we choose any two stones and smash them together. Suppose the stones have weights x and y with x &lt;= y. The result of this smash is:</p><p>If x == y, both stones are destroyed, and If x != y, the stone of weight x is destroyed, and the stone of weight y has new weight y - x. At the end of the game, there is at most one stone left.</p><p>Return the smallest possible weight of the left stone. If there are no stones left, return 0.</p><h2 id="%u601D%u8003%u8FC7%u7A0B">思考过程</h2><p>一开始的想法是类似01背包，去找到最小值。但是对于本题存在一个问题，求的是总体的最小差值，所以要另寻他法。</p><h2 id="%u66B4%u529B%u6CD5">暴力法</h2><p>对于两块石头，因为追求的是总体最小差值，所以可以有两种操作：</p><ul><li>求和</li><li>求差</li></ul><p>那么就可以用暴力法把所有的可能性列出来：</p><pre><code class="language-js"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[]}</span> <span class="hljs-variable">stones</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> lastStoneWeightII = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">stones</span>) </span>{
+    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">i, left</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (i === stones.length) {
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(left);
+        }
+        <span class="hljs-keyword">const</span> pos = dfs(i + <span class="hljs-number">1</span>, left + stones[i]);
+        <span class="hljs-keyword">const</span> neg = dfs(i + <span class="hljs-number">1</span>, left - stones[i]);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(pos, neg);
+    };
+    <span class="hljs-keyword">return</span> dfs(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+};
+</code></pre><h2 id="%u5907%u5FD8%u5F55">备忘录</h2><p>剪枝后的备忘录：</p><pre><code class="language-js"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[]}</span> <span class="hljs-variable">stones</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> lastStoneWeightII = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">stones</span>) </span>{
+    <span class="hljs-keyword">const</span> cache = {};
+    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">i, left</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (i === stones.length) {
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(left);
+        }
+        <span class="hljs-keyword">if</span> (cache[<span class="hljs-string">`<span class="hljs-subst">${i + <span class="hljs-number">1</span>}</span>.<span class="hljs-subst">${left + stones[i]}</span>`</span>] === <span class="hljs-literal">undefined</span>) {
+            cache[<span class="hljs-string">`<span class="hljs-subst">${i + <span class="hljs-number">1</span>}</span>.<span class="hljs-subst">${left + stones[i]}</span>`</span>] = dfs(i + <span class="hljs-number">1</span>, left + stones[i]);
+        }
+        <span class="hljs-keyword">if</span> (cache[<span class="hljs-string">`<span class="hljs-subst">${i + <span class="hljs-number">1</span>}</span>.<span class="hljs-subst">${left - stones[i]}</span>`</span>] === <span class="hljs-literal">undefined</span>) {
+            cache[<span class="hljs-string">`<span class="hljs-subst">${i + <span class="hljs-number">1</span>}</span>.<span class="hljs-subst">${left - stones[i]}</span>`</span>] = dfs(i + <span class="hljs-number">1</span>, left - stones[i]);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(cache[<span class="hljs-string">`<span class="hljs-subst">${i + <span class="hljs-number">1</span>}</span>.<span class="hljs-subst">${left + stones[i]}</span>`</span>], cache[<span class="hljs-string">`<span class="hljs-subst">${i + <span class="hljs-number">1</span>}</span>.<span class="hljs-subst">${left - stones[i]}</span>`</span>]);
+    };
+    <span class="hljs-keyword">return</span> dfs(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+};
+</code></pre><h2 id="%u52A8%u6001%u89C4%u5212">动态规划</h2><p>这里还可以有一种转换为01背包的思路：</p><pre><code class="language-js"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[]}</span> <span class="hljs-variable">stones</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> lastStoneWeightII = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">stones</span>) </span>{
+    <span class="hljs-keyword">const</span> sum = stones.reduce(<span class="hljs-function">(<span class="hljs-params">acc, crr</span>) =&gt;</span> acc + crr, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">const</span> half = sum &gt;&gt; <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">const</span> dp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(half + <span class="hljs-number">1</span>).fill(<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> stone <span class="hljs-keyword">of</span> stones) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = half; j &gt;= stone; j--) {
+            dp[j] = <span class="hljs-built_in">Math</span>.max(dp[j], dp[j - stone] + stone)
+        }
+    }
+    <span class="hljs-keyword">return</span> sum - dp[half] * <span class="hljs-number">2</span>;
+};
+</code></pre><h2 id="end">End</h2></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>

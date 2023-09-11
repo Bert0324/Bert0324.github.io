@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2023-09-03 21:16:41</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#01%u80CC%u5305%u95EE%u9898">01背包问题</a></li><li><a href="#01%u80CC%u5305%u95EE%u9898%uFF1A416.%20partition%20equal%20subset%20sum">01背包问题：416. partition equal subset sum</a></li><ul><li><a href="#question">question</a></li><li><a href="#%u52A8%u6001%u89C4%u5212%u6CD5">动态规划法</a></li></ul><li><a href="#%u5B8C%u5168%u80CC%u5305%u95EE%u9898%3A%20518.%20coin%20change%20ii">完全背包问题: 518. coin change ii</a></li><ul><li><a href="#question">question</a></li><li><a href="#%u5907%u5FD8%u5F55%u6CD5">备忘录法</a></li><li><a href="#%u52A8%u6001%u89C4%u5212">动态规划</a></li></ul><li><a href="#%u53D8%u79CD01%u80CC%u5305%uFF1A1049.%20last%20stone%20weight%20ii">变种01背包：1049. last stone weight ii</a></li><ul><li><a href="#question">question</a></li><li><a href="#%u5907%u5FD8%u5F55%u6CD5">备忘录法</a></li><li><a href="#%u52A8%u6001%u89C4%u5212%u6CD5">动态规划法</a></li></ul><li><a href="#%u603B%u7ED3">总结</a></li></ul></div></div><div><h1 id="knapsack%20problems">Knapsack Problems</h1><ul><li>01背包：物品只能被选择1次</li><li>无限背包：物品可以被无限选择</li></ul><h2 id="01%u80CC%u5305%u95EE%u9898">01背包问题</h2><ul><li><code>给你一个可装载重量为 W 的背包和 N 个物品，每个物品有重量和价值两个属性。其中第 i 个物品的重量为 wt[i]，价值为 val[i]，现在让你用这个背包装物品，最多能装的价值是多少？</code></li></ul><p>需要穷举所有可能，并找出最优解，同时复杂问题可以转换为独立的子问题，所以都可以用动态规划去求解。</p><p>此处这个01背包的解, 既可以用dfs的方式去解，一次只有两个操作，加或不加物品：</p><pre><code class="language-js"><span class="hljs-keyword">var</span> knapsack = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">payload, items</span>) </span>{
+    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">i, totalValue, totalWeight</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> item = items[i];
+        <span class="hljs-keyword">let</span> add = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">let</span> notAdd = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span> (item) {
+            notAdd = dfs(i + <span class="hljs-number">1</span>, totalValue, totalWeight);
+            <span class="hljs-keyword">if</span> ((totalWeight + item.weight) &lt;= payload) {
+                add = dfs(i + <span class="hljs-number">1</span>, totalValue + item.val, totalWeight + item.weight);
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(add, notAdd, totalValue);
+    }
+    <span class="hljs-keyword">return</span> dfs(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+};
+knapsack(<span class="hljs-number">6</span>, [{<span class="hljs-attr">weight</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">val</span>: <span class="hljs-number">5</span>},{<span class="hljs-attr">weight</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">val</span>: <span class="hljs-number">4</span>},{<span class="hljs-attr">weight</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">val</span>: <span class="hljs-number">2</span>}]); <span class="hljs-comment">// 9</span>
+</code></pre><p>使用动态规划的解法：</p><ul><li>dp[i][w] 的定义：对于前 i 个物品，当前背包的容量为 w，这种情况下可以装的最大价值</li></ul><pre><code class="language-js"><span class="hljs-keyword">var</span> knapsack = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">payload, items</span>) </span>{
+    <span class="hljs-comment">// 已初始化的base case</span>
+    <span class="hljs-comment">// 因为是使用数组下标表示定义，所以初始化都要+1</span>
+    <span class="hljs-keyword">const</span> dp = <span class="hljs-built_in">Array</span>(items.length + <span class="hljs-number">1</span>).fill(<span class="hljs-literal">null</span>).map(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(payload + <span class="hljs-number">1</span>).fill(<span class="hljs-number">0</span>));
+    <span class="hljs-comment">// 此次循环内，判断要不要把第i-1个物品放入背包</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= items.length; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> w = <span class="hljs-number">1</span>; w &lt;= payload; w++) {
+            <span class="hljs-keyword">const</span> weight = items[i - <span class="hljs-number">1</span>].weight;
+            <span class="hljs-keyword">const</span> val = items[i - <span class="hljs-number">1</span>].val;
+            <span class="hljs-keyword">const</span> left = w - weight;
+            <span class="hljs-keyword">if</span> (left &lt; <span class="hljs-number">0</span>) {
+                <span class="hljs-comment">// 这种情况下只能选择不装入背包</span>
+                dp[i][w] = dp[i - <span class="hljs-number">1</span>][w];
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">// 装入或者不装入背包，择优</span>
+                dp[i][w] = <span class="hljs-built_in">Math</span>.max(
+                    dp[i - <span class="hljs-number">1</span>][left] + val, 
+                    dp[i - <span class="hljs-number">1</span>][w]
+                );
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> dp[items.length][payload];
+};
+knapsack(<span class="hljs-number">4</span>, [{<span class="hljs-attr">weight</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">val</span>: <span class="hljs-number">4</span>},{<span class="hljs-attr">weight</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">val</span>: <span class="hljs-number">2</span>},{<span class="hljs-attr">weight</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">val</span>: <span class="hljs-number">3</span>}]); <span class="hljs-comment">// 6</span>
+</code></pre><h2 id="01%u80CC%u5305%u95EE%u9898%uFF1A416.%20partition%20equal%20subset%20sum">01背包问题：416. Partition Equal Subset Sum</h2><p>source: <a href="https://leetcode.com/problems/coin-change-ii/">https://leetcode.com/problems/coin-change-ii/</a></p><h3 id="question">Question</h3><p>Given an integer array nums, return true if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or false otherwise.</p><h3 id="%u52A8%u6001%u89C4%u5212%u6CD5">动态规划法</h3><p>其实就是相当于把一个载重等于sum/2，用nums里的石头填满的01背包问题.</p><ul><li>dp[i][w] 的定义：对于前 i 个物品，当前背包的容量为 w，这种情况下是否刚好装满</li></ul><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">canPartition</span>(<span class="hljs-params">nums: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-title">boolean</span> </span>{
+    <span class="hljs-keyword">const</span> sum = nums.reduce(<span class="hljs-function">(<span class="hljs-params">acc, crr</span>) =&gt;</span> acc + crr, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">if</span> (sum % <span class="hljs-number">2</span> === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">const</span> half = sum &gt;&gt; <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">const</span> dp = <span class="hljs-built_in">Array</span>(nums.length + <span class="hljs-number">1</span>).fill(<span class="hljs-literal">null</span>).map(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> l = <span class="hljs-built_in">Array</span>(half + <span class="hljs-number">1</span>).fill(<span class="hljs-literal">false</span>);
+        l[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> l;
+    });
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= nums.length; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> w = <span class="hljs-number">1</span>; w &lt;= half; w++) {
+            <span class="hljs-keyword">const</span> left = w - nums[i - <span class="hljs-number">1</span>];
+            <span class="hljs-keyword">if</span> (left &lt; <span class="hljs-number">0</span>) {
+                dp[i][w] = dp[i - <span class="hljs-number">1</span>][w];
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">// 如果装了第i个物品，看背包的剩余空间left是否装得下</span>
+                <span class="hljs-comment">// 如果left空间是可以被装满的，那么第i个物品放进恰好可以装满</span>
+                dp[i][w] = dp[i - <span class="hljs-number">1</span>][w] || dp[i - <span class="hljs-number">1</span>][left]
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> dp[nums.length][half];
+};
+</code></pre><h2 id="%u5B8C%u5168%u80CC%u5305%u95EE%u9898%3A%20518.%20coin%20change%20ii">完全背包问题: 518. Coin Change II</h2><p>source: <a href="https://leetcode.com/problems/coin-change-ii/">https://leetcode.com/problems/coin-change-ii/</a></p><h3 id="question">Question</h3><p>You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.</p><p>Return the number of combinations that make up that amount. If that amount of money cannot be made up by any combination of the coins, return 0.</p><p>You may assume that you have an infinite number of each kind of coin.</p><h3 id="%u5907%u5FD8%u5F55%u6CD5">备忘录法</h3><p>这道题和上一道比较明显的区别是，这一道题里的硬币是无限的，而且是去找到所有的解。</p><pre><code class="language-js"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">amount</span></span>
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[]}</span> <span class="hljs-variable">coins</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> change = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">amount, coins</span>) </span>{
+    <span class="hljs-keyword">const</span> getCache = <span class="hljs-function">(<span class="hljs-params">fn</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> cache = {};
+        <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> {
+            <span class="hljs-keyword">const</span> key = args.sort().join(<span class="hljs-string">&#x27;.&#x27;</span>);
+            <span class="hljs-keyword">if</span> (cache[key] === <span class="hljs-literal">undefined</span>) {
+                cache[key] = fn(...args);
+            }
+            <span class="hljs-keyword">return</span> cache[key];
+        };
+    };
+    <span class="hljs-keyword">const</span> cache = getCache(dfs);
+    <span class="hljs-keyword">let</span> ret = [];
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">...args</span>) </span>{
+        <span class="hljs-keyword">const</span> sum = args.reduce(<span class="hljs-function">(<span class="hljs-params">acc, crr</span>) =&gt;</span> acc + crr, <span class="hljs-number">0</span>);
+        <span class="hljs-keyword">if</span> (sum === amount) {
+            ret.push(args);
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">if</span> (sum &gt; amount) {
+            <span class="hljs-keyword">return</span>;
+        }
+        coins.forEach(<span class="hljs-function"><span class="hljs-params">coin</span> =&gt;</span> {
+            cache(...args, coin);
+        });
+    }
+    cache(<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">const</span> obj = ret.reduce(<span class="hljs-function">(<span class="hljs-params">acc, crr</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> key = crr.sort().join(<span class="hljs-string">&#x27;.&#x27;</span>);
+        <span class="hljs-keyword">if</span> (!acc[key]) {
+            acc[key] = <span class="hljs-literal">true</span>;
+        }
+        <span class="hljs-keyword">return</span> acc;
+    }, {});
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.keys(obj).length;
+};
+</code></pre><h3 id="%u52A8%u6001%u89C4%u5212">动态规划</h3><p>这是一个典型的完全背包问题：</p><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">change</span>(<span class="hljs-params">amount: <span class="hljs-built_in">number</span>, coins: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">const</span> dp = <span class="hljs-built_in">Array</span>(coins.length + <span class="hljs-number">1</span>).fill(<span class="hljs-literal">null</span>).map(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> l = <span class="hljs-built_in">Array</span>(amount + <span class="hljs-number">1</span>).fill(<span class="hljs-number">0</span>);
+        <span class="hljs-comment">// base case</span>
+        l[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">return</span> l;
+    });
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= coins.length; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n = <span class="hljs-number">1</span>; n &lt;= amount; n ++) {
+            <span class="hljs-keyword">const</span> left = n - coins[i - <span class="hljs-number">1</span>];
+            <span class="hljs-keyword">if</span> (left &lt; <span class="hljs-number">0</span>) {
+                dp[i][n] = dp[i - <span class="hljs-number">1</span>][n];
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">// 01背包中择优，完全背包中累加</span>
+                dp[i][n] = dp[i - <span class="hljs-number">1</span>][n] + dp[i][left];
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> dp[coins.length][amount];
+};
+</code></pre><h2 id="%u53D8%u79CD01%u80CC%u5305%uFF1A1049.%20last%20stone%20weight%20ii">变种01背包：1049. Last Stone Weight II</h2><p>source: <a href="https://leetcode.com/problems/last-stone-weight-ii/">https://leetcode.com/problems/last-stone-weight-ii/</a></p><h3 id="question">Question</h3><p>You are given an array of integers stones where stones[i] is the weight of the ith stone.</p><p>We are playing a game with the stones. On each turn, we choose any two stones and smash them together. Suppose the stones have weights x and y with x &lt;= y. The result of this smash is:</p><p>If x == y, both stones are destroyed, and If x != y, the stone of weight x is destroyed, and the stone of weight y has new weight y - x. At the end of the game, there is at most one stone left.</p><p>Return the smallest possible weight of the left stone. If there are no stones left, return 0.</p><h3 id="%u5907%u5FD8%u5F55%u6CD5">备忘录法</h3><p>对于两块石头，因为追求的是总体最小差值，所以可以有两种操作：</p><ul><li>求和</li><li>求差</li></ul><p>那么就可以用暴力法把所有的可能性列出来：</p><pre><code class="language-js"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[]}</span> <span class="hljs-variable">stones</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> lastStoneWeightII = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">stones</span>) </span>{
+    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">i, left</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (i === stones.length) {
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(left);
+        }
+        <span class="hljs-keyword">const</span> pos = dfs(i + <span class="hljs-number">1</span>, left + stones[i]);
+        <span class="hljs-keyword">const</span> neg = dfs(i + <span class="hljs-number">1</span>, left - stones[i]);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(pos, neg);
+    };
+    <span class="hljs-keyword">return</span> dfs(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+};
+</code></pre><h3 id="%u52A8%u6001%u89C4%u5212%u6CD5">动态规划法</h3><p>如果要用背包去理解，因为石头是可以互相粉碎的，有个很重要的理解：</p><ul><li><code>留下来的石头重量最小值，等于往一个sum/2的背包里放石头能放的最大值 * 2</code></li></ul><p>理解了之后，就能用常规的01背包的模板去解了。</p><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lastStoneWeightII</span>(<span class="hljs-params">stones: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">const</span> sum = stones.reduce(<span class="hljs-function">(<span class="hljs-params">acc, crr</span>) =&gt;</span> acc + crr, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">const</span> half = sum &gt;&gt; <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">const</span> dp = <span class="hljs-built_in">Array</span>(stones.length + <span class="hljs-number">1</span>).fill(<span class="hljs-literal">null</span>).map(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">Array</span>(half + <span class="hljs-number">1</span>).fill(<span class="hljs-number">0</span>));
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= stones.length; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> w = <span class="hljs-number">0</span>; w &lt;= half; w++) {
+            <span class="hljs-keyword">const</span> left = w - stones[i - <span class="hljs-number">1</span>];
+            <span class="hljs-keyword">if</span> (left &lt; <span class="hljs-number">0</span>) {
+                dp[i][w] = dp[i - <span class="hljs-number">1</span>][w];
+            } <span class="hljs-keyword">else</span> {
+                dp[i][w] = <span class="hljs-built_in">Math</span>.max(
+                    dp[i - <span class="hljs-number">1</span>][w],
+                    <span class="hljs-comment">// left最大值，加上现在石头的重量</span>
+                    dp[i - <span class="hljs-number">1</span>][left] + stones[i - <span class="hljs-number">1</span>]
+                );
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> sum - <span class="hljs-number">2</span> * dp[stones.length][half];
+};
+</code></pre><h2 id="%u603B%u7ED3">总结</h2><ul><li><a href="https://labuladong.github.io/algo/di-er-zhan-a01c6/bei-bao-le-34bd4/jing-dian--70de0/">https://labuladong.github.io/algo/di-er-zhan-a01c6/bei-bao-le-34bd4/jing-dian--70de0/</a></li></ul></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>

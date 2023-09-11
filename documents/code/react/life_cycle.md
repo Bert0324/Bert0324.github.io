@@ -129,10 +129,9 @@ See more in [Hooks](https://github.com/Bert0324/code-playground/blob/master/reac
 
 There is a nice page to show it, from [react-lifecycle-methods-diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).
 
-<img src='../assets/react_life_cycle.png' width="800">
+<img src='../../../assets/react_life_cycle.png' width="800">
 
 Also, for the old version, there is a pretty good image from [link](https://ithelp.ithome.com.tw/articles/10187845).
 
-<img src='../assets/react_old_life_cycle.png' width="800">
+<img src='../../../assets/react_old_life_cycle.png' width="800">
 
-If you want to make a right or have some questions, welcome to leave a message.

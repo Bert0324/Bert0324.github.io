@@ -37,6 +37,7 @@
 
 ## Dynamic Programming
 
+- [Knapsack Problems: 416, 518, 1049](/documents/leetcode/knapsack-problems.md)
 - [5. Longest Palindromic Substring](/documents/leetcode/5.longest-palindromic-substring.md)
 - [10. Regular Expression Matching](/documents/leetcode/10.regular-expression-matching.md)
 - [42. Trapping Rain Water](/documents/leetcode/42.trapping-rain-water.md)
@@ -49,6 +50,7 @@
 - [583. Delete Operation for Two Strings](/documents/leetcode/583.delete-operation-for-two-strings.md)
 - [712. Minimum ASCII Delete Sum for Two Strings](/documents/leetcode/712.minimum-ascii-delete-sum-for-two-strings.md)
 - [931. Minimum Falling Path Sum](/documents/leetcode/931.minimum-falling-path-sum.md)
+- [1049. Last Stone Weight II](/documents/leetcode/1049.last-stone-weight-ii.md)
 - [1143. Longest Common Subsequence](/documents/leetcode/1143.longest-common-subsequence.md)
 
 ## Divide And Conquer Method
@@ -94,6 +96,7 @@
 ## Others
 
 - [1. Two Sum](/documents/leetcode/1.two-sum.md)
+- [6. Zigzag Conversion](/documents/leetcode/6.zigzag-conversion.md)
 - [7. Reverse Integer](/documents/leetcode/7.reverse-integer.md)
 - [20. Valid Parentheses](/documents/leetcode/20.valid-parentheses.md)
 - [31. Next Permutation](/documents/leetcode/31.next-permutation.md)
