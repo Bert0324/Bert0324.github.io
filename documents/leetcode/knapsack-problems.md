@@ -265,6 +265,26 @@ function lastStoneWeightII(stones: number[]): number {
 };
 ```
 
+优化空间后:
+
+```js
+/**
+ * @param {number[]} stones
+ * @return {number}
+ */
+var lastStoneWeightII = function(stones) {
+    const sum = stones.reduce((acc, crr) => acc + crr, 0);
+    const half = sum >> 1;
+    const dp = new Array(half + 1).fill(0);
+    for (let stone of stones) {
+        for (let j = half; j >= stone; j--) {
+            dp[j] = Math.max(dp[j], dp[j - stone] + stone)
+        }
+    }
+    return sum - dp[half] * 2;
+};
+```
+
 ## 总结
 
 - <https://labuladong.github.io/algo/di-er-zhan-a01c6/bei-bao-le-34bd4/jing-dian--70de0/>
