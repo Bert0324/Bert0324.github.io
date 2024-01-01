@@ -8,7 +8,7 @@
 - [25. Reverse Nodes in k-Group](/documents/leetcode/25.reverse-nodes-in-k-group.md)
 - [92. Reverse Linked List II](/documents/leetcode/92.reverse-linked-list-ii.md)
 - [138. Copy List with Random Pointer](/documents/leetcode/138.copy_list_with_random_pointer.md)
-- [143. Reorder List]()
+<!-- - [143. Reorder List]() -->
 - [146. LRU Cache](/documents/leetcode/146.lru_cache.md)
 - [206. Reverse Linked List](/documents/leetcode/206.reverse-linked-list.md)
 
@@ -109,3 +109,4 @@
 - [273. Integer to English Words](/documents/leetcode/273.integer-to-english-words.md)
 - [415. Add Strings & 43. Multiply Strings](/documents/leetcode/415.add-strings.md)
 - [440. K-th Smallest in Lexicographical Order](/documents/leetcode/440.k-th-smallest-in-lexicographical-order.md)
+- [2850. Minimum Moves to Spread Stones Over Grid](/documents/leetcode/2850.minimum-moves-to-spread-stones-over-grid.md)
