@@ -86,22 +86,97 @@ It will send plain content as text, such as using XML to transfer data.
 
 ## Set Max Number of Concurrency
 
+### 固定任务
+
 ```ts
-const request = async (tasks: (() => Promise<any>)[], maxNumber: number) => {
-  const ret = [...tasks];
-  const _tasks = [...tasks];
+/**
+ * @param {Function[]} functions
+ * @param {number} n
+ * @return {Function}
+ */
+var promisePool = async function (functions, n) {
+  let count = 0;
+  const map = new Map();
   const handler = async () => {
-    if (_tasks.length) {
-      const task = _tasks.shift();
-      const res = await task!();
-      const i = ret.findIndex(v => v === task);
-      ret[i] = res;
-      await handler();
+    if (count < n && functions.length) {
+      const task = functions.shift();
+      count += 1;
+      const res = await task();
+      count -= 1;
+      const rs = map.get(task);
+      map.delete(task);
+      rs(res);
+      handler();
     }
   };
-  await Promise.all(Array(maxNumber).fill(handler).map(h => h()));
-  return ret;
+  const promises = functions.map(task => {
+    return new Promise(resolve => {
+      map.set(task, resolve);
+    });
+  });
+  let i = 0;
+  while (i < n) {
+    handler();
+    i++;
+  }
+  return Promise.all(promises);
 };
+
+/**
+ * const sleep = (t) => new Promise(res => setTimeout(res, t));
+ * promisePool([() => sleep(500), () => sleep(400)], 1)
+ *   .then(console.log) // After 900ms
+ */
+
+```
+
+### 动态任务
+
+```js
+class Scheduler {
+  constructor(size) {
+    this.size = size;
+    this.count = 0;
+    this.queue = [];
+    this.rs = new Map();
+  }
+
+  async handler() {
+    if (this.count < this.size && this.queue.length) {
+      const task = this.queue.shift();
+      this.count += 1;
+      const res = await task();
+      this.count -= 1;
+      const resolve = this.rs.get(task);
+      resolve(res);
+      this.rs.delete(task);
+      this.handler();
+    }
+  }
+
+  add(task) {
+    this.queue.push(task);
+    return new Promise(resolve => {
+      this.rs.set(task, resolve);
+      this.handler();
+    });
+  }
+}
+
+const timeout = time =>
+  new Promise(resolve => {
+    setTimeout(() => resolve(time), time);
+  });
+
+const scheduler = new Scheduler(2);
+const addTask = (time, order) => {
+  scheduler.add(() => timeout(time)).then(res => console.log(order, res));
+};
+
+addTask(1000, '1');
+addTask(500, '2');
+addTask(300, '3');
+addTask(400, '4'); // output: 2 3 1 4
 ```
 
 ## Reference
