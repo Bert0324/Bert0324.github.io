@@ -109,5 +109,5 @@
 - [273. Integer to English Words](/documents/leetcode/273.integer-to-english-words.md)
 - [415. Add Strings & 43. Multiply Strings](/documents/leetcode/415.add-strings.md)
 - [440. K-th Smallest in Lexicographical Order](/documents/leetcode/440.k-th-smallest-in-lexicographical-order.md)
-- [560. K-th Smallest in Lexicographical Order](/documents/leetcode/560.subarray-sum-equals-k.md)
+- [560. Subarray Sum Equals K](/documents/leetcode/560.subarray-sum-equals-k.md)
 - [2850. Minimum Moves to Spread Stones Over Grid](/documents/leetcode/2850.minimum-moves-to-spread-stones-over-grid.md)
