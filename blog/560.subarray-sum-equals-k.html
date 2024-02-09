@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bert's Blog</title><meta name="keywords" content="blog,javascript,typescript,code,frontend"><meta name="description" content="bert huang's blog"><link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/a11y-light.min.css" integrity="sha512-PW96n2amVglidqEDLPUdjJ0zByhT20poSqWJYZRutR6CP2QH58k96WmorqNnC4QXnosNeqMJM8FR/93isIifDQ==" crossorigin="anonymous"><link rel="stylesheet" href="/blog/style.css"></head><body><div><div class="container"><div class="side-bar"><img class="avatar" src="/assets/avatar.jpeg"><h1>Bert Huang</h1><p>一位兴趣广泛的前端程序员</p><nav><ul><li><a href="/blog/index.html">Index</a></li><li><a href="/blog/code.html">Code</a></li><li><a href="/blog/leetcode.html">LeetCode</a></li><li><a href="/blog/essay.html">Essay</a></li><li><a href="/blog/about.html">About</a></li></ul></nav><div id="social"><a href="https://github.com/Bert0324"><img class="social-avatar" src="https://github.githubassets.com/favicons/favicon.png"></a><a href="https://www.facebook.com/people/Yuchen-Huang/100005315205237"><img class="social-avatar" src="/assets/facebook.png"></a><a href="https://twitter.com/BertHuang5"><img class="social-avatar" src="/assets/twitter.png"></a></div><div class="views-count"><p id="busuanzi_container_site_uv" style="display:inline">total viewers: <span id="busuanzi_value_site_uv"></span></p></div></div><div class="post-content"><div class="search-field"><input class="search-input" placeholder="search"><div style="position:absolute"><div class="search-dropdown"><div class="dropdown-container"></div></div></div><button class="icon-font search-button"></button></div><div class="post-container"><div id="particles-js" style="position:fixed;height:100vh;width:100vw;z-index:-99"></div><div class="post-article"><article class="markdown-body"><div><div id="toc"><div class="last-edit"><p>Last Commit: 2024-01-06 17:49:45</p><p id="busuanzi_container_page_pv">views: <span id="busuanzi_value_page_pv"></span></p></div><div id="toc-body"><p><strong>Table of Content</strong></p><ul><li><a href="#question">question</a></li><li><a href="#bruteforce">bruteforce</a></li><li><a href="#%u524D%u7F00%u548C">前缀和</a></li><li><a href="#%u603B%u7ED3">总结</a></li></ul></div></div><div><h1 id="560.%20subarray%20sum%20equals%20k">560. Subarray Sum Equals K</h1><p>source: <a href="https://leetcode.com/problems/subarray-sum-equals-k/">https://leetcode.com/problems/subarray-sum-equals-k/</a></p><h2 id="question">Question</h2><p>Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.</p><p>A subarray is a contiguous non-empty sequence of elements within an array.</p><h2 id="bruteforce">Bruteforce</h2><p>暴力法比较简单，就是遍历所有子数组，筛选总数为k的。</p><pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subarraySum</span>(<span class="hljs-params">nums: <span class="hljs-built_in">number</span>[], k: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">let</span> ret = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) {
+        <span class="hljs-keyword">let</span> crr = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i; j &lt; nums.length; j ++) {
+            crr += nums[j];
+            <span class="hljs-keyword">if</span> (crr === k) {
+                ret += <span class="hljs-number">1</span>;
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> ret;
+};
+</code></pre><h2 id="%u524D%u7F00%u548C">前缀和</h2><p>推断出一个重要的等式：</p><ul><li>pre[i]=pre[i−1]+nums[i]</li><li>[j..i][j..i][j..i] 这个子数组和为 k：pre[i]−pre[j−1]==k (j &lt; i)</li><li>pre[j−1]==pre[i]−k</li></ul><p>用哈希表来记录前缀和等于某个值的i个数。</p><pre><code class="language-ts"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number[]}</span> <span class="hljs-variable">nums</span></span>
+ * <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">k</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{number}</span></span>
+ */</span>
+<span class="hljs-keyword">var</span> subarraySum = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums, k</span>) </span>{
+    <span class="hljs-keyword">const</span> map = {};
+    <span class="hljs-comment">// 初始状态，即第一个数满足k的情况</span>
+    map[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">let</span> crr = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> ret = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) {
+        crr += nums[i];
+        <span class="hljs-comment">// j &lt; i, 子数组以i结尾时，有多少个以j-1为开始的子数组可以满足pre[i]−pre[j−1]==k</span>
+        <span class="hljs-keyword">if</span> (map[crr - k] !== <span class="hljs-literal">undefined</span>) {
+            ret += map[crr - k];
+        }
+        <span class="hljs-keyword">if</span> (map[crr] === <span class="hljs-literal">undefined</span>) {
+            map[crr] = <span class="hljs-number">0</span>;
+        }
+        map[crr] += <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> ret;
+};
+</code></pre><h2 id="%u603B%u7ED3">总结</h2><p>暴力法比较容易想出来，但是优化后的方法有比较多处的细节需要想清楚。</p></div></div></article></div></div><div id="reminder" style="display:none">Facebook Comments Service is unavailable</div></div></div></div></body><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><script async defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="BSCiWiHI"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-0SEZ9KRGY7"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script><script src="/blog/index.js"></script></html>
